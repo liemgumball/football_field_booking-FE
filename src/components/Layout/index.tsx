@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom'
-import { Button } from '@/components/ui/button'
+import Header from './Header'
 
 const Layout = () => {
 	return (
-		<>
-			<Button>Header</Button>
+		<div className="mx-3 my-2">
+			<Header />
 			<Outlet />
-		</>
+		</div>
 	)
 }
 
