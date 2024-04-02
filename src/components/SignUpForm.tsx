@@ -26,10 +26,7 @@ const formSchema = z
 			.string()
 			.min(6, 'Password must contain at least 6 characters')
 			.max(20, 'Password must contain maximum 20 characters'),
-		confirmPassword: z
-			.string()
-			.min(6, 'Password must contain at least 6 characters')
-			.max(20, 'Password must contain maximum 20 characters'),
+		confirmPassword: z.string(),
 		phoneNumber: z.string().regex(REGEX.PHONE_NUMBER, 'Invalid phone number'),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
