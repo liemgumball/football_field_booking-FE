@@ -3,7 +3,7 @@ import Header from './Header'
 
 const Layout = () => {
 	return (
-		<div className="mx-3 my-2 min-h-screen">
+		<div className="min-h-screen px-3 py-2">
 			<Header />
 			<Outlet />
 		</div>
