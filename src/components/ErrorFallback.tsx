@@ -1,4 +1,4 @@
-import { NOTIFIES_MSG } from '@/constants/message'
+import { ERROR_MSG } from '@/constants/message'
 import { useErrorBoundary } from 'react-error-boundary'
 import { Button } from './ui/button'
 
@@ -11,7 +11,7 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({ error }) => {
 
 	return (
 		<div className="absolute inset-0 flex flex-col items-center justify-center gap-5">
-			<h1 className="font-600 text-4xl">{NOTIFIES_MSG.ERROR_FALLBACK}</h1>
+			<h1 className="font-600 text-4xl">{ERROR_MSG.ERROR_FALLBACK}</h1>
 			<p className="normal-case text-red-600 ">{error.message}</p>
 			<Button variant="default" onClick={resetBoundary}>
 				Reload the page
