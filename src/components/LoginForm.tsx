@@ -39,8 +39,8 @@ const LoginForm = () => {
 		values,
 	) => {
 		try {
-			const user = await login(values)
-			setAuth(user)
+			const response = await login(values)
+			setAuth(response.data)
 		} catch (error) {
 			const err = error as AxiosError
 			// Unauthorized
@@ -62,10 +62,7 @@ const LoginForm = () => {
 
 	return (
 		<FormProvider {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className="space-y-4 rounded-md border-l-4 p-4"
-			>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-4">
 				<FormField
 					control={form.control}
 					name="email"
