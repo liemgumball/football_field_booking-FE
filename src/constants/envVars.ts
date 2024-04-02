@@ -3,6 +3,7 @@ export const ENV_VARS = {
 		BASE: import.meta.env.VITE_API_URL ?? '',
 		AUTH: {
 			LOGIN: '/auth/login',
+			SIGNUP: '/auth/signup',
 		},
 	},
 	GOOGLE: {

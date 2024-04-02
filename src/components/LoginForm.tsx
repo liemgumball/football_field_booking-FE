@@ -39,8 +39,8 @@ const LoginForm = () => {
 		values,
 	) => {
 		try {
-			const user = await login(values)
-			setAuth(user)
+			const response = await login(values)
+			setAuth(response.data)
 		} catch (error) {
 			const err = error as AxiosError
 			// Unauthorized

@@ -10,7 +10,7 @@ const Login = () => {
 	}
 
 	return (
-		<main className="flex h-max flex-col justify-center space-y-8 p-8">
+		<main className="space-y-8 p-8">
 			<LoginForm />
 			<Separator />
 			<GoogleLogin onSuccess={onSuccess} />
