@@ -6,7 +6,7 @@ import NavBar from '../NavBar'
 
 const Header = () => {
 	return (
-		<header className="flex items-center justify-between px-8">
+		<header className="flex w-full items-center justify-between px-8">
 			<Link to="/">
 				<Icons.Logo />
 			</Link>
