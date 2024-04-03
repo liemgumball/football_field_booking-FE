@@ -40,7 +40,6 @@ const ModeToggle = () => {
 				>
 					<DropdownMenuRadioItem value="light">Light</DropdownMenuRadioItem>
 					<DropdownMenuRadioItem value="dark">Dark</DropdownMenuRadioItem>
-					<DropdownMenuRadioItem value="system">System</DropdownMenuRadioItem>
 				</DropdownMenuRadioGroup>
 			</DropdownMenuContent>
 		</DropdownMenu>
