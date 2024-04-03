@@ -8,6 +8,9 @@ export const content = [
 ]
 export const prefix = ''
 export const theme = {
+	fontFamily: {
+		prompt: ['Prompt', 'sans-serif'],
+	},
 	container: {
 		center: true,
 		padding: '2rem',
