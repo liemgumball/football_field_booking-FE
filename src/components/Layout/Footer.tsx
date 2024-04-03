@@ -5,10 +5,10 @@ import SocialContactItem from '../SocialContactItem'
 
 const Footer = () => {
 	return (
-		<footer className="mt-auto w-full self-end justify-self-end px-32 py-4">
+		<footer className="mt-auto w-full min-w-max self-end justify-self-end px-32 py-4">
 			<Separator />
-			<div className="my-8 flex items-center justify-between px-8">
-				<ul className="flex space-x-16">
+			<div className="my-8 flex items-center justify-between px-8 ">
+				<ul className="grid w-full auto-cols-max grid-cols-1 gap-x-16 gap-y-16  lg:grid-cols-2 xl:grid-cols-4">
 					<ContactItem
 						title="Location"
 						content="387 Truong Son, Danang"
