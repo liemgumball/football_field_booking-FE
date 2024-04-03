@@ -3,9 +3,11 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { Send } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import useThemeStore from '@/stores/theme'
 
 const Home = () => {
 	const container = useRef<HTMLElement>(null)
+	const theme = useThemeStore((set) => set.theme)
 
 	useGSAP(
 		() => {
@@ -35,7 +37,7 @@ const Home = () => {
 				delay: 0.45,
 			})
 		},
-		{ scope: container },
+		{ scope: container, dependencies: [theme] },
 	)
 
 	return (
