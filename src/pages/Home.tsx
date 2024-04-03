@@ -45,7 +45,7 @@ const Home = () => {
 	return (
 		<main className="my-16">
 			<section
-				className="flex flex-col items-center gap-x-12 gap-y-12 xl:flex-row"
+				className="flex flex-col items-center gap-x-12 gap-y-12 transition xl:flex-row"
 				ref={container}
 			>
 				<div>
@@ -68,9 +68,10 @@ const Home = () => {
 						</Link>
 					</div>
 				</div>
-				<div className="hero-img mx-auto w-full min-w-[500px] max-w-[870px] overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
+				<div className="hero-img mx-auto w-full min-w-[600px] max-w-[870px] overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
 					<AspectRatio ratio={1449 / 966}>
-						{theme === 'dark' ? <Images.HeroDark /> : <Images.HeroLight />}
+						<Images.HeroDark hidden={theme !== 'dark'} />
+						<Images.HeroLight hidden={theme === 'dark'} />
 					</AspectRatio>
 				</div>
 			</section>
