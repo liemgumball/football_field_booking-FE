@@ -5,10 +5,10 @@ import SocialContactItem from '../SocialContactItem'
 
 const Footer = () => {
 	return (
-		<footer className="mt-auto w-full min-w-max self-end justify-self-end px-32 py-4">
+		<footer className="mt-auto w-full self-end justify-self-end px-8 py-4 xl:px-24">
 			<Separator />
-			<div className="my-8 flex items-center justify-between px-8 ">
-				<ul className="grid w-full auto-cols-max grid-cols-1 gap-x-16 gap-y-16  lg:grid-cols-2 xl:grid-cols-4">
+			<div className="my-8 flex items-center justify-between ">
+				<ul className="grid w-full grid-cols-1 gap-y-12 md:grid-cols-2 xl:grid-cols-4">
 					<ContactItem
 						title="Location"
 						content="387 Truong Son, Danang"
@@ -26,7 +26,7 @@ const Footer = () => {
 						to="tel:+84931069005"
 						icon={<Phone size={23} />}
 					/>
-					<li className="flex space-x-2">
+					<li className="flex space-x-2 xl:justify-center">
 						<SocialContactItem className="fab fa-facebook-f" />
 						<SocialContactItem className="fab fa-instagram" />
 						<SocialContactItem className="fab fa-twitter" />

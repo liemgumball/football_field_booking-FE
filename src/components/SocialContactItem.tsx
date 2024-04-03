@@ -8,7 +8,7 @@ const SocialContactItem = ({ className }: { className?: string }) => {
 			to="#"
 			className={cn(
 				buttonVariants({ variant: 'secondary' }),
-				'size-14 shrink-0 rounded-full',
+				'size-12 shrink-0 rounded-full md:size-14',
 			)}
 		>
 			<i className={cn('text-lg text-accent-foreground', className)} />

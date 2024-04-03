@@ -15,7 +15,7 @@ const ContactItem = ({
 	icon: React.ReactNode
 }) => {
 	return (
-		<li className="flex gap-x-4 truncate">
+		<li className="flex gap-x-4 truncate xl:justify-center">
 			<div
 				className={cn(
 					buttonVariants({ size: 'icon' }),
