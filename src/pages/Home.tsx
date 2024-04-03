@@ -4,6 +4,8 @@ import { useGSAP } from '@gsap/react'
 import { Send } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import useThemeStore from '@/stores/theme'
+import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { Images } from '@/components/Images'
 
 const Home = () => {
 	const container = useRef<HTMLElement>(null)
@@ -57,7 +59,7 @@ const Home = () => {
 						</p>
 						<Link
 							to="/"
-							className="font-prompt inline-flex items-center rounded-full bg-primary p-1 pl-8 font-semibold transition-colors hover:bg-primary/70"
+							className="font-prompt inline-flex items-center rounded-full bg-primary p-1 pl-8 font-semibold transition-colors hover:bg-primary/80"
 						>
 							Explore More
 							<span className="ml-6 rounded-full bg-secondary p-3 transition-colors">
@@ -66,12 +68,10 @@ const Home = () => {
 						</Link>
 					</div>
 				</div>
-				<div className="hero-img mx-auto min-w-[500px] max-w-[870px] overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
-					<img
-						width="100%"
-						src="https://seattlerats.org/wp-content/uploads/2015/03/Soccer-Field-Night.jpg"
-						alt="hero image 1"
-					/>
+				<div className="hero-img mx-auto w-full min-w-[500px] max-w-[870px] overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
+					<AspectRatio ratio={1449 / 966}>
+						{theme === 'dark' ? <Images.HeroDark /> : <Images.HeroLight />}
+					</AspectRatio>
 				</div>
 			</section>
 		</main>
