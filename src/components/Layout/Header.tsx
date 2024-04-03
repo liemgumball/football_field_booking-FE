@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom'
 import ModeToggle from '../ThemeToggle'
 import { buttonVariants } from '@/components/ui/button'
+import { Icons } from '../Icons'
+import NavBar from '../NavBar'
 
 const Header = () => {
 	return (
-		<header className="flex justify-between px-4">
-			<ModeToggle />
-			<nav className="space-x-4 capitalize">
+		<header className="flex items-center justify-between px-8">
+			<Link to="/">
+				<Icons.Logo />
+			</Link>
+			<NavBar />
+			<div className="flex items-center space-x-4 capitalize">
 				<Link
 					to="/login"
 					className={buttonVariants({
@@ -25,7 +30,8 @@ const Header = () => {
 				>
 					signup
 				</Link>
-			</nav>
+				<ModeToggle />
+			</div>
 		</header>
 	)
 }
