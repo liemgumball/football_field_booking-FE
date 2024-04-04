@@ -11,3 +11,9 @@ export type TAuth = {
 	user?: TUser
 	googleAccessToken?: string
 }
+
+export type TFootballField = {
+	_id: string
+	name: string
+	rating: number
+}
