@@ -103,29 +103,26 @@ const AvailabilityForm = () => {
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Size</FormLabel>
-							<FormControl>
-								<Select
-									onValueChange={field.onChange}
-									defaultValue={field.value}
-								>
+							<Select onValueChange={field.onChange} defaultValue={field.value}>
+								<FormControl>
 									<SelectTrigger
 										className={cn(
-											'min-w-[220px] px-8 focus:ring-0',
+											'min-w-[220px] px-8',
 											!field.value && 'text-muted-foreground',
 										)}
 									>
 										<SelectValue placeholder="Select field size" />
 									</SelectTrigger>
-									<SelectContent>
-										<SelectGroup>
-											<SelectItem value="5">5</SelectItem>
-											<SelectItem value="6">6</SelectItem>
-											<SelectItem value="7">7</SelectItem>
-											<SelectItem value="11">11</SelectItem>
-										</SelectGroup>
-									</SelectContent>
-								</Select>
-							</FormControl>
+								</FormControl>
+								<SelectContent>
+									<SelectGroup>
+										<SelectItem value="5">5</SelectItem>
+										<SelectItem value="6">6</SelectItem>
+										<SelectItem value="7">7</SelectItem>
+										<SelectItem value="11">11</SelectItem>
+									</SelectGroup>
+								</SelectContent>
+							</Select>
 							<FormMessage />
 						</FormItem>
 					)}

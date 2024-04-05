@@ -1,16 +1,19 @@
+import { lazy } from 'react'
 import {
 	Route,
 	createBrowserRouter,
 	createRoutesFromElements,
 } from 'react-router-dom'
 
-// Routes
+// Eagle Loading Routes
 import Layout from '@/components/Layout'
-import Home from '@/pages/Home'
-import Login from '@/pages/Login'
 import PrivateRoute from '@/components/PrivateRoute'
-import SignUp from '@/pages/SignUp'
-import NotFound from '@/pages/NotFound'
+
+// Lazy Loading Routes
+const Home = lazy(async () => import('@/pages/Home'))
+const SignUp = lazy(async () => import('@/pages/SignUp'))
+const Login = lazy(async () => import('@/pages/Login'))
+const NotFound = lazy(async () => import('@/pages/NotFound'))
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
