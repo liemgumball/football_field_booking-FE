@@ -3,24 +3,26 @@ import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { useRef } from 'react'
 
 const AboutSection = () => {
 	const section = useRef(null)
 
-	// FIXME scroll trigger
 	useGSAP(
 		() => {
-			gsap.from('.gsap', {
+			// plugin scroll trigger
+			gsap.registerPlugin(ScrollTrigger)
+
+			gsap.from('.fields', {
 				y: -50,
 				opacity: 0,
 				duration: 1,
 				ease: 'power2.out',
 				scrollTrigger: {
 					trigger: '.trigger',
-					start: 'top',
-					scrub: true,
+					toggleActions: 'restart none none none',
 				},
 			})
 		},
@@ -29,8 +31,8 @@ const AboutSection = () => {
 
 	return (
 		<>
-			<section ref={section} className="mt-32 space-y-16 px-8 pt-16">
-				<div className="gsap flex justify-center">
+			<section ref={section} className="mt-16 space-y-16 px-8 pt-16">
+				<div className="flex justify-center">
 					<div className="max-w-[800px] space-y-8 text-center">
 						<Link
 							to="/about"
@@ -52,7 +54,7 @@ const AboutSection = () => {
 					</div>
 				</div>
 				{/* TODO slide list */}
-				<div className="gsap 2xl:grid-cols-4 trigger grid grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3">
+				<div className="fields 2xl:grid-cols-4 trigger grid grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3">
 					<FootballFieldCard name="Tuyen Son" rating={5} />
 					<FootballFieldCard name="Tuyen Son" rating={5} />
 					<FootballFieldCard name="Tuyen Son" rating={5} />
