@@ -45,7 +45,7 @@ const AvailabilitySection = () => {
 					Booking Your <span className="text-primary">Best Football Field</span>{' '}
 					Availability
 				</h2>
-				<AvailabilityForm />
+				<AvailabilityForm className="grid grid-cols-2 items-start justify-items-center lg:justify-items-start" />
 			</div>
 			<div className="image overflow-hidden rounded-3xl">
 				<img

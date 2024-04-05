@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -39,20 +40,22 @@ const formSchema = z.object({
 	to: z.string(),
 })
 
-const AvailabilityForm = () => {
+const AvailabilityForm = ({ className }: { className?: string }) => {
+	const navigate = useNavigate()
+
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 	})
 
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (values) => {
-		// TODO navigate to search services
-		console.log(values)
+		// TODO {onSubmit} as props
+		navigate(`search/${!values || ''}`)
 	}
 
 	return (
 		<Form {...form}>
 			<form
-				className="grid grid-cols-2 items-start justify-items-center gap-8  lg:justify-items-start"
+				className={cn('gap-8 p-2', className)}
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				<FormField
@@ -174,7 +177,7 @@ const AvailabilityForm = () => {
 					)}
 				/>
 				<Button
-					className="col-span-2 mt-6 justify-self-center"
+					className="col-auto mt-6"
 					size="lg"
 					disabled={form.formState.isSubmitting}
 					type="submit"
