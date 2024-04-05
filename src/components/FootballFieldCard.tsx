@@ -11,6 +11,13 @@ import { TFootballField } from '@/types'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from './ui/button'
 
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from '@/components/ui/tooltip'
+
 const FootballFieldCard = ({ name, rating }: Omit<TFootballField, '_id'>) => {
 	return (
 		<figure className="group relative overflow-hidden rounded-lg">
@@ -35,14 +42,22 @@ const FootballFieldCard = ({ name, rating }: Omit<TFootballField, '_id'>) => {
 							Lorem ipsum dolor sit amet consectetur, adipisicing elit.
 						</p>
 					</CardContent>
-					<Link
-						to="#"
-						className={cn(
-							buttonVariants({ size: 'icon' }),
-							'absolute right-10 top-16 rounded-full',
-						)}
-					>
-						<ArrowBigRight />
+					<Link to="#">
+						<TooltipProvider>
+							<Tooltip>
+								<TooltipTrigger
+									className={cn(
+										buttonVariants({ size: 'icon' }),
+										'absolute right-10 top-16 rounded-full',
+									)}
+								>
+									<ArrowBigRight />
+								</TooltipTrigger>
+								<TooltipContent>
+									<p className="font-semibold">Check Now</p>
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
 					</Link>
 				</Card>
 			</figcaption>
