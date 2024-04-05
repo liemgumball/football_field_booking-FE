@@ -52,7 +52,7 @@ const AvailabilityForm = () => {
 	return (
 		<Form {...form}>
 			<form
-				className="grid grid-cols-1 items-start justify-items-center gap-8 lg:grid-cols-2 lg:justify-items-start"
+				className="grid grid-cols-2 items-start justify-items-center gap-8  lg:justify-items-start"
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				<FormField
@@ -177,7 +177,7 @@ const AvailabilityForm = () => {
 					)}
 				/>
 				<Button
-					className="mt-6"
+					className="col-span-2 mt-6 justify-self-center"
 					size="lg"
 					disabled={form.formState.isSubmitting}
 					type="submit"

@@ -37,8 +37,8 @@ const AvailabilitySection = () => {
 			ref={ref}
 			className="mt-32 flex flex-col items-center justify-center gap-20 px-16 lg:flex-row"
 		>
-			<div className="check-form trigger space-y-8">
-				<p className="rounded-xl text-2xl font-semibold text-primary">
+			<div className="check-form space-y-8">
+				<p className="trigger rounded-xl text-2xl font-semibold text-primary">
 					Availability
 				</p>
 				<h2 className="max-w-[600px] text-5xl font-bold leading-snug">
