@@ -35,7 +35,45 @@ const Footer = () => {
 				</ul>
 			</div>
 			<Separator />
-			<div className="my-16"></div>
+			<div className="my-16 flex justify-between">
+				<div>
+					<h4 className='text-3xl font-bold'>About</h4>
+					<p className='mt-6 text-xl font-normal'>To take trivial example which us <br /> ever undertakes laborious <br /> physica exercise except obsome</p>
+				</div>
+
+				<div>
+					<h4 className='text-3xl font-bold'>Services</h4>
+					<div className='flex font-normal gap-7'>
+						<ul className='mt-6 text-xl'>
+							<li className='cursor-pointer hover:text-green-500'>Caravan Soler Tent</li>
+							<li className='cursor-pointer hover:text-green-500 mt-2'>Family Tent Camping
+							</li>
+							<li className='cursor-pointer hover:text-green-500 mt-2'>Classic Tent Camping</li>
+							<li className='cursor-pointer hover:text-green-500 mt-2'>Wild Tent Camping</li>
+							<li className='cursor-pointer hover:text-green-500 mt-2'>Small Cabin Wood</li>
+						</ul>
+						<ul className='mt-6 text-xl'>
+							<li className='cursor-pointer hover:text-green-500'>Need a Career ?</li>
+							<li className='cursor-pointer hover:text-green-500 mt-2'>Latest News & Blog</li>
+							<li className='cursor-pointer hover:text-green-500 mt-2'>Core Features</li>
+							<li className='cursor-pointer hover:text-green-500 mt-2'>Meet Our teams</li>
+						</ul>
+					</div>
+				</div>
+				<div>
+					<h4 className='text-3xl font-bold'>Newsletter</h4>
+					<p className='mt-6 text-xl font-normal'>Which of us ever undertake <br /> laborious physical exercise <br /> except obtain</p>
+				</div>
+			</div>
+			<Separator />
+			<div className='mt-7 flex justify-between'>
+				<p className='text-xl'>Copy@ 2023 <span className='text-orange-500'>GoWilds</span> , All Right Reserved</p>
+				<ul className='text-xl flex gap-12'>
+					<li className='cursor-pointer hover:text-green-500'>Setting & privacy</li>
+					<li className='cursor-pointer hover:text-green-500'> Faqs</li>
+					<li className='cursor-pointer hover:text-green-500'> Support</li>
+				</ul>
+			</div>
 		</footer>
 	)
 }
