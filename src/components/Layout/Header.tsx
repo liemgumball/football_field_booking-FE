@@ -4,7 +4,11 @@ import { buttonVariants } from '@/components/ui/button'
 import { Icons } from '../Icons'
 import NavBar from '../NavBar'
 import { Separator } from '../ui/separator'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import {
+	//Avatar, 
+	AvatarFallback,
+	//AvatarImage 
+} from '../ui/avatar'
 import useAuthStore from '@/stores/auth'
 
 const Header = () => {
