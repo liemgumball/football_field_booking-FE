@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -32,32 +32,80 @@ import {
 	InputOTPSeparator,
 	InputOTPSlot,
 } from './ui/input-otp'
+import { Checkbox } from '@/components/ui/checkbox'
+import { TFootballFieldSize } from '@/types'
 
 const formSchema = z.object({
 	date: z.date(),
-	size: z.enum(['5', '6', '7', '11']),
+	size: z.enum(['5', '6', '7', '11']).optional(),
 	from: z.string(),
 	to: z.string(),
+	location: z.boolean().optional().default(false),
+	distance: z.number().optional().default(10),
 })
 
-const AvailabilityForm = ({ className }: { className?: string }) => {
-	const navigate = useNavigate()
+const AvailabilityForm = ({
+	className,
+	isLocationSearched,
+}: {
+	className?: string
+	isLocationSearched?: boolean
+}) => {
+	const [searchParams, setSearchParams] = useSearchParams()
+	const now = new Date()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
+		defaultValues: {
+			date: searchParams.get('date')
+				? new Date(searchParams.get('date') as string)
+				: now,
+			from: searchParams.get('from') || `${now.getHours()}${now.getMinutes()}`,
+			to: searchParams.get('to') || `${now.getHours() + 3}${now.getMinutes()}`,
+			size: (searchParams.get('size') as TFootballFieldSize) || undefined,
+			location: false,
+		},
 	})
 
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (values) => {
-		// TODO {onSubmit} as props
-		navigate(`search/${!values || ''}`)
+		const searchParams = new URLSearchParams()
+		searchParams.set('date', values.date.toISOString())
+		searchParams.set('from', values.from)
+		searchParams.set('to', values.to)
+		searchParams.set('location', values.location.toString())
+		if (values.size) {
+			searchParams.set('size', values.size.toString())
+		}
+		setSearchParams(searchParams.toString())
 	}
 
 	return (
 		<Form {...form}>
 			<form
-				className={cn('gap-8 p-2', className)}
+				className={cn('relative gap-8 p-4', className)}
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
+				{isLocationSearched && (
+					<FormField
+						control={form.control}
+						name="location"
+						render={({ field }) => (
+							<FormItem className="absolute right-5 top-1 flex flex-row items-start space-x-2 space-y-0 rounded-md p-4">
+								<FormControl>
+									<Checkbox
+										checked={field.value}
+										onCheckedChange={field.onChange}
+									/>
+								</FormControl>
+								<div className="space-y-1 leading-none">
+									<FormLabel className="text-xs text-muted-foreground">
+										Optimize by your location
+									</FormLabel>
+								</div>
+							</FormItem>
+						)}
+					/>
+				)}
 				<FormField
 					control={form.control}
 					name="date"
@@ -176,8 +224,9 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 						</FormItem>
 					)}
 				/>
+
 				<Button
-					className="col-auto mt-6"
+					className="col-auto mt-8"
 					size="lg"
 					disabled={form.formState.isSubmitting}
 					type="submit"

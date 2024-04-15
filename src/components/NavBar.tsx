@@ -68,7 +68,7 @@ const NavBar = () => {
 							<ListItem to="/" title="Introduction">
 								Lorem ipsum dolor sit amet consectetur adipisicing elit.
 							</ListItem>
-							<ListItem to="/booking" title="Booking">
+							<ListItem to="/available-booking" title="Booking">
 								Lorem ipsum dolor sit amet.
 							</ListItem>
 							<ListItem to="/contact" title="Collaboration">

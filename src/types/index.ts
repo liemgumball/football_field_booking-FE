@@ -17,3 +17,5 @@ export type TFootballField = {
 	name: string
 	rating: number
 }
+
+export type TFootballFieldSize = '5' | '6' | '7' | '11'
