@@ -5,6 +5,12 @@ export const ENV_VARS = {
 			LOGIN: '/auth/login',
 			SIGNUP: '/auth/signup',
 		},
+		FOOTBALL_FIELD: {
+			BASE: '/fields',
+		},
+		DAY_OF_SERVICE: {
+			BASE: 'day-of-services',
+		},
 	},
 	GOOGLE: {
 		CLIENT_ID: import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '',

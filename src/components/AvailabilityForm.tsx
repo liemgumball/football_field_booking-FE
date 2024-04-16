@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils'
 import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { Calendar } from './ui/calendar'
-import { getNextMonth, getYesterday } from '@/utils/date'
+import { getNextMonth, getToday, getYesterday } from '@/utils/date'
 import {
 	Select,
 	SelectContent,
@@ -34,6 +34,7 @@ import {
 } from './ui/input-otp'
 import { Checkbox } from '@/components/ui/checkbox'
 import { TFootballFieldSize } from '@/types'
+import { getInitialFrom, getInitialTo } from '@/utils/booking'
 
 const formSchema = z.object({
 	date: z.date(),
@@ -44,24 +45,17 @@ const formSchema = z.object({
 	distance: z.number().optional().default(10),
 })
 
-const AvailabilityForm = ({
-	className,
-	isLocationSearched,
-}: {
-	className?: string
-	isLocationSearched?: boolean
-}) => {
+const AvailabilityForm = ({ className }: { className?: string }) => {
 	const [searchParams, setSearchParams] = useSearchParams()
-	const now = new Date()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			date: searchParams.get('date')
 				? new Date(searchParams.get('date') as string)
-				: now,
-			from: searchParams.get('from') || `${now.getHours()}${now.getMinutes()}`,
-			to: searchParams.get('to') || `${now.getHours() + 3}${now.getMinutes()}`,
+				: getToday(),
+			from: searchParams.get('from') || getInitialFrom(),
+			to: searchParams.get('to') || getInitialTo(),
 			size: (searchParams.get('size') as TFootballFieldSize) || undefined,
 			location: false,
 		},
@@ -76,6 +70,7 @@ const AvailabilityForm = ({
 		if (values.size) {
 			searchParams.set('size', values.size.toString())
 		}
+
 		setSearchParams(searchParams.toString())
 	}
 
@@ -85,27 +80,26 @@ const AvailabilityForm = ({
 				className={cn('relative gap-8 p-4', className)}
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
-				{isLocationSearched && (
-					<FormField
-						control={form.control}
-						name="location"
-						render={({ field }) => (
-							<FormItem className="absolute right-5 top-1 flex flex-row items-start space-x-2 space-y-0 rounded-md p-4">
-								<FormControl>
-									<Checkbox
-										checked={field.value}
-										onCheckedChange={field.onChange}
-									/>
-								</FormControl>
-								<div className="space-y-1 leading-none">
-									<FormLabel className="text-xs text-muted-foreground">
-										Optimize by your location
-									</FormLabel>
-								</div>
-							</FormItem>
-						)}
-					/>
-				)}
+				<FormField
+					control={form.control}
+					name="location"
+					render={({ field }) => (
+						<FormItem className="absolute right-5 top-1 flex flex-row items-start space-x-2 space-y-0 rounded-md p-4">
+							<FormControl>
+								<Checkbox
+									checked={field.value}
+									onCheckedChange={field.onChange}
+								/>
+							</FormControl>
+							<div className="space-y-1 leading-none">
+								<FormLabel className="text-xs text-muted-foreground">
+									Optimize by your location
+								</FormLabel>
+							</div>
+						</FormItem>
+					)}
+				/>
+
 				<FormField
 					control={form.control}
 					name="date"
