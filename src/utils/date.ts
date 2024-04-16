@@ -13,3 +13,9 @@ export function getYesterday(from: Date = new Date()) {
 
 	return yesterday
 }
+
+export function getToday() {
+	const today = new Date()
+	today.setHours(0, 0, 0, 0)
+	return today
+}

@@ -1,7 +1,7 @@
 import { ENV_VARS } from '@/constants/envVars'
 import axios from 'axios'
 
-const api = axios.create({
+export const api = axios.create({
 	baseURL: ENV_VARS.API_URL.BASE,
 	timeout: 10000,
 })
