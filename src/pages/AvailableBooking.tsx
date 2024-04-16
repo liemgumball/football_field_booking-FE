@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Button } from '@/components/ui/button'
 import { getDayOfServices } from '@/services/day-of-services'
+import useLocationStore from '@/stores/location'
 import { TDayOfService } from '@/types'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { getToday } from '@/utils/date'
@@ -21,11 +22,23 @@ import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 const AvailableBooking = () => {
+	const coordinates = useLocationStore((set) => set.coordinates)
+
 	const [searchParams] = useSearchParams()
 	const date = searchParams.get('date') || getToday().toISOString()
 	const from = searchParams.get('from') || getInitialFrom()
 	const to = searchParams.get('to') || getInitialTo()
 	const size = searchParams.get('size')
+	const location = searchParams.get('location') !== 'false' // true or false
+
+	const coordinatesQuery = !location
+		? undefined
+		: coordinates
+			? {
+					longitude: coordinates.longitude,
+					latitude: coordinates.latitude,
+				}
+			: undefined
 
 	const {
 		data,
@@ -36,11 +49,23 @@ const AvailableBooking = () => {
 		fetchNextPage,
 		hasNextPage,
 	} = useInfiniteQuery<TDayOfService[]>({
-		queryKey: ['dayOfServices', date, from, to, size],
+		queryKey: ['dayOfServices', date, from, to, size, coordinatesQuery],
 		queryFn: ({ pageParam }) =>
-			getDayOfServices(pageParam as number, date, from, to, size),
+			getDayOfServices(
+				pageParam as number,
+				date,
+				from,
+				to,
+				size,
+				coordinatesQuery,
+			),
 		initialPageParam: 0,
-		getNextPageParam: (_, pages) => pages.length,
+		getNextPageParam: (lastPage, pages) => {
+			if (lastPage.length === 0) {
+				return undefined
+			}
+			return pages.length
+		},
 	})
 
 	const bookingsAvailable = useMemo(() => data?.pages.flat(), [data])
@@ -107,15 +132,15 @@ const AvailableBooking = () => {
 			</section>
 			<div className="container mb-4 mt-8 max-w-min">
 				<Button
-					className="capitalize disabled:bg-muted-foreground"
+					className="disabled:bg-muted-foreground"
 					disabled={!hasNextPage || isFetching}
 					onClick={() => fetchNextPage()}
 				>
 					{isFetching
 						? 'Loading ...'
 						: hasNextPage
-							? 'Load More'
-							: 'Nothing more to load'}
+							? 'Load more'
+							: 'Nothing to load'}
 				</Button>
 			</div>
 		</main>
