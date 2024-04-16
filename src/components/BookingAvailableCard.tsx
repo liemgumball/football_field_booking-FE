@@ -47,7 +47,10 @@ const BookingAvailableCard = ({
 
 	return (
 		<Card className="group h-full min-w-min max-w-max">
-			<div className="overflow-hidden rounded-t-lg p-0" title={field.name}>
+			<div
+				className="min-h-[300px] overflow-hidden rounded-t-lg p-0"
+				title={field.name}
+			>
 				<img
 					className="transition-all duration-500 group-hover:scale-105"
 					src={field.images?.at(0) || defaultImg}
@@ -55,20 +58,14 @@ const BookingAvailableCard = ({
 				/>
 			</div>
 			<CardHeader className="space-y-1 pb-4">
-				<div className="space-x-1">
+				<div className="space-x-1 text-sm text-muted-foreground">
 					{field.rating
 						? // Array of start icon
 							Array.from({ length: field.rating }, (_, i) => i).map((i) => (
 								<Star size={16} color="orange" className="inline" key={i} />
 							))
 						: 'No rating'}
-					{field.rating ? (
-						<span className="text-sm text-muted-foreground">
-							({field.rating})
-						</span>
-					) : (
-						''
-					)}
+					{field.rating ? <span>({field.rating})</span> : ''}
 				</div>
 				<CardTitle className="truncate">{field.name}</CardTitle>
 			</CardHeader>
@@ -82,7 +79,7 @@ const BookingAvailableCard = ({
 							<MapPin className="mr-2 inline text-primary" size={16} />
 							{format(date, 'PPP')} {at}
 						</HoverCardTrigger>
-						<HoverCardContent>{location}</HoverCardContent>
+						{location && <HoverCardContent>{location}</HoverCardContent>}
 					</HoverCard>
 				</CardDescription>
 			</CardContent>

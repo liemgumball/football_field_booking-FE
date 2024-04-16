@@ -2,6 +2,7 @@ import BackGroundImg from '/available_booking_bg.png'
 import AvailabilityForm from '@/components/AvailabilityForm'
 import BookingAvailableCard from '@/components/BookingAvailableCard'
 import QueryList from '@/components/QueryList'
+import SkeletonCard from '@/components/SkeletonCard'
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -79,28 +80,32 @@ const AvailableBooking = () => {
 				<QueryList
 					isError={isError}
 					error={error}
-					isLoading={isLoading}
 					className="grid grid-cols-1 items-center justify-items-center gap-x-6 gap-y-12 transition-all duration-1000 lg:grid-cols-2 xl:grid-cols-3"
 				>
-					{bookingsAvailable &&
-						bookingsAvailable.map(
-							({ field, subfield, date, turnOfServices, _id }) =>
-								turnOfServices.map(({ at, price, status }) => (
-									<li key={_id + ':' + at}>
-										<BookingAvailableCard
-											date={date}
-											at={at}
-											price={price}
-											status={status}
-											field={field}
-											subfield={subfield}
-										/>
-									</li>
-								)),
-						)}
+					{!isLoading && bookingsAvailable
+						? bookingsAvailable.map(
+								({ field, subfield, date, turnOfServices, _id }) =>
+									turnOfServices.map(({ at, price, status }) => (
+										<li key={_id + ':' + at}>
+											<BookingAvailableCard
+												date={date}
+												at={at}
+												price={price}
+												status={status}
+												field={field}
+												subfield={subfield}
+											/>
+										</li>
+									)),
+							)
+						: Array.from({ length: 6 }, (_, i) => i).map((i) => (
+								<li key={i}>
+									<SkeletonCard />
+								</li>
+							))}
 				</QueryList>
 			</section>
-			<div className="container mt-4 max-w-min">
+			<div className="container mb-4 mt-8 max-w-min">
 				<Button
 					className="capitalize disabled:bg-muted-foreground"
 					disabled={!hasNextPage || isFetching}
