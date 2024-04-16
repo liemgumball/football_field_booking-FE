@@ -17,7 +17,6 @@ const QueryList = ({
 	children,
 	className,
 }: QueryListProps) => {
-	// TODO use skeleton loading here
 	if (isLoading) return <p>Loading...</p>
 
 	if (isError) return <p>{error?.message || 'Error...'}</p>

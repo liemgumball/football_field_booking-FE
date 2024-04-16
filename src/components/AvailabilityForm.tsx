@@ -35,18 +35,20 @@ import {
 import { Checkbox } from '@/components/ui/checkbox'
 import { TFootballFieldSize } from '@/types'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
-
-const formSchema = z.object({
-	date: z.date(),
-	size: z.enum(['5', '6', '7', '11']).optional(),
-	from: z.string(),
-	to: z.string(),
-	location: z.boolean().optional().default(false),
-	distance: z.number().optional().default(10),
-})
+import useLocationStore from '@/stores/location'
 
 const AvailabilityForm = ({ className }: { className?: string }) => {
+	const coordinates = useLocationStore((set) => set.coordinates)
 	const [searchParams, setSearchParams] = useSearchParams()
+
+	const formSchema = z.object({
+		date: z.date(),
+		size: z.enum(['5', '6', '7', '11']).optional(),
+		from: z.string(),
+		to: z.string(),
+		location: z.boolean().default(coordinates ? true : false),
+		distance: z.number().optional().default(10),
+	})
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -57,7 +59,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 			from: searchParams.get('from') || getInitialFrom(),
 			to: searchParams.get('to') || getInitialTo(),
 			size: (searchParams.get('size') as TFootballFieldSize) || undefined,
-			location: false,
+			location: coordinates ? true : false,
 		},
 	})
 
@@ -66,7 +68,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 		searchParams.set('date', values.date.toISOString())
 		searchParams.set('from', values.from)
 		searchParams.set('to', values.to)
-		searchParams.set('location', values.location.toString())
+		searchParams.set('location', `${values.location}`)
 		if (values.size) {
 			searchParams.set('size', values.size.toString())
 		}
