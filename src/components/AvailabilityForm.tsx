@@ -41,12 +41,15 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 	const coordinates = useLocationStore((set) => set.coordinates)
 	const [searchParams, setSearchParams] = useSearchParams()
 
+	const isLocationSearch =
+		searchParams.get('location') !== 'true' ? false : coordinates ? true : false
+
 	const formSchema = z.object({
 		date: z.date(),
 		size: z.enum(['5', '6', '7', '11']).optional(),
 		from: z.string(),
 		to: z.string(),
-		location: z.boolean().default(coordinates ? true : false),
+		location: z.boolean().default(isLocationSearch),
 		distance: z.number().optional().default(10),
 	})
 
@@ -59,7 +62,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 			from: searchParams.get('from') || getInitialFrom(),
 			to: searchParams.get('to') || getInitialTo(),
 			size: (searchParams.get('size') as TFootballFieldSize) || undefined,
-			location: coordinates ? true : false,
+			location: isLocationSearch,
 		},
 	})
 

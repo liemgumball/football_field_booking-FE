@@ -29,16 +29,15 @@ const AvailableBooking = () => {
 	const from = searchParams.get('from') || getInitialFrom()
 	const to = searchParams.get('to') || getInitialTo()
 	const size = searchParams.get('size')
-	const location = searchParams.get('location') !== 'false' // true or false
+	const isLocationSearch =
+		searchParams.get('location') !== 'true' ? false : coordinates ? true : false
 
-	const coordinatesQuery = !location
-		? undefined
-		: coordinates
-			? {
-					longitude: coordinates.longitude,
-					latitude: coordinates.latitude,
-				}
-			: undefined
+	const coordinatesQuery = isLocationSearch
+		? {
+				longitude: coordinates!.longitude,
+				latitude: coordinates!.latitude,
+			}
+		: undefined
 
 	const {
 		data,
@@ -131,17 +130,15 @@ const AvailableBooking = () => {
 				</QueryList>
 			</section>
 			<div className="container mb-4 mt-8 max-w-min">
-				<Button
-					className="disabled:bg-muted-foreground"
-					disabled={!hasNextPage || isFetching}
-					onClick={() => fetchNextPage()}
-				>
-					{isFetching
-						? 'Loading ...'
-						: hasNextPage
-							? 'Load more'
-							: 'Nothing to load'}
-				</Button>
+				{hasNextPage && (
+					<Button
+						className="disabled:bg-muted-foreground"
+						disabled={!hasNextPage || isFetching}
+						onClick={() => fetchNextPage()}
+					>
+						{isFetching ? 'Loading ...' : 'Load more'}
+					</Button>
+				)}
 			</div>
 		</main>
 	)
