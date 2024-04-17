@@ -23,3 +23,21 @@ export const getDayOfServices = async (
 	}
 	return await response.json()
 }
+
+export const getDayOfServiceById = async (
+	id: string,
+	from?: string,
+	to?: string,
+): Promise<TDayOfService> => {
+	const response = await fetch(
+		ENV_VARS.API_URL.BASE +
+			ENV_VARS.API_URL.DAY_OF_SERVICE.BASE +
+			`/${id}?${from ? `from=${from}` : ''}${from && to ? `&to=${to}` : ''}`,
+	)
+
+	if (!response.ok) {
+		throw new Error(`Failed to fetch day of service ${id}`)
+	}
+
+	return await response.json()
+}
