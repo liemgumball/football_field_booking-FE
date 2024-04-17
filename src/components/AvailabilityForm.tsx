@@ -42,7 +42,11 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	const isLocationSearch =
-		searchParams.get('location') !== 'true' ? false : coordinates ? true : false
+		searchParams.get('location') === 'false'
+			? false
+			: coordinates
+				? true
+				: false
 
 	const formSchema = z.object({
 		date: z.date(),

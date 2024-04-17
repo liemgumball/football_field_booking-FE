@@ -30,7 +30,11 @@ const AvailableBooking = () => {
 	const to = searchParams.get('to') || getInitialTo()
 	const size = searchParams.get('size')
 	const isLocationSearch =
-		searchParams.get('location') !== 'true' ? false : coordinates ? true : false
+		searchParams.get('location') === 'false'
+			? false
+			: coordinates
+				? true
+				: false
 
 	const coordinatesQuery = isLocationSearch
 		? {
