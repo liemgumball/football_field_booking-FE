@@ -1,3 +1,5 @@
+export type TTimeStep = string
+
 export type TUser = {
 	_id: string
 	email: string
@@ -52,4 +54,21 @@ export type TDayOfService = {
 	date: Date | string
 	turnOfServices: TTurnOfService[]
 	availability?: boolean
+}
+
+export type TBooking = {
+	_id: string
+	userId: string
+	subfieldId: string
+	subfield?: TSubField
+	fieldId?: string
+	field?: TFootballField
+	date: Date | string
+	from: TTimeStep
+	to: TTimeStep
+	price: number
+	confirmed?: boolean
+	cancel?: boolean
+	createdAt?: Date | string
+	updatedAt?: Date | string
 }
