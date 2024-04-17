@@ -50,7 +50,10 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 
 	const formSchema = z.object({
 		date: z.date(),
-		size: z.enum(['5', '6', '7', '11']).optional(),
+		size: z
+			.enum(['5', '6', '7', '11', 'undefined'])
+			.transform((val) => (val === 'undefined' ? undefined : val))
+			.optional(),
 		from: z.string(),
 		to: z.string(),
 		location: z.boolean().default(isLocationSearch),
@@ -65,7 +68,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 				: getToday(),
 			from: searchParams.get('from') || getInitialFrom(),
 			to: searchParams.get('to') || getInitialTo(),
-			size: (searchParams.get('size') as TFootballFieldSize) || undefined,
+			size: (searchParams.get('size') as TFootballFieldSize) || 'undefined',
 			location: isLocationSearch,
 		},
 	})
@@ -170,6 +173,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 								</FormControl>
 								<SelectContent>
 									<SelectGroup>
+										<SelectItem value="undefined">All size</SelectItem>
 										<SelectItem value="5">5</SelectItem>
 										<SelectItem value="6">6</SelectItem>
 										<SelectItem value="7">7</SelectItem>

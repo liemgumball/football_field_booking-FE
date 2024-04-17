@@ -19,24 +19,23 @@ import {
 } from 'lucide-react'
 import { format } from 'date-fns'
 import { Separator } from './ui/separator'
-import { Button } from './ui/button'
+import { buttonVariants } from './ui/button'
 import { memo, useState } from 'react'
 import { getFieldDetails } from '@/services/football-field'
-import useCartStore from '@/stores/cart'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const BookingAvailableCard = ({
+	_id,
 	at,
 	price,
 	field,
 	date,
 	subfield,
 }: TTurnOfService & { date: string | Date } & {
+	_id: string
 	field: TFootballField
 	subfield: TSubField
 }) => {
-	const setCart = useCartStore((set) => set.set)
-	const navigate = useNavigate()
 	const [location, setLocation] = useState<string>()
 
 	const onMouseEnter = async () => {
@@ -47,18 +46,6 @@ const BookingAvailableCard = ({
 		} catch (error) {
 			setLocation((error as Error).message)
 		}
-	}
-
-	const onClick = () => {
-		setCart({
-			date: date,
-			from: at,
-			to: at,
-			price: price,
-			subfieldId: subfield._id,
-		})
-
-		navigate('/checkout')
 	}
 
 	return (
@@ -109,10 +96,13 @@ const BookingAvailableCard = ({
 					<User2Icon className="mr-2 text-primary" size={18} />
 					Size {subfield.size}
 				</div>
-				<Button variant="outline" onClick={onClick}>
+				<Link
+					to={`/booking/${_id}`}
+					className={buttonVariants({ variant: 'outline' })}
+				>
 					Booking
 					<ArrowRight className="ml-2" size={16} />
-				</Button>
+				</Link>
 			</CardFooter>
 		</Card>
 	)

@@ -64,7 +64,7 @@ const AvailableBooking = () => {
 			),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, pages) => {
-			if (lastPage.length === 0) {
+			if (lastPage.flat().length < 3) {
 				return undefined
 			}
 			return pages.length
@@ -116,6 +116,7 @@ const AvailableBooking = () => {
 									turnOfServices.map(({ at, price, status }) => (
 										<li key={_id + ':' + at}>
 											<BookingAvailableCard
+												_id={_id}
 												date={date}
 												at={at}
 												price={price}
