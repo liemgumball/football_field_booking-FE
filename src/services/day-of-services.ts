@@ -32,7 +32,7 @@ export const getDayOfServiceById = async (
 	const response = await fetch(
 		ENV_VARS.API_URL.BASE +
 			ENV_VARS.API_URL.DAY_OF_SERVICE.BASE +
-			`/${id}?${from ? `from=${from}` : ''}${from && to ? `&to=${to}` : ''}`,
+			`/${id}?${from ? `from=${convertToTimeFormat(from)}` : ''}${from && to ? `&to=${convertToTimeFormat(to)}` : ''}`,
 	)
 
 	if (!response.ok) {

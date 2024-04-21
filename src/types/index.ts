@@ -14,6 +14,14 @@ export type TAuth = {
 	googleAccessToken?: string
 }
 
+export type TLocation = {
+	name: string
+	geo: {
+		type: 'Point'
+		coordinates: [number, number]
+	}
+}
+
 export type TFootballField = {
 	_id: string
 	name: string
@@ -21,13 +29,7 @@ export type TFootballField = {
 	openedAt: string
 	closedAt: string
 	images?: [string]
-	location?: {
-		name: string
-		geo: {
-			type: 'Point'
-			coordinates: [number, number]
-		}
-	}
+	location?: TLocation
 }
 
 export type TSubField = {
