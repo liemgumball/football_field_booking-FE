@@ -79,6 +79,9 @@ const AvailableBookingDetails = () => {
 			/>
 			<section className="mx-auto min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">
 				<BookingDetailsForm
+					id={id}
+					from={from}
+					to={to}
 					date={data?.date}
 					subfieldId={data.subfield._id}
 					price={calculatePrice(data.turnOfServices)}

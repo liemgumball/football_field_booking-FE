@@ -9,14 +9,13 @@ export const createBooking = async (data: Omit<TBooking, '_id'>) => {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			mode: 'cors',
 			credentials: 'include',
 			body: JSON.stringify(data),
 		},
 	)
 
 	if (!response.ok) {
-		throw new Error(response.status.toString())
+		throw response
 	}
 
 	return response.json() as Promise<TBooking>
