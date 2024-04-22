@@ -17,24 +17,43 @@ import {
 	InputOTPSeparator,
 	InputOTPSlot,
 } from './ui/input-otp'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
 	convertToTimeFormat,
 	getInitialFrom,
 	getInitialTo,
 } from '@/utils/booking'
 import { Textarea } from './ui/textarea'
-import { Button } from './ui/button'
+import { Button, buttonVariants } from './ui/button'
 import { createBooking } from '@/services/booking'
+import { useToast } from './ui/use-toast'
+import { format } from 'date-fns'
+import { ToastAction } from './ui/toast'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { TBooking } from '@/types'
 
 type TProps = {
 	subfieldId: string
 	date: string | Date
 	price: number
+	id: string
+	from: string
+	to: string
 }
 
-const BookingDetailsForm = ({ date, subfieldId, price }: TProps) => {
+const BookingDetailsForm = ({
+	date,
+	subfieldId,
+	price,
+	id,
+	from,
+	to,
+}: TProps) => {
 	const [searchParams] = useSearchParams()
+	const { toast } = useToast()
+	const navigate = useNavigate()
+	const user = useAuthStore((set) => set.user)
+	const queryClient = useQueryClient()
 
 	const formSchema = z.object({
 		name: z.string().min(1, 'Name cannot be empty'),
@@ -43,8 +62,6 @@ const BookingDetailsForm = ({ date, subfieldId, price }: TProps) => {
 		additionalServices: z.any().optional(), // radio group
 		description: z.string().optional(),
 	})
-
-	const user = useAuthStore((set) => set.user)
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -55,12 +72,14 @@ const BookingDetailsForm = ({ date, subfieldId, price }: TProps) => {
 		},
 	})
 
-	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
-		values,
-	) => {
-		// TODO handle logged in before booking
-		try {
-			const response = await createBooking({
+	const mutation = useMutation<
+		TBooking,
+		Error,
+		z.infer<typeof formSchema>,
+		unknown
+	>({
+		mutationFn: (values) =>
+			createBooking({
 				...values,
 				from: convertToTimeFormat(values.from),
 				to: convertToTimeFormat(values.to),
@@ -68,16 +87,42 @@ const BookingDetailsForm = ({ date, subfieldId, price }: TProps) => {
 				subfieldId: subfieldId,
 				date: date,
 				price: price,
-			})
+			}),
+		onSettled: () =>
+			queryClient.invalidateQueries({ queryKey: [id, from, to] }),
+	})
+
+	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
+		values,
+	) => {
+		// TODO handle logged in before booking
+		try {
+			const response = await mutation.mutateAsync(values)
 
 			if (response) {
-				//TODO handle successful response
+				toast({
+					title: 'Book successfully',
+					description: `${format(response.date, 'PPP')} from ${response.from} to ${response.to}`,
+					action: (
+						<ToastAction
+							className={buttonVariants()}
+							altText="Booking details"
+							onClick={() => navigate('#')}
+						>
+							Details
+						</ToastAction>
+					),
+				})
 			}
 		} catch (error) {
 			const errorMessage = (error as Error).message
 
 			if (errorMessage === '412') {
-				// TODO handle booking error cause it's already booked by another user
+				toast({
+					title: 'Booking failed',
+					description: 'The booking is currently not available',
+					variant: 'destructive',
+				})
 			}
 		}
 	}
@@ -163,8 +208,13 @@ const BookingDetailsForm = ({ date, subfieldId, price }: TProps) => {
 				<Button
 					className="mx-auto mt-2 max-w-min capitalize md:col-span-2"
 					type="submit"
+					disabled={form.formState.isSubmitting}
 				>
-					{user ? 'Booking Now' : 'Login for Booking'}
+					{form.formState.isSubmitting
+						? 'Booking...'
+						: user
+							? 'Booking Now'
+							: 'Login for Booking'}
 				</Button>
 			</form>
 		</Form>
