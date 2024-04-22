@@ -1,13 +1,15 @@
 import { ENV_VARS } from '@/constants/envVars'
 import axios from 'axios'
 
-const api = axios.create({
+export const api = axios.create({
 	baseURL: ENV_VARS.API_URL.BASE,
 	timeout: 10000,
 })
 
 export const login = (data: { email: string; password: string }) =>
-	api.post(ENV_VARS.API_URL.AUTH.LOGIN, data)
+	api.post(ENV_VARS.API_URL.AUTH.LOGIN, data, {
+		withCredentials: true,
+	})
 
 export const signup = (data: {
 	email: string

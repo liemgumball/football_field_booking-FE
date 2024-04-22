@@ -1,24 +1,35 @@
+import { lazy } from 'react'
 import {
 	Route,
 	createBrowserRouter,
 	createRoutesFromElements,
 } from 'react-router-dom'
 
-// Routes
+// Eagle Loading Routes
 import Layout from '@/components/Layout'
-import Home from '@/pages/Home'
-import Login from '@/pages/Login'
 import PrivateRoute from '@/components/PrivateRoute'
-import SignUp from '@/pages/SignUp'
-import NotFound from '@/pages/NotFound'
+
+// Lazy Loading Routes
+const Home = lazy(async () => import('@/pages/Home'))
+const SignUp = lazy(async () => import('@/pages/SignUp'))
+const Login = lazy(async () => import('@/pages/Login'))
+const NotFound = lazy(async () => import('@/pages/NotFound'))
+const AvailableBooking = lazy(async () => import('@/pages/AvailableBooking'))
+const AvailableBookingDetails = lazy(
+	async () => import('@/pages/AvailableBookingDetails'),
+)
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<Layout />}>
+			<Route path="*" element={<NotFound />} />
 			<Route index element={<Home />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/signup" element={<SignUp />} />
-			<Route path="*" element={<NotFound />} />
+			<Route path="/available-booking">
+				<Route index element={<AvailableBooking />} />
+				<Route path=":id" element={<AvailableBookingDetails />} />
+			</Route>
 
 			{/*-------------------------- Private Routes --------------------------*/}
 			<Route element={<PrivateRoute />}></Route>
