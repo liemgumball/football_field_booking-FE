@@ -92,7 +92,7 @@ const NavBar = () => {
 					</NavigationMenuContent>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
-					<Link to="/docs">
+					<Link to="/aboutus">
 						<NavigationMenuLink
 							className={navigationMenuTriggerStyle({
 								className: 'capitalize',

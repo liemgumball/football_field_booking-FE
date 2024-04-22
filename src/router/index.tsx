@@ -11,6 +11,7 @@ import Login from '@/pages/Login'
 import PrivateRoute from '@/components/PrivateRoute'
 import SignUp from '@/pages/SignUp'
 import NotFound from '@/pages/NotFound'
+import AboutUs from '@/pages/AboutUs'
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
 			<Route path="/login" element={<Login />} />
 			<Route path="/signup" element={<SignUp />} />
 			<Route path="*" element={<NotFound />} />
+			<Route path="/aboutus" element={<AboutUs />} />
 
 			{/*-------------------------- Private Routes --------------------------*/}
 			<Route element={<PrivateRoute />}></Route>
