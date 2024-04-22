@@ -23,6 +23,7 @@ import { buttonVariants } from './ui/button'
 import { memo, useState } from 'react'
 import { getFieldDetails } from '@/services/football-field'
 import { Link } from 'react-router-dom'
+import { parseTimeFormat } from '@/utils/booking'
 
 const BookingAvailableCard = ({
 	_id,
@@ -70,7 +71,7 @@ const BookingAvailableCard = ({
 						: 'No rating'}
 					{field.rating ? <span>({field.rating})</span> : ''}
 				</div>
-				<CardTitle className="truncate">{field.name}</CardTitle>
+				<CardTitle className="truncate capitalize">{field.name}</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<CardDescription>
@@ -97,7 +98,7 @@ const BookingAvailableCard = ({
 					Size {subfield.size}
 				</div>
 				<Link
-					to={`/booking/${_id}`}
+					to={`/available-booking/${_id}?from=${parseTimeFormat(at)}`}
 					className={buttonVariants({ variant: 'outline' })}
 				>
 					Booking

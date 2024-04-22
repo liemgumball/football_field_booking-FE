@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils'
 import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { Calendar } from './ui/calendar'
-import { getNextMonth, getToday, getYesterday } from '@/utils/date'
+import { formatDate, getNextMonth, getToday, getYesterday } from '@/utils/date'
 import {
 	Select,
 	SelectContent,
@@ -75,7 +75,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (values) => {
 		const searchParams = new URLSearchParams()
-		searchParams.set('date', values.date.toISOString())
+		searchParams.set('date', formatDate(values.date))
 		searchParams.set('from', values.from)
 		searchParams.set('to', values.to)
 		searchParams.set('location', `${values.location}`)

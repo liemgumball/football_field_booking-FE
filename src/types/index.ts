@@ -29,7 +29,7 @@ export type TFootballField = {
 	openedAt: string
 	closedAt: string
 	images?: [string]
-	location?: TLocation
+	location: TLocation
 }
 
 export type TSubField = {
@@ -53,7 +53,7 @@ export type TDayOfService = {
 	_id: string
 	field: TFootballField
 	subfield: TSubField
-	date: Date | string
+	date: string
 	turnOfServices: TTurnOfService[]
 	availability?: boolean
 }
@@ -73,4 +73,6 @@ export type TBooking = {
 	cancel?: boolean
 	createdAt?: Date | string
 	updatedAt?: Date | string
+	description?: string
+	additionalServices?: unknown
 }
