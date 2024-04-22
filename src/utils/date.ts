@@ -16,6 +16,11 @@ export function getYesterday(from: Date = new Date()) {
 
 export function getToday() {
 	const today = new Date()
-	today.setHours(0, 0, 0, 0)
+	today.setUTCHours(0, 0, 0, 0)
 	return today
+}
+
+export function formatDate(date: Date): string {
+	date.setUTCHours(0, 0, 0, 0)
+	return date.toISOString()
 }

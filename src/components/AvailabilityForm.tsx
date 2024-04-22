@@ -17,7 +17,7 @@ import { cn } from '@/lib/utils'
 import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
 import { Calendar } from './ui/calendar'
-import { getNextMonth, getToday, getYesterday } from '@/utils/date'
+import { formatDate, getNextMonth, getToday, getYesterday } from '@/utils/date'
 import {
 	Select,
 	SelectContent,
@@ -41,12 +41,22 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 	const coordinates = useLocationStore((set) => set.coordinates)
 	const [searchParams, setSearchParams] = useSearchParams()
 
+	const isLocationSearch =
+		searchParams.get('location') === 'false'
+			? false
+			: coordinates
+				? true
+				: false
+
 	const formSchema = z.object({
 		date: z.date(),
-		size: z.enum(['5', '6', '7', '11']).optional(),
+		size: z
+			.enum(['5', '6', '7', '11', 'undefined'])
+			.transform((val) => (val === 'undefined' ? undefined : val))
+			.optional(),
 		from: z.string(),
 		to: z.string(),
-		location: z.boolean().default(coordinates ? true : false),
+		location: z.boolean().default(isLocationSearch),
 		distance: z.number().optional().default(10),
 	})
 
@@ -58,14 +68,14 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 				: getToday(),
 			from: searchParams.get('from') || getInitialFrom(),
 			to: searchParams.get('to') || getInitialTo(),
-			size: (searchParams.get('size') as TFootballFieldSize) || undefined,
-			location: coordinates ? true : false,
+			size: (searchParams.get('size') as TFootballFieldSize) || 'undefined',
+			location: isLocationSearch,
 		},
 	})
 
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (values) => {
 		const searchParams = new URLSearchParams()
-		searchParams.set('date', values.date.toISOString())
+		searchParams.set('date', formatDate(values.date))
 		searchParams.set('from', values.from)
 		searchParams.set('to', values.to)
 		searchParams.set('location', `${values.location}`)
@@ -163,6 +173,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 								</FormControl>
 								<SelectContent>
 									<SelectGroup>
+										<SelectItem value="undefined">All size</SelectItem>
 										<SelectItem value="5">5</SelectItem>
 										<SelectItem value="6">6</SelectItem>
 										<SelectItem value="7">7</SelectItem>

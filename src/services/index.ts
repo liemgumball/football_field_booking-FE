@@ -7,7 +7,9 @@ export const api = axios.create({
 })
 
 export const login = (data: { email: string; password: string }) =>
-	api.post(ENV_VARS.API_URL.AUTH.LOGIN, data)
+	api.post(ENV_VARS.API_URL.AUTH.LOGIN, data, {
+		withCredentials: true,
+	})
 
 export const signup = (data: {
 	email: string

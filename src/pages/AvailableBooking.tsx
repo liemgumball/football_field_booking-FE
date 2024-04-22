@@ -29,16 +29,19 @@ const AvailableBooking = () => {
 	const from = searchParams.get('from') || getInitialFrom()
 	const to = searchParams.get('to') || getInitialTo()
 	const size = searchParams.get('size')
-	const location = searchParams.get('location') !== 'false' // true or false
+	const isLocationSearch =
+		searchParams.get('location') === 'false'
+			? false
+			: coordinates
+				? true
+				: false
 
-	const coordinatesQuery = !location
-		? undefined
-		: coordinates
-			? {
-					longitude: coordinates.longitude,
-					latitude: coordinates.latitude,
-				}
-			: undefined
+	const coordinatesQuery = isLocationSearch
+		? {
+				longitude: coordinates!.longitude,
+				latitude: coordinates!.latitude,
+			}
+		: undefined
 
 	const {
 		data,
@@ -61,7 +64,7 @@ const AvailableBooking = () => {
 			),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, pages) => {
-			if (lastPage.length === 0) {
+			if (lastPage.flat().length < 3) {
 				return undefined
 			}
 			return pages.length
@@ -113,6 +116,7 @@ const AvailableBooking = () => {
 									turnOfServices.map(({ at, price, status }) => (
 										<li key={_id + ':' + at}>
 											<BookingAvailableCard
+												_id={_id}
 												date={date}
 												at={at}
 												price={price}
@@ -131,17 +135,15 @@ const AvailableBooking = () => {
 				</QueryList>
 			</section>
 			<div className="container mb-4 mt-8 max-w-min">
-				<Button
-					className="disabled:bg-muted-foreground"
-					disabled={!hasNextPage || isFetching}
-					onClick={() => fetchNextPage()}
-				>
-					{isFetching
-						? 'Loading ...'
-						: hasNextPage
-							? 'Load more'
-							: 'Nothing to load'}
-				</Button>
+				{hasNextPage && (
+					<Button
+						className="disabled:bg-muted-foreground"
+						disabled={!hasNextPage || isFetching}
+						onClick={() => fetchNextPage()}
+					>
+						{isFetching ? 'Loading ...' : 'Load more'}
+					</Button>
+				)}
 			</div>
 		</main>
 	)

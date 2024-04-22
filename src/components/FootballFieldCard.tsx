@@ -21,7 +21,7 @@ import {
 const FootballFieldCard = ({
 	name,
 	rating,
-}: Omit<TFootballField, '_id' | 'openedAt' | 'closedAt'>) => {
+}: Pick<TFootballField, 'name' | 'rating'>) => {
 	return (
 		<figure className="group relative overflow-hidden rounded-lg">
 			<div className="h-full w-full">

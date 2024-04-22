@@ -9,7 +9,10 @@ export const ENV_VARS = {
 			BASE: '/fields',
 		},
 		DAY_OF_SERVICE: {
-			BASE: 'day-of-services',
+			BASE: '/day-of-services',
+		},
+		BOOKING: {
+			BASE: '/bookings',
 		},
 	},
 	GOOGLE: {

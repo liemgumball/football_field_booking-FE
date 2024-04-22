@@ -1,3 +1,5 @@
+export type TTimeStep = string
+
 export type TUser = {
 	_id: string
 	email: string
@@ -12,6 +14,14 @@ export type TAuth = {
 	googleAccessToken?: string
 }
 
+export type TLocation = {
+	name: string
+	geo: {
+		type: 'Point'
+		coordinates: [number, number]
+	}
+}
+
 export type TFootballField = {
 	_id: string
 	name: string
@@ -19,13 +29,7 @@ export type TFootballField = {
 	openedAt: string
 	closedAt: string
 	images?: [string]
-	location?: {
-		name: string
-		geo: {
-			type: 'Point'
-			coordinates: [number, number]
-		}
-	}
+	location: TLocation
 }
 
 export type TSubField = {
@@ -49,7 +53,26 @@ export type TDayOfService = {
 	_id: string
 	field: TFootballField
 	subfield: TSubField
-	date: Date | string
+	date: string
 	turnOfServices: TTurnOfService[]
 	availability?: boolean
+}
+
+export type TBooking = {
+	_id: string
+	userId: string
+	subfieldId: string
+	subfield?: TSubField
+	fieldId?: string
+	field?: TFootballField
+	date: Date | string
+	from: TTimeStep
+	to: TTimeStep
+	price: number
+	confirmed?: boolean
+	cancel?: boolean
+	createdAt?: Date | string
+	updatedAt?: Date | string
+	description?: string
+	additionalServices?: unknown
 }

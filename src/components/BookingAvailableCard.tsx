@@ -19,17 +19,21 @@ import {
 } from 'lucide-react'
 import { format } from 'date-fns'
 import { Separator } from './ui/separator'
-import { Button } from './ui/button'
+import { buttonVariants } from './ui/button'
 import { memo, useState } from 'react'
 import { getFieldDetails } from '@/services/football-field'
+import { Link } from 'react-router-dom'
+import { parseTimeFormat } from '@/utils/booking'
 
 const BookingAvailableCard = ({
+	_id,
 	at,
 	price,
 	field,
 	date,
 	subfield,
 }: TTurnOfService & { date: string | Date } & {
+	_id: string
 	field: TFootballField
 	subfield: TSubField
 }) => {
@@ -67,7 +71,7 @@ const BookingAvailableCard = ({
 						: 'No rating'}
 					{field.rating ? <span>({field.rating})</span> : ''}
 				</div>
-				<CardTitle className="truncate">{field.name}</CardTitle>
+				<CardTitle className="truncate capitalize">{field.name}</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<CardDescription>
@@ -93,10 +97,13 @@ const BookingAvailableCard = ({
 					<User2Icon className="mr-2 text-primary" size={18} />
 					Size {subfield.size}
 				</div>
-				<Button variant="outline">
+				<Link
+					to={`/available-booking/${_id}?from=${parseTimeFormat(at)}`}
+					className={buttonVariants({ variant: 'outline' })}
+				>
 					Booking
 					<ArrowRight className="ml-2" size={16} />
-				</Button>
+				</Link>
 			</CardFooter>
 		</Card>
 	)
