@@ -115,12 +115,11 @@ const BookingDetailsForm = ({
 				})
 			}
 		} catch (error) {
-			const errorMessage = (error as Error).message
-
-			if (errorMessage === '412') {
+			const res = error as Response
+			if (res.status === 412) {
 				toast({
 					title: 'Booking failed',
-					description: 'The booking is currently not available',
+					description: `The booking is currently not available`,
 					variant: 'destructive',
 				})
 			}
