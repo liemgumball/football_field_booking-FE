@@ -1,5 +1,5 @@
-import BookingDetailsForm from '@/components/BookingDetailsForm'
-import BookingDetailsHeader from '@/components/BookingDetailsHeader'
+import BookingDetailsForm from './components/BookingDetailsForm'
+import BookingDetailsHeader from './components/BookingDetailsHeader'
 import { Skeleton } from '@/components/ui/skeleton'
 import { getDayOfServiceById } from '@/services/day-of-services'
 import { calculatePrice, getInitialFrom, getInitialTo } from '@/utils/booking'
@@ -18,7 +18,16 @@ const AvailableBookingDetails = () => {
 	const { data, isLoading, isError, error } = useQuery({
 		queryKey: [id, from, to],
 		queryFn: () => getDayOfServiceById(id, from, to),
+		staleTime: 10000,
 	})
+
+	const bookingStatus = data?.turnOfServices.every(
+		(t) => t.status === 'available',
+	)
+		? 'available'
+		: data?.turnOfServices.every((t) => t.status === 'progressing')
+			? 'progressing'
+			: 'used'
 
 	if (isLoading)
 		return (
@@ -69,6 +78,7 @@ const AvailableBookingDetails = () => {
 	return (
 		<main className="container">
 			<BookingDetailsHeader
+				status={bookingStatus}
 				date={data.date}
 				rating={data.field.rating || undefined}
 				fieldName={data.field.name + ' - ' + data?.subfield.name}
@@ -79,6 +89,7 @@ const AvailableBookingDetails = () => {
 			/>
 			<section className="mx-auto min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">
 				<BookingDetailsForm
+					status={bookingStatus}
 					id={id}
 					from={from}
 					to={to}

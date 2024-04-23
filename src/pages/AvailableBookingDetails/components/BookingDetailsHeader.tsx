@@ -1,6 +1,7 @@
-import { TLocation } from '@/types'
+import { TLocation, TTurnOfServiceStatus } from '@/types'
 import { Clock, DollarSign, MapPin, Star, User2Icon } from 'lucide-react'
 import { format } from 'date-fns'
+import BookingStatusBadge from '@/components/BookingStatusBadge'
 
 type TProps = {
 	date: string
@@ -10,6 +11,7 @@ type TProps = {
 	duration: number
 	size: number
 	rating?: number
+	status?: TTurnOfServiceStatus
 }
 
 const BookingDetailsHeader = ({
@@ -20,6 +22,7 @@ const BookingDetailsHeader = ({
 	duration,
 	size,
 	rating,
+	status,
 }: TProps) => {
 	return (
 		<header className="my-12 flex flex-col justify-between gap-y-4 px-12 xl:flex-row">
@@ -44,6 +47,13 @@ const BookingDetailsHeader = ({
 				<p className="mt-2 text-sm text-muted-foreground">
 					<MapPin size={14} className="mr-1 inline-block text-primary" />
 					{fieldLocation?.name}
+					{status && (
+						<span>
+							{' '}
+							-
+							<BookingStatusBadge status={status} className="ml-2 text-xs" />
+						</span>
+					)}
 				</p>
 			</div>
 			<div className="my-auto flex min-w-max justify-between gap-6">

@@ -8,29 +8,29 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from './ui/form'
-import { Input } from './ui/input'
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import useAuthStore from '@/stores/auth'
 import {
 	InputOTP,
 	InputOTPGroup,
 	InputOTPSeparator,
 	InputOTPSlot,
-} from './ui/input-otp'
+} from '@/components/ui/input-otp'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
 	convertToTimeFormat,
 	getInitialFrom,
 	getInitialTo,
 } from '@/utils/booking'
-import { Textarea } from './ui/textarea'
-import { Button, buttonVariants } from './ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { createBooking } from '@/services/booking'
-import { useToast } from './ui/use-toast'
+import { useToast } from '@/components/ui/use-toast'
 import { format } from 'date-fns'
-import { ToastAction } from './ui/toast'
+import { ToastAction } from '@/components/ui/toast'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { TBooking } from '@/types'
+import { TBooking, TTurnOfServiceStatus } from '@/types'
 
 type TProps = {
 	subfieldId: string
@@ -39,6 +39,7 @@ type TProps = {
 	id: string
 	from: string
 	to: string
+	status?: TTurnOfServiceStatus
 }
 
 const BookingDetailsForm = ({
@@ -48,6 +49,7 @@ const BookingDetailsForm = ({
 	id,
 	from,
 	to,
+	status,
 }: TProps) => {
 	const [searchParams] = useSearchParams()
 	const { toast } = useToast()
@@ -116,13 +118,11 @@ const BookingDetailsForm = ({
 			}
 		} catch (error) {
 			const res = error as Response
-			if (res.status === 412) {
-				toast({
-					title: 'Booking failed',
-					description: `The booking is currently not available`,
-					variant: 'destructive',
-				})
-			}
+			toast({
+				title: 'Booking failed',
+				description: `Field from ${convertToTimeFormat(from)} to ${convertToTimeFormat(to)} is ${res.status === 412 ? 'being booked by another user' : 'not available'}`,
+				variant: 'destructive',
+			})
 		}
 	}
 
@@ -206,14 +206,15 @@ const BookingDetailsForm = ({
 				/>
 				<Button
 					className="mx-auto mt-2 max-w-min capitalize md:col-span-2"
+					variant={status !== 'available' ? 'outline' : 'default'}
 					type="submit"
-					disabled={form.formState.isSubmitting}
+					disabled={form.formState.isSubmitting || status !== 'available'}
 				>
 					{form.formState.isSubmitting
 						? 'Booking...'
-						: user
+						: status === 'available'
 							? 'Booking Now'
-							: 'Login for Booking'}
+							: 'Not available'}
 				</Button>
 			</form>
 		</Form>
