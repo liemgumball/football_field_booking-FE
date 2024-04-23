@@ -2,6 +2,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import reviewImg from '@/assets/reviewImg.png'
 import ReviewItem from '@/components/ReviewItem'
+import { AspectRatio } from '@/components/ui/aspect-ratio'
 
 
 const ReviewSection = () => {
@@ -15,9 +16,11 @@ const ReviewSection = () => {
                     </div>
 
                 </div>
-                <div className='flex justify-between pr-32'>
-                    <div className='max-w-[650px] max-h-[420px]'>
-                        <img src={reviewImg} alt='review image' />
+                <div className='flex justify-around flex-col md:flex-col gap-9 items-center lg:flex-row '>
+                    <div className="hero-img mx-auto w-full min-w-[600px] max-w-[870px] overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
+                        <AspectRatio ratio={1449 / 966}>
+                            <img src={reviewImg} alt='review image' />
+                        </AspectRatio>
                     </div>
                     <ReviewItem />
                 </div>
