@@ -24,7 +24,7 @@ import { memo, useState } from 'react'
 import { getFieldDetails } from '@/services/football-field'
 import { Link } from 'react-router-dom'
 
-const BookingAvailableCard = ({
+const AvailableBookingCard = ({
 	_id,
 	at,
 	price,
@@ -108,4 +108,4 @@ const BookingAvailableCard = ({
 	)
 }
 
-export default memo(BookingAvailableCard)
+export default memo(AvailableBookingCard)

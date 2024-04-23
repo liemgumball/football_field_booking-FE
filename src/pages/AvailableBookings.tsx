@@ -1,6 +1,6 @@
 import BackGroundImg from '/available_booking_bg.png'
 import AvailabilityForm from '@/components/AvailabilityForm'
-import BookingAvailableCard from '@/components/BookingAvailableCard'
+import AvailableBookingCard from '@/components/AvailableBookingCard'
 import QueryList from '@/components/QueryList'
 import SkeletonCard from '@/components/SkeletonCard'
 import {
@@ -21,7 +21,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-const AvailableBooking = () => {
+const AvailableBookings = () => {
 	const coordinates = useLocationStore((set) => set.coordinates)
 
 	const [searchParams] = useSearchParams()
@@ -115,7 +115,7 @@ const AvailableBooking = () => {
 								({ field, subfield, date, turnOfServices, _id }) =>
 									turnOfServices.map(({ at, price, status }) => (
 										<li key={_id + ':' + at}>
-											<BookingAvailableCard
+											<AvailableBookingCard
 												_id={_id}
 												date={date}
 												at={at}
@@ -149,4 +149,4 @@ const AvailableBooking = () => {
 	)
 }
 
-export default AvailableBooking
+export default AvailableBookings

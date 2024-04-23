@@ -15,7 +15,7 @@ const Home = lazy(async () => import('@/pages/Home'))
 const SignUp = lazy(async () => import('@/pages/SignUp'))
 const Login = lazy(async () => import('@/pages/Login'))
 const NotFound = lazy(async () => import('@/pages/NotFound'))
-const AvailableBooking = lazy(async () => import('@/pages/AvailableBooking'))
+const AvailableBookings = lazy(async () => import('@/pages/AvailableBookings'))
 const AvailableBookingDetails = lazy(
 	async () => import('@/pages/AvailableBookingDetails'),
 )
@@ -29,7 +29,7 @@ const router = createBrowserRouter(
 			<Route path="/login" element={<Login />} />
 			<Route path="/signup" element={<SignUp />} />
 			<Route path="/available-booking">
-				<Route index element={<AvailableBooking />} />
+				<Route index element={<AvailableBookings />} />
 				<Route path=":id" element={<AvailableBookingDetails />} />
 			</Route>
 

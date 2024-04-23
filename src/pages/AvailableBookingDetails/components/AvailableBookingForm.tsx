@@ -43,7 +43,7 @@ type TProps = {
 	status?: TTurnOfServiceStatus
 }
 
-const BookingDetailsForm = ({
+const AvailableBookingForm = ({
 	date,
 	subfieldId,
 	price,
@@ -237,4 +237,4 @@ const BookingDetailsForm = ({
 	)
 }
 
-export default BookingDetailsForm
+export default AvailableBookingForm

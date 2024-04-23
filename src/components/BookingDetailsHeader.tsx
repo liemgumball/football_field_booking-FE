@@ -11,7 +11,7 @@ type TProps = {
 	duration: number
 	size: number
 	rating?: number
-	status?: TTurnOfServiceStatus
+	status?: TTurnOfServiceStatus | string
 }
 
 const BookingDetailsHeader = ({
