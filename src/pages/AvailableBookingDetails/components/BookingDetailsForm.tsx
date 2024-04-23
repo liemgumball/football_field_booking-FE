@@ -117,7 +117,7 @@ const BookingDetailsForm = ({
 						<ToastAction
 							className={buttonVariants()}
 							altText="Booking details"
-							onClick={() => navigate('#')}
+							onClick={() => navigate(`/bookings/${response._id}`)}
 						>
 							Details
 						</ToastAction>
