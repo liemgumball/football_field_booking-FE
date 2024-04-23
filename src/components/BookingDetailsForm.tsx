@@ -30,7 +30,7 @@ import { useToast } from './ui/use-toast'
 import { format } from 'date-fns'
 import { ToastAction } from './ui/toast'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { TBooking } from '@/types'
+import { TBooking, TTurnOfServiceStatus } from '@/types'
 
 type TProps = {
 	subfieldId: string
@@ -39,6 +39,7 @@ type TProps = {
 	id: string
 	from: string
 	to: string
+	status?: TTurnOfServiceStatus
 }
 
 const BookingDetailsForm = ({
@@ -48,6 +49,7 @@ const BookingDetailsForm = ({
 	id,
 	from,
 	to,
+	status,
 }: TProps) => {
 	const [searchParams] = useSearchParams()
 	const { toast } = useToast()
@@ -116,20 +118,18 @@ const BookingDetailsForm = ({
 			}
 		} catch (error) {
 			const res = error as Response
-			if (res.status === 412) {
-				toast({
-					title: 'Booking failed',
-					description: `The booking is currently not available`,
-					variant: 'destructive',
-				})
-			}
+			toast({
+				title: 'Booking failed',
+				description: `Field from ${from} to ${to} is ${res.status === 412 ? 'being booked by another user' : 'not available'}`,
+				variant: 'destructive',
+			})
 		}
 	}
 
 	return (
 		<Form {...form}>
 			<form
-				className="grid grid-cols-1 gap-y-5 md:grid-cols-2"
+				className="mt-5 grid grid-cols-1 gap-y-5 md:grid-cols-2"
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				<FormField
@@ -206,14 +206,15 @@ const BookingDetailsForm = ({
 				/>
 				<Button
 					className="mx-auto mt-2 max-w-min capitalize md:col-span-2"
+					variant={status !== 'available' ? 'outline' : 'default'}
 					type="submit"
-					disabled={form.formState.isSubmitting}
+					disabled={form.formState.isSubmitting || status !== 'available'}
 				>
 					{form.formState.isSubmitting
 						? 'Booking...'
-						: user
+						: status === 'available'
 							? 'Booking Now'
-							: 'Login for Booking'}
+							: 'Not available'}
 				</Button>
 			</form>
 		</Form>
