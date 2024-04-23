@@ -1,5 +1,5 @@
-import BookingDetailsForm from '@/components/BookingDetailsForm'
-import BookingDetailsHeader from '@/components/BookingDetailsHeader'
+import BookingDetailsForm from './components/BookingDetailsForm'
+import BookingDetailsHeader from './components/BookingDetailsHeader'
 import { Skeleton } from '@/components/ui/skeleton'
 import { getDayOfServiceById } from '@/services/day-of-services'
 import { calculatePrice, getInitialFrom, getInitialTo } from '@/utils/booking'

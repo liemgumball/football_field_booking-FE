@@ -1,7 +1,7 @@
 import { TLocation, TTurnOfServiceStatus } from '@/types'
 import { Clock, DollarSign, MapPin, Star, User2Icon } from 'lucide-react'
 import { format } from 'date-fns'
-import BookingStatusBadge from './BookingStatusBadge'
+import BookingStatusBadge from '@/components/BookingStatusBadge'
 
 type TProps = {
 	date: string

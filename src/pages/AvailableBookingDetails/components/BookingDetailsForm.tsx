@@ -8,27 +8,27 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from './ui/form'
-import { Input } from './ui/input'
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import useAuthStore from '@/stores/auth'
 import {
 	InputOTP,
 	InputOTPGroup,
 	InputOTPSeparator,
 	InputOTPSlot,
-} from './ui/input-otp'
+} from '@/components/ui/input-otp'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
 	convertToTimeFormat,
 	getInitialFrom,
 	getInitialTo,
 } from '@/utils/booking'
-import { Textarea } from './ui/textarea'
-import { Button, buttonVariants } from './ui/button'
+import { Textarea } from '@/components/ui/textarea'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { createBooking } from '@/services/booking'
-import { useToast } from './ui/use-toast'
+import { useToast } from '@/components/ui/use-toast'
 import { format } from 'date-fns'
-import { ToastAction } from './ui/toast'
+import { ToastAction } from '@/components/ui/toast'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { TBooking, TTurnOfServiceStatus } from '@/types'
 
