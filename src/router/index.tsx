@@ -8,6 +8,7 @@ import {
 // Eagle Loading Routes
 import Layout from '@/components/Layout'
 import PrivateRoute from '@/components/PrivateRoute'
+import RouteErrorBoundary from '@/components/RouteErrorBoundary'
 
 // Lazy Loading Routes
 const Home = lazy(async () => import('@/pages/Home'))
@@ -22,7 +23,7 @@ const BookingDetails = lazy(async () => import('@/pages/BookingDetails'))
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
-		<Route path="/" element={<Layout />}>
+		<Route element={<Layout />}>
 			<Route path="*" element={<NotFound />} />
 			<Route index element={<Home />} />
 			<Route path="/login" element={<Login />} />
@@ -33,7 +34,7 @@ const router = createBrowserRouter(
 			</Route>
 
 			{/*-------------------------- Private Routes --------------------------*/}
-			<Route element={<PrivateRoute />}>
+			<Route element={<PrivateRoute />} errorElement={<RouteErrorBoundary />}>
 				<Route path="/bookings">
 					<Route
 						index
