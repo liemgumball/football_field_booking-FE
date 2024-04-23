@@ -120,7 +120,7 @@ const BookingDetailsForm = ({
 			const res = error as Response
 			toast({
 				title: 'Booking failed',
-				description: `Field from ${from} to ${to} is ${res.status === 412 ? 'being booked by another user' : 'not available'}`,
+				description: `Field from ${convertToTimeFormat(from)} to ${convertToTimeFormat(to)} is ${res.status === 412 ? 'being booked by another user' : 'not available'}`,
 				variant: 'destructive',
 			})
 		}
@@ -129,7 +129,7 @@ const BookingDetailsForm = ({
 	return (
 		<Form {...form}>
 			<form
-				className="mt-5 grid grid-cols-1 gap-y-5 md:grid-cols-2"
+				className="grid grid-cols-1 gap-y-5 md:grid-cols-2"
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				<FormField
