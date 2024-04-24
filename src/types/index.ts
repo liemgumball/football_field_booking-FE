@@ -6,6 +6,7 @@ export type TUser = {
 	name: string
 	phoneNumber: string
 	role: string
+	avatarFallback?: string
 }
 
 // The access token to backend APIs exists in the cookies

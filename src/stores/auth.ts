@@ -1,4 +1,5 @@
 import { TAuth, TUser } from '@/types'
+import { getAvatarFallback } from '@/utils/user'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -14,7 +15,10 @@ const useAuthStore = create<AuthState>()(
 			user: undefined,
 			googleAccessToken: undefined,
 			set: (user, googleAccessToken) =>
-				set({ user: user, googleAccessToken: googleAccessToken }),
+				set({
+					user: { ...user, avatarFallback: getAvatarFallback(user.name) },
+					googleAccessToken: googleAccessToken,
+				}),
 			remove: () => set({ user: undefined, googleAccessToken: undefined }),
 		}),
 		{

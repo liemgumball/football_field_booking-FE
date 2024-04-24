@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
@@ -14,10 +16,9 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-// Services
+// Utils
 import { login } from '@/services'
 import useAuthStore from '@/stores/auth'
-import { AxiosError } from 'axios'
 import { ERROR_MSG } from '@/constants/message'
 
 const formSchema = z.object({
@@ -34,6 +35,7 @@ const LoginForm = () => {
 	})
 
 	const setAuth = useAuthStore((set) => set.set)
+	const navigate = useNavigate()
 
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
 		values,
@@ -41,6 +43,7 @@ const LoginForm = () => {
 		try {
 			const response = await login(values)
 			setAuth(response.data)
+			navigate('/')
 		} catch (error) {
 			const err = error as AxiosError
 			// Unauthorized
