@@ -1,6 +1,10 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
+
+// Components
 import {
 	Form,
 	FormControl,
@@ -10,27 +14,24 @@ import {
 	FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import useAuthStore from '@/stores/auth'
-import {
-	InputOTP,
-	InputOTPGroup,
-	InputOTPSeparator,
-	InputOTPSlot,
-} from '@/components/ui/input-otp'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import {
-	convertToTimeFormat,
-	getInitialFrom,
-	getInitialTo,
-} from '@/utils/booking'
+import TimeSelect from '@/components/TimeSelect'
 import { Textarea } from '@/components/ui/textarea'
 import { Button, buttonVariants } from '@/components/ui/button'
-import { createBooking } from '@/services/booking'
 import { useToast } from '@/components/ui/use-toast'
-import { format } from 'date-fns'
+import { SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ToastAction } from '@/components/ui/toast'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+
+// Store & Constants & Types
+import useAuthStore from '@/stores/auth'
 import { TBooking, TTurnOfServiceStatus } from '@/types'
+import { timeSchema } from '@/constants/time'
+
+// Utils
+import { getTimeRange } from '@/utils/time'
+import { getInitialFrom, getInitialTo } from '@/utils/booking'
+import { createBooking } from '@/services/booking'
+import { format } from 'date-fns'
+import { cn } from '@/lib/utils'
 
 type TProps = {
 	subfieldId: string
@@ -57,20 +58,27 @@ const BookingDetailsForm = ({
 	const user = useAuthStore((set) => set.user)
 	const queryClient = useQueryClient()
 
-	const formSchema = z.object({
-		name: z.string().min(1, 'Name cannot be empty'),
-		from: z.string().min(4, 'Invalid time format'),
-		to: z.string().min(4, 'Invalid time format'),
-		additionalServices: z.any().optional(), // radio group
-		description: z.string().optional(),
-	})
+	const formSchema = z
+		.object({
+			name: z.string().min(1, 'Name cannot be empty'),
+			from: timeSchema,
+			to: timeSchema,
+			additionalServices: z.any().optional(), // radio group
+			description: z.string().optional(),
+		})
+		.refine(({ from, to }) => getTimeRange(from, to) >= 1, {
+			message: 'To must after From as least 1 hour',
+			path: ['to'],
+		})
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			name: user?.name || '',
 			from: searchParams.get('from') || getInitialFrom(),
-			to: getInitialTo(searchParams.get('from') || undefined),
+			to:
+				searchParams.get('to') ||
+				getInitialTo(searchParams.get('from') || undefined),
 		},
 	})
 
@@ -83,8 +91,8 @@ const BookingDetailsForm = ({
 		mutationFn: (values) =>
 			createBooking({
 				...values,
-				from: convertToTimeFormat(values.from),
-				to: convertToTimeFormat(values.to),
+				from: values.from,
+				to: values.to,
 				userId: user?._id || '',
 				subfieldId: subfieldId,
 				date: date,
@@ -120,7 +128,7 @@ const BookingDetailsForm = ({
 			const res = error as Response
 			toast({
 				title: 'Booking failed',
-				description: `Field from ${convertToTimeFormat(from)} to ${convertToTimeFormat(to)} is ${res.status === 412 ? 'being booked by another user' : 'not available'}`,
+				description: `Field from ${from} to ${to} is ${res.status === 412 ? 'being booked by another user' : 'not available'}`,
 				variant: 'destructive',
 			})
 		}
@@ -129,7 +137,7 @@ const BookingDetailsForm = ({
 	return (
 		<Form {...form}>
 			<form
-				className="grid grid-cols-1 gap-y-5 md:grid-cols-2"
+				className="grid grid-cols-1 gap-x-16 gap-y-5 md:grid-cols-2"
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				<FormField
@@ -139,7 +147,11 @@ const BookingDetailsForm = ({
 						<FormItem className="md:col-span-2">
 							<FormLabel>Name</FormLabel>
 							<FormControl>
-								<Input placeholder="Enter your name" {...field} />
+								<Input
+									className="px-4 py-6"
+									placeholder="Enter your name"
+									{...field}
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -151,19 +163,21 @@ const BookingDetailsForm = ({
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>From</FormLabel>
-							<FormControl>
-								<InputOTP maxLength={4} {...field}>
-									<InputOTPGroup>
-										<InputOTPSlot index={0} />
-										<InputOTPSlot index={1} />
-									</InputOTPGroup>
-									<InputOTPSeparator />
-									<InputOTPGroup>
-										<InputOTPSlot index={2} />
-										<InputOTPSlot index={3} />
-									</InputOTPGroup>
-								</InputOTP>
-							</FormControl>
+							<TimeSelect
+								onValueChange={field.onChange}
+								defaultValue={field.value}
+							>
+								<FormControl>
+									<SelectTrigger
+										className={cn(
+											'px-8',
+											!field.value && 'text-muted-foreground',
+										)}
+									>
+										<SelectValue placeholder="Select time from" />
+									</SelectTrigger>
+								</FormControl>
+							</TimeSelect>
 							<FormMessage />
 						</FormItem>
 					)}
@@ -174,19 +188,21 @@ const BookingDetailsForm = ({
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>To</FormLabel>
-							<FormControl>
-								<InputOTP maxLength={4} {...field}>
-									<InputOTPGroup>
-										<InputOTPSlot index={0} />
-										<InputOTPSlot index={1} />
-									</InputOTPGroup>
-									<InputOTPSeparator />
-									<InputOTPGroup>
-										<InputOTPSlot index={2} />
-										<InputOTPSlot index={3} />
-									</InputOTPGroup>
-								</InputOTP>
-							</FormControl>
+							<TimeSelect
+								onValueChange={field.onChange}
+								defaultValue={field.value}
+							>
+								<FormControl>
+									<SelectTrigger
+										className={cn(
+											'px-8',
+											!field.value && 'text-muted-foreground',
+										)}
+									>
+										<SelectValue placeholder="Select time from" />
+									</SelectTrigger>
+								</FormControl>
+							</TimeSelect>
 							<FormMessage />
 						</FormItem>
 					)}

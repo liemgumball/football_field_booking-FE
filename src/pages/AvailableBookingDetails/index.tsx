@@ -3,6 +3,7 @@ import BookingDetailsHeader from './components/BookingDetailsHeader'
 import { Skeleton } from '@/components/ui/skeleton'
 import { getDayOfServiceById } from '@/services/day-of-services'
 import { calculatePrice, getInitialFrom, getInitialTo } from '@/utils/booking'
+import { getTimeRange } from '@/utils/time'
 import { useQuery } from '@tanstack/react-query'
 import { useParams, useSearchParams } from 'react-router-dom'
 
@@ -84,7 +85,7 @@ const AvailableBookingDetails = () => {
 				fieldName={data.field.name + ' - ' + data?.subfield.name}
 				fieldLocation={data?.field.location}
 				price={calculatePrice(data.turnOfServices)}
-				duration={1}
+				duration={getTimeRange(from, to)}
 				size={data?.subfield.size}
 			/>
 			<section className="mx-auto min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">

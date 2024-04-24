@@ -1,6 +1,5 @@
 import { ENV_VARS } from '@/constants/envVars'
 import { TDayOfService } from '@/types'
-import { convertToTimeFormat } from '@/utils/booking'
 
 export const getDayOfServices = async (
 	cursor: number,
@@ -16,7 +15,7 @@ export const getDayOfServices = async (
 	const response = await fetch(
 		ENV_VARS.API_URL.BASE +
 			ENV_VARS.API_URL.DAY_OF_SERVICE.BASE +
-			`?date=${date}&from=${convertToTimeFormat(from)}${to ? '&to=' + convertToTimeFormat(to) : ''}${size ? '&size=' + size : ''}${coordinates ? `&latitude=${coordinates.latitude}&longitude=${coordinates.longitude}` : ''}&cursor=${cursor}`,
+			`?date=${date}&from=${from}${to ? '&to=' + to : ''}${size ? '&size=' + size : ''}${coordinates ? `&latitude=${coordinates.latitude}&longitude=${coordinates.longitude}` : ''}&cursor=${cursor}`,
 	)
 	if (!response.ok) {
 		throw new Error('Failed to fetch day of services')
@@ -32,7 +31,7 @@ export const getDayOfServiceById = async (
 	const response = await fetch(
 		ENV_VARS.API_URL.BASE +
 			ENV_VARS.API_URL.DAY_OF_SERVICE.BASE +
-			`/${id}?${from ? `from=${convertToTimeFormat(from)}` : ''}${from && to ? `&to=${convertToTimeFormat(to)}` : ''}`,
+			`/${id}?${from ? `from=${from}` : ''}${from && to ? `&to=${to}` : ''}`,
 	)
 
 	if (!response.ok) {
