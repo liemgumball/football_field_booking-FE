@@ -26,16 +26,13 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from './ui/select'
-import {
-	InputOTP,
-	InputOTPGroup,
-	InputOTPSeparator,
-	InputOTPSlot,
-} from './ui/input-otp'
 import { Checkbox } from '@/components/ui/checkbox'
 import { TFootballFieldSize } from '@/types'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import useLocationStore from '@/stores/location'
+import { timeSchema } from '@/constants/time'
+import TimeSelect from './TimeSelect'
+import { getTimeRange } from '@/utils/time'
 
 const AvailabilityForm = ({ className }: { className?: string }) => {
 	const coordinates = useLocationStore((set) => set.coordinates)
@@ -48,17 +45,22 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 				? true
 				: false
 
-	const formSchema = z.object({
-		date: z.date(),
-		size: z
-			.enum(['5', '6', '7', '11', 'undefined'])
-			.transform((val) => (val === 'undefined' ? undefined : val))
-			.optional(),
-		from: z.string(),
-		to: z.string(),
-		location: z.boolean().default(isLocationSearch),
-		distance: z.number().optional().default(10),
-	})
+	const formSchema = z
+		.object({
+			date: z.date(),
+			size: z
+				.enum(['5', '6', '7', '11', 'undefined'])
+				.transform((val) => (val === 'undefined' ? undefined : val))
+				.optional(),
+			from: timeSchema,
+			to: timeSchema,
+			location: z.boolean().default(isLocationSearch),
+			distance: z.number().optional().default(10),
+		})
+		.refine(({ from, to }) => getTimeRange(from, to) >= 1, {
+			message: 'To must after From as least 1 hour',
+			path: ['to'],
+		})
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -111,7 +113,6 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 						</FormItem>
 					)}
 				/>
-
 				<FormField
 					control={form.control}
 					name="date"
@@ -191,19 +192,21 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>From</FormLabel>
-							<FormControl>
-								<InputOTP maxLength={4} {...field}>
-									<InputOTPGroup>
-										<InputOTPSlot index={0} />
-										<InputOTPSlot index={1} />
-									</InputOTPGroup>
-									<InputOTPSeparator />
-									<InputOTPGroup>
-										<InputOTPSlot index={2} />
-										<InputOTPSlot index={3} />
-									</InputOTPGroup>
-								</InputOTP>
-							</FormControl>
+							<TimeSelect
+								onValueChange={field.onChange}
+								defaultValue={field.value}
+							>
+								<FormControl>
+									<SelectTrigger
+										className={cn(
+											'min-w-[220px] px-8',
+											!field.value && 'text-muted-foreground',
+										)}
+									>
+										<SelectValue placeholder="Select time from" />
+									</SelectTrigger>
+								</FormControl>
+							</TimeSelect>
 							<FormMessage />
 						</FormItem>
 					)}
@@ -214,19 +217,21 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>To</FormLabel>
-							<FormControl>
-								<InputOTP maxLength={4} {...field}>
-									<InputOTPGroup>
-										<InputOTPSlot index={0} />
-										<InputOTPSlot index={1} />
-									</InputOTPGroup>
-									<InputOTPSeparator />
-									<InputOTPGroup>
-										<InputOTPSlot index={2} />
-										<InputOTPSlot index={3} />
-									</InputOTPGroup>
-								</InputOTP>
-							</FormControl>
+							<TimeSelect
+								onValueChange={field.onChange}
+								defaultValue={field.value}
+							>
+								<FormControl>
+									<SelectTrigger
+										className={cn(
+											'min-w-[220px] px-8',
+											!field.value && 'text-muted-foreground',
+										)}
+									>
+										<SelectValue placeholder="Select time from" />
+									</SelectTrigger>
+								</FormControl>
+							</TimeSelect>
 							<FormMessage />
 						</FormItem>
 					)}

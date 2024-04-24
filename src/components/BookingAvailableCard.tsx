@@ -23,7 +23,6 @@ import { buttonVariants } from './ui/button'
 import { memo, useState } from 'react'
 import { getFieldDetails } from '@/services/football-field'
 import { Link } from 'react-router-dom'
-import { parseTimeFormat } from '@/utils/booking'
 
 const BookingAvailableCard = ({
 	_id,
@@ -98,7 +97,7 @@ const BookingAvailableCard = ({
 					Size {subfield.size}
 				</div>
 				<Link
-					to={`/available-booking/${_id}?from=${parseTimeFormat(at)}`}
+					to={`/available-booking/${_id}?from=${at}`}
 					className={buttonVariants({ variant: 'outline' })}
 				>
 					Booking
