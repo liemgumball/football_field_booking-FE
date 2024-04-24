@@ -5,6 +5,10 @@ export const ENV_VARS = {
 			LOGIN: 'auth/login',
 			SIGNUP: 'auth/signup',
 		},
+		USER: {
+			BASE: 'users',
+			UPDATE: '/users/update',
+		},
 		FOOTBALL_FIELD: {
 			BASE: 'fields',
 		},
