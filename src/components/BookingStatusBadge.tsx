@@ -6,7 +6,7 @@ const BookingStatusBadge = ({
 	status,
 	className,
 }: {
-	status: TTurnOfServiceStatus
+	status: TTurnOfServiceStatus | string
 	className?: string
 }) => {
 	const variant =

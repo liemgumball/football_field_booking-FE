@@ -126,9 +126,14 @@ const AvailableBookingForm = ({
 			}
 		} catch (error) {
 			const res = error as Response
+			const resMsg =
+				res.status === 400
+					? JSON.parse(await res.text())[0].message
+					: `Field from ${form.getValues('from')} to ${form.getValues('to')} is being booked by another.`
+
 			toast({
-				title: 'Booking failed',
-				description: `Field from ${from} to ${to} is ${res.status === 412 ? 'being booked by another user' : 'not available'}`,
+				title: 'Booking Failed!',
+				description: resMsg,
 				variant: 'destructive',
 			})
 		}
@@ -224,7 +229,7 @@ const AvailableBookingForm = ({
 					className="mx-auto mt-2 max-w-min capitalize md:col-span-2"
 					variant={status !== 'available' ? 'outline' : 'default'}
 					type="submit"
-					disabled={form.formState.isSubmitting || status !== 'available'}
+					// disabled={form.formState.isSubmitting || status !== 'available'}
 				>
 					{form.formState.isSubmitting
 						? 'Booking...'

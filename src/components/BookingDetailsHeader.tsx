@@ -6,11 +6,11 @@ import BookingStatusBadge from '@/components/BookingStatusBadge'
 type TProps = {
 	date: string
 	fieldName: string
-	fieldLocation: TLocation
+	fieldLocation?: TLocation
 	price: number
 	duration: number
-	size: number
-	rating?: number
+	size?: number
+	rating?: number | null
 	status?: TTurnOfServiceStatus | string
 }
 
@@ -44,7 +44,7 @@ const BookingDetailsHeader = ({
 							))
 						: 'No rating'}
 				</div>
-				<p className="mt-2 text-sm text-muted-foreground">
+				<div className="mt-2 text-sm text-muted-foreground">
 					<MapPin size={14} className="mr-1 inline-block text-primary" />
 					{fieldLocation?.name}
 					{status && (
@@ -54,7 +54,7 @@ const BookingDetailsHeader = ({
 							<BookingStatusBadge status={status} className="ml-2 text-xs" />
 						</span>
 					)}
-				</p>
+				</div>
 			</div>
 			<div className="my-auto flex min-w-max justify-between gap-6">
 				<div>
