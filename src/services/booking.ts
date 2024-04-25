@@ -37,3 +37,18 @@ export async function getBookingDetails(id: string): Promise<TBooking> {
 
 	return response.json()
 }
+
+export async function getBookings(): Promise<TBooking[]> {
+	const response = await fetch(
+		ENV_VARS.API_URL.BASE + ENV_VARS.API_URL.BOOKING.BASE,
+		{
+			credentials: 'include',
+		},
+	)
+
+	if (!response.ok) {
+		throw response
+	}
+
+	return response.json()
+}
