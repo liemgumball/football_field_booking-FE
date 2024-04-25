@@ -1,7 +1,9 @@
 import { ENV_VARS } from '@/constants/envVars'
 import { TBooking } from '@/types'
 
-export const createBooking = async (data: Omit<TBooking, '_id'>) => {
+export const createBooking = async (
+	data: Omit<TBooking, '_id'>,
+): Promise<TBooking> => {
 	const response = await fetch(
 		ENV_VARS.API_URL.BASE + ENV_VARS.API_URL.BOOKING.BASE,
 		{
@@ -18,5 +20,20 @@ export const createBooking = async (data: Omit<TBooking, '_id'>) => {
 		throw response
 	}
 
-	return response.json() as Promise<TBooking>
+	return response.json()
+}
+
+export async function getBookingDetails(id: string): Promise<TBooking> {
+	const response = await fetch(
+		ENV_VARS.API_URL.BASE + ENV_VARS.API_URL.BOOKING.BASE + `/${id}`,
+		{
+			credentials: 'include',
+		},
+	)
+
+	if (!response.ok) {
+		throw response
+	}
+
+	return response.json()
 }

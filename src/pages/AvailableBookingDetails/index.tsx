@@ -1,11 +1,11 @@
-import BookingDetailsForm from './components/BookingDetailsForm'
-import BookingDetailsHeader from './components/BookingDetailsHeader'
-import { Skeleton } from '@/components/ui/skeleton'
+import AvailableBookingForm from './components/AvailableBookingForm'
+import BookingDetailsHeader from '@/components/BookingDetailsHeader'
 import { getDayOfServiceById } from '@/services/day-of-services'
 import { calculatePrice, getInitialFrom, getInitialTo } from '@/utils/booking'
-import { getTimeRange } from '@/utils/time'
+import { getDuration } from '@/utils/time'
 import { useQuery } from '@tanstack/react-query'
 import { useParams, useSearchParams } from 'react-router-dom'
+import AvailableBookingSkeleton from './components/AvailableBookingSkeleton'
 
 const AvailableBookingDetails = () => {
 	const { id } = useParams()
@@ -30,40 +30,7 @@ const AvailableBookingDetails = () => {
 			? 'progressing'
 			: 'used'
 
-	if (isLoading)
-		return (
-			<main className="container">
-				<header className="my-12 flex flex-col justify-between gap-8 px-12 xl:flex-row">
-					<div className="space-y-3">
-						<Skeleton className="h-[35px] w-[500px] rounded-md" />
-						<Skeleton className="h-[20px] w-[200px] rounded-md" />
-						<Skeleton className="mt-2 h-[15px] w-[250px] rounded-md" />
-					</div>
-					<div className="my-auto flex justify-between gap-6">
-						<Skeleton className="h-[50px] w-[120px] rounded-md" />
-						<Skeleton className="h-[50px] w-[80px] rounded-md" />
-						<Skeleton className="h-[50px] w-[80px] rounded-md" />
-					</div>
-				</header>
-				<section className="mx-auto min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">
-					<div className="space-y-5">
-						<div className="space-y-3">
-							<Skeleton className="h-[20px] w-[120px] rounded-md" />
-							<Skeleton className="h-[50px] w-[550px] rounded-md" />
-						</div>
-						<div className="space-y-3">
-							<Skeleton className="h-[20px] w-[120px] rounded-md" />
-							<Skeleton className="h-[50px] w-[550px] rounded-md" />
-						</div>
-						<div className="space-y-3">
-							<Skeleton className="h-[20px] w-[120px] rounded-md" />
-							<Skeleton className="h-[50px] w-[550px] rounded-md" />
-						</div>
-						<Skeleton className="mx-auto h-[50px] w-[150px] rounded-xl" />
-					</div>
-				</section>
-			</main>
-		)
+	if (isLoading) return <AvailableBookingSkeleton />
 
 	if (isError)
 		return (
@@ -85,11 +52,11 @@ const AvailableBookingDetails = () => {
 				fieldName={data.field.name + ' - ' + data?.subfield.name}
 				fieldLocation={data?.field.location}
 				price={calculatePrice(data.turnOfServices)}
-				duration={getTimeRange(from, to)}
+				duration={getDuration(from, to)}
 				size={data?.subfield.size}
 			/>
 			<section className="mx-auto min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">
-				<BookingDetailsForm
+				<AvailableBookingForm
 					status={bookingStatus}
 					id={id}
 					from={from}

@@ -27,7 +27,7 @@ import { TBooking, TTurnOfServiceStatus } from '@/types'
 import { timeSchema } from '@/constants/time'
 
 // Utils
-import { getTimeRange } from '@/utils/time'
+import { getDuration } from '@/utils/time'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { createBooking } from '@/services/booking'
 import { format } from 'date-fns'
@@ -43,7 +43,7 @@ type TProps = {
 	status?: TTurnOfServiceStatus
 }
 
-const BookingDetailsForm = ({
+const AvailableBookingForm = ({
 	date,
 	subfieldId,
 	price,
@@ -66,7 +66,7 @@ const BookingDetailsForm = ({
 			additionalServices: z.any().optional(), // radio group
 			description: z.string().optional(),
 		})
-		.refine(({ from, to }) => getTimeRange(from, to) >= 1, {
+		.refine(({ from, to }) => getDuration(from, to) >= 1, {
 			message: 'To must after From as least 1 hour',
 			path: ['to'],
 		})
@@ -117,7 +117,7 @@ const BookingDetailsForm = ({
 						<ToastAction
 							className={buttonVariants()}
 							altText="Booking details"
-							onClick={() => navigate('#')}
+							onClick={() => navigate(`/bookings/${response._id}`)}
 						>
 							Details
 						</ToastAction>
@@ -126,9 +126,14 @@ const BookingDetailsForm = ({
 			}
 		} catch (error) {
 			const res = error as Response
+			const resMsg =
+				res.status === 400
+					? JSON.parse(await res.text())[0].message
+					: `Field from ${form.getValues('from')} to ${form.getValues('to')} is being booked by another.`
+
 			toast({
-				title: 'Booking failed',
-				description: `Field from ${from} to ${to} is ${res.status === 412 ? 'being booked by another user' : 'not available'}`,
+				title: 'Booking Failed!',
+				description: resMsg,
 				variant: 'destructive',
 			})
 		}
@@ -224,7 +229,7 @@ const BookingDetailsForm = ({
 					className="mx-auto mt-2 max-w-min capitalize md:col-span-2"
 					variant={status !== 'available' ? 'outline' : 'default'}
 					type="submit"
-					disabled={form.formState.isSubmitting || status !== 'available'}
+					// disabled={form.formState.isSubmitting || status !== 'available'}
 				>
 					{form.formState.isSubmitting
 						? 'Booking...'
@@ -237,4 +242,4 @@ const BookingDetailsForm = ({
 	)
 }
 
-export default BookingDetailsForm
+export default AvailableBookingForm

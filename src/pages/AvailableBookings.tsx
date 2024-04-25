@@ -1,6 +1,6 @@
 import BackGroundImg from '/available_booking_bg.png'
 import AvailabilityForm from '@/components/AvailabilityForm'
-import BookingAvailableCard from '@/components/BookingAvailableCard'
+import AvailableBookingCard from '@/components/AvailableBookingCard'
 import QueryList from '@/components/QueryList'
 import SkeletonCard from '@/components/SkeletonCard'
 import {
@@ -21,7 +21,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-const AvailableBooking = () => {
+const AvailableBookings = () => {
 	const coordinates = useLocationStore((set) => set.coordinates)
 
 	const [searchParams] = useSearchParams()
@@ -52,7 +52,7 @@ const AvailableBooking = () => {
 		fetchNextPage,
 		hasNextPage,
 	} = useInfiniteQuery<TDayOfService[]>({
-		queryKey: ['dayOfServices', date, from, to, size, coordinatesQuery],
+		queryKey: [date, from, to, size, coordinatesQuery],
 		queryFn: ({ pageParam }) =>
 			getDayOfServices(
 				pageParam as number,
@@ -112,20 +112,17 @@ const AvailableBooking = () => {
 				>
 					{!isLoading && bookingsAvailable
 						? bookingsAvailable.map(
-								({ field, subfield, date, turnOfServices, _id }) =>
-									turnOfServices.map(({ at, price, status }) => (
-										<li key={_id + ':' + at}>
-											<BookingAvailableCard
-												_id={_id}
-												date={date}
-												at={at}
-												price={price}
-												status={status}
-												field={field}
-												subfield={subfield}
-											/>
-										</li>
-									)),
+								({ field, subfield, date, turnOfServices, _id }) => (
+									<li key={_id}>
+										<AvailableBookingCard
+											_id={_id}
+											date={date}
+											field={field}
+											subfield={subfield}
+											turnOfServices={turnOfServices}
+										/>
+									</li>
+								),
 							)
 						: Array.from({ length: 6 }, (_, i) => i).map((i) => (
 								<li key={i}>
@@ -149,4 +146,4 @@ const AvailableBooking = () => {
 	)
 }
 
-export default AvailableBooking
+export default AvailableBookings
