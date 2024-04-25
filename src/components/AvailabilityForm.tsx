@@ -32,7 +32,7 @@ import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import useLocationStore from '@/stores/location'
 import { timeSchema } from '@/constants/time'
 import TimeSelect from './TimeSelect'
-import { getTimeRange } from '@/utils/time'
+import { getDuration } from '@/utils/time'
 
 const AvailabilityForm = ({ className }: { className?: string }) => {
 	const coordinates = useLocationStore((set) => set.coordinates)
@@ -57,7 +57,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 			location: z.boolean().default(isLocationSearch),
 			distance: z.number().optional().default(10),
 		})
-		.refine(({ from, to }) => getTimeRange(from, to) >= 1, {
+		.refine(({ from, to }) => getDuration(from, to) >= 1, {
 			message: 'To must after From as least 1 hour',
 			path: ['to'],
 		})

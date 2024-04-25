@@ -27,7 +27,7 @@ import { TBooking, TTurnOfServiceStatus } from '@/types'
 import { timeSchema } from '@/constants/time'
 
 // Utils
-import { getTimeRange } from '@/utils/time'
+import { getDuration } from '@/utils/time'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { createBooking } from '@/services/booking'
 import { format } from 'date-fns'
@@ -66,7 +66,7 @@ const AvailableBookingForm = ({
 			additionalServices: z.any().optional(), // radio group
 			description: z.string().optional(),
 		})
-		.refine(({ from, to }) => getTimeRange(from, to) >= 1, {
+		.refine(({ from, to }) => getDuration(from, to) >= 1, {
 			message: 'To must after From as least 1 hour',
 			path: ['to'],
 		})

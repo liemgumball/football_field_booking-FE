@@ -2,7 +2,7 @@ import AvailableBookingForm from './components/AvailableBookingForm'
 import BookingDetailsHeader from '@/components/BookingDetailsHeader'
 import { getDayOfServiceById } from '@/services/day-of-services'
 import { calculatePrice, getInitialFrom, getInitialTo } from '@/utils/booking'
-import { getTimeRange } from '@/utils/time'
+import { getDuration } from '@/utils/time'
 import { useQuery } from '@tanstack/react-query'
 import { useParams, useSearchParams } from 'react-router-dom'
 import AvailableBookingSkeleton from './components/AvailableBookingSkeleton'
@@ -52,7 +52,7 @@ const AvailableBookingDetails = () => {
 				fieldName={data.field.name + ' - ' + data?.subfield.name}
 				fieldLocation={data?.field.location}
 				price={calculatePrice(data.turnOfServices)}
-				duration={getTimeRange(from, to)}
+				duration={getDuration(from, to)}
 				size={data?.subfield.size}
 			/>
 			<section className="mx-auto min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">

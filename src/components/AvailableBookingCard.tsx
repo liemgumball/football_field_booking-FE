@@ -1,4 +1,4 @@
-import { TFootballField, TSubField, TTurnOfService } from '@/types'
+import { TDayOfService } from '@/types'
 import {
 	Card,
 	CardContent,
@@ -23,20 +23,18 @@ import { buttonVariants } from './ui/button'
 import { memo, useState } from 'react'
 import { getFieldDetails } from '@/services/football-field'
 import { Link } from 'react-router-dom'
+import { getTimeRange } from '@/utils/time'
 
 const AvailableBookingCard = ({
 	_id,
-	at,
-	price,
 	field,
 	date,
 	subfield,
-}: TTurnOfService & { date: string | Date } & {
-	_id: string
-	field: TFootballField
-	subfield: TSubField
-}) => {
+	turnOfServices,
+}: TDayOfService) => {
 	const [location, setLocation] = useState<string>()
+
+	const [from, to] = getTimeRange(turnOfServices)
 
 	const onMouseEnter = async () => {
 		try {
@@ -70,7 +68,9 @@ const AvailableBookingCard = ({
 						: 'No rating'}
 					{field.rating ? <span>({field.rating})</span> : ''}
 				</div>
-				<CardTitle className="truncate capitalize">{field.name}</CardTitle>
+				<CardTitle className="truncate capitalize">
+					{field.name} - {subfield.name}
+				</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<CardDescription>
@@ -80,24 +80,26 @@ const AvailableBookingCard = ({
 							onMouseEnter={onMouseEnter}
 						>
 							<MapPin className="mr-2 inline text-primary" size={16} />
-							{format(date, 'PPP')} {at}
+							{format(date, 'PPP')}
 						</HoverCardTrigger>
 						{location && <HoverCardContent>{location}</HoverCardContent>}
 					</HoverCard>
+					<span className="ml-5 text-lg font-bold tracking-wider text-secondary-foreground">{`${from} - ${to}`}</span>
 				</CardDescription>
 			</CardContent>
 			<Separator className="mx-auto mb-4 w-5/6" />
 			<CardFooter className="space-x-6 text-sm text-secondary-foreground">
 				<div className="flex items-center">
 					<DollarSignIcon className="mr-2 text-primary" size={18} />
-					Price {price}
+					Price
+					{/* {price} */}
 				</div>
 				<div className="flex items-center">
 					<User2Icon className="mr-2 text-primary" size={18} />
 					Size {subfield.size}
 				</div>
 				<Link
-					to={`/available-booking/${_id}?from=${at}`}
+					to={`/available-booking/${_id}?from=${from}&to=${to}`}
 					className={buttonVariants({ variant: 'outline' })}
 				>
 					Booking
