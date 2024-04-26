@@ -16,7 +16,7 @@ import Autoplay from "embla-carousel-autoplay"
 const ReviewSection = () => {
     const section = useRef(null);
 
-    const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }))
+    const plugin = React.useRef(Autoplay({ delay: 20000, stopOnInteraction: false }))
 
 
     useGSAP(() => {
