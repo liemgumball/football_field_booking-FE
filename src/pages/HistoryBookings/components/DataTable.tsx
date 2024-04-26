@@ -27,6 +27,7 @@ import { DataTablePagination } from './DataTablePagination'
 type TProps<TData, TValue> = {
 	columns: ColumnDef<TData, TValue>[]
 	data: TData[]
+	isLoading?: boolean
 }
 
 const DataTable = <TData, TValue>({ columns, data }: TProps<TData, TValue>) => {

@@ -1,7 +1,14 @@
+import { cn } from '@/lib/utils'
 import { TBookingStatus } from '@/types'
 import { BanIcon, CheckIcon, CircleDashedIcon } from 'lucide-react'
 
-const BookingStatus = ({ status }: { status: TBookingStatus }) => {
+const BookingStatus = ({
+	status,
+	className,
+}: {
+	status: TBookingStatus
+	className?: string
+}) => {
 	let Icon: React.FC | null = null
 
 	if (status === 'canceled')
@@ -21,7 +28,7 @@ const BookingStatus = ({ status }: { status: TBookingStatus }) => {
 		)
 
 	return (
-		<div className="capitalize">
+		<div className={cn('text-nowrap', className)}>
 			{Icon && <Icon />}
 			{status}
 		</div>
