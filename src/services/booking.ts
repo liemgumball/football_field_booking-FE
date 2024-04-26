@@ -2,7 +2,7 @@ import { ENV_VARS } from '@/constants/envVars'
 import { TBooking } from '@/types'
 
 export const createBooking = async (
-	data: Omit<TBooking, '_id'>,
+	data: Omit<TBooking, '_id' | 'subfield' | 'field' | 'status' | 'fieldId'>,
 ): Promise<TBooking> => {
 	const response = await fetch(
 		ENV_VARS.API_URL.BASE + ENV_VARS.API_URL.BOOKING.BASE,

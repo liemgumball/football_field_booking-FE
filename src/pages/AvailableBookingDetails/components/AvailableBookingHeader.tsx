@@ -2,6 +2,7 @@ import { TLocation, TTurnOfServiceStatus } from '@/types'
 import { Clock, DollarSign, MapPin, Star, User2Icon } from 'lucide-react'
 import { format } from 'date-fns'
 import BookingStatusBadge from '@/components/BookingStatusBadge'
+import { formatPrice } from '@/utils/booking'
 
 type TProps = {
 	date: string
@@ -14,7 +15,7 @@ type TProps = {
 	status?: TTurnOfServiceStatus | string
 }
 
-const BookingDetailsHeader = ({
+const AvailableBookingHeader = ({
 	date,
 	fieldName,
 	fieldLocation,
@@ -62,7 +63,7 @@ const BookingDetailsHeader = ({
 						<DollarSign size={18} className="mr-1 inline-block text-primary" />
 						Price
 					</p>
-					<p className="text-xl font-bold">{price},000 VND</p>
+					<p className="text-xl font-bold">{formatPrice(price)}</p>
 				</div>
 				<div>
 					<p>
@@ -83,4 +84,4 @@ const BookingDetailsHeader = ({
 	)
 }
 
-export default BookingDetailsHeader
+export default AvailableBookingHeader

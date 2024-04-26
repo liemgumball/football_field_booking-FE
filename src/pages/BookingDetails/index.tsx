@@ -2,7 +2,9 @@ import { getBookingDetails } from '@/services/booking'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router'
 import BookingDetailsSkeleton from './components/BookingDetailsSkeleton'
-import BookingDetailsHeader from '@/components/BookingDetailsHeader'
+import BookingDetailsHeader from './components/BookingDetailsHeader'
+import { Separator } from '@/components/ui/separator'
+import BookingDetailsContent from './components/BookingDetailsContent'
 
 const BookingDetails = () => {
 	const { id } = useParams()
@@ -12,12 +14,6 @@ const BookingDetails = () => {
 		queryKey: [id],
 		queryFn: () => getBookingDetails(id),
 	})
-
-	const bookingStatus = data?.confirmed
-		? 'confirmed'
-		: data?.cancel
-			? 'cancelled'
-			: 'processing'
 
 	if (isLoading) return <BookingDetailsSkeleton />
 
@@ -29,21 +25,15 @@ const BookingDetails = () => {
 			</>
 		)
 
-	if (!data)
+	if (!data || !data.field || !data.subfield)
 		return <p className="text-destructive">Fail to get booking information</p>
 
 	return (
 		<main className="container">
-			<BookingDetailsHeader
-				status={bookingStatus}
-				date={data.date as string}
-				rating={data.field?.rating || null}
-				fieldName={data.field?.name + ' - ' + data.subfield?.name}
-				fieldLocation={data.field?.location}
-				price={data.price}
-				duration={1}
-				size={data.subfield?.size}
-			/>
+			<BookingDetailsHeader field={data.field} status={data.status} />
+			<Separator />
+			{/* [ ] name missing in API response */}
+			<BookingDetailsContent {...data} name="Liem" />
 		</main>
 	)
 }

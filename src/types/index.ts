@@ -64,15 +64,16 @@ export type TDayOfService = {
 export type TBooking = {
 	_id: string
 	userId: string
+	name: string
 	subfieldId: string
-	subfield?: TSubField
-	fieldId?: string
-	field?: TFootballField
+	subfield: TSubField
+	fieldId: string
+	field: TFootballField
 	date: Date | string
 	from: TTimeStep
 	to: TTimeStep
 	price: number
-	status?: TBookingStatus
+	status: TBookingStatus
 	confirmed?: boolean
 	cancel?: boolean
 	createdAt?: Date | string

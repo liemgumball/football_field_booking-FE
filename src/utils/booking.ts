@@ -30,3 +30,7 @@ export function calculatePrice(input: TTurnOfService[] | null): number {
 
 	return price
 }
+
+export const formatPrice = (num: number) => {
+	return num + ',000' + ' VND'
+}

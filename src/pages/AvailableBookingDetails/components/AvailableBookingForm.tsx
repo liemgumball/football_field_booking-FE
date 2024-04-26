@@ -229,7 +229,7 @@ const AvailableBookingForm = ({
 					className="mx-auto mt-2 max-w-min capitalize md:col-span-2"
 					variant={status !== 'available' ? 'outline' : 'default'}
 					type="submit"
-					// disabled={form.formState.isSubmitting || status !== 'available'}
+					disabled={form.formState.isSubmitting || status !== 'available'}
 				>
 					{form.formState.isSubmitting
 						? 'Booking...'

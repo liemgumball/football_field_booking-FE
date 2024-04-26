@@ -3,6 +3,18 @@ import { ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
 import { DataTableColumnHeader } from './DataTableColumnHeader'
 import BookingStatus from './BookingStatus'
+import { MoreHorizontal } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { Link } from 'react-router-dom'
+import { formatPrice } from '@/utils/booking'
 
 const Columns: ColumnDef<TBooking, TBooking>[] = [
 	{
@@ -66,7 +78,7 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 		),
 		cell: ({ cell }) => (
 			<div className="w-[120px] truncate">
-				{cell.getValue() as unknown as string},000 VND
+				{formatPrice(cell.getValue() as unknown as number)}
 			</div>
 		),
 	},
@@ -81,6 +93,30 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 				{format(cell.getValue() as unknown as string, 'PPP')}
 			</div>
 		),
+	},
+	{
+		id: 'actions',
+		cell: ({ row }) => {
+			const booking = row.original
+
+			return (
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant="ghost" className="h-8 w-8 p-0">
+							<span className="sr-only">Open menu</span>
+							<MoreHorizontal className="h-4 w-4" />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="end">
+						<DropdownMenuItem>
+							<Link to={`${booking._id}`}>View booking details</Link>
+						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem>View field details</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			)
+		},
 	},
 ]
 
