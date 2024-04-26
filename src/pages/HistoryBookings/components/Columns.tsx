@@ -14,6 +14,7 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Link } from 'react-router-dom'
+import { formatPrice } from '@/utils/booking'
 
 const Columns: ColumnDef<TBooking, TBooking>[] = [
 	{
@@ -77,7 +78,7 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 		),
 		cell: ({ cell }) => (
 			<div className="w-[120px] truncate">
-				{cell.getValue() as unknown as string},000 VND
+				{formatPrice(cell.getValue() as unknown as number)}
 			</div>
 		),
 	},

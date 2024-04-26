@@ -17,12 +17,17 @@ const BookingDetailsHeader = ({ field, status }: TProps) => {
 	}
 
 	return (
-		<header className="flex items-center justify-between py-4">
+		<header className="flex flex-col justify-between gap-x-2 gap-y-4 py-4 md:flex-row md:items-center">
 			<div className="space-y-4">
-				<h2 className="text-4xl font-bold">{name}</h2>
+				<h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+					{name}
+				</h1>
 				<div className="space-x-2">
-					<MapPinIcon className="mr-1 inline-block text-primary" size={20} />
-					<span>{location.name}</span>
+					<MapPinIcon
+						className="mr-px inline-block text-nowrap text-primary"
+						size={20}
+					/>
+					<span className="truncate">{location.name}</span>
 					<span className="space-x-1">
 						{rating ? (
 							Array.from({ length: Math.round(rating) }, (_, i) => i).map(
@@ -36,18 +41,20 @@ const BookingDetailsHeader = ({ field, status }: TProps) => {
 								),
 							)
 						) : (
-							<span className="text-muted-foreground">No rating</span>
+							<span className="text-nowrap text-muted-foreground">
+								No rating
+							</span>
 						)}
 					</span>
 				</div>
 			</div>
 			<div
 				className={cn(
-					'inline-flex items-center rounded-lg border px-2.5 py-0.5 text-lg font-semibold capitalize',
+					'inline-flex min-w-max max-w-max items-center rounded-xl border px-3 py-0.5 text-lg font-semibold capitalize',
 					statusClassName[status],
 				)}
 			>
-				{status === 'pending' ? 'Waiting for confirm' : status}
+				{status === 'pending' ? 'Waiting for confirming' : status}
 			</div>
 		</header>
 	)

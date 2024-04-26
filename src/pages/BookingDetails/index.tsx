@@ -4,6 +4,7 @@ import { useParams } from 'react-router'
 import BookingDetailsSkeleton from './components/BookingDetailsSkeleton'
 import BookingDetailsHeader from './components/BookingDetailsHeader'
 import { Separator } from '@/components/ui/separator'
+import BookingDetailsContent from './components/BookingDetailsContent'
 
 const BookingDetails = () => {
 	const { id } = useParams()
@@ -31,6 +32,8 @@ const BookingDetails = () => {
 		<main className="container">
 			<BookingDetailsHeader field={data.field} status={data.status} />
 			<Separator />
+			{/* [ ] userName missing in API response */}
+			<BookingDetailsContent {...data} userName="Liem" />
 		</main>
 	)
 }

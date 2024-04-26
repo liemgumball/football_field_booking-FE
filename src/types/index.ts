@@ -64,6 +64,7 @@ export type TDayOfService = {
 export type TBooking = {
 	_id: string
 	userId: string
+	userName: string
 	subfieldId: string
 	subfield: TSubField
 	fieldId: string
