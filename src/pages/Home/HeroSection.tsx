@@ -6,10 +6,12 @@ import { Send } from 'lucide-react'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
+import useAuthStore from '@/stores/auth'
 
 const HeroSection = () => {
 	const section = useRef(null)
 	const theme = useThemeStore((set) => set.theme)
+	const user = useAuthStore((set) => set.user)
 
 	useGSAP(
 		() => {
@@ -39,7 +41,7 @@ const HeroSection = () => {
 				delay: 0.45,
 			})
 		},
-		{ scope: section, dependencies: [theme] },
+		{ scope: section, dependencies: [theme, user] },
 	)
 	return (
 		<section

@@ -2,17 +2,21 @@ export const ENV_VARS = {
 	API_URL: {
 		BASE: import.meta.env.VITE_API_URL ?? '',
 		AUTH: {
-			LOGIN: '/auth/login',
-			SIGNUP: '/auth/signup',
+			LOGIN: 'auth/login',
+			SIGNUP: 'auth/signup',
+		},
+		USER: {
+			BASE: 'users',
+			UPDATE: '/users/update',
 		},
 		FOOTBALL_FIELD: {
-			BASE: '/fields',
+			BASE: 'fields',
 		},
 		DAY_OF_SERVICE: {
-			BASE: '/day-of-services',
+			BASE: 'day-of-services',
 		},
 		BOOKING: {
-			BASE: '/bookings',
+			BASE: 'bookings',
 		},
 	},
 	GOOGLE: {
