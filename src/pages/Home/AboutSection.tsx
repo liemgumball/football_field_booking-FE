@@ -42,12 +42,15 @@ const AboutSection = () => {
 
 	return (
 		<>
-			<section ref={section} className="trigger mt-16 space-y-16 px-8 pt-16">
+			<section ref={section} className="mt-16 space-y-16 px-8 pt-16">
 				<div className="titles flex justify-center">
 					<div className="max-w-[800px] space-y-8 text-center">
 						<Link
 							to="/about"
-							className={cn(buttonVariants({ size: 'lg' }), 'max-w-max')}
+							className={cn(
+								buttonVariants({ size: 'lg' }),
+								'trigger max-w-max',
+							)}
 						>
 							About Us
 						</Link>

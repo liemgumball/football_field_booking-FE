@@ -1,29 +1,48 @@
+import { lazy } from 'react'
 import {
 	Route,
 	createBrowserRouter,
 	createRoutesFromElements,
 } from 'react-router-dom'
 
-// Routes
+// Eagle Loading Routes
 import Layout from '@/components/Layout'
-import Home from '@/pages/Home'
-import Login from '@/pages/Login'
 import PrivateRoute from '@/components/PrivateRoute'
-import SignUp from '@/pages/SignUp'
-import NotFound from '@/pages/NotFound'
-import AboutUs from '@/pages/AboutUs'
+import RouteErrorBoundary from '@/components/RouteErrorBoundary'
+
+// Lazy Loading Routes
+const Home = lazy(async () => import('@/pages/Home'))
+const SignUp = lazy(async () => import('@/pages/SignUp'))
+const Login = lazy(async () => import('@/pages/Login'))
+const NotFound = lazy(async () => import('@/pages/NotFound'))
+const AvailableBookings = lazy(async () => import('@/pages/AvailableBookings'))
+const AvailableBookingDetails = lazy(
+	async () => import('@/pages/AvailableBookingDetails'),
+)
+const BookingDetails = lazy(async () => import('@/pages/BookingDetails'))
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
-		<Route path="/" element={<Layout />}>
+		<Route element={<Layout />}>
+			<Route path="*" element={<NotFound />} />
 			<Route index element={<Home />} />
 			<Route path="/login" element={<Login />} />
 			<Route path="/signup" element={<SignUp />} />
-			<Route path="*" element={<NotFound />} />
-			<Route path="/aboutus" element={<AboutUs />} />
+			<Route path="/available-booking">
+				<Route index element={<AvailableBookings />} />
+				<Route path=":id" element={<AvailableBookingDetails />} />
+			</Route>
 
 			{/*-------------------------- Private Routes --------------------------*/}
-			<Route element={<PrivateRoute />}></Route>
+			<Route element={<PrivateRoute />} errorElement={<RouteErrorBoundary />}>
+				<Route path="/bookings">
+					<Route
+						index
+						element={<p>This is history bookings page (API isn't ready yet)</p>}
+					/>
+					<Route path=":id" element={<BookingDetails />} />
+				</Route>
+			</Route>
 		</Route>,
 	),
 )
