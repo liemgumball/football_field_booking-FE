@@ -14,7 +14,7 @@ const BookingDetailsContent = (props: TProps) => {
 		from,
 		to,
 		date,
-		userName,
+		name: userName,
 		_id,
 		createdAt,
 		description,
