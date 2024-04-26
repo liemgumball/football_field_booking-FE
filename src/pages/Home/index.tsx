@@ -1,6 +1,7 @@
 import HeroSection from './HeroSection'
 import AboutSection from './AboutSection'
 import AvailabilitySection from './AvailabilitySection'
+import ReviewSection from './ReviewSection'
 
 const Home = () => {
 	return (
@@ -8,6 +9,7 @@ const Home = () => {
 			<HeroSection />
 			<AboutSection />
 			<AvailabilitySection />
+			<ReviewSection />
 		</main>
 	)
 }
