@@ -1,7 +1,9 @@
-import ContactItem from '../ContactItem'
-import { Separator } from '../ui/separator'
+import ContactItem from '../../ContactItem'
+import { Separator } from '../../ui/separator'
 import { MapPin, Mail, Phone } from 'lucide-react'
-import SocialContactItem from '../SocialContactItem'
+import SocialContactItem from '../../SocialContactItem'
+import ServicesItem from './components/ServicesItem'
+import { FOOTER_NAVLIST_LEFT, FOOTER_NAVLIST_RIGHT } from '@/constants/navigation'
 
 const Footer = () => {
 	return (
@@ -35,7 +37,7 @@ const Footer = () => {
 				</ul>
 			</div>
 			<Separator />
-			<div className="my-16 w-full grid grid-cols-1 gap-5 md:grid-cols-2 xl:flex xl:flex-row xl:justify-between ">
+			<div className="my-16 w-full grid grid-cols-1 gap-5 md:grid-cols-2 xl:flex xl:flex-row xl:justify-between">
 				<div>
 					<h4 className='text-xl font-bold'>About</h4>
 					<p className='mt-6 text-lg font-normal'>To take trivial example which us <br /> ever undertakes laborious <br /> physica exercise except obsome</p>
@@ -44,20 +46,8 @@ const Footer = () => {
 				<div>
 					<h4 className='text-xl font-bold'>Services</h4>
 					<div className='grid grid-cols-2 font-normal gap-5 md:gap-7'>
-						<ul className='mt-6 text-lg w-full'>
-							<li className='cursor-pointer hover:text-green-500'>Caravan Soler Tent</li>
-							<li className='cursor-pointer hover:text-green-500 mt-2'>Family Tent Camping
-							</li>
-							<li className='cursor-pointer hover:text-green-500 mt-2'>Classic Tent Camping</li>
-							<li className='cursor-pointer hover:text-green-500 mt-2'>Wild Tent Camping</li>
-							<li className='cursor-pointer hover:text-green-500 mt-2'>Small Cabin Wood</li>
-						</ul>
-						<ul className='mt-6 text-lg w-full'>
-							<li className='cursor-pointer hover:text-green-500'>Need a Career ?</li>
-							<li className='cursor-pointer hover:text-green-500 mt-2'>Latest News & Blog</li>
-							<li className='cursor-pointer hover:text-green-500 mt-2'>Core Features</li>
-							<li className='cursor-pointer hover:text-green-500 mt-2'>Meet Our teams</li>
-						</ul>
+						<ServicesItem list={FOOTER_NAVLIST_LEFT} />
+						<ServicesItem list={FOOTER_NAVLIST_RIGHT} />
 					</div>
 				</div>
 				<div>

@@ -1,11 +1,12 @@
 import quote from '@/assets/quote.png'
 import AuthorItem from './AuthorItem';
 
+
 const ReviewItem = () => {
 
     return (
         <>
-            <div >
+            <div className='review-item' >
                 <div className="flex gap-7">
                     <img src={quote} alt='quote' />
                     <div>
@@ -17,7 +18,6 @@ const ReviewItem = () => {
                     exercise excepto obtain advantage
                     from has any right to find fault with
                     man who chooses to enjoy</p>
-
                 <AuthorItem />
             </div>
         </>
