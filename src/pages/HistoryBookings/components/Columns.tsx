@@ -37,9 +37,7 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 	},
 	{
 		accessorKey: 'subfield',
-		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Subfield" />
-		),
+		header: 'Subfield',
 		cell: ({ cell }) => {
 			const subfield = cell.getValue() as unknown as TSubField
 			return <div className="w-[20px]">{subfield.name}</div>
@@ -53,6 +51,12 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 		cell: ({ row }) => {
 			const subfield = row.getValue('subfield') as TSubField
 			return <div className="w-[17px]">{subfield.size}</div>
+		},
+		sortingFn: (rowA, rowB) => {
+			const subfieldA = rowA.getValue('subfield') as TSubField
+			const subfieldB = rowB.getValue('subfield') as TSubField
+
+			return subfieldA.size - subfieldB.size
 		},
 	},
 	{
