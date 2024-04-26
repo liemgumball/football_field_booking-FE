@@ -14,7 +14,7 @@ type TProps = {
 	status?: TTurnOfServiceStatus | string
 }
 
-const BookingDetailsHeader = ({
+const AvailableBookingHeader = ({
 	date,
 	fieldName,
 	fieldLocation,
@@ -83,4 +83,4 @@ const BookingDetailsHeader = ({
 	)
 }
 
-export default BookingDetailsHeader
+export default AvailableBookingHeader

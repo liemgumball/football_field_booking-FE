@@ -1,5 +1,5 @@
 import AvailableBookingForm from './components/AvailableBookingForm'
-import BookingDetailsHeader from '@/components/BookingDetailsHeader'
+import AvailableBookingHeader from './components/AvailableBookingHeader'
 import { getDayOfServiceById } from '@/services/day-of-services'
 import { calculatePrice, getInitialFrom, getInitialTo } from '@/utils/booking'
 import { getDuration } from '@/utils/time'
@@ -45,7 +45,7 @@ const AvailableBookingDetails = () => {
 
 	return (
 		<main className="container">
-			<BookingDetailsHeader
+			<AvailableBookingHeader
 				status={bookingStatus}
 				date={data.date}
 				rating={data.field.rating || undefined}
