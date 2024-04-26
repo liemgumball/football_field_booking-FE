@@ -41,7 +41,7 @@ const platforms: { title: string; href: string; description: string }[] = [
 
 const NavBar = () => {
 	return (
-		<NavigationMenu>
+		<NavigationMenu className='hidden md:block'>
 			<NavigationMenuList>
 				<NavigationMenuItem>
 					<NavigationMenuTrigger className="capitalize">

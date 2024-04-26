@@ -3,6 +3,7 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import useAuthStore from '@/stores/auth'
 import useMedia from '@/hooks/useMedia'
 
+
 // Components
 import ModeToggle from '../ThemeToggle'
 import { Separator } from '../ui/separator'
@@ -18,6 +19,7 @@ import {
 } from '../ui/sheet'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import EditProfileForm from '../EditProfileForm'
+import SlideBar from '../SlideBar'
 
 const AvatarSheet = () => {
 	const user = useAuthStore((set) => set.user)
@@ -72,6 +74,7 @@ const Header = () => {
 				<Link to="/">
 					<Icons.Logo />
 				</Link>
+				<SlideBar />
 				<NavBar />
 				<div className="flex items-center space-x-4 capitalize">
 					{user ? (
