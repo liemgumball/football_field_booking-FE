@@ -40,7 +40,7 @@ const Footer = () => {
 			<div className="my-16 w-full grid grid-cols-1 gap-5 md:grid-cols-2 xl:flex xl:flex-row xl:justify-between">
 				<div>
 					<h4 className='text-xl font-bold'>About</h4>
-					<p className='mt-6 text-lg font-normal'>To take trivial example which us <br /> ever undertakes laborious <br /> physica exercise except obsome</p>
+					<p className='mt-6 text-sm font-normal'>To take trivial example which us <br /> ever undertakes laborious <br /> physica exercise except obsome</p>
 				</div>
 
 				<div>
@@ -52,12 +52,12 @@ const Footer = () => {
 				</div>
 				<div>
 					<h4 className='text-xl font-bold'>Newsletter</h4>
-					<p className='mt-6 text-lg font-normal'>Which of us ever undertake <br /> laborious physical exercise <br /> except obtain</p>
+					<p className='mt-6 text-sm font-normal'>Which of us ever undertake <br /> laborious physical exercise <br /> except obtain</p>
 				</div>
 			</div>
 			<Separator />
-			<div className='mt-7 flex flex-col text-xl items-center md:flex-row md:text-lg justify-between '>
-				<p>Copy@ 2023 <span className='text-orange-500'>GoWilds</span> , All Right Reserved</p>
+			<div className='mt-7 flex flex-col text-xl items-center lg:flex-row lg:text-lg justify-between '>
+				<p className='min-w-24'>Copy@ 2023 <span className='text-orange-500'>GoWilds</span> , All Right Reserved</p>
 				<ul className='flex gap-12'>
 					<li className='cursor-pointer hover:text-green-500'>Setting & privacy</li>
 					<li className='cursor-pointer hover:text-green-500'> Faqs</li>

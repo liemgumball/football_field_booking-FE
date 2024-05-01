@@ -19,7 +19,7 @@ import {
 } from '../ui/sheet'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import EditProfileForm from '../EditProfileForm'
-import SlideBar from '../SlideBar'
+import SlideBar from '../SideBar'
 
 const AvatarSheet = () => {
 	const user = useAuthStore((set) => set.user)
@@ -71,7 +71,7 @@ const Header = () => {
 	return (
 		<>
 			<header className="mb-4 flex w-full items-center justify-between px-8">
-				<Link to="/">
+				<Link className='hidden md:block' to="/">
 					<Icons.Logo />
 				</Link>
 				<SlideBar />

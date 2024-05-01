@@ -4,7 +4,7 @@ type ServiceProps = { list: { to: string, content: string }[] }
 const ServicesItem = ({ list }: ServiceProps) => {
     const serviceList = list.map((item) => (
         <li className="mt-2">
-            <a href={item.to} className='hover:text-primary'>
+            <a href={item.to} className='hover:text-primary text-sm'>
                 {item.content}
             </a>
         </li>
