@@ -44,7 +44,7 @@ const AvailableBookingDetails = () => {
 		return <p className="text-destructive">Fail to get booking information</p>
 
 	return (
-		<main className="container">
+		<main className="container ">
 			<AvailableBookingHeader
 				status={bookingStatus}
 				date={data.date}

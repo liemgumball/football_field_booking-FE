@@ -38,9 +38,9 @@ const AvailableBookings = () => {
 
 	const coordinatesQuery = isLocationSearch
 		? {
-				longitude: coordinates!.longitude,
-				latitude: coordinates!.latitude,
-			}
+			longitude: coordinates!.longitude,
+			latitude: coordinates!.latitude,
+		}
 		: undefined
 
 	const {
@@ -76,7 +76,7 @@ const AvailableBookings = () => {
 	return (
 		<main>
 			<section
-				className="relative h-[600px] w-screen bg-cover bg-center pb-56 pt-40"
+				className="relative z-0 h-[600px] w-screen bg-cover bg-center pb-56 pt-40"
 				style={{
 					backgroundImage: `url("${BackGroundImg}")`,
 				}}
@@ -112,23 +112,23 @@ const AvailableBookings = () => {
 				>
 					{!isLoading && bookingsAvailable
 						? bookingsAvailable.map(
-								({ field, subfield, date, turnOfServices, _id }) => (
-									<li key={_id}>
-										<AvailableBookingCard
-											_id={_id}
-											date={date}
-											field={field}
-											subfield={subfield}
-											turnOfServices={turnOfServices}
-										/>
-									</li>
-								),
-							)
-						: Array.from({ length: 6 }, (_, i) => i).map((i) => (
-								<li key={i}>
-									<SkeletonCard />
+							({ field, subfield, date, turnOfServices, _id }) => (
+								<li key={_id}>
+									<AvailableBookingCard
+										_id={_id}
+										date={date}
+										field={field}
+										subfield={subfield}
+										turnOfServices={turnOfServices}
+									/>
 								</li>
-							))}
+							),
+						)
+						: Array.from({ length: 6 }, (_, i) => i).map((i) => (
+							<li key={i}>
+								<SkeletonCard />
+							</li>
+						))}
 				</QueryList>
 			</section>
 			<div className="container mb-4 mt-8 max-w-min">
