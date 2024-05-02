@@ -25,7 +25,7 @@ export const updateUser = (
 	id: string,
 	data: Partial<TUser>,
 ): Promise<AxiosResponse<unknown>> =>
-	api.patch(ENV_VARS.API_URL.USER.UPDATE + `/${id}`, data, {
+	api.patch(ENV_VARS.API_URL.USER.BASE + `/${id}`, data, {
 		withCredentials: true,
 	})
 

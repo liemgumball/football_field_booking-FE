@@ -52,3 +52,23 @@ export async function getBookings(): Promise<TBooking[]> {
 
 	return response.json()
 }
+
+export async function createCheckoutSession(
+	bookingId: string,
+): Promise<{ checkoutUrl: string }> {
+	const response = await fetch(
+		ENV_VARS.API_URL.BASE +
+			ENV_VARS.API_URL.BOOKING.BASE +
+			`/${bookingId}/create-checkout`,
+		{
+			method: 'POST',
+			credentials: 'include',
+		},
+	)
+
+	if (!response.ok) {
+		throw response
+	}
+
+	return response.json()
+}

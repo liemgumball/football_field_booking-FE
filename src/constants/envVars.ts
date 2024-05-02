@@ -7,7 +7,6 @@ export const ENV_VARS = {
 		},
 		USER: {
 			BASE: 'users',
-			UPDATE: '/users/update',
 		},
 		FOOTBALL_FIELD: {
 			BASE: 'fields',

@@ -33,7 +33,7 @@ const BookingDetails = () => {
 			<BookingDetailsHeader field={data.field} status={data.status} />
 			<Separator />
 			{/* [ ] name missing in API response */}
-			<BookingDetailsContent {...data} name="Liem" />
+			<BookingDetailsContent {...data} />
 		</main>
 	)
 }

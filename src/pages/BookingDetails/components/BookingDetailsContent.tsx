@@ -1,5 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
+import { toast } from '@/components/ui/use-toast'
+import { createCheckoutSession } from '@/services/booking'
 import useAuthStore from '@/stores/auth'
 import { TBooking } from '@/types'
 import { formatPrice } from '@/utils/booking'
@@ -18,11 +20,25 @@ const BookingDetailsContent = (props: TProps) => {
 		_id,
 		createdAt,
 		description,
+		paid,
 	} = props
 
 	const user = useAuthStore((set) => set.user)
 
 	if (!user) throw new Error('User not found')
+
+	const onClick = async () => {
+		try {
+			const { checkoutUrl } = await createCheckoutSession(_id)
+
+			window.location.href = checkoutUrl
+		} catch (err) {
+			toast({
+				title: 'Error while creating checkout session',
+				variant: 'destructive',
+			})
+		}
+	}
 
 	return (
 		<section className="mt-6 flex flex-col gap-y-6 px-12 py-4">
@@ -51,11 +67,16 @@ const BookingDetailsContent = (props: TProps) => {
 					Booking By
 				</h2>
 
-				<p>Name: {userName}</p>
+				<p>
+					Name:{' '}
+					{userName || (
+						<span className="text-muted-foreground">No provided</span>
+					)}
+				</p>
 				<p>Email: {user.email}</p>
 				<p>Phone: {user.phoneNumber}</p>
 				<p>Booking ID: {_id}</p>
-				{createdAt && <p>Created at: {format(createdAt, 'PPP')}</p>}
+				{createdAt && <p>Created At: {format(createdAt, 'PPP')}</p>}
 			</div>
 
 			<div className="space-y-2">
@@ -69,10 +90,13 @@ const BookingDetailsContent = (props: TProps) => {
 					<Textarea value={description} className="mt-2" />
 				</p>
 			</div>
-			<div className="container max-w-min">
-				{' '}
-				<Button disabled>Update</Button>
-			</div>
+
+			{!paid && (
+				<div className="container max-w-min">
+					{' '}
+					<Button onClick={onClick}>Checkout</Button>
+				</div>
+			)}
 		</section>
 	)
 }
