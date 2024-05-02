@@ -9,7 +9,7 @@ const SlideBar = () => {
     return (
         <Sheet >
             <SheetTrigger asChild className='w-8 md:hidden'>
-                <MenuIcon size={20} className='text-secondary-foreground' />
+                <MenuIcon size={30} className='text-secondary-foreground' />
             </SheetTrigger>
             <SheetContent side='left'>
                 <SheetHeader >
@@ -19,44 +19,43 @@ const SlideBar = () => {
                 <div className='flex flex-col space-y-2 gap-5 pt-6 px-4 capitalize'>
                     <div>
                         <h4 className='capitalize mb-2 text-2xl font-semibold' >introduction</h4>
-                        <ul className='flex flex-col gap-4 text-gray-600'>
-                            <li>
+                        <ul className='flex flex-col gap-4 text-gray-600 capitalize text-base font-medium'>
+                            <li className='hover:text-primary'>
                                 <Link to='/'>
-                                    <p className='capitalize text-base font-medium'>introduction</p>
+                                    introduction
                                 </Link>
                             </li>
-                            <li>
+                            <li className='hover:text-primary'>
                                 <Link to='/'>
-                                    <p className='capitalize text-base font-medium'>booking</p>
-
+                                    booking
                                 </Link>
                             </li>
-                            <li>
+                            <li className='hover:text-primary'>
                                 <Link to='/'>
-                                    <p className='capitalize text-base font-medium'>collaboration</p>
+                                    collaboration
                                 </Link>
                             </li>
                         </ul>
                     </div>
                     <div>
                         <h4 className='capitalize mb-2 text-2xl font-semibold'>platform</h4>
-                        <ul className='flex flex-col gap-4 text-gray-600' >
-                            <li>
+                        <ul className='flex flex-col gap-4 text-gray-600 capitalize text-base font-medium' >
+                            <li className='hover:text-primary'>
                                 <Link to='/services'>
-                                    <p className='capitalize text-base font-medium'>find football field</p>
+                                    find football field
                                 </Link>
                             </li>
-                            <li>
+                            <li className='hover:text-primary'>
                                 <Link to='/fields'>
-                                    <p className='capitalize text-base font-medium'>fields details</p>
+                                    fields details
                                 </Link>
                             </li>
-                            <li>
+                            <li className='hover:text-primary'>
                                 <Link to='/booking'>
                                     <p className='capitalize text-base font-medium'>booking</p>
                                 </Link>
                             </li>
-                            <li>
+                            <li className='hover:text-primary'>
                                 <Link to='/register-field'>
                                     <p className='capitalize text-base font-medium'>become our partner</p>
                                 </Link>
