@@ -8,7 +8,7 @@ import useMedia from '@/hooks/useMedia'
 import ModeToggle from '../ThemeToggle'
 import { Separator } from '../ui/separator'
 import { Icons } from '../Icons'
-import NavBar from '../NavBar'
+import NavBar from './NavBar'
 import {
 	Sheet,
 	SheetContent,

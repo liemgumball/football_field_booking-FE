@@ -15,6 +15,7 @@ const RouteErrorBoundary = () => {
 			</p>
 			<Link
 				to="#"
+				reloadDocument
 				className={buttonVariants({ variant: 'outline', size: 'lg' })}
 			>
 				Try again

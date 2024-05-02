@@ -2,13 +2,12 @@ import { TTurnOfServiceStatus } from '@/types'
 import { Badge } from './ui/badge'
 import { cn } from '@/lib/utils'
 
-const BookingStatusBadge = ({
-	status,
-	className,
-}: {
+type TProps = {
 	status: TTurnOfServiceStatus | string
 	className?: string
-}) => {
+}
+
+const BookingStatusBadge = ({ status, className }: TProps) => {
 	const variant =
 		status === 'available'
 			? 'default'
