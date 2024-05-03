@@ -36,13 +36,13 @@ const AvailableBookingHeader = ({
 					{' - '}
 					{rating
 						? Array.from({ length: rating }, (_, i) => i).map((i) => (
-								<Star
-									className="inline-block"
-									key={i}
-									color="orange"
-									size={16}
-								/>
-							))
+							<Star
+								className="inline-block"
+								key={i}
+								color="orange"
+								size={16}
+							/>
+						))
 						: 'No rating'}
 				</div>
 				<div className="mt-2 text-sm text-muted-foreground">

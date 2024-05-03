@@ -1,7 +1,7 @@
 import * as React from "react"
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import reviewImg from '@/assets/reviewImg.png'
+import reviewImg from '/reviewImg.png'
 import ReviewItem from '@/components/ReviewItem'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { useRef } from 'react'
@@ -16,7 +16,7 @@ import Autoplay from "embla-carousel-autoplay"
 const ReviewSection = () => {
     const section = useRef(null);
 
-    const plugin = React.useRef(Autoplay({ delay: 20000, stopOnInteraction: false }))
+    const plugin = React.useRef(Autoplay({ delay: 10000, stopOnInteraction: false }))
 
 
     useGSAP(() => {
