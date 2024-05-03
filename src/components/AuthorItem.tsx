@@ -1,4 +1,4 @@
-import authImg from '@/assets/author-1.jpg'
+import authImg from '/author-1.jpg'
 
 const AuthorItem = () => {
     return (

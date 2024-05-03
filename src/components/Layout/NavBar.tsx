@@ -1,5 +1,5 @@
 import { Link, LinkProps } from 'react-router-dom'
-import { Icons } from './Icons'
+import { Icons } from '../Icons'
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -8,7 +8,7 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
-} from './ui/navigation-menu'
+} from '../ui/navigation-menu'
 import React from 'react'
 import { cn } from '@/lib/utils'
 
@@ -26,8 +26,8 @@ const platforms: { title: string; href: string; description: string }[] = [
 			'View detailed information about each football field, including amenities, availability, and pricing.',
 	},
 	{
-		title: 'Booking',
-		href: '/booking',
+		title: 'Bookings',
+		href: '/bookings',
 		description:
 			'Track the progress of your football field booking, from selection to confirmation.',
 	},
@@ -41,7 +41,7 @@ const platforms: { title: string; href: string; description: string }[] = [
 
 const NavBar = () => {
 	return (
-		<NavigationMenu>
+		<NavigationMenu className='hidden md:block'>
 			<NavigationMenuList>
 				<NavigationMenuItem>
 					<NavigationMenuTrigger className="capitalize">

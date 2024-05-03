@@ -5,8 +5,8 @@ export function getAvatarFallback(name: string): string {
 
 	let avatarFallback = ''
 
-	letters.forEach((letter) => {
-		avatarFallback += letter.at(0)
+	letters.forEach((letter, index) => {
+		if (index < 3) avatarFallback += letter.at(0)
 	})
 
 	return avatarFallback

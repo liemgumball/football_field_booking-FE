@@ -3,11 +3,12 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import useAuthStore from '@/stores/auth'
 import useMedia from '@/hooks/useMedia'
 
+
 // Components
 import ModeToggle from '../ThemeToggle'
 import { Separator } from '../ui/separator'
 import { Icons } from '../Icons'
-import NavBar from '../NavBar'
+import NavBar from './NavBar'
 import {
 	Sheet,
 	SheetContent,
@@ -18,6 +19,7 @@ import {
 } from '../ui/sheet'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import EditProfileForm from '../EditProfileForm'
+import SlideBar from '../SideBar'
 
 const AvatarSheet = () => {
 	const user = useAuthStore((set) => set.user)
@@ -69,9 +71,10 @@ const Header = () => {
 	return (
 		<>
 			<header className="mb-4 flex w-full items-center justify-between px-8">
-				<Link to="/">
+				<Link className='hidden md:block' to="/">
 					<Icons.Logo />
 				</Link>
+				<SlideBar />
 				<NavBar />
 				<div className="flex items-center space-x-4 capitalize">
 					{user ? (

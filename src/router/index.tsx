@@ -20,6 +20,7 @@ const AvailableBookings = lazy(async () => import('@/pages/AvailableBookings'))
 const AvailableBookingDetails = lazy(
 	async () => import('@/pages/AvailableBookingDetails'),
 )
+const HistoryBookings = lazy(async () => import('@/pages/HistoryBookings'))
 const BookingDetails = lazy(async () => import('@/pages/BookingDetails'))
 
 const router = createBrowserRouter(
@@ -38,10 +39,7 @@ const router = createBrowserRouter(
 			{/*-------------------------- Private Routes --------------------------*/}
 			<Route element={<PrivateRoute />} errorElement={<RouteErrorBoundary />}>
 				<Route path="/bookings">
-					<Route
-						index
-						element={<p>This is history bookings page (API isn't ready yet)</p>}
-					/>
+					<Route index element={<HistoryBookings />} />
 					<Route path=":id" element={<BookingDetails />} />
 				</Route>
 			</Route>
