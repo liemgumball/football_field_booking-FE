@@ -1,4 +1,4 @@
-import Member from '@/components/Member'
+import Member from '@/pages/AboutUs/components/Member'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 

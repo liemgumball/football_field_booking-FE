@@ -1,4 +1,4 @@
-import FeatureItem from '@/components/FeatureItem'
+import FeatureItem from '@/pages/AboutUs/components/FeatureItem'
 import featureImage1 from '/featureImage1.png'
 import featureImage2 from '/featureImage2.png'
 import featureImage3 from '/featureImage3.png'

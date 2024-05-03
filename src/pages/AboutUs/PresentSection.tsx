@@ -1,8 +1,7 @@
 import { buttonVariants } from '@/components/ui/button'
-import { AspectRatio } from '@/components/ui/aspect-ratio'
 import presentationImg from '/presentationImg.png'
 import { cn } from '@/lib/utils'
-import { Separator } from '@/components/ui/separator'
+
 
 const PresentSection = () => {
 

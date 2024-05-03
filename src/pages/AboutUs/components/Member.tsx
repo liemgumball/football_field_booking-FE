@@ -1,6 +1,6 @@
-import { Separator } from './ui/separator'
+import { Separator } from '../../../components/ui/separator'
 import avaMember from '/avaMember.png'
-import SocialContactItem from './SocialContactItem'
+import SocialContactItem from '../../../components/SocialContactItem'
 
 const Member = () => {
     return (
