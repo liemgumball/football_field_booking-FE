@@ -4,11 +4,11 @@ import SocialContactItem from './SocialContactItem'
 
 const Member = () => {
     return (
-        <section className="flex flex-row border-solid shadow-xl gap-5 py-6 pl-4 items-center">
+        <li className="flex border-solid shadow-xl gap-5 py-6 px-4 w-fit">
             <div>
-                <img src={avaMember} alt='avatar member' />
+                <img src={avaMember} width={90} height={90} alt='avatar member' />
             </div>
-            <div className='capitalize flex flex-col gap-4 '>
+            <div className='capitalize flex flex-col gap-4 max-w-max '>
                 <p className='font-semibold'>donald d.schafer </p>
                 <p>CEO & founder</p>
                 <Separator />
@@ -27,7 +27,8 @@ const Member = () => {
                     </li>
                 </ul>
             </div>
-        </section>
+        </li>
+
     )
 }
 

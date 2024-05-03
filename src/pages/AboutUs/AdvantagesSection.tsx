@@ -7,33 +7,27 @@ import { cn } from '@/lib/utils'
 
 const Advantages = () => {
     return (
-        <section className="flex flex-row justify-between  mt-12">
-            <div>
-                <div className="max-w-[800px] space-y-8">
-                    <p className={cn(buttonVariants({ size: 'lg' }), 'max-w-max')}> Who We Are </p>
-                    <h2 className='text-5xl font-bold capitalize'>great opportunity for
+        <section className="flex flex-col xl:flex-row gap-y-8 mt-12 justify-between items-center">
+            <div className='max-w-[600px] '>
+                <div className="space-y-6">
+                    <p className={cn(buttonVariants({ size: 'lg' }), 'flex mx-auto xl:mx-0 max-w-max')}> Who We Are </p>
+                    <h2 className='text-5xl font-bold capitalize text-center xl:text-start'>great opportunity for
                         adventure & travels</h2>
                 </div>
-                <ul className='flex flex-col gap-11 mt-10'>
-                    <li>
-                        <FeatureItem />
-                    </li>
-                    <li>
-                        <FeatureItem />
-                    </li>
-                    <li>
-                        <FeatureItem />
-                    </li>
+                <ul className='space-y-16 mt-16'>
+                    <FeatureItem />
+                    <FeatureItem />
+                    <FeatureItem />
                 </ul>
             </div>
-            <ul className='flex flex-row flex-wrap gap-y-5 justify-center max-w-max '>
-                <li className='self-end'>
-                    <img className='rounded-xl' src={featureImage2} alt='feature image 2' />
+            <ul className='grid grid-cols-2 gap-5 max-w-[762px] '>
+                <li className='self-end rounded-xl overflow-hidden'>
+                    <img width={500} src={featureImage2} alt='feature image 2' />
                 </li>
                 <li >
                     <img className='rounded-xl' src={featureImage3} alt='feature image 3' />
                 </li>
-                <li>
+                <li className='col-span-2'>
                     <img className='rounded-xl' src={featureImage1} alt='feature image 1' />
                 </li>
 

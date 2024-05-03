@@ -5,7 +5,7 @@ import { Suspense } from 'react'
 
 const Layout = () => {
 	return (
-		<div className="flex min-h-screen flex-col items-center overflow-x-hidden px-8 py-2">
+		<div className="flex min-h-screen flex-col items-center px-8 py-2">
 			<Header />
 			<Suspense fallback={<p>Loading...</p>}>
 				<Outlet />

@@ -11,6 +11,7 @@ export const Images = {
 			loading="eager"
 		/>
 	),
+
 	HeroLight: ({ hidden }: { hidden?: boolean }) => (
 		<img
 			className={hidden ? 'hidden' : ''}
