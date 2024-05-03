@@ -3,9 +3,7 @@ import avaMember from '/avaMember.png'
 import SocialContactItem from '../../../components/SocialContactItem'
 import {
     Card,
-    CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card'
