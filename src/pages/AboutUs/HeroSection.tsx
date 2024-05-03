@@ -11,7 +11,7 @@ import {
 const HeroSection = () => {
 
     return (
-        <div className='w-full h-[500px] bg-hero-about-us bg-cover rounded-lg relative mt-4'>
+        <div className='w-screen h-[500px] bg-hero-about-us bg-cover rounded-lg relative mt-4'>
             <div className='absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed'>
                 <div className="flex flex-col gap-3 h-full items-center justify-center text-white capitalize">
                     <h1 className='font-bold  text-5xl'>about us</h1>
