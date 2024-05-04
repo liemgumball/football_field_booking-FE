@@ -2,6 +2,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTrigger } from './ui/sheet'
 import { Link } from 'react-router-dom'
 import { MenuIcon } from 'lucide-react'
 import { Icons } from './Icons'
+import { buttonVariants } from './ui/button'
 
 
 const SlideBar = () => {
@@ -65,9 +66,32 @@ const SlideBar = () => {
                     <Link to='/contactus'>
                         <p className='capitalize text-2xl font-semibold' >contact us</p>
                     </Link>
+                    <div className="flex justify-center space-x-4 capitalize">
+                        <Link
+                            to="/login"
+                            className={
+                                buttonVariants({
+                                    variant: 'secondary',
+                                    size: 'lg',
+                                })
+                            }
+                        >
+                            login
+                        </Link>
+                        <Link
+                            to="/signup"
+                            className={buttonVariants({
+                                variant: 'default',
+                                size: 'lg',
+                            })}
+                        >
+                            signup
+                        </Link>
+
+                    </div>
                 </div>
             </SheetContent>
-        </Sheet>
+        </Sheet >
     )
 }
 

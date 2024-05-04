@@ -83,19 +83,19 @@ const Header = () => {
 						<>
 							<Link
 								to="/login"
-								className={buttonVariants({
+								className={`${buttonVariants({
 									variant: 'secondary',
 									size: 'lg',
-								})}
+								})} hidden md:inline-flex`}
 							>
 								login
 							</Link>
 							<Link
 								to="/signup"
-								className={buttonVariants({
+								className={`${buttonVariants({
 									variant: 'default',
 									size: 'lg',
-								})}
+								})} hidden md:inline-flex`}
 							>
 								signup
 							</Link>
@@ -103,7 +103,7 @@ const Header = () => {
 					)}
 					<ModeToggle />
 				</div>
-			</header>
+			</header >
 			<Separator />
 		</>
 	)

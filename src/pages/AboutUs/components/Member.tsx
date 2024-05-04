@@ -1,5 +1,4 @@
 import { Separator } from '../../../components/ui/separator'
-import avaMember from '/avaMember.png'
 import SocialContactItem from '../../../components/SocialContactItem'
 import {
     Card,
@@ -8,16 +7,23 @@ import {
     CardTitle
 } from '@/components/ui/card'
 
-const Member = () => {
+
+type MemberProps = {
+    name: string
+    position: string
+    image: string
+}
+
+const Member = (member: MemberProps) => {
     return (
         <li>
             <Card className="flex border-solid shadow-xl gap-5 py-6 px-4 w-fit">
-                <CardHeader>
-                    <img src={avaMember} width={90} height={90} alt='avatar member' />
+                <CardHeader >
+                    <img className='rounded-lg' src={member.image} width={90} height={90} alt='avatar member' />
                 </CardHeader>
                 <div className='capitalize flex flex-col gap-4 max-w-max '>
-                    <CardTitle className='font-semibold'>donald d.schafer </CardTitle>
-                    <CardDescription>CEO & founder</CardDescription>
+                    <CardTitle className='font-semibold'>{member.name} </CardTitle>
+                    <CardDescription>{member.position}</CardDescription>
                     <Separator />
 
                     <ul className='flex'>
