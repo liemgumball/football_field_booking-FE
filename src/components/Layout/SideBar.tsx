@@ -19,7 +19,9 @@ const SideBar = () => {
             </SheetTrigger>
             <SheetContent side='left'>
                 <SheetHeader >
-                    <Icons.Logo />
+                    <Link to='/'>
+                        <Icons.Logo />
+                    </Link>
                     <h1 className='capitalize text-primary text-center text-2xl font-bold'>welcome to l88</h1>
                 </SheetHeader>
                 <div className='flex flex-col space-y-2 gap-5 pt-6 px-4 capitalize'>
@@ -57,7 +59,7 @@ const SideBar = () => {
                                 </Link>
                             </li>
                             <li className='hover:text-primary'>
-                                <Link to='/booking'>
+                                <Link to='/available-booking'>
                                     <p className='capitalize text-base font-medium'>booking</p>
                                 </Link>
                             </li>
