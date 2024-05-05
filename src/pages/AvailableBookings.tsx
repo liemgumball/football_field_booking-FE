@@ -1,6 +1,7 @@
 import BackGroundImg from '/available_booking_bg.png'
 import AvailabilityForm from '@/components/AvailabilityForm'
 import AvailableBookingCard from '@/components/AvailableBookingCard'
+import { Icons } from '@/components/Icons'
 import QueryList from '@/components/QueryList'
 import SkeletonCard from '@/components/SkeletonCard'
 import {
@@ -38,9 +39,9 @@ const AvailableBookings = () => {
 
 	const coordinatesQuery = isLocationSearch
 		? {
-			longitude: coordinates!.longitude,
-			latitude: coordinates!.latitude,
-		}
+				longitude: coordinates!.longitude,
+				latitude: coordinates!.latitude,
+			}
 		: undefined
 
 	const {
@@ -101,7 +102,7 @@ const AvailableBookings = () => {
 					</div>
 				</div>
 			</section>
-			<div className="container mb-20 mt-8">
+			<div className="container my-10">
 				<AvailabilityForm className="mx-auto grid grid-cols-1 justify-items-center rounded-2xl bg-popover px-4 pb-6 pt-10 md:grid-cols-2 xl:grid-cols-5" />
 			</div>
 			<section className="container px-12">
@@ -110,8 +111,16 @@ const AvailableBookings = () => {
 					error={error}
 					className="grid grid-cols-1 items-center justify-items-center gap-x-6 gap-y-12 transition-all duration-1000 lg:grid-cols-2 xl:grid-cols-3"
 				>
-					{!isLoading && bookingsAvailable
-						? bookingsAvailable.map(
+					{isLoading ? ( // Loading
+						Array.from({ length: 6 }, (_, i) => i).map((i) => (
+							<li key={i}>
+								<SkeletonCard />
+							</li>
+						))
+					) : !bookingsAvailable?.length ? ( // Empty data
+						<p className="text-muted-foreground">No booking available found</p>
+					) : (
+						bookingsAvailable.map(
 							({ field, subfield, date, turnOfServices, _id }) => (
 								<li key={_id}>
 									<AvailableBookingCard
@@ -124,11 +133,7 @@ const AvailableBookings = () => {
 								</li>
 							),
 						)
-						: Array.from({ length: 6 }, (_, i) => i).map((i) => (
-							<li key={i}>
-								<SkeletonCard />
-							</li>
-						))}
+					)}
 				</QueryList>
 			</section>
 			<div className="container mb-4 mt-8 max-w-min">
@@ -138,7 +143,14 @@ const AvailableBookings = () => {
 						disabled={!hasNextPage || isFetching}
 						onClick={() => fetchNextPage()}
 					>
-						{isFetching ? 'Loading ...' : 'Load more'}
+						{isFetching ? (
+							<>
+								<Icons.Loader className="mr-1" />
+								Loading
+							</>
+						) : (
+							'Load more'
+						)}
 					</Button>
 				)}
 			</div>
