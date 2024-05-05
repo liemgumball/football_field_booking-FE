@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 
 const Advantages = () => {
     return (
-        <section className="flex flex-col xl:flex-row gap-y-8 mt-12 justify-between items-center px-16 xl:px-48">
+        <section className="flex flex-col xl:flex-row gap-8 justify-between items-center px-16 xl:px-48">
             <div className='max-w-[600px] '>
                 <div className="space-y-6">
                     <p className={cn(buttonVariants({ size: 'lg' }), 'flex mx-auto xl:mx-0 max-w-max')}> Who We Are </p>

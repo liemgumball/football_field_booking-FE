@@ -5,7 +5,6 @@ export const Images = {
 	HeroDark: ({ hidden }: { hidden?: boolean }) => (
 		<img
 			className={hidden ? 'hidden' : ''}
-			width="100%"
 			src={HeroDark}
 			alt="hero image dark"
 			loading="eager"
@@ -15,7 +14,6 @@ export const Images = {
 	HeroLight: ({ hidden }: { hidden?: boolean }) => (
 		<img
 			className={hidden ? 'hidden' : ''}
-			width="100%"
 			src={HeroLight}
 			alt="hero image light"
 			loading="eager"

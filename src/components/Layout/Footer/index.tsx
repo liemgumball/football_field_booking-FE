@@ -7,7 +7,7 @@ import { FOOTER_NAVLIST_LEFT, FOOTER_NAVLIST_RIGHT } from '@/constants/navigatio
 
 const Footer = () => {
 	return (
-		<footer className="mt-auto w-full self-end justify-self-end px-8 py-4 xl:px-24">
+		<footer className="mt-auto w-full self-end justify-self-end container">
 			<Separator />
 			<div className="my-8 flex items-center justify-between ">
 				<ul className="grid w-full grid-cols-1 gap-y-12 md:grid-cols-2 xl:grid-cols-4">

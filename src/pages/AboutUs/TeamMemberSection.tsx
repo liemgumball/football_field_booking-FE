@@ -20,7 +20,7 @@ const Members = [
 
 const TeamMember = () => {
     return (
-        <section className='mt-16 space-y-16 pt-16 container'>
+        <section className=' space-y-16  container'>
             <div className='container text-center max-w-[800px]'>
                 <p className={cn(buttonVariants({ size: 'lg' }), 'max-w-max')}> Team Member </p>
                 <h2 className='text-5xl font-bold capitalize tracking-normal mt-5'>we’ve expert team members meet

@@ -3,6 +3,7 @@ import SocialContactItem from '../../../components/SocialContactItem'
 import {
     Card,
     CardDescription,
+    CardFooter,
     CardHeader,
     CardTitle
 } from '@/components/ui/card'
@@ -17,16 +18,18 @@ type MemberProps = {
 const Member = (member: MemberProps) => {
     return (
         <li>
-            <Card className="flex border-solid shadow-xl gap-5 py-6 px-4 w-fit">
-                <CardHeader >
+            <Card className="flex p-8 items-center gap-4">
+                <div>
                     <img className='rounded-lg' src={member.image} width={90} height={90} alt='avatar member' />
-                </CardHeader>
+                </div>
                 <div className='capitalize flex flex-col gap-4 max-w-max '>
-                    <CardTitle className='font-semibold'>{member.name} </CardTitle>
-                    <CardDescription>{member.position}</CardDescription>
+                    <CardHeader className='pb-0'>
+                        <CardTitle className='font-semibold'>{member.name} </CardTitle>
+                        <CardDescription>{member.position}</CardDescription>
+                    </CardHeader>
                     <Separator />
 
-                    <ul className='flex'>
+                    <CardFooter className='flex space-x-1'>
                         <li>
                             <SocialContactItem className="fab fa-facebook-f" />
                         </li>
@@ -39,7 +42,7 @@ const Member = (member: MemberProps) => {
                         <li>
                             <SocialContactItem className="fab fa-linkedin-in" />
                         </li>
-                    </ul>
+                    </CardFooter>
 
 
                 </div>
