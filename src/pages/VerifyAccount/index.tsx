@@ -1,27 +1,40 @@
 import { Icons } from '@/components/Icons'
 import { verifyAccount } from '@/services'
+import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import NotFound from '../NotFound'
+import { buttonVariants } from '@/components/ui/button'
+import ResendVerifyForm from './components/ResendVerifyForm'
 
 const VerifyAccount = () => {
 	const { token } = useParams()
 
-	const [error, setError] = useState<string | null>(null)
+	const [error, setError] = useState<{
+		status?: string
+		message: string
+	} | null>(null)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const [isSuccess, setIsSuccess] = useState<boolean>(false)
 
 	useEffect(() => {
 		async function verify() {
 			try {
 				setIsLoading(true)
-				if (!token) throw new Error('Not verify token provided')
+				if (!token) throw new Error('No verify token provided')
 
 				const response = await verifyAccount(token)
 
 				if (response.status !== 200) throw response
-			} catch (error) {
-				if (error instanceof Response) setError(await error.text())
 
-				setError((error as Error).message)
+				setIsSuccess(true)
+			} catch (error) {
+				if (error instanceof AxiosError) {
+					setError(error.response?.data)
+					return
+				}
+
+				setError({ message: (error as Error).message })
 			} finally {
 				setIsLoading(false)
 			}
@@ -30,11 +43,39 @@ const VerifyAccount = () => {
 		verify()
 	}, [token])
 
-	if (isLoading) return <Icons.Loader />
+	if (isLoading)
+		return (
+			<div className="container my-16 max-w-min">
+				<Icons.Loader size={70} />
+				<p className="mt-4 text-muted-foreground">Verifying...</p>
+			</div>
+		)
 
-	if (error) return <p className="text-destructive">{error}</p>
+	if (error)
+		return (
+			<div className="container my-16 space-y-3 ">
+				<p className="mb-4 text-center text-xl font-bold capitalize text-destructive">
+					{error.message}
+				</p>
+				{error.status === '403' && <ResendVerifyForm />}
+			</div>
+		)
 
-	return <p>Verify account successfully</p>
+	if (isSuccess)
+		return (
+			<div className="container my-16 space-y-5 text-center">
+				<p className="text-xl capitalize text-primary">
+					{<Icons.Success className="mr-2 inline-block" size={40} />}
+					Verify account successfully
+				</p>
+
+				<Link to="/login" className={buttonVariants()}>
+					Go to Login
+				</Link>
+			</div>
+		)
+
+	return <NotFound />
 }
 
 export default VerifyAccount

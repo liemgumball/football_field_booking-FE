@@ -34,3 +34,7 @@ export const getUser = (id: string): Promise<AxiosResponse<TUser>> =>
 
 export const verifyAccount = async (token: string): Promise<AxiosResponse> =>
 	api.get(`/auth/verify/${token}`)
+
+export const resendVerifyEmail = async (
+	email: string,
+): Promise<AxiosResponse> => api.post('/auth/resend-verify', { email })
