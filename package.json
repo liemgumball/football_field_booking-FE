@@ -75,7 +75,7 @@
 		"vite-tsconfig-paths": "^4.3.2"
 	},
 	"lint-staged": {
-		"src/**/*.{ts,tsx}": "prettier --write",
-		"src/**/*": "eslint"
+		"src/**/*.{ts,tsx,css}": "prettier --write",
+		"src/**/*.{ts,tsx}": "eslint"
 	}
 }

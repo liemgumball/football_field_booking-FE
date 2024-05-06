@@ -59,10 +59,10 @@ const HeroSection = () => {
 					</p>
 					<Link
 						to="/"
-						className="inline-flex text-primary-foreground items-center rounded-full bg-primary p-1 pl-8 font-semibold transition-colors hover:bg-primary/80"
+						className="inline-flex items-center rounded-full bg-primary p-1 pl-8 font-semibold text-primary-foreground transition-colors hover:bg-primary/80"
 					>
 						Explore More
-						<span className="ml-6 rounded-full bg-primary-foreground text-primary p-3 transition-colors">
+						<span className="ml-6 rounded-full bg-primary-foreground p-3 text-primary transition-colors">
 							<Send width={22} height={22} />
 						</span>
 					</Link>

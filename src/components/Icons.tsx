@@ -1,4 +1,4 @@
-import { Loader2Icon } from 'lucide-react';
+import { CheckIcon, Loader2Icon } from 'lucide-react'
 import logo from '/football-icon.svg'
 import { cn } from '@/lib/utils'
 
@@ -18,6 +18,22 @@ export const Icons = {
 	),
 
 	Loader: ({ size = 18, className }: { size?: number; className?: string }) => (
-		<Loader2Icon className={cn('animate-spin', className)} size={size} />
+		<Loader2Icon
+			className={cn('animate-spin text-muted-foreground', className)}
+			size={size}
+		/>
+	),
+
+	Success: ({
+		size = 18,
+		className,
+	}: {
+		size?: number
+		className?: string
+	}) => (
+		<CheckIcon
+			size={size}
+			className={cn('animate-bounce-once text-primary', className)}
+		/>
 	),
 }

@@ -21,7 +21,6 @@ import { login } from '@/services'
 import useAuthStore from '@/stores/auth'
 import { ERROR_MSG } from '@/constants/message'
 
-
 const formSchema = z.object({
 	email: z.string().email(),
 	password: z
@@ -72,9 +71,15 @@ const LoginForm = () => {
 					name="email"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className='text-base md:text-xl'>Email Address</FormLabel>
+							<FormLabel className="text-base md:text-xl">
+								Email Address
+							</FormLabel>
 							<FormControl>
-								<Input className='text-base px-2 md:px-4 md:text-lg' placeholder="Email" {...field} />
+								<Input
+									className="px-2 text-base md:px-4 md:text-lg"
+									placeholder="Email"
+									{...field}
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -85,10 +90,10 @@ const LoginForm = () => {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className='text-base md:text-xl'>Password</FormLabel>
+							<FormLabel className="text-base md:text-xl">Password</FormLabel>
 							<FormControl>
 								<Input
-									className='text-base px-2 md:px-4 md:text-lg'
+									className="px-2 text-base md:px-4 md:text-lg"
 									placeholder="Enter your password"
 									type="password"
 									{...field}
@@ -106,7 +111,7 @@ const LoginForm = () => {
 					}
 					type="submit"
 					variant="outline"
-					className='px-28 md:text-lg text-base'
+					className="px-28 text-base md:text-lg"
 				>
 					Login
 				</Button>
