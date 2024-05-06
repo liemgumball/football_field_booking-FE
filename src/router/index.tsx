@@ -9,6 +9,7 @@ import {
 import Layout from '@/components/Layout'
 import PrivateRoute from '@/components/PrivateRoute'
 import RouteErrorBoundary from '@/components/RouteErrorBoundary'
+import AboutUs from '@/pages/AboutUs'
 
 // Lazy Loading Routes
 const Home = lazy(async () => import('@/pages/Home'))
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
 				<Route index element={<AvailableBookings />} />
 				<Route path=":id" element={<AvailableBookingDetails />} />
 			</Route>
+			<Route path='/aboutus' element={<AboutUs />} />
 
 			{/*-------------------------- Private Routes --------------------------*/}
 			<Route element={<PrivateRoute />} errorElement={<RouteErrorBoundary />}>

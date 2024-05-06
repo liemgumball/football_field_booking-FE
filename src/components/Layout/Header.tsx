@@ -19,7 +19,7 @@ import {
 } from '../ui/sheet'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import EditProfileForm from '../EditProfileForm'
-import SlideBar from '../SideBar'
+import SideBar from './SideBar'
 
 const AvatarSheet = () => {
 	const user = useAuthStore((set) => set.user)
@@ -74,8 +74,9 @@ const Header = () => {
 				<Link className='hidden md:block' to="/">
 					<Icons.Logo />
 				</Link>
-				<SlideBar />
+				<SideBar />
 				<NavBar />
+
 				<div className="flex items-center space-x-4 capitalize">
 					{user ? (
 						<AvatarSheet />
@@ -83,19 +84,19 @@ const Header = () => {
 						<>
 							<Link
 								to="/login"
-								className={buttonVariants({
+								className={`${buttonVariants({
 									variant: 'secondary',
 									size: 'lg',
-								})}
+								})} hidden md:inline-flex`}
 							>
 								login
 							</Link>
 							<Link
 								to="/signup"
-								className={buttonVariants({
+								className={`${buttonVariants({
 									variant: 'default',
 									size: 'lg',
-								})}
+								})} hidden md:inline-flex`}
 							>
 								signup
 							</Link>
@@ -103,7 +104,7 @@ const Header = () => {
 					)}
 					<ModeToggle />
 				</div>
-			</header>
+			</header >
 			<Separator />
 		</>
 	)

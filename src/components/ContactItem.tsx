@@ -15,18 +15,18 @@ const ContactItem = ({
 	icon: React.ReactNode
 }) => {
 	return (
-		<li className="flex gap-x-4 truncate xl:justify-center">
+		<li className="flex gap-x-3 truncate xl:justify-center">
 			<div
 				className={cn(
 					buttonVariants({ size: 'icon' }),
-					'size-14 shrink-0 rounded-full',
+					'size-10 md:size-14 lg:size-12 shrink-0 rounded-full',
 				)}
 			>
 				{icon}
 			</div>
 			<div>
 				<span className="font-semibold text-secondary-foreground">{title}</span>
-				<p className="text-sm">
+				<p className="text-xs md:text-base lg:text-sm">
 					{to ? (
 						<Link className="transition hover:text-primary" to={to}>
 							{content}

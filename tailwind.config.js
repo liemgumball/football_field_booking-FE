@@ -78,6 +78,9 @@ export const theme = {
 			'accordion-up': 'accordion-up 0.2s ease-out',
 			'caret-blink': 'caret-blink 1.25s ease-out infinite',
 		},
+		backgroundImage: {
+			'hero-about-us': 'url(/hero-img-about-us.png)',
+		},
 	},
 }
 // eslint-disable-next-line no-undef

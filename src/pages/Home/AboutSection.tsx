@@ -46,7 +46,7 @@ const AboutSection = () => {
 				<div className="titles flex justify-center">
 					<div className="max-w-[800px] space-y-8 text-center">
 						<Link
-							to="/about"
+							to="/aboutus"
 							className={cn(
 								buttonVariants({ size: 'lg' }),
 								'trigger max-w-max',
