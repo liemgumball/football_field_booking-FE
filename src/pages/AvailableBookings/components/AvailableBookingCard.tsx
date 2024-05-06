@@ -6,8 +6,12 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from './ui/card'
-import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card'
+} from '@/components/ui/card'
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from '@/components/ui/hover-card'
 
 import defaultImg from '/booking_img.png'
 import {
@@ -18,12 +22,14 @@ import {
 	User2Icon,
 } from 'lucide-react'
 import { format } from 'date-fns'
-import { Separator } from './ui/separator'
-import { buttonVariants } from './ui/button'
+import { Separator } from '@/components/ui/separator'
+import { buttonVariants } from '@/components/ui/button'
 import { memo, useState } from 'react'
 import { getFieldDetails } from '@/services/football-field'
 import { Link } from 'react-router-dom'
 import { getTimeRange } from '@/utils/time'
+import { pickRandomFormArray } from '@/utils/common'
+import { AspectRatio } from '@/components/ui/aspect-ratio'
 
 const AvailableBookingCard = ({
 	_id,
@@ -47,17 +53,24 @@ const AvailableBookingCard = ({
 	}
 
 	return (
-		<Card className="group h-full min-w-min max-w-max">
-			<div
-				className="min-h-[300px] overflow-hidden rounded-t-lg p-0"
+		<Card className="group flex h-full w-[320px] flex-col justify-between md:w-[380px]">
+			<AspectRatio
+				ratio={416 / 314}
+				className="overflow-hidden truncate rounded-t-lg p-0"
 				title={field.name}
 			>
 				<img
 					className="transition-all duration-500 group-hover:scale-105"
-					src={field.images?.at(0) || defaultImg}
+					width={390}
+					height={300}
+					src={
+						field.images?.length
+							? (pickRandomFormArray(field.images) as string)
+							: defaultImg
+					}
 					alt="field image"
 				/>
-			</div>
+			</AspectRatio>
 			<CardHeader className="space-y-1 pb-4">
 				<div className="space-x-1 text-sm text-muted-foreground">
 					{field.rating
@@ -68,7 +81,7 @@ const AvailableBookingCard = ({
 						: 'No rating'}
 					{field.rating ? <span>({field.rating})</span> : ''}
 				</div>
-				<CardTitle className="truncate capitalize">
+				<CardTitle className="text-wrap capitalize">
 					{field.name} - {subfield.name}
 				</CardTitle>
 			</CardHeader>

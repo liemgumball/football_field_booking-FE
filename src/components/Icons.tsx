@@ -1,4 +1,6 @@
+import { Loader2Icon } from 'lucide-react'
 import logo from '/football-icon.svg'
+import { cn } from '@/lib/utils'
 
 export const Icons = {
 	/**
@@ -13,5 +15,9 @@ export const Icons = {
 			height={height || 70}
 			width={width || 70}
 		/>
+	),
+
+	Loader: ({ size = 18, className }: { size?: number; className?: string }) => (
+		<Loader2Icon className={cn('animate-spin', className)} size={size} />
 	),
 }
