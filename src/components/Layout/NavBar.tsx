@@ -41,7 +41,7 @@ const platforms: { title: string; href: string; description: string }[] = [
 
 const NavBar = () => {
 	return (
-		<NavigationMenu>
+		<NavigationMenu className='hidden md:block'>
 			<NavigationMenuList>
 				<NavigationMenuItem>
 					<NavigationMenuTrigger className="capitalize">
@@ -92,7 +92,7 @@ const NavBar = () => {
 					</NavigationMenuContent>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
-					<Link to="/docs">
+					<Link to="/aboutus">
 						<NavigationMenuLink
 							className={navigationMenuTriggerStyle({
 								className: 'capitalize',

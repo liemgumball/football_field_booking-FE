@@ -9,6 +9,7 @@ import {
 import Layout from '@/components/Layout'
 import PrivateRoute from '@/components/PrivateRoute'
 import RouteErrorBoundary from '@/components/RouteErrorBoundary'
+import AboutUs from '@/pages/AboutUs'
 
 // Lazy Loading Routes
 const Home = lazy(async () => import('@/pages/Home'))
@@ -21,18 +22,25 @@ const AvailableBookingDetails = lazy(
 )
 const HistoryBookings = lazy(async () => import('@/pages/HistoryBookings'))
 const BookingDetails = lazy(async () => import('@/pages/BookingDetails'))
+const VerifyAccount = lazy(async () => import('@/pages/VerifyAccount'))
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route element={<Layout />}>
 			<Route path="*" element={<NotFound />} />
+
 			<Route index element={<Home />} />
+
+			{/* Authentication */}
 			<Route path="/login" element={<Login />} />
 			<Route path="/signup" element={<SignUp />} />
+			<Route path="/verify-account/:token" element={<VerifyAccount />} />
+
 			<Route path="/available-booking">
 				<Route index element={<AvailableBookings />} />
 				<Route path=":id" element={<AvailableBookingDetails />} />
 			</Route>
+			<Route path="/aboutus" element={<AboutUs />} />
 
 			{/*-------------------------- Private Routes --------------------------*/}
 			<Route element={<PrivateRoute />} errorElement={<RouteErrorBoundary />}>

@@ -31,3 +31,10 @@ export const updateUser = (
 
 export const getUser = (id: string): Promise<AxiosResponse<TUser>> =>
 	api.get(ENV_VARS.API_URL.USER.BASE + `/${id}`, { withCredentials: true })
+
+export const verifyAccount = async (token: string): Promise<AxiosResponse> =>
+	api.get(`/auth/verify/${token}`)
+
+export const resendVerifyEmail = async (
+	email: string,
+): Promise<AxiosResponse> => api.post('/auth/resend-verify', { email })

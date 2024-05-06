@@ -1,4 +1,4 @@
-import quote from '@/assets/quote.png'
+import quote from '/quote.png'
 import AuthorItem from './AuthorItem';
 
 
