@@ -1,6 +1,5 @@
 import { Icons } from '@/components/Icons'
-import { verifyAccount } from '@/services'
-import { AxiosError } from 'axios'
+import { verifyAccount } from '@/services/user'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import NotFound from '../NotFound'
@@ -11,7 +10,7 @@ const VerifyAccount = () => {
 	const { token } = useParams()
 
 	const [error, setError] = useState<{
-		status?: string
+		status?: number
 		message: string
 	} | null>(null)
 	const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -29,8 +28,8 @@ const VerifyAccount = () => {
 
 				setIsSuccess(true)
 			} catch (error) {
-				if (error instanceof AxiosError) {
-					setError(error.response?.data)
+				if (error instanceof Response) {
+					setError({ message: await error.text(), status: error.status })
 					return
 				}
 
@@ -57,7 +56,7 @@ const VerifyAccount = () => {
 				<p className="mb-4 text-center text-xl font-bold capitalize text-destructive">
 					{error.message}
 				</p>
-				{error.status === '403' && <ResendVerifyForm />}
+				{error.status === 403 && <ResendVerifyForm />}
 			</div>
 		)
 

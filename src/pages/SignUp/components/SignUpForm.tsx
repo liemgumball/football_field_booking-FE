@@ -15,8 +15,7 @@ import {
 import { Input } from '@/components/ui/input'
 
 // Services
-import useAuthStore from '@/stores/auth'
-import { signup } from '@/services'
+import { signup } from '@/services/user'
 import { REGEX } from '@/constants/regex'
 
 const formSchema = z
@@ -39,18 +38,17 @@ const SignUpForm = () => {
 		resolver: zodResolver(formSchema),
 	})
 
-	const setAuth = useAuthStore((set) => set.set)
-
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
 		values,
 	) => {
 		try {
-			const response = await signup({
+			await signup({
 				email: values.email,
 				password: values.password,
 				phoneNumber: values.phoneNumber,
 			})
-			setAuth(response.data)
+
+			// TODO handle display successful message
 		} catch (error) {
 			// TODO handle server error
 			// Backend still not have the duplicated response status code
