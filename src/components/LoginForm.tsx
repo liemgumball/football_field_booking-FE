@@ -21,6 +21,7 @@ import { login } from '@/services'
 import useAuthStore from '@/stores/auth'
 import { ERROR_MSG } from '@/constants/message'
 
+
 const formSchema = z.object({
 	email: z.string().email(),
 	password: z
@@ -65,15 +66,15 @@ const LoginForm = () => {
 
 	return (
 		<FormProvider {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-4">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 p-4">
 				<FormField
 					control={form.control}
 					name="email"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Email</FormLabel>
+							<FormLabel className='text-base md:text-xl'>Email Address</FormLabel>
 							<FormControl>
-								<Input placeholder="Email" {...field} />
+								<Input className='text-base px-2 md:px-4 md:text-lg' placeholder="Email" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -84,12 +85,14 @@ const LoginForm = () => {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Password</FormLabel>
+							<FormLabel className='text-base md:text-xl'>Password</FormLabel>
 							<FormControl>
 								<Input
-									placeholder="Enter your public password"
+									className='text-base px-2 md:px-4 md:text-lg'
+									placeholder="Enter your password"
 									type="password"
 									{...field}
+									maxLength={25}
 								/>
 							</FormControl>
 							<FormMessage />
@@ -103,8 +106,9 @@ const LoginForm = () => {
 					}
 					type="submit"
 					variant="outline"
+					className='px-28 md:text-lg text-base'
 				>
-					Submit
+					Login
 				</Button>
 				{/* [ ] css not good, needed design */}
 				<FormMessage>{form.formState.errors.root?.message}</FormMessage>

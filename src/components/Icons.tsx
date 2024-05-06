@@ -1,4 +1,6 @@
+
 import logo from '/football-icon.svg'
+
 
 export const Icons = {
 	/**
@@ -14,4 +16,5 @@ export const Icons = {
 			width={width || 70}
 		/>
 	),
+
 }
