@@ -1,6 +1,6 @@
 import BackGroundImg from '/available_booking_bg.png'
 import AvailabilityForm from '@/components/AvailabilityForm'
-import AvailableBookingCard from '@/components/AvailableBookingCard'
+import AvailableBookingCard from './components/AvailableBookingCard'
 import { Icons } from '@/components/Icons'
 import QueryList from '@/components/QueryList'
 import SkeletonCard from '@/components/SkeletonCard'
@@ -109,7 +109,7 @@ const AvailableBookings = () => {
 				<QueryList
 					isError={isError}
 					error={error}
-					className="grid grid-cols-1 items-center justify-items-center gap-x-6 gap-y-12 transition-all duration-1000 lg:grid-cols-2 xl:grid-cols-3"
+					className="grid grid-cols-1 items-stretch justify-items-center gap-x-6 gap-y-12 transition-all duration-1000 lg:grid-cols-2 xl:grid-cols-3"
 				>
 					{isLoading ? ( // Loading
 						Array.from({ length: 6 }, (_, i) => i).map((i) => (
