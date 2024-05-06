@@ -65,9 +65,9 @@ const SignUpForm = () => {
 					name="email"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Email</FormLabel>
+							<FormLabel className='text-base md:text-xl'>Email Address</FormLabel>
 							<FormControl>
-								<Input placeholder="Enter your email" {...field} />
+								<Input className='text-base px-2 md:px-4 md:text-lg' placeholder="Enter your email" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -78,10 +78,11 @@ const SignUpForm = () => {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Password</FormLabel>
+							<FormLabel className='text-base md:text-xl'>Password</FormLabel>
 							<FormControl>
 								<Input
 									placeholder="Enter your password"
+									className='text-base px-2 md:px-4 md:text-lg'
 									type="password"
 									{...field}
 								/>
@@ -95,10 +96,11 @@ const SignUpForm = () => {
 					name="confirmPassword"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Confirm Password</FormLabel>
+							<FormLabel className='text-base md:text-xl'>Confirm Password</FormLabel>
 							<FormControl>
 								<Input
 									placeholder="Enter to confirm password"
+									className='text-base px-2 md:px-4 md:text-lg'
 									type="password"
 									{...field}
 								/>
@@ -112,10 +114,11 @@ const SignUpForm = () => {
 					name="phoneNumber"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Phone Number</FormLabel>
+							<FormLabel className='text-base md:text-xl'>Phone Number</FormLabel>
 							<FormControl>
 								<Input
 									placeholder="Enter to your phone number"
+									className='text-base px-2 md:px-4 md:text-lg'
 									type="tel"
 									{...field}
 								/>
@@ -128,8 +131,9 @@ const SignUpForm = () => {
 					disabled={form.formState.isSubmitting}
 					type="submit"
 					variant="outline"
+					className='px-28 md:text-lg text-base'
 				>
-					Submit
+					Signup
 				</Button>
 			</form>
 		</FormProvider>

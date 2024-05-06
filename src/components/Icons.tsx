@@ -1,4 +1,4 @@
-import { Loader2Icon } from 'lucide-react'
+import { Loader2Icon } from 'lucide-react';
 import logo from '/football-icon.svg'
 import { cn } from '@/lib/utils'
 
