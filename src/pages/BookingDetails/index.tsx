@@ -32,7 +32,6 @@ const BookingDetails = () => {
 		<main className="container">
 			<BookingDetailsHeader field={data.field} status={data.status} />
 			<Separator />
-			{/* [ ] name missing in API response */}
 			<BookingDetailsContent {...data} />
 		</main>
 	)
