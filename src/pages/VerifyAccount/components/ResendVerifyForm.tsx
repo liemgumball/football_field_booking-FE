@@ -10,9 +10,8 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
-import { resendVerifyEmail } from '@/services'
+import { resendVerifyEmail } from '@/services/user'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AxiosError } from 'axios'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
@@ -35,13 +34,13 @@ const ResendVerifyForm = () => {
 
 			if (response.status !== 201) throw response
 		} catch (error) {
-			const err = error as AxiosError
+			const err = error as Response
 
 			// Already verified
 			if (err.status === 417) navigate('/login')
 
 			form.setError('root', {
-				message: err.response?.data as string,
+				message: await err.text(),
 			})
 		}
 	}

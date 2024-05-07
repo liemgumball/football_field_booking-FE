@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
@@ -17,7 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 
 // Utils
-import { login } from '@/services'
+import { login } from '@/services/user'
 import useAuthStore from '@/stores/auth'
 import { ERROR_MSG } from '@/constants/message'
 
@@ -42,12 +41,13 @@ const LoginForm = () => {
 	) => {
 		try {
 			const response = await login(values)
-			setAuth(response.data)
+
+			setAuth(response)
 			navigate('/')
 		} catch (error) {
-			const err = error as AxiosError
+			const err = error as Response
 			// Unauthorized
-			if (err.response?.status === 401) {
+			if (err.status === 401) {
 				form.setError('email', {
 					message: ERROR_MSG.LOGIN_FAILED,
 				})

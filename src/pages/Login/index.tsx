@@ -2,8 +2,7 @@ import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
 import { Link } from 'react-router-dom'
 
 import loginImage from '/imageLogin.png'
-
-import LoginForm from '@/components/LoginForm'
+import LoginForm from './components/LoginForm'
 
 const Login = () => {
 	const onSuccess = (credentialResponse: CredentialResponse) => {

@@ -10,8 +10,7 @@ import { Button } from './ui/button'
 // Utils
 import { REGEX } from '@/constants/regex'
 import useAuthStore from '@/stores/auth'
-import { getUser, updateUser } from '@/services'
-import { AxiosError } from 'axios'
+import { getUser, updateUser } from '@/services/user'
 import { Loader2Icon } from 'lucide-react'
 
 const formSchema = z.object({
@@ -43,9 +42,9 @@ const EditProfileForm = () => {
 
 			setAuth(newUser.data)
 		} catch (err) {
-			const error = err as AxiosError
+			const error = err as Response
 
-			form.setError('root', { message: error.message })
+			form.setError('root', { message: await error.text() })
 		}
 	}
 

@@ -7,7 +7,6 @@ export const ENV_VARS = {
 		},
 		USER: {
 			BASE: 'users',
-			UPDATE: '/users/update',
 		},
 		FOOTBALL_FIELD: {
 			BASE: 'fields',
@@ -21,5 +20,9 @@ export const ENV_VARS = {
 	},
 	GOOGLE: {
 		CLIENT_ID: import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '',
+	},
+	MAP: {
+		ACCESS_TOKEN: import.meta.env.VITE_MAP_ACCESS_TOKEN ?? '',
+		STYLE_URL: import.meta.env.VITE_MAP_STYLE_URL ?? '',
 	},
 } as const

@@ -8,8 +8,8 @@ export const getDayOfServices = async (
 	to?: string,
 	size?: string | null,
 	coordinates?: {
-		longitude: string
-		latitude: string
+		longitude: number
+		latitude: number
 	},
 ): Promise<TDayOfService[]> => {
 	const response = await fetch(
