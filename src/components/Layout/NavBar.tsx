@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils'
 const platforms: { title: string; href: string; description: string }[] = [
 	{
 		title: 'Find football Fields',
-		href: '/services',
+		href: '/findfields',
 		description:
 			'Explore available football fields in your area and book them for your matches or events.',
 	},
@@ -41,7 +41,7 @@ const platforms: { title: string; href: string; description: string }[] = [
 
 const NavBar = () => {
 	return (
-		<NavigationMenu className='hidden md:block'>
+		<NavigationMenu className="hidden md:block">
 			<NavigationMenuList>
 				<NavigationMenuItem>
 					<NavigationMenuTrigger className="capitalize">
