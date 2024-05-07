@@ -41,7 +41,8 @@ const LoginForm = () => {
 	) => {
 		try {
 			const response = await login(values)
-			setAuth(response.data)
+
+			setAuth(response)
 			navigate('/')
 		} catch (error) {
 			const err = error as Response

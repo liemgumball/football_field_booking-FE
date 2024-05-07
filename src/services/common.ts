@@ -7,10 +7,8 @@ type TReqInit<T = unknown> = {
 }
 
 const apiRequest = async <T>(url: string, init?: TReqInit<T>) => {
-	let response
-
 	if (!init) {
-		response = await fetch(ENV_VARS.API_URL.BASE + url)
+		const response = await fetch(ENV_VARS.API_URL.BASE + url)
 
 		if (!response.ok) throw response
 
@@ -19,7 +17,7 @@ const apiRequest = async <T>(url: string, init?: TReqInit<T>) => {
 
 	const { method, data, withCredentials } = init
 
-	response = await fetch(ENV_VARS.API_URL.BASE + url, {
+	const response = await fetch(ENV_VARS.API_URL.BASE + url, {
 		method: method || 'GET',
 		headers: { 'Content-Type': 'application/json' },
 		credentials: withCredentials ? 'include' : undefined,
