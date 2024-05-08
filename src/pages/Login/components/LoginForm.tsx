@@ -75,7 +75,7 @@ const LoginForm = () => {
 		<FormProvider {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="w-full space-y-10 p-4"
+				className="w-full min-w-[400px] max-w-[600px] space-y-4 px-4 md:space-y-8"
 			>
 				<FormField
 					control={form.control}
@@ -87,7 +87,7 @@ const LoginForm = () => {
 							</FormLabel>
 							<FormControl>
 								<Input
-									className="px-2 text-base md:px-4 md:text-lg"
+									className="px-2 py-5 text-base md:px-4"
 									placeholder="Email"
 									{...field}
 								/>
@@ -104,7 +104,7 @@ const LoginForm = () => {
 							<FormLabel className="text-base md:text-xl">Password</FormLabel>
 							<FormControl>
 								<Input
-									className="px-2 text-base md:px-4 md:text-lg"
+									className="px-2 py-5 text-base md:px-4"
 									placeholder="Enter your password"
 									type="password"
 									{...field}
@@ -122,7 +122,7 @@ const LoginForm = () => {
 					}
 					type="submit"
 					variant="outline"
-					className="w-full text-base md:text-lg"
+					className="w-full text-base"
 				>
 					{form.formState.isSubmitting && <Icons.Loader className="mr-1" />}
 					Login
