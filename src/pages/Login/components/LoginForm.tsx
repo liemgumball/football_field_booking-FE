@@ -66,7 +66,10 @@ const LoginForm = () => {
 
 	return (
 		<FormProvider {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 p-4">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-full space-y-10 p-4"
+			>
 				<FormField
 					control={form.control}
 					name="email"
@@ -112,7 +115,7 @@ const LoginForm = () => {
 					}
 					type="submit"
 					variant="outline"
-					className="px-28 text-base md:text-lg"
+					className="w-full text-base md:text-lg"
 				>
 					Login
 				</Button>

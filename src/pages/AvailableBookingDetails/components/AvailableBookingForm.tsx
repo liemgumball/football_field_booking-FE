@@ -19,7 +19,6 @@ import { Textarea } from '@/components/ui/textarea'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 import { SelectTrigger, SelectValue } from '@/components/ui/select'
-import { ToastAction } from '@/components/ui/toast'
 
 // Store & Constants & Types
 import useAuthStore from '@/stores/auth'
@@ -32,6 +31,8 @@ import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { createBooking } from '@/services/booking'
 import { format } from 'date-fns'
 import { cn } from '@/lib/utils'
+import { Icons } from '@/components/Icons'
+import { ToastAction } from '@/components/ui/toast'
 
 type TProps = {
 	subfieldId: string
@@ -105,24 +106,31 @@ const AvailableBookingForm = ({
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
 		values,
 	) => {
-		// TODO handle logged in before booking
+		if (!user)
+			return toast({
+				title: 'You need to login before book!',
+				action: (
+					<ToastAction
+						className={buttonVariants({})}
+						altText="To login page"
+						onClick={() => navigate('/login')}
+					>
+						Login
+					</ToastAction>
+				),
+			})
+
 		try {
 			const response = await mutation.mutateAsync(values)
 
 			if (response) {
+				// Display the notification
 				toast({
 					title: 'Book successfully',
 					description: `${format(response.date, 'PPP')} from ${response.from} to ${response.to}`,
-					action: (
-						<ToastAction
-							className={buttonVariants()}
-							altText="Booking details"
-							onClick={() => navigate(`/bookings/${response._id}`)}
-						>
-							Details
-						</ToastAction>
-					),
 				})
+
+				setTimeout(() => navigate(`/bookings/${response._id}`), 1000)
 			}
 		} catch (error) {
 			const res = error as Response
@@ -231,11 +239,16 @@ const AvailableBookingForm = ({
 					type="submit"
 					disabled={form.formState.isSubmitting || status !== 'available'}
 				>
-					{form.formState.isSubmitting
-						? 'Booking...'
-						: status === 'available'
-							? 'Booking Now'
-							: 'Not available'}
+					{form.formState.isSubmitting ? (
+						<>
+							<Icons.Loader className="mr-1 text-secondary" />
+							Booking...
+						</>
+					) : status === 'available' ? (
+						'Booking Now'
+					) : (
+						'Not available'
+					)}
 				</Button>
 			</form>
 		</Form>

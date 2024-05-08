@@ -10,20 +10,21 @@ import Layout from '@/components/Layout'
 import PrivateRoute from '@/components/PrivateRoute'
 import RouteErrorBoundary from '@/components/RouteErrorBoundary'
 import AboutUs from '@/pages/AboutUs'
+import { PATHS } from '@/constants/navigation'
 
 // Lazy Loading Routes
-const Home = lazy(async () => import('@/pages/Home'))
-const SignUp = lazy(async () => import('@/pages/SignUp'))
-const Login = lazy(async () => import('@/pages/Login'))
-const NotFound = lazy(async () => import('@/pages/NotFound'))
-const AvailableBookings = lazy(async () => import('@/pages/AvailableBookings'))
+const Home = lazy(() => import('@/pages/Home'))
+const SignUp = lazy(() => import('@/pages/SignUp'))
+const Login = lazy(() => import('@/pages/Login'))
+const NotFound = lazy(() => import('@/pages/NotFound'))
+const AvailableBookings = lazy(() => import('@/pages/AvailableBookings'))
 const AvailableBookingDetails = lazy(
-	async () => import('@/pages/AvailableBookingDetails'),
+	() => import('@/pages/AvailableBookingDetails'),
 )
-const HistoryBookings = lazy(async () => import('@/pages/HistoryBookings'))
-const BookingDetails = lazy(async () => import('@/pages/BookingDetails'))
-const VerifyAccount = lazy(async () => import('@/pages/VerifyAccount'))
-const Fields = lazy(async () => import('@/pages/Fields'))
+const HistoryBookings = lazy(() => import('@/pages/HistoryBookings'))
+const BookingDetails = lazy(() => import('@/pages/BookingDetails'))
+const VerifyAccount = lazy(() => import('@/pages/VerifyAccount'))
+const Fields = lazy(() => import('@/pages/Fields'))
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -32,27 +33,32 @@ const router = createBrowserRouter(
 
 			{/* Landing */}
 			<Route index element={<Home />} />
-			<Route path="/aboutus" element={<AboutUs />} />
+			<Route path={PATHS.ABOUT_US} element={<AboutUs />} />
 
 			{/* Authentication */}
-			<Route path="/login" element={<Login />} />
-			<Route path="/signup" element={<SignUp />} />
-			<Route path="/verify-account/:token" element={<VerifyAccount />} />
+			<Route path={PATHS.LOGIN} element={<Login />} />
+			<Route path={PATHS.SIGNUP} element={<SignUp />} />
+			<Route path={PATHS.VERIFY_ACCOUNT} element={<VerifyAccount />} />
 
 			{/* Booking */}
-			<Route path="/available-booking">
+			<Route path={PATHS.AVAILABLE_BOOKING.BASE}>
 				<Route index element={<AvailableBookings />} />
-				<Route path=":id" element={<AvailableBookingDetails />} />
+				<Route
+					path={PATHS.AVAILABLE_BOOKING.DETAILS}
+					element={<AvailableBookingDetails />}
+				/>
 			</Route>
 
 			{/* Field */}
-			<Route path="/fields" element={<Fields />} />
+			<Route path={PATHS.FIELD.BASE}>
+				<Route index element={<Fields />} />
+			</Route>
 
-			{/*-------------------------- Private Routes --------------------------*/}
+			{/* ------------------------- Private Routes ------------------------- */}
 			<Route element={<PrivateRoute />} errorElement={<RouteErrorBoundary />}>
-				<Route path="/bookings">
+				<Route path={PATHS.BOOKING.BASE}>
 					<Route index element={<HistoryBookings />} />
-					<Route path=":id" element={<BookingDetails />} />
+					<Route path={PATHS.BOOKING.DETAILS} element={<BookingDetails />} />
 				</Route>
 			</Route>
 		</Route>,

@@ -2,40 +2,55 @@ import { buttonVariants } from '@/components/ui/button'
 import presentationImg from '/presentationImg.png'
 import { cn } from '@/lib/utils'
 
-
 const PresentSection = () => {
+	return (
+		<section className="container flex flex-col-reverse items-center gap-5 xl:flex-row">
+			<div className="hero-img h-auto max-w-[310px] overflow-hidden rounded-xl md:max-w-[700px] ">
+				<img src={presentationImg} alt="review image" />
+			</div>
 
-    return (
-        <section className="flex flex-col-reverse gap-5 xl:flex-row container items-center">
-            <div className="hero-img rounded-xl overflow-hidden max-w-[310px] md:max-w-[700px] h-auto ">
-                <img src={presentationImg} alt='review image' />
-            </div>
-
-            <div className="max-w-[350px] md:max-w-[600px] lg:max-w-[800px] space-y-1 md:space-y-4 lg:space-y-8">
-                <div className='text-center'>
-                    <p className={cn(buttonVariants({ size: 'sm' }), 'max-w-max')}> Who We Are </p>
-                    <h2 className='text-xl md:text-4xl lg:text-5xl font-bold capitalize mt-3'>great opportunity for
-                        adventure & travels</h2>
-                    <p className='text-xs md:text-lg lg:text-xl font-normal mt-4'>Set perspiciatis unde omnis iste natus error voluptatem accusantium doloremue
-                        laudantium totam rem aperiam eaque quae abillo inventore veritatis et quasi
-                        architecto beatae vitae dicta sunt explicabo.</p>
-                </div>
-                <div className='flex flex-wrap gap-3 justify-center mt-3 py-10 px-6 shadow-xl '>
-                    <div className='px-8'>
-                        <p className='font-semibold 
-                         text-lg text-center md:text-xl lg:text-3xl'>60%</p>
-                        <p className='font-bold text-lg lg:text-3xl capitalize text-nowrap'>saticfied clients</p>
-                    </div>
-                    <div className='px-8'>
-                        <p className='font-semibold 
-                         text-lg text-center md:text-xl lg:text-3xl'>93%</p>
-                        <p className='font-bold text-lg lg:text-3xl capitalize text-nowrap'>succes rate</p>
-                    </div>
-                </div>
-            </div>
-        </section >
-    )
-
+			<div className="space-y-1 md:max-w-[600px] md:space-y-4 lg:max-w-[800px] lg:space-y-12">
+				<div className="space-y-8 text-center">
+					<p className={cn(buttonVariants({ size: 'sm' }), 'max-w-max')}>
+						{' '}
+						Who We Are{' '}
+					</p>
+					<h2 className="mt-3 text-3xl font-bold capitalize md:text-4xl lg:text-5xl">
+						great opportunity for adventure & travels
+					</h2>
+					<p className="mt-4 text-sm font-normal text-muted-foreground md:text-base">
+						Set perspiciatis unde omnis iste natus error voluptatem accusantium
+						doloremue laudantium totam rem aperiam eaque quae abillo inventore
+						veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+					</p>
+				</div>
+				<div className="mt-3 flex flex-wrap justify-center gap-3 px-6 py-10 shadow-xl ">
+					<div className="px-8">
+						<p
+							className="text-center 
+                         text-lg font-semibold md:text-xl lg:text-3xl"
+						>
+							60%
+						</p>
+						<p className="text-nowrap text-lg font-bold capitalize lg:text-3xl">
+							saticfied clients
+						</p>
+					</div>
+					<div className="px-8">
+						<p
+							className="text-center 
+                         text-lg font-semibold md:text-xl lg:text-3xl"
+						>
+							93%
+						</p>
+						<p className="text-nowrap text-lg font-bold capitalize lg:text-3xl">
+							succes rate
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	)
 }
 
 export default PresentSection

@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { useRef } from 'react'
+import { PATHS } from '@/constants/navigation'
 
 const AboutSection = () => {
 	const section = useRef(null)
@@ -46,7 +47,7 @@ const AboutSection = () => {
 				<div className="titles flex justify-center">
 					<div className="max-w-[800px] space-y-8 text-center">
 						<Link
-							to="/aboutus"
+							to={PATHS.SUPPORT}
 							className={cn(
 								buttonVariants({ size: 'lg' }),
 								'trigger max-w-max',

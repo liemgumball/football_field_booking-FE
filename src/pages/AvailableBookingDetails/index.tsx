@@ -6,6 +6,7 @@ import { getDuration } from '@/utils/time'
 import { useQuery } from '@tanstack/react-query'
 import { useParams, useSearchParams } from 'react-router-dom'
 import AvailableBookingSkeleton from './components/AvailableBookingSkeleton'
+import { TDayOfService } from '@/types'
 
 const AvailableBookingDetails = () => {
 	const { id } = useParams()
@@ -16,7 +17,7 @@ const AvailableBookingDetails = () => {
 
 	if (!id) throw new Error('Failed to find available booking Id')
 
-	const { data, isLoading, isError, error } = useQuery({
+	const { data, isLoading, isError, error } = useQuery<TDayOfService>({
 		queryKey: [id, from, to],
 		queryFn: () => getDayOfServiceById(id, from, to),
 		staleTime: 10000,
@@ -55,7 +56,7 @@ const AvailableBookingDetails = () => {
 				duration={getDuration(from, to)}
 				size={data?.subfield.size}
 			/>
-			<section className="mx-auto min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">
+			<section className="mx-auto my-4 min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">
 				<AvailableBookingForm
 					status={bookingStatus}
 					id={id}

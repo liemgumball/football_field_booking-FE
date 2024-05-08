@@ -6,6 +6,7 @@ export type TUser = {
 	name: string
 	phoneNumber: string
 	role: string
+	avatar?: string
 	avatarFallback?: string
 }
 
