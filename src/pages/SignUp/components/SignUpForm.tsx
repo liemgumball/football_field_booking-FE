@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input'
 // Services
 import { signup } from '@/services/user'
 import { REGEX } from '@/constants/regex'
+import { Icons } from '@/components/Icons'
 
 const formSchema = z
 	.object({
@@ -141,6 +142,7 @@ const SignUpForm = () => {
 					variant="outline"
 					className="px-28 text-base md:text-lg"
 				>
+					{form.formState.isSubmitting && <Icons.Loader className="mr-1" />}
 					Signup
 				</Button>
 			</form>

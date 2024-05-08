@@ -54,7 +54,7 @@ const SideBar = () => {
 						>
 							<li className="hover:text-primary">
 								<Link to={PATHS.AVAILABLE_BOOKING.BASE}>
-									find football field
+									available bookings
 								</Link>
 							</li>
 							<li className="hover:text-primary">

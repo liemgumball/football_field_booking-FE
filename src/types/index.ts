@@ -3,7 +3,7 @@ export type TTimeStep = string
 export type TUser = {
 	_id: string
 	email: string
-	name: string
+	name?: string
 	phoneNumber: string
 	role: string
 	avatar?: string
