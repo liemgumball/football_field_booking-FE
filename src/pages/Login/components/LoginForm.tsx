@@ -19,6 +19,7 @@ import { Input } from '@/components/ui/input'
 import { login } from '@/services/user'
 import useAuthStore from '@/stores/auth'
 import { ERROR_MSG } from '@/constants/message'
+import { Icons } from '@/components/Icons'
 
 const formSchema = z.object({
 	email: z.string().email(),
@@ -55,6 +56,12 @@ const LoginForm = () => {
 				form.setError('password', {
 					message: ERROR_MSG.LOGIN_FAILED,
 				})
+				return
+			} else if (err.status === 403) {
+				form.setError('root', {
+					message: ERROR_MSG.ACCOUNT_NOT_VERIFIED,
+				})
+				return
 			} else {
 				// Server error
 				form.setError('root', {
@@ -117,6 +124,7 @@ const LoginForm = () => {
 					variant="outline"
 					className="w-full text-base md:text-lg"
 				>
+					{form.formState.isSubmitting && <Icons.Loader className="mr-1" />}
 					Login
 				</Button>
 				{/* [ ] css not good, needed design */}

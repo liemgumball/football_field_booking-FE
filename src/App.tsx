@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider } from 'react-router-dom'
-import router from '@/router'
+import router from '@/routes'
 import { ErrorBoundary } from 'react-error-boundary'
 import ErrorFallback from './components/ErrorFallback'
 

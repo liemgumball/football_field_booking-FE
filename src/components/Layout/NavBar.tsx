@@ -62,7 +62,10 @@ const NavBar = () => {
 							<ListItem to={PATHS.HOME} title="Introduction">
 								Lorem ipsum dolor sit amet consectetur adipisicing elit.
 							</ListItem>
-							<ListItem to={PATHS.AVAILABLE_BOOKING.BASE} title="Booking">
+							<ListItem
+								to={PATHS.AVAILABLE_BOOKING.BASE}
+								title="Available Bookings"
+							>
 								Lorem ipsum dolor sit amet.
 							</ListItem>
 						</ul>

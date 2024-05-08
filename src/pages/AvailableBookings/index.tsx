@@ -95,7 +95,7 @@ const AvailableBookings = () => {
 								</BreadcrumbItem>
 								<BreadcrumbSeparator />
 								<BreadcrumbItem>
-									<BreadcrumbPage>Available Booking</BreadcrumbPage>
+									<BreadcrumbPage>Available Bookings</BreadcrumbPage>
 								</BreadcrumbItem>
 							</BreadcrumbList>
 						</Breadcrumb>

@@ -1,7 +1,10 @@
 import { TUser } from '@/types'
 import apiRequest from './common'
 
-export const login = (data: { email: string; password: string }) =>
+export const login = (data: {
+	email: string
+	password: string
+}): Promise<TUser> =>
 	apiRequest('auth/login', {
 		method: 'POST',
 		data,
