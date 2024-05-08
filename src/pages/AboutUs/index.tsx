@@ -4,7 +4,7 @@ import PresentSection from './PresentSection'
 import TeamMember from './TeamMemberSection'
 
 const AboutUs = () => (
-	<main className="mb-12 space-y-16 md:space-y-40">
+	<main className="mb-12 w-full space-y-16 md:space-y-40">
 		<HeroSection />
 		<PresentSection />
 		<TeamMember />
