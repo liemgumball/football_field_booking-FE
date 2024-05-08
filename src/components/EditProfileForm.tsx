@@ -40,7 +40,7 @@ const EditProfileForm = () => {
 			await updateUser(user._id, data)
 			const newUser = await getUser(user._id)
 
-			setAuth(newUser.data)
+			setAuth(newUser)
 		} catch (err) {
 			const error = err as Response
 
