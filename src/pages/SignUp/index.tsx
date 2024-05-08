@@ -1,3 +1,4 @@
+import { Separator } from '@/components/ui/separator'
 import SignUpForm from './components/SignUpForm'
 import signupImg from '/signupImg.png'
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
@@ -9,13 +10,22 @@ const SignUp = () => {
 	}
 
 	return (
-		<main className="my-8 flex items-center md:flex-col-reverse lg:flex-row">
-			<div className="hidden h-auto max-w-[780px] md:block">
+		<main className="container my-8 flex items-center lg:flex-row">
+			<div className="hidden h-auto max-w-[780px] xl:block">
 				<img src={signupImg} alt="signup image" />
 			</div>
-			<div className="flex flex-col items-center space-y-7 px-0 py-8 lg:px-14">
+			<div className="flex w-full flex-col items-center space-y-7 px-0 py-8 lg:px-14">
+				<h2 className="text-center text-3xl font-bold md:text-4xl">
+					Create your new account
+				</h2>
 				<SignUpForm />
-				<GoogleLogin width={275} onSuccess={onSuccess} />
+				<Separator />
+				<GoogleLogin
+					size="large"
+					width={780}
+					onSuccess={onSuccess}
+					text="signup_with"
+				/>
 			</div>
 		</main>
 	)

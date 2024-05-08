@@ -58,7 +58,10 @@ const SignUpForm = () => {
 
 	return (
 		<FormProvider {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-4">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-full min-w-[400px] max-w-[600px] space-y-4 p-4 md:space-y-8"
+			>
 				<FormField
 					control={form.control}
 					name="email"
@@ -69,7 +72,7 @@ const SignUpForm = () => {
 							</FormLabel>
 							<FormControl>
 								<Input
-									className="px-2 text-base md:px-4 md:text-lg"
+									className="px-2 py-5 text-base md:px-4"
 									placeholder="Enter your email"
 									{...field}
 								/>
@@ -87,7 +90,7 @@ const SignUpForm = () => {
 							<FormControl>
 								<Input
 									placeholder="Enter your password"
-									className="px-2 text-base md:px-4 md:text-lg"
+									className="px-2 py-5 text-base md:px-4"
 									type="password"
 									{...field}
 								/>
@@ -107,7 +110,7 @@ const SignUpForm = () => {
 							<FormControl>
 								<Input
 									placeholder="Enter to confirm password"
-									className="px-2 text-base md:px-4 md:text-lg"
+									className="px-2 py-5 text-base md:px-4"
 									type="password"
 									{...field}
 								/>
@@ -127,7 +130,7 @@ const SignUpForm = () => {
 							<FormControl>
 								<Input
 									placeholder="Enter to your phone number"
-									className="px-2 text-base md:px-4 md:text-lg"
+									className="px-2 py-5 text-base md:px-4"
 									type="tel"
 									{...field}
 								/>
@@ -140,7 +143,7 @@ const SignUpForm = () => {
 					disabled={form.formState.isSubmitting}
 					type="submit"
 					variant="outline"
-					className="px-28 text-base md:text-lg"
+					className="w-full text-base"
 				>
 					{form.formState.isSubmitting && <Icons.Loader className="mr-1" />}
 					Signup
