@@ -18,6 +18,7 @@ import { Input } from '@/components/ui/input'
 import { signup } from '@/services/user'
 import { REGEX } from '@/constants/regex'
 import { Icons } from '@/components/Icons'
+import { toast } from '@/components/ui/use-toast'
 
 const formSchema = z
 	.object({
@@ -49,10 +50,16 @@ const SignUpForm = () => {
 				phoneNumber: values.phoneNumber,
 			})
 
-			// TODO handle display successful message
+			toast({
+				title: 'Sign Up Successful',
+				description: 'An verify email has been sent to your email address!',
+			})
 		} catch (error) {
 			// TODO handle server error
 			// Backend still not have the duplicated response status code
+			toast({
+				title: 'An error has occurred',
+			})
 		}
 	}
 
