@@ -18,10 +18,10 @@ export const signup = (data: {
 }) => apiRequest('auth/signup', { method: 'POST', data, withCredentials: true })
 
 export const updateUser = (id: string, data: Partial<TUser>) =>
-	apiRequest(`user/${id}`, { method: 'PATCH', data, withCredentials: true })
+	apiRequest(`users/${id}`, { method: 'PATCH', data, withCredentials: true })
 
 export const getUser = (id: string) =>
-	apiRequest(`user/${id}`, { withCredentials: true })
+	apiRequest(`users/${id}`, { withCredentials: true })
 
 export const verifyAccount = (token: string) =>
 	apiRequest(`auth/verify/${token}`)
