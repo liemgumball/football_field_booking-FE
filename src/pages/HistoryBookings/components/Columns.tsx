@@ -3,7 +3,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
 import { DataTableColumnHeader } from './DataTableColumnHeader'
 import BookingStatus from './BookingStatus'
-import { MoreHorizontal } from 'lucide-react'
+import { CopyIcon, MoreHorizontal, QrCodeIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -15,8 +15,48 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Link } from 'react-router-dom'
 import { formatPrice } from '@/utils/booking'
+import { PATHS } from '@/constants/navigation'
 
 const Columns: ColumnDef<TBooking, TBooking>[] = [
+	{
+		id: 'actions',
+		cell: ({ row }) => {
+			const booking = row.original
+
+			return (
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant="ghost" className="h-8 w-8 p-0">
+							<span className="sr-only">Open menu</span>
+							<MoreHorizontal className="h-4 w-4" />
+						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent align="end">
+						<DropdownMenuItem
+							onClick={() => {
+								navigator.clipboard.writeText(booking._id)
+							}}
+						>
+							Copy ID <CopyIcon className="ml-3 size-3" />
+						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem>
+							Get QR code <QrCodeIcon className="ml-3 size-5" />
+						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem>
+							<Link to={`${booking._id}`}>View booking details</Link>
+						</DropdownMenuItem>
+						<DropdownMenuItem>
+							<Link to={`${PATHS.FIELD.BASE}/${booking.fieldId}`}>
+								View field details
+							</Link>
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			)
+		},
+	},
 	{
 		accessorKey: 'status',
 		header: ({ column }) => (
@@ -93,30 +133,6 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 				{format(cell.getValue() as unknown as string, 'PPP')}
 			</div>
 		),
-	},
-	{
-		id: 'actions',
-		cell: ({ row }) => {
-			const booking = row.original
-
-			return (
-				<DropdownMenu>
-					<DropdownMenuTrigger asChild>
-						<Button variant="ghost" className="h-8 w-8 p-0">
-							<span className="sr-only">Open menu</span>
-							<MoreHorizontal className="h-4 w-4" />
-						</Button>
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end">
-						<DropdownMenuItem>
-							<Link to={`${booking._id}`}>View booking details</Link>
-						</DropdownMenuItem>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>View field details</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
-			)
-		},
 	},
 ]
 

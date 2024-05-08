@@ -51,4 +51,4 @@ export const timeValues = [
 	'22:30',
 	'23:00',
 	'23:30',
-]
+] as const

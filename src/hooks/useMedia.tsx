@@ -7,9 +7,9 @@ const IsXl = () => useMediaQuery('(min-width: 1280px)')
 const Is2Xl = () => useMediaQuery('(min-width: 1280px)')
 
 export default () => ({
-	IsSm: IsSm(),
-	IsMd: IsMd(),
-	IsLg: IsLg(),
-	IsXl: IsXl(),
-	Is2Xl: Is2Xl(),
+	IsSm,
+	IsMd,
+	IsLg,
+	IsXl,
+	Is2Xl,
 })

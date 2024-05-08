@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom'
 import NotFound from '../NotFound'
 import { buttonVariants } from '@/components/ui/button'
 import ResendVerifyForm from './components/ResendVerifyForm'
+import { PATHS } from '@/constants/navigation'
 
 const VerifyAccount = () => {
 	const { token } = useParams()
@@ -68,7 +69,7 @@ const VerifyAccount = () => {
 					Verify account successfully
 				</p>
 
-				<Link to="/login" className={buttonVariants()}>
+				<Link to={PATHS.LOGIN} className={buttonVariants()}>
 					Go to Login
 				</Link>
 			</div>

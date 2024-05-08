@@ -30,6 +30,7 @@ import { Link } from 'react-router-dom'
 import { getTimeRange } from '@/utils/time'
 import { pickRandomFormArray } from '@/utils/common'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
+import { PATHS } from '@/constants/navigation'
 
 const AvailableBookingCard = ({
 	_id,
@@ -60,12 +61,12 @@ const AvailableBookingCard = ({
 				title={field.name}
 			>
 				<img
-					className="transition-all duration-500 group-hover:scale-105"
+					className="transition-all delay-200 duration-500 group-hover:scale-105"
 					width={390}
 					height={300}
 					src={
 						field.images?.length
-							? (pickRandomFormArray(field.images) as string)
+							? pickRandomFormArray<string>(field.images)
 							: defaultImg
 					}
 					alt="field image"
@@ -89,7 +90,7 @@ const AvailableBookingCard = ({
 				<CardDescription>
 					<HoverCard>
 						<HoverCardTrigger
-							className="cursor-default rounded-md border p-2"
+							className="cursor-default rounded-md border p-2 hover:bg-muted"
 							onMouseEnter={onMouseEnter}
 						>
 							<MapPin className="mr-2 inline text-primary" size={16} />
@@ -112,7 +113,7 @@ const AvailableBookingCard = ({
 					Size {subfield.size}
 				</div>
 				<Link
-					to={`/available-booking/${_id}?from=${from}&to=${to}`}
+					to={`${PATHS.AVAILABLE_BOOKING.BASE}/${_id}?from=${from}&to=${to}`}
 					className={buttonVariants({ variant: 'outline' })}
 				>
 					Booking

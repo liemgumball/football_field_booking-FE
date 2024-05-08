@@ -7,6 +7,7 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import useAuthStore from '@/stores/auth'
+import { PATHS } from '@/constants/navigation'
 
 const HeroSection = () => {
 	const section = useRef(null)
@@ -58,7 +59,7 @@ const HeroSection = () => {
 						saepe? Lorem ipsum dolor sit amet.
 					</p>
 					<Link
-						to="/"
+						to={PATHS.AVAILABLE_BOOKING.BASE}
 						className="inline-flex items-center rounded-full bg-primary p-1 pl-8 font-semibold text-primary-foreground transition-colors hover:bg-primary/80"
 					>
 						Explore More

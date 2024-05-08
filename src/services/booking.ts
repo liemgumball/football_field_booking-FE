@@ -1,74 +1,27 @@
-import { ENV_VARS } from '@/constants/envVars'
 import { TBooking } from '@/types'
+import apiRequest from './common'
 
-export const createBooking = async (
+export const createBooking = (
 	data: Omit<TBooking, '_id' | 'subfield' | 'field' | 'status' | 'fieldId'>,
-): Promise<TBooking> => {
-	const response = await fetch(
-		ENV_VARS.API_URL.BASE + ENV_VARS.API_URL.BOOKING.BASE,
-		{
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			credentials: 'include',
-			body: JSON.stringify(data),
-		},
-	)
+) =>
+	apiRequest('bookings', {
+		data,
+		method: 'POST',
+		withCredentials: true,
+	})
 
-	if (!response.ok) {
-		throw response
-	}
+export const getBookingDetails = (id: string) =>
+	apiRequest(`bookings/${id}`, {
+		withCredentials: true,
+	})
 
-	return response.json()
-}
+export const getBookings = () =>
+	apiRequest('bookings', {
+		withCredentials: true,
+	})
 
-export async function getBookingDetails(id: string): Promise<TBooking> {
-	const response = await fetch(
-		ENV_VARS.API_URL.BASE + ENV_VARS.API_URL.BOOKING.BASE + `/${id}`,
-		{
-			credentials: 'include',
-		},
-	)
-
-	if (!response.ok) {
-		throw response
-	}
-
-	return response.json()
-}
-
-export async function getBookings(): Promise<TBooking[]> {
-	const response = await fetch(
-		ENV_VARS.API_URL.BASE + ENV_VARS.API_URL.BOOKING.BASE,
-		{
-			credentials: 'include',
-		},
-	)
-
-	if (!response.ok) {
-		throw response
-	}
-
-	return response.json()
-}
-
-export async function createCheckoutSession(
-	bookingId: string,
-): Promise<{ checkoutUrl: string }> {
-	const response = await fetch(
-		ENV_VARS.API_URL.BASE +
-			ENV_VARS.API_URL.BOOKING.BASE +
-			`/${bookingId}/create-checkout`,
-		{
-			method: 'POST',
-			credentials: 'include',
-		},
-	)
-
-	if (!response.ok) {
-		throw response
-	}
-
-	return response.json()
-}
+export const createCheckoutSession = (bookingId: string) =>
+	apiRequest(`bookings/${bookingId}/create-checkout`, {
+		method: 'POST',
+		withCredentials: true,
+	})

@@ -36,24 +36,20 @@ const AvailableBookingHeader = ({
 					{' - '}
 					{rating
 						? Array.from({ length: rating }, (_, i) => i).map((i) => (
-							<Star
-								className="inline-block"
-								key={i}
-								color="orange"
-								size={16}
-							/>
-						))
+								<Star
+									className="inline-block"
+									key={i}
+									color="orange"
+									size={16}
+								/>
+							))
 						: 'No rating'}
 				</div>
 				<div className="mt-2 text-sm text-muted-foreground">
 					<MapPin size={14} className="mr-1 inline-block text-primary" />
 					{fieldLocation?.name}
 					{status && (
-						<span>
-							{' '}
-							-
-							<BookingStatusBadge status={status} className="ml-2 text-xs" />
-						</span>
+						<BookingStatusBadge status={status} className="ml-2 text-xs" />
 					)}
 				</div>
 			</div>
