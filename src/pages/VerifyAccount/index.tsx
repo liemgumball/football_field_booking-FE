@@ -45,16 +45,18 @@ const VerifyAccount = () => {
 
 	if (isLoading)
 		return (
-			<div className="container my-16 max-w-min">
+			<div className="container my-16 max-w-min xl:my-auto">
 				<Icons.Loader size={70} />
-				<p className="mt-4 text-muted-foreground">Verifying...</p>
+				<p className="mt-4 text-2xl text-muted-foreground xl:text-3xl">
+					Verifying...
+				</p>
 			</div>
 		)
 
 	if (error)
 		return (
-			<div className="container my-16 space-y-3 ">
-				<p className="mb-4 text-center text-xl font-bold capitalize text-destructive">
+			<div className="container my-16 space-y-16 text-center xl:my-auto">
+				<p className="mb-4 text-center text-3xl font-bold capitalize text-destructive xl:text-4xl">
 					{error.message}
 				</p>
 				{error.status === 403 && <ResendVerifyForm />}
@@ -63,9 +65,11 @@ const VerifyAccount = () => {
 
 	if (isSuccess)
 		return (
-			<div className="container my-16 space-y-5 text-center">
-				<p className="text-xl capitalize text-primary">
-					{<Icons.Success className="mr-2 inline-block" size={40} />}
+			<div className="container my-16 space-y-16 text-center xl:my-auto">
+				<p className=" text-3xl font-bold capitalize text-primary xl:text-4xl">
+					{
+						<Icons.Success className="mr-2 inline-block size-12 font-bold xl:size-16 xl:text-4xl" />
+					}
 					Verify account successfully
 				</p>
 

@@ -12,7 +12,13 @@ const apiRequest = async <T>(url: string, init?: TReqInit<T>) => {
 
 		if (!response.ok) throw response
 
-		return response.json()
+		try {
+			const data = await response.json()
+
+			return data
+		} catch (err) {
+			return response
+		}
 	}
 
 	const { method, data, withCredentials } = init
@@ -26,7 +32,13 @@ const apiRequest = async <T>(url: string, init?: TReqInit<T>) => {
 
 	if (!response.ok) throw response
 
-	return response.json()
+	try {
+		const data = await response.json()
+
+		return data
+	} catch (err) {
+		return response
+	}
 }
 
 export default apiRequest
