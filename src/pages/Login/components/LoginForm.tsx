@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
@@ -17,10 +16,10 @@ import {
 import { Input } from '@/components/ui/input'
 
 // Utils
-import { login } from '@/services'
+import { login } from '@/services/user'
 import useAuthStore from '@/stores/auth'
 import { ERROR_MSG } from '@/constants/message'
-
+import { Icons } from '@/components/Icons'
 
 const formSchema = z.object({
 	email: z.string().email(),
@@ -43,18 +42,26 @@ const LoginForm = () => {
 	) => {
 		try {
 			const response = await login(values)
-			setAuth(response.data)
-			navigate('/')
+			if (response) {
+				setAuth(response)
+				navigate('/')
+			}
 		} catch (error) {
-			const err = error as AxiosError
+			const err = error as Response
 			// Unauthorized
-			if (err.response?.status === 401) {
+			if (err.status === 401) {
 				form.setError('email', {
 					message: ERROR_MSG.LOGIN_FAILED,
 				})
 				form.setError('password', {
 					message: ERROR_MSG.LOGIN_FAILED,
 				})
+				return
+			} else if (err.status === 403) {
+				form.setError('root', {
+					message: ERROR_MSG.ACCOUNT_NOT_VERIFIED,
+				})
+				return
 			} else {
 				// Server error
 				form.setError('root', {
@@ -66,15 +73,24 @@ const LoginForm = () => {
 
 	return (
 		<FormProvider {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 p-4">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-full min-w-[400px] max-w-[600px] space-y-4 px-4 md:space-y-8"
+			>
 				<FormField
 					control={form.control}
 					name="email"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className='text-base md:text-xl'>Email Address</FormLabel>
+							<FormLabel className="text-base md:text-xl">
+								Email Address
+							</FormLabel>
 							<FormControl>
-								<Input className='text-base px-2 md:px-4 md:text-lg' placeholder="Email" {...field} />
+								<Input
+									className="px-2 py-5 text-base md:px-4"
+									placeholder="Email"
+									{...field}
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -85,10 +101,10 @@ const LoginForm = () => {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className='text-base md:text-xl'>Password</FormLabel>
+							<FormLabel className="text-base md:text-xl">Password</FormLabel>
 							<FormControl>
 								<Input
-									className='text-base px-2 md:px-4 md:text-lg'
+									className="px-2 py-5 text-base md:px-4"
 									placeholder="Enter your password"
 									type="password"
 									{...field}
@@ -106,8 +122,9 @@ const LoginForm = () => {
 					}
 					type="submit"
 					variant="outline"
-					className='px-28 md:text-lg text-base'
+					className="w-full text-base"
 				>
+					{form.formState.isSubmitting && <Icons.Loader className="mr-1" />}
 					Login
 				</Button>
 				{/* [ ] css not good, needed design */}

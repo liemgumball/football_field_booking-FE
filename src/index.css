@@ -56,4 +56,13 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+	::-webkit-scrollbar {
+		@apply h-1 w-2;
+	}
+	::-webkit-scrollbar-thumb {
+		@apply rounded-full border-2 border-border bg-secondary;
+	}
+	::-webkit-scrollbar-track {
+		@apply rounded-full bg-transparent;
+	}
 }

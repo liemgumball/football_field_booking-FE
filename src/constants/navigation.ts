@@ -1,4 +1,26 @@
-export const FOOTER_NAVLIST_LEFT = [
+export const PATHS = {
+	HOME: '/',
+	ABOUT_US: '/about-us',
+	LOGIN: '/login',
+	SIGNUP: '/signup',
+	VERIFY_ACCOUNT: '/verify-account/:token',
+	AVAILABLE_BOOKING: {
+		BASE: '/available-bookings',
+		DETAILS: ':id',
+	},
+	BOOKING: {
+		BASE: '/bookings',
+		DETAILS: ':id',
+	},
+	FIELD: {
+		BASE: '/fields',
+		DETAILS: ':id',
+	},
+	REGISTER_FIELD: '/register-field',
+	SUPPORT: '/support',
+} as const
+
+export const FOOTER_NAV_LIST_LEFT = [
 	{
 		to: '#',
 		content: 'Caravan Soler Tent',
@@ -21,7 +43,7 @@ export const FOOTER_NAVLIST_LEFT = [
 	},
 ]
 
-export const FOOTER_NAVLIST_RIGHT = [
+export const FOOTER_NAV_LIST_RIGHT = [
 	{
 		to: '#',
 		content: 'Need a Career ?',

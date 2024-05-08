@@ -19,7 +19,7 @@ const ContactItem = ({
 			<div
 				className={cn(
 					buttonVariants({ size: 'icon' }),
-					'size-10 md:size-14 lg:size-12 shrink-0 rounded-full',
+					'size-10 min-w-max shrink-0 rounded-full md:size-14 lg:size-12',
 				)}
 			>
 				{icon}
@@ -32,7 +32,7 @@ const ContactItem = ({
 							{content}
 						</Link>
 					) : (
-						content
+						<address>{content}</address>
 					)}
 				</p>
 			</div>

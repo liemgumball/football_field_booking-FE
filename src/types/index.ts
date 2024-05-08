@@ -3,9 +3,10 @@ export type TTimeStep = string
 export type TUser = {
 	_id: string
 	email: string
-	name: string
+	name?: string
 	phoneNumber: string
 	role: string
+	avatar?: string
 	avatarFallback?: string
 }
 
@@ -64,7 +65,7 @@ export type TDayOfService = {
 export type TBooking = {
 	_id: string
 	userId: string
-	name: string
+	name: string | null
 	subfieldId: string
 	subfield: TSubField
 	fieldId: string
@@ -76,6 +77,7 @@ export type TBooking = {
 	status: TBookingStatus
 	confirmed?: boolean
 	cancel?: boolean
+	paid?: boolean
 	createdAt?: Date | string
 	updatedAt?: Date | string
 	description?: string

@@ -1,4 +1,7 @@
+import React from 'react'
 import { Link, LinkProps } from 'react-router-dom'
+
+import { cn } from '@/lib/utils'
 import { Icons } from '../Icons'
 import {
 	NavigationMenu,
@@ -9,31 +12,24 @@ import {
 	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from '../ui/navigation-menu'
-import React from 'react'
-import { cn } from '@/lib/utils'
+import { PATHS } from '@/constants/navigation'
 
-const platforms: { title: string; href: string; description: string }[] = [
+const platforms = [
 	{
 		title: 'Find football Fields',
-		href: '/findfields',
+		href: PATHS.FIELD.BASE,
 		description:
 			'Explore available football fields in your area and book them for your matches or events.',
 	},
 	{
-		title: 'Field Details',
-		href: '/fields',
-		description:
-			'View detailed information about each football field, including amenities, availability, and pricing.',
-	},
-	{
-		title: 'Bookings',
-		href: '/bookings',
+		title: 'Bookings history',
+		href: PATHS.BOOKING.BASE,
 		description:
 			'Track the progress of your football field booking, from selection to confirmation.',
 	},
 	{
 		title: 'Become Our Partner',
-		href: '/register-field',
+		href: PATHS.REGISTER_FIELD,
 		description:
 			'Partner with us to manage your own football field and reach a wider audience of enthusiasts.',
 	},
@@ -49,30 +45,28 @@ const NavBar = () => {
 					</NavigationMenuTrigger>
 					<NavigationMenuContent>
 						<ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-							<li className="row-span-3">
+							<li className="row-span-2">
 								<NavigationMenuLink asChild>
 									<Link
 										className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-										to="/"
+										to={PATHS.HOME}
 									>
 										<Icons.Logo />
 										<div className="mb-2 mt-4 text-lg font-medium">Danang</div>
 										<p className="text-sm leading-tight text-muted-foreground">
 											Lorem ipsum dolor sit amet consectetur adipisicing elit.
-											Amet nostrum harum suscipit laborum atque! Voluptas
-											voluptatibus tempora quos minus illum.
 										</p>
 									</Link>
 								</NavigationMenuLink>
 							</li>
-							<ListItem to="/" title="Introduction">
+							<ListItem to={PATHS.HOME} title="Introduction">
 								Lorem ipsum dolor sit amet consectetur adipisicing elit.
 							</ListItem>
-							<ListItem to="/available-booking" title="Booking">
+							<ListItem
+								to={PATHS.AVAILABLE_BOOKING.BASE}
+								title="Available Bookings"
+							>
 								Lorem ipsum dolor sit amet.
-							</ListItem>
-							<ListItem to="/contact" title="Collaboration">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
 							</ListItem>
 						</ul>
 					</NavigationMenuContent>
@@ -92,7 +86,7 @@ const NavBar = () => {
 					</NavigationMenuContent>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
-					<Link to="/aboutus">
+					<Link to={PATHS.ABOUT_US}>
 						<NavigationMenuLink
 							className={navigationMenuTriggerStyle({
 								className: 'capitalize',
@@ -121,7 +115,7 @@ const ListItem = React.forwardRef<React.ElementRef<'a'>, LinkProps>(
 						)}
 						{...props}
 					>
-						<div className="text-sm font-medium leading-none">{title}</div>
+						<p className="text-sm font-medium leading-none">{title}</p>
 						<p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
 							{children}
 						</p>

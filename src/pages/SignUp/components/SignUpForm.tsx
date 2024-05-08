@@ -15,9 +15,9 @@ import {
 import { Input } from '@/components/ui/input'
 
 // Services
-import useAuthStore from '@/stores/auth'
-import { signup } from '@/services'
+import { signup } from '@/services/user'
 import { REGEX } from '@/constants/regex'
+import { Icons } from '@/components/Icons'
 
 const formSchema = z
 	.object({
@@ -39,18 +39,17 @@ const SignUpForm = () => {
 		resolver: zodResolver(formSchema),
 	})
 
-	const setAuth = useAuthStore((set) => set.set)
-
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
 		values,
 	) => {
 		try {
-			const response = await signup({
+			await signup({
 				email: values.email,
 				password: values.password,
 				phoneNumber: values.phoneNumber,
 			})
-			setAuth(response.data)
+
+			// TODO handle display successful message
 		} catch (error) {
 			// TODO handle server error
 			// Backend still not have the duplicated response status code
@@ -59,15 +58,24 @@ const SignUpForm = () => {
 
 	return (
 		<FormProvider {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-4">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-full min-w-[400px] max-w-[600px] space-y-4 p-4 md:space-y-8"
+			>
 				<FormField
 					control={form.control}
 					name="email"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className='text-base md:text-xl'>Email Address</FormLabel>
+							<FormLabel className="text-base md:text-xl">
+								Email Address
+							</FormLabel>
 							<FormControl>
-								<Input className='text-base px-2 md:px-4 md:text-lg' placeholder="Enter your email" {...field} />
+								<Input
+									className="px-2 py-5 text-base md:px-4"
+									placeholder="Enter your email"
+									{...field}
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -78,11 +86,11 @@ const SignUpForm = () => {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className='text-base md:text-xl'>Password</FormLabel>
+							<FormLabel className="text-base md:text-xl">Password</FormLabel>
 							<FormControl>
 								<Input
 									placeholder="Enter your password"
-									className='text-base px-2 md:px-4 md:text-lg'
+									className="px-2 py-5 text-base md:px-4"
 									type="password"
 									{...field}
 								/>
@@ -96,11 +104,13 @@ const SignUpForm = () => {
 					name="confirmPassword"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className='text-base md:text-xl'>Confirm Password</FormLabel>
+							<FormLabel className="text-base md:text-xl">
+								Confirm Password
+							</FormLabel>
 							<FormControl>
 								<Input
 									placeholder="Enter to confirm password"
-									className='text-base px-2 md:px-4 md:text-lg'
+									className="px-2 py-5 text-base md:px-4"
 									type="password"
 									{...field}
 								/>
@@ -114,11 +124,13 @@ const SignUpForm = () => {
 					name="phoneNumber"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className='text-base md:text-xl'>Phone Number</FormLabel>
+							<FormLabel className="text-base md:text-xl">
+								Phone Number
+							</FormLabel>
 							<FormControl>
 								<Input
 									placeholder="Enter to your phone number"
-									className='text-base px-2 md:px-4 md:text-lg'
+									className="px-2 py-5 text-base md:px-4"
 									type="tel"
 									{...field}
 								/>
@@ -131,8 +143,9 @@ const SignUpForm = () => {
 					disabled={form.formState.isSubmitting}
 					type="submit"
 					variant="outline"
-					className='px-28 md:text-lg text-base'
+					className="w-full text-base"
 				>
+					{form.formState.isSubmitting && <Icons.Loader className="mr-1" />}
 					Signup
 				</Button>
 			</form>

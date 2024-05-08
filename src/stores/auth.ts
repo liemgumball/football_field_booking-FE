@@ -16,7 +16,10 @@ const useAuthStore = create<AuthState>()(
 			googleAccessToken: undefined,
 			set: (user, googleAccessToken) =>
 				set({
-					user: { ...user, avatarFallback: getAvatarFallback(user.name) },
+					user: {
+						...user,
+						avatarFallback: getAvatarFallback(user.name || user.email),
+					},
 					googleAccessToken: googleAccessToken,
 				}),
 			remove: () => set({ user: undefined, googleAccessToken: undefined }),

@@ -65,7 +65,7 @@ const AvailableBookings = () => {
 			),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, pages) => {
-			if (lastPage.flat().length < 3) {
+			if (lastPage.flat().length < 6) {
 				return undefined
 			}
 			return pages.length
@@ -95,7 +95,7 @@ const AvailableBookings = () => {
 								</BreadcrumbItem>
 								<BreadcrumbSeparator />
 								<BreadcrumbItem>
-									<BreadcrumbPage>Available Booking</BreadcrumbPage>
+									<BreadcrumbPage>Available Bookings</BreadcrumbPage>
 								</BreadcrumbItem>
 							</BreadcrumbList>
 						</Breadcrumb>
@@ -145,7 +145,7 @@ const AvailableBookings = () => {
 					>
 						{isFetching ? (
 							<>
-								<Icons.Loader className="mr-1" />
+								<Icons.Loader className="mr-1 text-secondary" />
 								Loading
 							</>
 						) : (
