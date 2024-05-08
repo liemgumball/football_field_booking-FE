@@ -11,7 +11,7 @@ const BookingDetails = () => {
 	if (!id) throw new Error('Booking Id not specified')
 
 	const { isLoading, data, isError, error } = useQuery({
-		queryKey: [id],
+		queryKey: ['bookings', id],
 		queryFn: () => getBookingDetails(id),
 	})
 

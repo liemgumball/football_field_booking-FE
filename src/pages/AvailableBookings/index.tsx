@@ -53,7 +53,7 @@ const AvailableBookings = () => {
 		fetchNextPage,
 		hasNextPage,
 	} = useInfiniteQuery<TDayOfService[]>({
-		queryKey: [date, from, to, size, coordinatesQuery],
+		queryKey: ['day-of-services', date, from, to, size, coordinatesQuery],
 		queryFn: ({ pageParam }) =>
 			getDayOfServices(
 				pageParam as number,

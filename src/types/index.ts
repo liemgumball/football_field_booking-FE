@@ -76,7 +76,7 @@ export type TBooking = {
 	price: number
 	status: TBookingStatus
 	confirmed?: boolean
-	cancel?: boolean
+	canceled?: boolean
 	paid?: boolean
 	createdAt?: Date | string
 	updatedAt?: Date | string
