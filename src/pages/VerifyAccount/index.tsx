@@ -46,17 +46,17 @@ const VerifyAccount = () => {
 	if (isLoading)
 		return (
 			<div className="container my-16 max-w-min xl:my-auto">
-				<Icons.Loader size={70} />
-				<p className="mt-4 text-2xl text-muted-foreground xl:text-3xl">
+				<Icons.Loader size={70} className="mr-2" />
+				<span className="mt-4 text-2xl text-muted-foreground xl:text-3xl">
 					Verifying...
-				</p>
+				</span>
 			</div>
 		)
 
 	if (error)
 		return (
 			<div className="container my-16 space-y-16 text-center xl:my-auto">
-				<p className="mb-4 text-center text-3xl font-bold capitalize text-destructive xl:text-4xl">
+				<p className="mb-4 truncate text-center text-3xl font-bold capitalize text-destructive xl:text-4xl">
 					{error.message}
 				</p>
 				{error.status === 403 && <ResendVerifyForm />}
