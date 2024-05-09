@@ -137,7 +137,9 @@ const AvailableBookingForm = ({
 			const resMsg =
 				res.status === 400
 					? JSON.parse(await res.text())[0].message // get message from BE zod validate response
-					: `Field from ${form.getValues('from')} to ${form.getValues('to')} is being booked by another.`
+					: res.status === 412
+						? `Field from ${form.getValues('from')} to ${form.getValues('to')} is being booked by another.`
+						: await res.text()
 
 			toast({
 				title: 'Booking Failed!',
