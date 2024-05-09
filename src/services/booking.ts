@@ -25,3 +25,10 @@ export const createCheckoutSession = (bookingId: string) =>
 		method: 'POST',
 		withCredentials: true,
 	})
+
+export const updateBooking = (bookingId: string, data: Partial<TBooking>) =>
+	apiRequest(`bookings/${bookingId}`, {
+		method: 'PATCH',
+		withCredentials: true,
+		data,
+	})

@@ -34,6 +34,7 @@ import { timeSchema } from '@/constants/time'
 import TimeSelect from './TimeSelect'
 import { getDuration } from '@/utils/time'
 
+// TODO onBlur refetch
 const AvailabilityForm = ({ className }: { className?: string }) => {
 	const coordinates = useLocationStore((set) => set.coordinates)
 	const [searchParams, setSearchParams] = useSearchParams()

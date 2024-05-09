@@ -100,7 +100,7 @@ const AvailableBookingForm = ({
 				price: price,
 			}),
 		onSettled: () =>
-			queryClient.invalidateQueries({ queryKey: [id, from, to] }),
+			queryClient.invalidateQueries({ queryKey: ['bookings', id, from, to] }),
 	})
 
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
@@ -136,7 +136,7 @@ const AvailableBookingForm = ({
 			const res = error as Response
 			const resMsg =
 				res.status === 400
-					? JSON.parse(await res.text())[0].message
+					? JSON.parse(await res.text())[0].message // get message from BE zod validate response
 					: `Field from ${form.getValues('from')} to ${form.getValues('to')} is being booked by another.`
 
 			toast({

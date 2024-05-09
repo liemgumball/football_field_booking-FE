@@ -1,11 +1,9 @@
-import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
-import { toast } from '@/components/ui/use-toast'
-import { createCheckoutSession } from '@/services/booking'
 import useAuthStore from '@/stores/auth'
 import { TBooking } from '@/types'
 import { formatPrice } from '@/utils/booking'
 import { format } from 'date-fns'
+import BookingDetailsActions from './BookingDetailsActions'
 
 type TProps = Omit<TBooking, 'field'>
 
@@ -20,25 +18,12 @@ const BookingDetailsContent = (props: TProps) => {
 		_id,
 		createdAt,
 		description,
-		paid,
+		status,
 	} = props
 
 	const user = useAuthStore((set) => set.user)
 
 	if (!user) throw new Error('User not found')
-
-	const onClick = async () => {
-		try {
-			const { checkoutUrl } = await createCheckoutSession(_id)
-
-			window.location.href = checkoutUrl
-		} catch (err) {
-			toast({
-				title: 'Error while creating checkout session',
-				variant: 'destructive',
-			})
-		}
-	}
 
 	return (
 		<section className="mt-6 flex flex-col gap-y-6 px-12 py-4">
@@ -90,13 +75,7 @@ const BookingDetailsContent = (props: TProps) => {
 					<Textarea value={description} className="mt-2" />
 				</p>
 			</div>
-
-			{!paid && (
-				<div className="container max-w-min">
-					{' '}
-					<Button onClick={onClick}>Checkout</Button>
-				</div>
-			)}
+			<BookingDetailsActions _id={_id} status={status} />
 		</section>
 	)
 }

@@ -1,8 +1,8 @@
 type ServiceProps = { list: { to: string; content: string }[] }
 
 const ServicesItem = ({ list }: ServiceProps) => {
-	const serviceList = list.map((item) => (
-		<li className="mt-2" key={item.to}>
+	const serviceList = list.map((item, index) => (
+		<li className="mt-2" key={item.to + index}>
 			<a href={item.to} className="text-xs hover:text-primary md:text-sm">
 				{item.content}
 			</a>
