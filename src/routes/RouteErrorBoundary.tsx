@@ -1,6 +1,6 @@
 import { ERROR_MSG } from '@/constants/message'
 import { Link } from 'react-router-dom'
-import { buttonVariants } from './ui/button'
+import { buttonVariants } from '../components/ui/button'
 
 const RouteErrorBoundary = () => {
 	return (

@@ -22,7 +22,7 @@ const formSchema = z.object({
 		.regex(REGEX.PHONE_NUMBER, 'Invalid phone number'),
 })
 
-const EditProfileForm = () => {
+const EditProfileForm = ({ close }: { close: () => void }) => {
 	const user = useAuthStore((set) => set.user)
 	const setAuth = useAuthStore((set) => set.set)
 	if (!user) throw new Error('User not found')
@@ -41,6 +41,7 @@ const EditProfileForm = () => {
 			const newUser = await getUser(user._id)
 
 			setAuth(newUser)
+			close()
 		} catch (err) {
 			const error = err as Response
 
@@ -80,7 +81,6 @@ const EditProfileForm = () => {
 				/>
 				<Button
 					type="submit"
-					variant="secondary"
 					disabled={!form.formState.isDirty || form.formState.isSubmitting}
 				>
 					{form.formState.isSubmitting && (

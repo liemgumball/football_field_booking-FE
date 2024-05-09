@@ -18,9 +18,8 @@ const AvailableBookingDetails = () => {
 	if (!id) throw new Error('Failed to find available booking Id')
 
 	const { data, isLoading, isError, error } = useQuery<TDayOfService>({
-		queryKey: ['bookings', id, from, to],
+		queryKey: ['day-of-services', id, from, to],
 		queryFn: () => getDayOfServiceById(id, from, to),
-		staleTime: 10000,
 	})
 
 	const bookingStatus = data?.turnOfServices.every(

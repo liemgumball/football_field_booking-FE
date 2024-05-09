@@ -44,7 +44,8 @@ const BookingDetailsActions = ({ status, _id }: TProps) => {
 		try {
 			await mutation.mutateAsync()
 			toast({
-				title: 'Cancel successfully.',
+				title: 'Cancel booking successfully!',
+				variant: 'primary',
 			})
 		} catch (err) {
 			const error = err as Response
