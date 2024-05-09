@@ -2,8 +2,9 @@ import { TTurnOfService } from '@/types'
 
 export function getInitialFrom() {
 	const now = new Date()
-	const minutes = now.getMinutes() < 30 ? '00' : '30'
-	return now.getHours().toString().padStart(2, '0') + ':' + minutes
+	const hours = now.getMinutes() < 30 ? now.getHours() : now.getHours() + 1
+	const minutes = now.getMinutes() < 30 ? '30' : '00'
+	return hours.toString().padStart(2, '0') + ':' + minutes
 }
 
 export function getInitialTo(from?: string) {
@@ -15,8 +16,9 @@ export function getInitialTo(from?: string) {
 	}
 
 	const now = new Date()
-	const minutes = now.getMinutes() < 30 ? '00' : '30'
-	return (now.getHours() + 1).toString().padStart(2, '0') + ':' + minutes
+	const minutes = now.getMinutes() < 30 ? '30' : '00'
+	const hours = now.getMinutes() < 30 ? now.getHours() : now.getHours() + 1
+	return (hours + 1).toString().padStart(2, '0') + ':' + minutes
 }
 
 export function calculatePrice(input: TTurnOfService[] | null): number {

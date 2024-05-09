@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { StatusCodes } from 'http-status-codes'
 
 // Components
 import {
@@ -44,6 +45,20 @@ type TProps = {
 	status?: TTurnOfServiceStatus
 }
 
+// Form validation
+const formSchema = z
+	.object({
+		name: z.string().min(1, 'Name cannot be empty'),
+		from: timeSchema,
+		to: timeSchema,
+		additionalServices: z.any().optional(), // should be radio group
+		description: z.string().optional(),
+	})
+	.refine(({ from, to }) => getDuration(from, to) >= 1, {
+		message: 'To must after From as least 1 hour',
+		path: ['to'],
+	})
+
 const AvailableBookingForm = ({
 	date,
 	subfieldId,
@@ -58,19 +73,6 @@ const AvailableBookingForm = ({
 	const navigate = useNavigate()
 	const user = useAuthStore((set) => set.user)
 	const queryClient = useQueryClient()
-
-	const formSchema = z
-		.object({
-			name: z.string().min(1, 'Name cannot be empty'),
-			from: timeSchema,
-			to: timeSchema,
-			additionalServices: z.any().optional(), // radio group
-			description: z.string().optional(),
-		})
-		.refine(({ from, to }) => getDuration(from, to) >= 1, {
-			message: 'To must after From as least 1 hour',
-			path: ['to'],
-		})
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -100,9 +102,15 @@ const AvailableBookingForm = ({
 				price: price,
 			}),
 		onSettled: () =>
-			queryClient.invalidateQueries({ queryKey: ['bookings', id, from, to] }),
+			queryClient.invalidateQueries({
+				queryKey: ['day-of-services', id, from, to],
+			}),
 	})
 
+	/**
+	 * Create a new booking and update new data after fetch
+	 * @param values Values of form
+	 */
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
 		values,
 	) => {
@@ -126,7 +134,8 @@ const AvailableBookingForm = ({
 			if (response) {
 				// Display the notification
 				toast({
-					title: 'Book successfully',
+					title: 'Book successfully!',
+					variant: 'primary',
 					description: `${format(response.date, 'PPP')} from ${response.from} to ${response.to}`,
 				})
 
@@ -135,19 +144,21 @@ const AvailableBookingForm = ({
 		} catch (error) {
 			const res = error as Response
 			const resMsg =
-				res.status === 400
+				res.status === StatusCodes.BAD_REQUEST
 					? JSON.parse(await res.text())[0].message // get message from BE zod validate response
-					: res.status === 412
+					: res.status === StatusCodes.PRECONDITION_FAILED
 						? `Field from ${form.getValues('from')} to ${form.getValues('to')} is being booked by another.`
 						: await res.text()
 
 			toast({
 				title: 'Booking Failed!',
-				description: resMsg,
 				variant: 'destructive',
+				description: resMsg,
 			})
 		}
 	}
+
+	const { isSubmitting } = form.formState
 
 	return (
 		<Form {...form}>
@@ -239,9 +250,9 @@ const AvailableBookingForm = ({
 					className="mx-auto mt-2 max-w-min capitalize md:col-span-2"
 					variant={status !== 'available' ? 'outline' : 'default'}
 					type="submit"
-					disabled={form.formState.isSubmitting || status !== 'available'}
+					disabled={isSubmitting || status !== 'available'}
 				>
-					{form.formState.isSubmitting ? (
+					{isSubmitting ? (
 						<>
 							<Icons.Loader className="mr-1 text-secondary" />
 							Booking...

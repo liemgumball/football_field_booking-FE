@@ -7,13 +7,13 @@ import {
 
 // Eagle Loading Routes
 import Layout from '@/components/Layout'
-import PrivateRoute from '@/components/PrivateRoute'
-import RouteErrorBoundary from '@/components/RouteErrorBoundary'
-import AboutUs from '@/pages/AboutUs'
+import PrivateRoute from './PrivateRoute'
+import RouteErrorBoundary from './RouteErrorBoundary'
 import { PATHS } from '@/constants/navigation'
 
 // Lazy Loading Routes
 const Home = lazy(() => import('@/pages/Home'))
+const AboutUs = lazy(() => import('@/pages/AboutUs'))
 const SignUp = lazy(() => import('@/pages/SignUp'))
 const Login = lazy(() => import('@/pages/Login'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
