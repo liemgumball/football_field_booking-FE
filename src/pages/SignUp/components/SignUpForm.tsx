@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
+import { StatusCodes } from 'http-status-codes'
 
 // Components
 import { Button } from '@/components/ui/button'
@@ -19,7 +20,11 @@ import { signup } from '@/services/user'
 import { REGEX } from '@/constants/regex'
 import { Icons } from '@/components/Icons'
 import { toast } from '@/components/ui/use-toast'
+import { useNavigate } from 'react-router-dom'
 
+/**
+ * Form validation Schema
+ */
 const formSchema = z
 	.object({
 		email: z.string().email(),
@@ -36,6 +41,7 @@ const formSchema = z
 	})
 
 const SignUpForm = () => {
+	const navigate = useNavigate()
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 	})
@@ -50,17 +56,48 @@ const SignUpForm = () => {
 				phoneNumber: values.phoneNumber,
 			})
 
+			// Successfully
 			toast({
-				title: 'Sign Up Successful',
+				title: 'Sign Up Successful.',
+				variant: 'primary',
 				description: 'An verify email has been sent to your email address!',
 			})
+
+			setTimeout(() => navigate('/login', { replace: true }))
 		} catch (error) {
-			// TODO handle server error
-			// Backend still not have the duplicated response status code
-			toast({
-				title: 'An error has occurred',
-				variant: 'destructive',
-			})
+			// Duplicated unique data in database
+			if (
+				error instanceof Response &&
+				error.status === StatusCodes.BAD_REQUEST
+			) {
+				/**
+				 * @example
+				 *	[
+				 *		{
+				 *			"code": "custom",
+				 *			"message": "This phone number already in use",
+				 *			"path": [
+				 *				"body",
+				 *				"phoneNumber"
+				 *			]
+				 *		}
+				 *	]
+				 */
+				const issues = JSON.parse(await error.text()) as unknown as z.ZodIssue[]
+
+				// Set form error following zod issue response from database
+				issues.forEach((issue) => {
+					form.setError(
+						(issue.path[1] as keyof z.infer<typeof formSchema>) || 'root',
+						{ message: issue.message },
+					)
+				})
+			} else {
+				toast({
+					title: 'An error has occurred',
+					variant: 'destructive',
+				})
+			}
 		}
 	}
 
