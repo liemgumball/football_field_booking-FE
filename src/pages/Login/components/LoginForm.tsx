@@ -71,6 +71,8 @@ const LoginForm = () => {
 		}
 	}
 
+	const { isSubmitting, isValid, isSubmitted, errors } = form.formState
+
 	return (
 		<FormProvider {...form}>
 			<form
@@ -116,19 +118,16 @@ const LoginForm = () => {
 					)}
 				/>
 				<Button
-					disabled={
-						form.formState.isSubmitting ||
-						(!form.formState.isValid && form.formState.isSubmitted)
-					}
+					disabled={isSubmitting || (!isValid && isSubmitted)}
 					type="submit"
 					variant="outline"
 					className="w-full text-base"
 				>
-					{form.formState.isSubmitting && <Icons.Loader className="mr-1" />}
+					{isSubmitting && <Icons.Loader className="mr-1" />}
 					Login
 				</Button>
 				{/* [ ] css not good, needed design */}
-				<FormMessage>{form.formState.errors.root?.message}</FormMessage>
+				<FormMessage>{errors.root?.message}</FormMessage>
 			</form>
 		</FormProvider>
 	)

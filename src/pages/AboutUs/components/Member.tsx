@@ -33,18 +33,10 @@ const Member = (member: MemberProps) => {
 					<Separator />
 
 					<CardFooter className="flex space-x-1 p-2">
-						<li>
-							<SocialContactItem className="fab fa-facebook-f" />
-						</li>
-						<li>
-							<SocialContactItem className="fab fa-instagram" />
-						</li>
-						<li>
-							<SocialContactItem className="fab fa-twitter" />
-						</li>
-						<li>
-							<SocialContactItem className="fab fa-linkedin-in" />
-						</li>
+						<SocialContactItem className="fab fa-facebook-f" />
+						<SocialContactItem className="fab fa-instagram" />
+						<SocialContactItem className="fab fa-twitter" />
+						<SocialContactItem className="fab fa-linkedin-in" />
 					</CardFooter>
 				</div>
 			</Card>

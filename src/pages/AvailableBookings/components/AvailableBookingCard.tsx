@@ -2,7 +2,6 @@ import { TDayOfService } from '@/types'
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle,
@@ -87,19 +86,17 @@ const AvailableBookingCard = ({
 				</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<CardDescription>
-					<HoverCard>
-						<HoverCardTrigger
-							className="cursor-default rounded-md border p-2 hover:bg-muted"
-							onMouseEnter={onMouseEnter}
-						>
-							<MapPin className="mr-2 inline text-primary" size={16} />
-							{format(date, 'PPP')}
-						</HoverCardTrigger>
-						{location && <HoverCardContent>{location}</HoverCardContent>}
-					</HoverCard>
-					<span className="ml-5 text-lg font-bold tracking-wider text-secondary-foreground">{`${from} - ${to}`}</span>
-				</CardDescription>
+				<HoverCard>
+					<HoverCardTrigger
+						className="cursor-default rounded-md border p-2 hover:bg-muted"
+						onMouseEnter={onMouseEnter}
+					>
+						<MapPin className="mr-2 inline text-primary" size={16} />
+						{format(date, 'PPP')}
+					</HoverCardTrigger>
+					{location && <HoverCardContent>{location}</HoverCardContent>}
+				</HoverCard>
+				<span className="ml-5 text-lg font-bold tracking-wider text-secondary-foreground">{`${from} - ${to}`}</span>
 			</CardContent>
 			<Separator className="mx-auto mb-4 w-5/6" />
 			<CardFooter className="space-x-6 text-sm text-secondary-foreground">

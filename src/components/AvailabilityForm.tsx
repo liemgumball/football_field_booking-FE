@@ -89,6 +89,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 		setSearchParams(searchParams.toString())
 	}
 
+	const { isSubmitting } = form.formState
 	return (
 		<Form {...form}>
 			<form
@@ -241,7 +242,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 				<Button
 					className="col-auto mt-8"
 					size="lg"
-					disabled={form.formState.isSubmitting}
+					disabled={isSubmitting}
 					type="submit"
 				>
 					Check Availability

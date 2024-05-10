@@ -30,8 +30,9 @@ const TeamMember = () => {
 				</h2>
 			</div>
 			<ul className="mt-3 flex flex-col items-center justify-center gap-12 lg:flex-row">
-				{Members.map((member) => (
+				{Members.map((member, index) => (
 					<Member
+						key={index}
 						name={member.name}
 						position={member.position}
 						image={member.image}

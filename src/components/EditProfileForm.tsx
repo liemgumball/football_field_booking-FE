@@ -49,6 +49,8 @@ const EditProfileForm = ({ close }: { close: () => void }) => {
 		}
 	}
 
+	const { isSubmitting, isDirty } = form.formState
+
 	return (
 		<Form {...form}>
 			<form
@@ -79,13 +81,8 @@ const EditProfileForm = ({ close }: { close: () => void }) => {
 						</FormItem>
 					)}
 				/>
-				<Button
-					type="submit"
-					disabled={!form.formState.isDirty || form.formState.isSubmitting}
-				>
-					{form.formState.isSubmitting && (
-						<Loader2Icon className="mr-3 animate-spin" />
-					)}
+				<Button type="submit" disabled={!isDirty || isSubmitting}>
+					{isSubmitting && <Loader2Icon className="mr-3 animate-spin" />}
 					Save Changes
 				</Button>
 			</form>
