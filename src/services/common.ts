@@ -6,6 +6,13 @@ type TReqInit<T = unknown> = {
 	withCredentials?: boolean
 }
 
+/**
+ *
+ * @param url endpoint path to BE service
+ * @param init request init
+ * @returns json if has json response, return response if no json
+ * @throws response as error if `status code` is not `2xx`
+ */
 const apiRequest = async <T>(url: string, init?: TReqInit<T>) => {
 	if (!init) {
 		const response = await fetch(ENV_VARS.API_URL + url)
