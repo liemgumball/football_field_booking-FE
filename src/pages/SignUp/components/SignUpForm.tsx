@@ -59,9 +59,12 @@ const SignUpForm = () => {
 			// Backend still not have the duplicated response status code
 			toast({
 				title: 'An error has occurred',
+				variant: 'destructive',
 			})
 		}
 	}
+
+	const { isSubmitting, isValid } = form.formState
 
 	return (
 		<FormProvider {...form}>
@@ -147,13 +150,14 @@ const SignUpForm = () => {
 					)}
 				/>
 				<Button
-					disabled={form.formState.isSubmitting}
+					disabled={isSubmitting || !isValid}
 					type="submit"
-					variant="outline"
 					className="w-full text-base"
 				>
-					{form.formState.isSubmitting && <Icons.Loader className="mr-1" />}
-					Signup
+					{isSubmitting && (
+						<Icons.Loader className="mr-1 text-primary-foreground" />
+					)}
+					Sign Up
 				</Button>
 			</form>
 		</FormProvider>

@@ -45,6 +45,8 @@ const ResendVerifyForm = () => {
 		}
 	}
 
+	const { isSubmitting, isSubmitSuccessful, isValid, errors } = form.formState
+
 	return (
 		<Form {...form}>
 			<form
@@ -70,16 +72,12 @@ const ResendVerifyForm = () => {
 				/>
 				<Button
 					type="submit"
-					disabled={
-						form.formState.isSubmitting || form.formState.isSubmitSuccessful
-					}
+					disabled={isSubmitting || !isValid || isSubmitSuccessful}
 				>
-					{form.formState.isSubmitting && <Icons.Loader className="mr-2" />}
-					{form.formState.isSubmitSuccessful ? 'Sent' : 'Send'}
+					{isSubmitting && <Icons.Loader className="mr-2" />}
+					{isSubmitSuccessful ? 'Sent' : 'Send'}
 				</Button>
-				{form.formState.errors.root && (
-					<FormMessage>{form.formState.errors.root.message}</FormMessage>
-				)}
+				{errors.root && <FormMessage>{errors.root.message}</FormMessage>}
 			</form>
 		</Form>
 	)

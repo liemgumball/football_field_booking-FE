@@ -139,7 +139,10 @@ const AvailableBookingForm = ({
 					description: `${format(response.date, 'PPP')} from ${response.from} to ${response.to}`,
 				})
 
-				setTimeout(() => navigate(`/bookings/${response._id}`), 1000)
+				setTimeout(
+					() => navigate(`/bookings/${response._id}`, { replace: true }),
+					1200,
+				)
 			}
 		} catch (error) {
 			const res = error as Response

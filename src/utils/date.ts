@@ -21,6 +21,8 @@ export function getToday() {
 }
 
 export function formatDate(date: Date): string {
+	date.setUTCDate(date.getDate())
 	date.setUTCHours(0, 0, 0, 0)
+
 	return date.toISOString()
 }

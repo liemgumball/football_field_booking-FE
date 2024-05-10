@@ -26,15 +26,15 @@ const ContactItem = ({
 			</div>
 			<div>
 				<span className="font-semibold text-secondary-foreground">{title}</span>
-				<p className="text-xs md:text-base lg:text-sm">
+				<address className="text-xs md:text-base lg:text-sm">
 					{to ? (
 						<Link className="transition hover:text-primary" to={to}>
 							{content}
 						</Link>
 					) : (
-						<address>{content}</address>
+						content
 					)}
-				</p>
+				</address>
 			</div>
 		</li>
 	)
