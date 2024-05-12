@@ -83,3 +83,16 @@ export type TBooking = {
 	description?: string
 	additionalServices?: unknown
 }
+
+export type TMarker = {
+	_id: string
+	geo: {
+		type: 'Point'
+		coordinates: [number, number]
+	}
+	distance: number
+	field: {
+		name: string
+		rating: number | null
+	}
+}
