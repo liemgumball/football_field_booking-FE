@@ -92,7 +92,7 @@ const NavBar = () => {
 								className: 'capitalize',
 							})}
 						>
-							Contact Us
+							About Us
 						</NavigationMenuLink>
 					</Link>
 				</NavigationMenuItem>

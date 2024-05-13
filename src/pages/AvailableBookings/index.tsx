@@ -3,16 +3,14 @@ import AvailableBookingCard from './components/AvailableBookingCard'
 import { Icons } from '@/components/Icons'
 import SkeletonCard from '@/components/SkeletonCard'
 import { Button } from '@/components/ui/button'
-import { getDayOfServices } from '@/services/day-of-services'
 import useLocationStore from '@/stores/location'
-import { TDayOfService } from '@/types'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { getToday } from '@/utils/date'
-import { useInfiniteQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import HeroSection from './HeroSection'
 import FetchErrorHandler from '@/components/FetchErrorHandler'
+import { useAvailableBookingsInfiniteQuery } from './hooks/useAvailableBookingsInfiniteQuery'
 
 const AvailableBookings = () => {
 	const coordinates = useLocationStore((set) => set.coordinates)
@@ -41,30 +39,18 @@ const AvailableBookings = () => {
 		isFetching,
 		fetchNextPage,
 		hasNextPage,
-	} = useInfiniteQuery<TDayOfService[]>({
-		queryKey: ['day-of-services', date, from, to, size, coordinatesQuery],
-		queryFn: ({ pageParam }) =>
-			getDayOfServices(
-				pageParam as number,
-				date,
-				from,
-				to,
-				size,
-				coordinatesQuery,
-			),
-		initialPageParam: 0,
-		getNextPageParam: (lastPage, pages) => {
-			if (lastPage.flat().length < 6) {
-				return undefined
-			}
-			return pages.length
-		},
-	})
+	} = useAvailableBookingsInfiniteQuery(
+		date,
+		from,
+		to,
+		size ? Number(size) : null,
+		coordinatesQuery,
+	)
 
 	const bookingsAvailable = useMemo(() => data?.pages.flat(), [data])
 
 	return (
-		<main className="my-10">
+		<main>
 			<HeroSection />
 
 			{/* Available Booking List */}

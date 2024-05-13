@@ -15,7 +15,7 @@ const AvailableBookingSkeleton = () => {
 					<Skeleton className="h-[50px] w-[80px] rounded-md" />
 				</div>
 			</header>
-			<section className="mx-auto min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">
+			<section className="mx-auto my-4 min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">
 				<div className="space-y-5">
 					<div className="space-y-3">
 						<Skeleton className="h-[20px] w-[120px] rounded-md" />

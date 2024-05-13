@@ -5,7 +5,7 @@ import ReviewSection from './ReviewSection'
 
 const Home = () => {
 	return (
-		<main className="my-16 font-prompt">
+		<main className="font-prompt">
 			<HeroSection />
 			<AboutSection />
 			<AvailabilitySection />

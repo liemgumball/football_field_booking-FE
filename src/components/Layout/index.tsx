@@ -6,7 +6,7 @@ import { Icons } from '../Icons'
 
 const Layout = () => {
 	return (
-		<div className="flex min-h-screen flex-col items-center px-0 py-2">
+		<div className="relative flex min-h-screen flex-col items-center px-0">
 			<Header />
 			<Suspense
 				fallback={<Icons.Loader size={100} className="my-64 duration-1000" />}

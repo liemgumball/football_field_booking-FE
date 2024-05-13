@@ -1,5 +1,10 @@
 export type TTimeStep = string
 
+export type TTimeRange = {
+	from: TTimeStep
+	to: TTimeStep
+}
+
 export type TUser = {
 	_id: string
 	email: string
@@ -60,6 +65,15 @@ export type TDayOfService = {
 	date: string
 	turnOfServices: TTurnOfService[]
 	availability?: boolean
+}
+
+export type TAvailableBooking = {
+	dayOfService: TDayOfService
+	from: TTimeStep
+	to: TTimeStep
+	status: TTurnOfServiceStatus
+	price: number
+	duration: number
 }
 
 export type TBooking = {
