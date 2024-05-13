@@ -96,3 +96,5 @@ export type TMarker = {
 		rating: number | null
 	}
 }
+
+export type TRating = 1 | 2 | 3 | 4 | 5
