@@ -1,7 +1,5 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
 import { StatusCodes } from 'http-status-codes'
 
@@ -20,100 +18,58 @@ import { Textarea } from '@/components/ui/textarea'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 import { SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Icons } from '@/components/Icons'
+import { ToastAction } from '@/components/ui/toast'
+import { useAvailableBookingMutation } from '../hooks/useAvailableBookingMutation'
 
 // Store & Constants & Types
 import useAuthStore from '@/stores/auth'
-import { TBooking, TTurnOfServiceStatus } from '@/types'
-import { timeSchema } from '@/constants/time'
 
 // Utils
-import { getDuration } from '@/utils/time'
-import { getInitialFrom, getInitialTo } from '@/utils/booking'
-import { createBooking } from '@/services/booking'
 import { format } from 'date-fns'
 import { cn } from '@/lib/utils'
-import { Icons } from '@/components/Icons'
-import { ToastAction } from '@/components/ui/toast'
+import { TAvailableBooking } from '@/types'
+import useAvailableBookingStore from '@/stores/availableBooking'
+import {
+	availableFormSchema,
+	useAvailableBookingForm,
+} from '../hooks/useAvailableBookingForm'
 
 type TProps = {
-	subfieldId: string
-	date: string | Date
-	price: number
-	id: string
-	from: string
-	to: string
-	status?: TTurnOfServiceStatus
+	availableBooking: TAvailableBooking
 }
 
-// Form validation
-const formSchema = z
-	.object({
-		name: z.string().min(1, 'Name cannot be empty'),
-		from: timeSchema,
-		to: timeSchema,
-		additionalServices: z.any().optional(), // should be radio group
-		description: z.string().optional(),
-	})
-	.refine(({ from, to }) => getDuration(from, to) >= 1, {
-		message: 'To must after From as least 1 hour',
-		path: ['to'],
-	})
-
-const AvailableBookingForm = ({
-	date,
-	subfieldId,
-	price,
-	id,
-	from,
-	to,
-	status,
-}: TProps) => {
-	const [searchParams] = useSearchParams()
+const AvailableBookingForm = ({ availableBooking }: TProps) => {
+	// available booking as props
+	const { dayOfService, from, to, price, status } = availableBooking
 	const { toast } = useToast()
 	const navigate = useNavigate()
 	const user = useAuthStore((set) => set.user)
-	const queryClient = useQueryClient()
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
-		defaultValues: {
-			name: user?.name || '',
-			from: searchParams.get('from') || getInitialFrom(),
-			to:
-				searchParams.get('to') ||
-				getInitialTo(searchParams.get('from') || undefined),
-		},
-	})
+	// Onchange time range
+	const updateTimeRange = useAvailableBookingStore(
+		(store) => store.updateTimeRange,
+	)
 
-	const mutation = useMutation<
-		TBooking,
-		Error,
-		z.infer<typeof formSchema>,
-		unknown
-	>({
-		mutationFn: (values) =>
-			createBooking({
-				...values,
-				from: values.from,
-				to: values.to,
-				userId: user?._id || '',
-				subfieldId: subfieldId,
-				date: date,
-				price: price,
-			}),
-		onSettled: () =>
-			queryClient.invalidateQueries({
-				queryKey: ['day-of-services', id, from, to],
-			}),
-	})
+	// Form validation
+	const form = useAvailableBookingForm(from, to)
+
+	// Mutation
+	const { mutateAsync } = useAvailableBookingMutation(
+		dayOfService._id,
+		dayOfService.subfield._id,
+		dayOfService.date,
+		price,
+	)
 
 	/**
 	 * Create a new booking and update new data after fetch
 	 * @param values Values of form
 	 */
-	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
+	const onSubmit: SubmitHandler<z.infer<typeof availableFormSchema>> = async (
 		values,
 	) => {
+		// Login before booking
 		if (!user)
 			return toast({
 				title: 'You need to login before book!',
@@ -129,7 +85,7 @@ const AvailableBookingForm = ({
 			})
 
 		try {
-			const response = await mutation.mutateAsync(values)
+			const response = await mutateAsync(values)
 
 			if (response) {
 				// Display the notification
@@ -161,6 +117,7 @@ const AvailableBookingForm = ({
 		}
 	}
 
+	// state for submitting
 	const { isSubmitting } = form.formState
 
 	return (
@@ -193,7 +150,10 @@ const AvailableBookingForm = ({
 						<FormItem>
 							<FormLabel>From</FormLabel>
 							<TimeSelect
-								onValueChange={field.onChange}
+								onValueChange={(value: string) => {
+									updateTimeRange(value)
+									field.onChange(value)
+								}}
 								defaultValue={field.value}
 							>
 								<FormControl>
@@ -218,7 +178,10 @@ const AvailableBookingForm = ({
 						<FormItem>
 							<FormLabel>To</FormLabel>
 							<TimeSelect
-								onValueChange={field.onChange}
+								onValueChange={(value: string) => {
+									updateTimeRange(undefined, value)
+									field.onChange(value)
+								}}
 								defaultValue={field.value}
 							>
 								<FormControl>
@@ -261,7 +224,7 @@ const AvailableBookingForm = ({
 							Booking...
 						</>
 					) : status === 'available' ? (
-						'Booking Now'
+						'Book Now'
 					) : (
 						'Not available'
 					)}

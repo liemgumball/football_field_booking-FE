@@ -1,4 +1,10 @@
-import { TTurnOfService } from '@/types'
+import {
+	TDayOfService,
+	TTimeStep,
+	TTurnOfService,
+	TTurnOfServiceStatus,
+} from '@/types'
+import { getDuration } from './time'
 
 export function getInitialFrom() {
 	// 15 minutes later
@@ -43,4 +49,28 @@ export function calculatePrice(input: TTurnOfService[] | null): number {
 
 export const formatPrice = (num: number) => {
 	return num + ',000' + ' VND'
+}
+
+export function getAvailableBookingInfo(
+	dayOfService: TDayOfService,
+	from: TTimeStep,
+	to: TTimeStep,
+) {
+	const { field, date, subfield } = dayOfService
+	const selectedTurnOfServices = dayOfService.turnOfServices.filter(
+		(t) => t.at >= from && t.at < to,
+	)
+
+	const status: TTurnOfServiceStatus = selectedTurnOfServices.every(
+		(t) => t.status === 'available',
+	)
+		? 'available'
+		: selectedTurnOfServices.every((t) => t.status === 'progressing')
+			? 'progressing'
+			: 'used'
+
+	const duration = getDuration(from, to)
+
+	const price = calculatePrice(selectedTurnOfServices)
+	return { status, price, duration, field, date, subfield }
 }
