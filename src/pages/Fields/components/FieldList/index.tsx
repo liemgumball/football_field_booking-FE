@@ -1,5 +1,7 @@
 import { TFootballField } from '@/types'
 import FieldCard from '../Field'
+import { Link } from 'react-router-dom'
+import { PATHS } from '@/constants/navigation'
 
 const FieldList = ({ fields }: { fields: TFootballField[] }) => {
 	return (
@@ -7,11 +9,13 @@ const FieldList = ({ fields }: { fields: TFootballField[] }) => {
 			{fields.length
 				? fields.map((field) => {
 						return (
-							<FieldCard
-								name={field.name}
-								images={field.images}
-								rating={field.rating}
-							/>
+							<Link to={`${PATHS.FIELD.BASE}/${field._id}`}>
+								<FieldCard
+									name={field.name}
+									images={field.images}
+									rating={field.rating}
+								/>
+							</Link>
 						)
 					})
 				: 'Not Fields Founded'}

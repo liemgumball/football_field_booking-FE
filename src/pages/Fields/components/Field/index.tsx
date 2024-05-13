@@ -4,17 +4,16 @@ import { StarIcon } from 'lucide-react'
 
 const FieldCard = ({
 	name,
-	images,
+	// images,
 	rating,
 }: Pick<TFootballField, 'images' | 'name' | 'rating'>) => {
 	return (
-		<div className="relative overflow-hidden">
-			<div className="max-h-80 max-w-max opacity-55">
+		<div className="relative max-h-[227px] overflow-hidden">
+			<div className="max-w-max opacity-55">
 				<img
-					width={395}
-					height={500}
+					width={300}
 					className="rounded"
-					src={images?.length ? images[0] : defaultImg}
+					src={defaultImg}
 					alt="image field"
 				/>
 			</div>
@@ -22,7 +21,7 @@ const FieldCard = ({
 				<p> {rating || 'No'} </p>
 				<StarIcon />
 			</div>
-			<div className="absolute left-0 top-0 flex h-full w-full items-end px-7 py-6">
+			<div className="absolute left-0 top-28 flex max-h-80 w-full items-end px-5 pb-5 pt-4">
 				<h3 className="text-xl font-bold">{name}</h3>
 			</div>
 		</div>

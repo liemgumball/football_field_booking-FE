@@ -10,7 +10,7 @@ import Layout from '@/components/Layout'
 import PrivateRoute from '@/components/PrivateRoute'
 import RouteErrorBoundary from '@/components/RouteErrorBoundary'
 import AboutUs from '@/pages/AboutUs'
-import FindFootballFields from '@/pages/FindFootballFields'
+import Fields from '@/pages/Fields'
 
 // Lazy Loading Routes
 const Home = lazy(async () => import('@/pages/Home'))
@@ -36,7 +36,7 @@ const router = createBrowserRouter(
 				<Route path=":id" element={<AvailableBookingDetails />} />
 			</Route>
 			<Route path="/aboutus" element={<AboutUs />} />
-			<Route path="/findfields" element={<FindFootballFields />} />
+			<Route path="/findfields" element={<Fields />} />
 
 			{/*-------------------------- Private Routes --------------------------*/}
 			<Route element={<PrivateRoute />} errorElement={<RouteErrorBoundary />}>
