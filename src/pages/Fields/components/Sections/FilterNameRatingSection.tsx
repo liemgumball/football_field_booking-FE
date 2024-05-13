@@ -25,7 +25,7 @@ const FilterByNameSection = () => {
 				const fields = (await response.json()) as TFootballField[]
 				setFields(fields)
 			} catch (error) {
-				console.error('Error fetching products:', error)
+				console.error('Error fetching fields:', error)
 			}
 		}
 		fetchData()
