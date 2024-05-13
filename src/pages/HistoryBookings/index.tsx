@@ -1,15 +1,10 @@
 import DataTable from './components/DataTable'
 import Columns from './components/Columns'
-import { useQuery } from '@tanstack/react-query'
-import { getBookings } from '@/services/booking'
 import { Loader2Icon } from 'lucide-react'
+import { useBookingsQuery } from './hooks/useBookingsQuery'
 
 const HistoryBookings = () => {
-	const { data, isLoading } = useQuery({
-		queryKey: ['bookings'],
-		queryFn: getBookings,
-		staleTime: 3000,
-	})
+	const { data, isLoading } = useBookingsQuery()
 
 	if (isLoading)
 		return (
@@ -19,7 +14,7 @@ const HistoryBookings = () => {
 		)
 
 	return (
-		<main className="container">
+		<main className="container my-4">
 			{data && <DataTable data={data} columns={Columns} />}
 		</main>
 	)

@@ -5,7 +5,7 @@ export const getDayOfServices = (
 	date: string,
 	from: string,
 	to?: string,
-	size?: string | null,
+	size?: number | null,
 	coordinates?: {
 		longitude: number
 		latitude: number
