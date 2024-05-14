@@ -12,7 +12,9 @@ const FilterSection = ({
 	return (
 		<section>
 			<div>
-				<h4 className="mt-6 text-3xl font-bold">Filter</h4>
+				<h4 className="mt-6 text-xl font-bold md:text-2xl lg:text-3xl">
+					Filter
+				</h4>
 				<RatingOption rating={rating} setRating={setRating} />
 			</div>
 		</section>
