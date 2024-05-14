@@ -31,7 +31,7 @@ const FilterByNameSection = () => {
 				setFields(fields)
 				setIsLoading(false)
 			} catch (error) {
-				console.error('Error fetching products:', error)
+				console.error('Error fetching fields:', error)
 			}
 		}
 		fetchData()
