@@ -1,16 +1,17 @@
 import { Star } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
+import userAvatar from '/userAvatar.svg'
 
 const UserReviewItem = () => {
 	return (
-		<div className="flex gap-7">
-			<div>
-				<img src="" alt="comment user" />
+		<div className="flex gap-3 lg:gap-7">
+			<div className="h-[100px] w-[100px] basis-auto ">
+				<img src={userAvatar} alt="comment user" />
 			</div>
 			<div className="flex flex-col gap-3">
 				<h4 className="text-lg font-bold">Glenn M. Whitaker</h4>
 				<p className="text-base">CEO & Founder</p>
-				<ul className="flex gap-7">
+				<ul className="flex flex-col gap-2 lg:flex-row lg:gap-7">
 					<li>
 						<p>Quality</p>
 						<Star />
@@ -32,7 +33,7 @@ const UserReviewItem = () => {
 						<Star />
 					</li>
 				</ul>
-				<p className="max-w-[760px]">
+				<p className=" max-w-[176px] lg:max-w-[760px]">
 					At vero eos et accusamus et iusto odio dignissimos ducimus qui
 					blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
 					et quas molestias excepture

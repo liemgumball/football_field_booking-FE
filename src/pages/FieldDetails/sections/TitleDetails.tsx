@@ -19,20 +19,20 @@ const TitleDetails = ({
 				<span>Price: $96.99</span>
 			</div>
 			<Separator />
-			<div className="my-3 flex justify-between">
+			<div className="my-3 flex flex-col justify-between gap-y-2 lg:flex-row">
 				<div className="flex gap-2">
 					<Star />
 					<Star />
 					<p>(3k Reviewers)</p>
 				</div>
 				<div className="flex gap-4">
-					<p className={cn(buttonVariants({ size: 'lg' }), 'max-w-max')}>
+					<p className={cn(buttonVariants({ size: 'sm' }), 'max-w-max')}>
 						Share
 					</p>
-					<p className={cn(buttonVariants({ size: 'lg' }), 'max-w-max')}>
+					<p className={cn(buttonVariants({ size: 'sm' }), 'max-w-max')}>
 						Reviews
 					</p>
-					<p className={cn(buttonVariants({ size: 'lg' }), 'max-w-max')}>
+					<p className={cn(buttonVariants({ size: 'sm' }), 'max-w-max')}>
 						Whislist
 					</p>
 				</div>

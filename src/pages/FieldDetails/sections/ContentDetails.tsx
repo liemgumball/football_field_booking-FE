@@ -3,6 +3,7 @@ import { ENV_VARS } from '@/constants/envVars'
 import ReactMapGl from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { TLocation } from '@/types'
+import defaultDetailsImg from '/defaultDetailsImg.png'
 
 const ContentDetails = ({ location }: { location: TLocation | undefined }) => {
 	return (
@@ -28,8 +29,8 @@ const ContentDetails = ({ location }: { location: TLocation | undefined }) => {
 					adipisci velit sed quian numquam eius tempora incidunt labore dolore
 					magnam aliquam quaerat voluptatem.
 				</p>
-				<div className="mt-4">
-					<img src="" alt="content details image" />
+				<div className="mt-4 max-w-[800px]">
+					<img src={defaultDetailsImg} alt="content details image" />
 				</div>
 			</div>
 			<div>
