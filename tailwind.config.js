@@ -81,6 +81,7 @@ export const theme = {
 		},
 		backgroundImage: {
 			'hero-about-us': 'url(/hero-img-about-us.png)',
+			'hero-list-fields': 'url(/hero-img-list-fields.png)',
 		},
 	},
 }
