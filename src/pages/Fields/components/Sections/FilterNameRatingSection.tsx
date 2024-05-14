@@ -5,6 +5,7 @@ import useDebounce from '@/hooks/useDebounce'
 import { ENV_VARS } from '@/constants/envVars'
 import FilterSection from '../FilterOptions/FilterSection'
 import FieldList from '../FieldList'
+import SkeletonField from '../SkeletonField.tsx'
 
 const FilterByNameSection = () => {
 	const [fields, setFields] = useState<TFootballField[]>([])
@@ -13,7 +14,11 @@ const FilterByNameSection = () => {
 	const keyword = useDebounce(name)
 	const ratingDebounce = useDebounce(rating)
 
+	const [isLoading, setIsLoading] = useState(false)
+
 	useEffect(() => {
+		setIsLoading(true)
+
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
@@ -24,6 +29,7 @@ const FilterByNameSection = () => {
 				}
 				const fields = (await response.json()) as TFootballField[]
 				setFields(fields)
+				setIsLoading(false)
 			} catch (error) {
 				console.error('Error fetching products:', error)
 			}
@@ -40,7 +46,17 @@ const FilterByNameSection = () => {
 
 				<FilterSection rating={rating} setRating={setRating} />
 			</div>
-			<FieldList fields={fields} />
+			{isLoading ? (
+				<div className="grid grid-cols-1 gap-x-4 gap-y-5  md:grid-cols-2 lg:grid-cols-3">
+					{Array(6)
+						.fill(null)
+						.map((_, index) => (
+							<SkeletonField key={index} />
+						))}
+				</div>
+			) : (
+				<FieldList fields={fields} />
+			)}
 		</section>
 	)
 }
