@@ -40,7 +40,7 @@ const FilterByNameSection = () => {
 	console.log(keyword)
 
 	return (
-		<section className="mt-6 flex justify-between p-6 ">
+		<section className="mt-6 flex flex-col justify-between p-6 lg:flex-row ">
 			<div>
 				<SearchByNameForm setName={setName} />
 
