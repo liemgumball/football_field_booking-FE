@@ -1,11 +1,11 @@
 import { TFootballField, TRating } from '@/types'
-import SearchByNameForm from '../Form/SearchByNameForm'
+import SearchByNameForm from './components/Form/SearchByNameForm.tsx'
 import { useEffect, useState } from 'react'
 import useDebounce from '@/hooks/useDebounce'
 import { ENV_VARS } from '@/constants/envVars'
-import FilterSection from '../FilterOptions/FilterSection'
-import FieldList from '../FieldList'
-import SkeletonField from '../SkeletonField.tsx'
+import FilterSection from './components/FilterOptions/FilterSection.tsx'
+import FieldList from './components/FieldList/index.tsx'
+import SkeletonField from './components/SkeletonField.tsx/index.tsx'
 
 const FilterByNameSection = () => {
 	const [fields, setFields] = useState<TFootballField[]>([])

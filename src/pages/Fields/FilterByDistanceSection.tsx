@@ -1,9 +1,9 @@
 import { TMarker } from '@/types'
-import MapBox from '../MapBox'
+import MapBox from './components/MapBox'
 import { useEffect, useState } from 'react'
 import useLocationStore from '@/stores/location'
 import { ENV_VARS } from '@/constants/envVars'
-import AccessLocation from '../AccessLocation'
+import AccessLocation from './components/AccessLocation'
 import useDebounce from '@/hooks/useDebounce'
 
 const FilterByDistanceSection = () => {
