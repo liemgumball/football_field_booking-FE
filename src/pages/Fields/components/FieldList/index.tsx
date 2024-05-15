@@ -5,7 +5,7 @@ import { PATHS } from '@/constants/navigation'
 
 const FieldList = ({ fields }: { fields: TFootballField[] }) => {
 	return (
-		<div className="grid grid-cols-1 gap-x-4 gap-y-5 md:grid-cols-2  md:justify-items-center lg:grid-cols-3">
+		<div className="grid grid-cols-1 justify-items-center gap-x-4 gap-y-5 md:grid-cols-2 lg:grid-cols-3">
 			{fields.length
 				? fields.map((field) => {
 						return (

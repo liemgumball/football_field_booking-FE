@@ -8,7 +8,7 @@ const FieldCard = ({
 	rating,
 }: Pick<TFootballField, 'images' | 'name' | 'rating'>) => {
 	return (
-		<div className="relative max-h-[227px] overflow-hidden">
+		<div className="relative max-h-[227px] max-w-max overflow-hidden">
 			<div className="max-w-max opacity-80">
 				<img
 					width={300}
@@ -21,7 +21,7 @@ const FieldCard = ({
 				<p> {rating || 'No'} </p>
 				<StarIcon />
 			</div>
-			<div className="absolute left-0 top-28 flex max-h-80 w-full items-end px-5 pb-5 pt-4">
+			<div className="absolute left-0 top-28 flex max-h-80  items-end px-5 pb-5 pt-4">
 				<h3 className="text-base font-bold md:text-lg lg:text-xl">{name}</h3>
 			</div>
 		</div>
