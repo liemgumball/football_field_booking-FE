@@ -5,9 +5,11 @@ import { BanIcon, CheckIcon, CircleDashedIcon } from 'lucide-react'
 const BookingStatus = ({
 	status,
 	className,
+	label = false,
 }: {
 	status: TBookingStatus
 	className?: string
+	label?: boolean
 }) => {
 	let Icon: React.FC | null = null
 
@@ -28,9 +30,9 @@ const BookingStatus = ({
 		)
 
 	return (
-		<div className={cn('text-nowrap', className)}>
+		<div className={cn('text-nowrap capitalize', className)}>
 			{Icon && <Icon />}
-			{status}
+			{label && status}
 		</div>
 	)
 }
