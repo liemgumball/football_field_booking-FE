@@ -84,12 +84,13 @@ const AboutSection = () => {
 						</p>
 					</div>
 				</div>
-				<div className="fields grid grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-					{bestFields.length &&
-						bestFields.map((field) => (
+				{bestFields.length ? (
+					<div className="fields grid grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+						{bestFields.map((field) => (
 							<FootballFieldCard key={field._id} {...field} />
 						))}
-				</div>
+					</div>
+				) : null}
 			</section>
 		</>
 	)

@@ -72,7 +72,7 @@ const BookingDetailsContent = (props: TProps) => {
 				<p>Extra services: __________ </p>
 				<p>
 					Description:
-					<Textarea value={description} className="mt-2" />
+					<Textarea value={description} className="mt-2" readOnly />
 				</p>
 			</div>
 			<BookingDetailsActions _id={_id} status={status} />

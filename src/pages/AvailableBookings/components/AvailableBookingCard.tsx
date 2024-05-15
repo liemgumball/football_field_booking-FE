@@ -50,6 +50,7 @@ const AvailableBookingCard = ({
 
 	const [from, to] = getTimeRange(turnOfServices)
 
+	// Hover to display the location
 	const onMouseEnter = async () => {
 		try {
 			const fieldDetails = await getFieldDetails(field._id)
@@ -86,7 +87,12 @@ const AvailableBookingCard = ({
 					{field.rating ? <span>({field.rating})</span> : ''}
 				</div>
 				<CardTitle className="text-wrap capitalize">
-					{field.name} - {subfield.name}
+					<Link
+						to={`${PATHS.FIELD.BASE}/${field._id}`}
+						className="transition hover:text-primary"
+					>
+						{field.name} - {subfield.name}
+					</Link>
 				</CardTitle>
 			</CardHeader>
 			<CardContent>

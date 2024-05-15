@@ -3,7 +3,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
 import { DataTableColumnHeader } from './DataTableColumnHeader'
 import BookingStatus from './BookingStatus'
-import { CopyIcon, MoreHorizontal, QrCodeIcon } from 'lucide-react'
+import { CopyIcon, MoreHorizontal } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -38,10 +38,6 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 							}}
 						>
 							Copy ID <CopyIcon className="ml-3 size-3" />
-						</DropdownMenuItem>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>
-							Get QR code <QrCodeIcon className="ml-3 size-5" />
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem>

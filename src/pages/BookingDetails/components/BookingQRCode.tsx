@@ -17,10 +17,13 @@ import { DownloadIcon, QrCodeIcon } from 'lucide-react'
 
 type TProps = {
 	_id: string
+	label?: string
+	size?: 'sm' | 'default'
 }
 
-const BookingQRCode = ({ _id }: TProps) => {
+const BookingQRCode = ({ _id, size, label }: TProps) => {
 	const [code, setCode] = useState('')
+	const [isOpen, setIsOpen] = useState(false)
 
 	useEffect(() => {
 		const generate = async () => {
@@ -47,10 +50,11 @@ const BookingQRCode = ({ _id }: TProps) => {
 	}
 
 	return (
-		<AlertDialog>
-			<Button asChild variant="ghost" size="icon">
+		<AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+			<Button asChild variant="ghost" size={size || 'icon'}>
 				<AlertDialogTrigger>
-					<QrCodeIcon />
+					{label}
+					<QrCodeIcon className="ml-1" />
 				</AlertDialogTrigger>
 			</Button>
 			<AlertDialogContent>
