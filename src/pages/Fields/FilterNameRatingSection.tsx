@@ -1,11 +1,10 @@
 import { TFootballField, TRating } from '@/types'
-import SearchByNameForm from './components/Form/SearchByNameForm.tsx'
 import { useEffect, useState } from 'react'
 import useDebounce from '@/hooks/useDebounce'
 import { ENV_VARS } from '@/constants/envVars'
-import FilterSection from './components/FilterOptions/FilterSection.tsx'
 import FieldList from './components/FieldList/index.tsx'
 import SkeletonField from './components/SkeletonField.tsx/index.tsx'
+import FilterForm from './components/Form/FilterForm.tsx'
 
 const FilterByNameSection = () => {
 	const [fields, setFields] = useState<TFootballField[]>([])
@@ -40,9 +39,7 @@ const FilterByNameSection = () => {
 	return (
 		<section className="container mt-6 flex flex-col justify-between p-6 lg:flex-row ">
 			<div>
-				<SearchByNameForm setName={setName} />
-
-				<FilterSection rating={rating} setRating={setRating} />
+				<FilterForm setName={setName} rating={rating} setRating={setRating} />
 			</div>
 			{isLoading ? (
 				<div className="grid grid-cols-1 gap-x-4 gap-y-5  md:grid-cols-2 lg:grid-cols-3">

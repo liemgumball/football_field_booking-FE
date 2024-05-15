@@ -31,8 +31,6 @@ const FilterByDistanceSection = () => {
 		setDistance(newDistance)
 	}, [zoom])
 
-	console.log(distance)
-
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -50,8 +48,6 @@ const FilterByDistanceSection = () => {
 		}
 		fetchData()
 	}, [coordinates, distanceDebounce])
-
-	console.log(distanceDebounce)
 
 	return coordinates ? (
 		<section className="container">
