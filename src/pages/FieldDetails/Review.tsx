@@ -1,4 +1,4 @@
-import UserReviewItem from '../components/UserReviewItem'
+import UserReviewItem from './components/UserReviewItem'
 
 const Review = () => {
 	return (

@@ -1,9 +1,9 @@
 import { TMarker } from '@/types'
-import MapBox from '../MapBox'
+import MapBox from './components/MapBox'
 import { useEffect, useState } from 'react'
 import useLocationStore from '@/stores/location'
 import { ENV_VARS } from '@/constants/envVars'
-import AccessLocation from '../AccessLocation'
+import AccessLocation from './components/AccessLocation'
 import useDebounce from '@/hooks/useDebounce'
 
 const FilterByDistanceSection = () => {
@@ -31,8 +31,6 @@ const FilterByDistanceSection = () => {
 		setDistance(newDistance)
 	}, [zoom])
 
-	console.log(distance)
-
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -50,8 +48,6 @@ const FilterByDistanceSection = () => {
 		}
 		fetchData()
 	}, [coordinates, distanceDebounce])
-
-	console.log(distanceDebounce)
 
 	return coordinates ? (
 		<section className="container">

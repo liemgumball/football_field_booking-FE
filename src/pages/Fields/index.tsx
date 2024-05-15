@@ -1,7 +1,7 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
-import FilterByDistanceSection from './components/Sections/FilterByDistanceSection'
-import FilterByNameSection from './components/Sections/FilterNameRatingSection'
-import HeroSection from './components/Sections/HeroSection'
+import FilterByDistanceSection from './FilterByDistanceSection'
+import FilterByNameSection from './FilterNameRatingSection'
+import HeroSection from './HeroSection'
 
 const Fields = () => {
 	useDocumentTitle('Fields')

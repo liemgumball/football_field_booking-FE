@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom'
-import TitleDetails from './sections/TitleDetails'
+import TitleFieldDetails from './TitleFieldDetails'
 import { useEffect, useState } from 'react'
 import { TFootballField } from '@/types'
 import { ENV_VARS } from '@/constants/envVars'
-import ContentDetails from './sections/ContentDetails'
-import Review from './sections/Review'
+import ContentFieldDetails from './ContentFieldDetails'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const FieldDetails = () => {
@@ -33,13 +32,14 @@ const FieldDetails = () => {
 		getFieldDetails()
 	}, [id])
 
-	console.log(field)
-
 	return (
 		<main className="container my-14">
-			<TitleDetails name={field?.name} location={field?.location} />
-			<ContentDetails location={field?.location} />
-			<Review />
+			<TitleFieldDetails
+				name={field?.name}
+				location={field?.location}
+				rating={field?.rating}
+			/>
+			<ContentFieldDetails location={field?.location} images={field?.images} />
 		</main>
 	)
 }

@@ -2,15 +2,16 @@ import { Marker } from 'react-map-gl'
 import { ENV_VARS } from '@/constants/envVars'
 import ReactMapGl from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import { TLocation } from '@/types'
+import { TFootballField } from '@/types'
 import defaultDetailsImg from '/defaultDetailsImg.png'
 
-const ContentDetails = ({ location }: { location: TLocation | undefined }) => {
+const ContentFieldDetails = ({ location, images }: Partial<TFootballField>) => {
+	const imgSrc = images?.length ? images[0] : defaultDetailsImg
 	return (
 		<section className="my-8 flex flex-col gap-4">
-			<div>
-				<h2 className="text-2xl font-bold capitalize ">overview</h2>
-				<p className="mt-3 max-w-[750px] text-base">
+			<div className="mb-11">
+				<h3 className="text-4xl font-medium capitalize">overview</h3>
+				<p className="mt-4 max-w-[750px]">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa illum
 					nihil aut sequi numquam minus reprehenderit maiores commodi eligendi,
 					perferendis fuga id harum similique libero itaque soluta veritatis
@@ -23,18 +24,18 @@ const ContentDetails = ({ location }: { location: TLocation | undefined }) => {
 				</p>
 			</div>
 			<div>
-				<h2 className="text-2xl font-bold capitalize ">advanced facilities</h2>
-				<p className="mt-3 max-w-[750px] text-base">
+				<h3 className="text-2xl font-medium capitalize">advanced facilities</h3>
+				<p className="mt-4 max-w-[750px]">
 					Neque porro quisquam est dolorem ipsum quia dolor si amet consectetur
 					adipisci velit sed quian numquam eius tempora incidunt labore dolore
 					magnam aliquam quaerat voluptatem.
 				</p>
-				<div className="mt-4 max-w-[800px]">
-					<img src={defaultDetailsImg} alt="content details image" />
+				<div className="mt-11 max-w-[750px]">
+					<img src={imgSrc} className="rounded" alt="content details image" />
 				</div>
 			</div>
 			<div>
-				<h2 className="text-2xl font-bold capitalize ">field’s address</h2>
+				<h2 className="text-2xl font-medium capitalize ">field’s address</h2>
 				<p className="mt-3 max-w-[750px] text-base">
 					Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
 					quam nihil molestiae consequatur vel eillum qui dolorem eum fugiat quo
@@ -53,7 +54,7 @@ const ContentDetails = ({ location }: { location: TLocation | undefined }) => {
 				<ReactMapGl
 					mapboxAccessToken={ENV_VARS.MAP.ACCESS_TOKEN}
 					mapStyle={ENV_VARS.MAP.STYLE_URL}
-					style={{ width: 800, height: 500 }}
+					style={{ width: 800, height: 500, borderRadius: '0.25rem' }}
 					initialViewState={{
 						longitude: location?.geo.coordinates[0],
 						latitude: location?.geo.coordinates[1],
@@ -72,4 +73,4 @@ const ContentDetails = ({ location }: { location: TLocation | undefined }) => {
 	)
 }
 
-export default ContentDetails
+export default ContentFieldDetails
