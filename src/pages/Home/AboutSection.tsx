@@ -5,11 +5,27 @@ import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { PATHS } from '@/constants/navigation'
+import { TFootballField } from '@/types'
+import { getBestFields } from '@/services/football-field'
 
 const AboutSection = () => {
+	const [bestFields, setBestFields] = useState<TFootballField[]>([])
 	const section = useRef(null)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const fields = await getBestFields()
+				setBestFields(fields)
+			} catch (err) {
+				// use some default data instead
+				setBestFields([])
+			}
+		}
+		fetchData()
+	}, [])
 
 	useGSAP(
 		() => {
@@ -68,12 +84,11 @@ const AboutSection = () => {
 						</p>
 					</div>
 				</div>
-				{/* TODO slide list */}
 				<div className="fields grid grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-					<FootballFieldCard name="Tuyen Son" rating={5} />
-					<FootballFieldCard name="Tuyen Son" rating={5} />
-					<FootballFieldCard name="Tuyen Son" rating={5} />
-					<FootballFieldCard name="Tuyen Son" rating={5} />
+					{bestFields.length &&
+						bestFields.map((field) => (
+							<FootballFieldCard key={field._id} {...field} />
+						))}
 				</div>
 			</section>
 		</>

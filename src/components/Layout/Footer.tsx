@@ -10,7 +10,7 @@ import {
 
 const Footer = () => {
 	return (
-		<footer className="container mt-auto w-full self-end justify-self-end">
+		<footer className="container mt-auto w-full self-end justify-self-end pt-6">
 			<Separator />
 			<div className="my-8 flex items-center justify-between ">
 				<ul className="grid w-full grid-cols-1 gap-y-12 md:grid-cols-2 xl:grid-cols-4">
