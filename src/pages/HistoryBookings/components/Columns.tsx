@@ -16,6 +16,7 @@ import {
 import { Link } from 'react-router-dom'
 import { formatPrice } from '@/utils/booking'
 import { PATHS } from '@/constants/navigation'
+import StatusColumnHeader from './StatusColumnHeader'
 
 const Columns: ColumnDef<TBooking, TBooking>[] = [
 	{
@@ -55,15 +56,15 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 	},
 	{
 		accessorKey: 'status',
-		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Status" />
-		),
+		header: ({ column }) => <StatusColumnHeader column={column} />,
 		cell: ({ cell }) => (
 			<BookingStatus
 				status={cell.getValue() as unknown as TBookingStatus}
+				label
 				className="w-[90px] capitalize"
 			/>
 		),
+		filterFn: 'equalsString',
 	},
 	{
 		accessorKey: 'field',

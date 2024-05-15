@@ -15,7 +15,7 @@ type TProps<TData> = {
 	table: Table<TData>
 }
 
-export function DataTableViewOptions<TData>({ table }: TProps<TData>) {
+export const DataTableViewOptions = <TData,>({ table }: TProps<TData>) => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>

@@ -21,10 +21,10 @@ type TProps<TData> = {
 	className?: string
 }
 
-export function DataTablePagination<TData>({
+export const DataTablePagination = <TData,>({
 	table,
 	className,
-}: TProps<TData>) {
+}: TProps<TData>) => {
 	return (
 		<div className={cn('flex items-center justify-between px-2', className)}>
 			<div className="hidden flex-1 text-sm text-muted-foreground md:flex">

@@ -21,11 +21,11 @@ type TProps<TData, TValue> = React.HTMLAttributes<HTMLDivElement> & {
 	title: string
 }
 
-export function DataTableColumnHeader<TData, TValue>({
+export const DataTableColumnHeader = <TData, TValue>({
 	column,
 	title,
 	className,
-}: TProps<TData, TValue>) {
+}: TProps<TData, TValue>) => {
 	if (!column.getCanSort()) {
 		return <div className={cn(className)}>{title}</div>
 	}
