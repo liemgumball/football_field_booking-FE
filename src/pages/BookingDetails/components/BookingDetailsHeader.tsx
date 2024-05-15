@@ -1,13 +1,15 @@
 import { cn } from '@/lib/utils'
 import { TBookingStatus, TFootballField } from '@/types'
 import { MapPinIcon, StarIcon } from 'lucide-react'
+import BookingQRCode from './BookingQRCode'
 
 type TProps = {
+	_id: string
 	field: TFootballField
 	status: TBookingStatus
 }
 
-const BookingDetailsHeader = ({ field, status }: TProps) => {
+const BookingDetailsHeader = ({ field, status, _id }: TProps) => {
 	const { name, rating, location } = field
 
 	const statusClassName: Record<TBookingStatus, string> = {
@@ -48,13 +50,16 @@ const BookingDetailsHeader = ({ field, status }: TProps) => {
 					</span>
 				</div>
 			</div>
-			<div
-				className={cn(
-					'inline-flex min-w-max max-w-max items-center rounded-xl border px-3 py-0.5 text-lg font-semibold capitalize',
-					statusClassName[status],
-				)}
-			>
-				{status === 'pending' ? 'Waiting for confirming' : status}
+			<div className="flex gap-2">
+				<div
+					className={cn(
+						'inline-flex min-w-max max-w-max items-center rounded-full border px-3 py-0.5 text-lg font-semibold capitalize',
+						statusClassName[status],
+					)}
+				>
+					{status === 'pending' ? 'Waiting for confirming' : status}
+				</div>
+				{status === 'confirmed' && <BookingQRCode _id={_id} />}
 			</div>
 		</header>
 	)
