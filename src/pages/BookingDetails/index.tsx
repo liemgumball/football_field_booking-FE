@@ -4,8 +4,11 @@ import BookingDetailsHeader from './components/BookingDetailsHeader'
 import { Separator } from '@/components/ui/separator'
 import BookingDetailsContent from './components/BookingDetailsContent'
 import { useBookingQuery } from './hooks/useBookingQuery'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const BookingDetails = () => {
+	useDocumentTitle('Booking')
+
 	const { id } = useParams()
 	if (!id) throw new Error('Booking Id not specified')
 

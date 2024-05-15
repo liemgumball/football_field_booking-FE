@@ -26,11 +26,15 @@ const FootballFieldCard = ({
 }: Partial<TFootballField>) => {
 	const imgSrc = images?.length
 		? images[0]
-		: 'https://demo.webtend.net/html/gowilds/assets/images/features/feat-2.jpg'
+		: 'https://demo.webtend.net/html/gowilds/assets/images/features/feat-2.jpg' // just fallback cause the api already get fields with images
 
 	return (
 		<figure className="group relative h-[480px] w-[400px] overflow-hidden rounded-lg">
-			<img src={imgSrc} alt="demo" className="h-full w-full object-cover" />
+			<img
+				src={imgSrc}
+				alt="field image"
+				className="h-full w-full object-cover"
+			/>
 
 			<figcaption className="absolute bottom-4 left-8 right-8">
 				<Card className="p-4">

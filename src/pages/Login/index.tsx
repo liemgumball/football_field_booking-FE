@@ -7,8 +7,11 @@ import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import { PATHS } from '@/constants/navigation'
 import { Separator } from '@/components/ui/separator'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const Login = () => {
+	useDocumentTitle('Login')
+
 	const onSuccess = (credentialResponse: CredentialResponse) => {
 		// TODO this credential response is a `jwt encoded`
 		console.log('google login: ', credentialResponse)
