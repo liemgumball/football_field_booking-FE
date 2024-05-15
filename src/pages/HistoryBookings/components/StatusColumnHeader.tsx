@@ -9,7 +9,7 @@ import {
 import { cn } from '@/lib/utils'
 import { Column } from '@tanstack/react-table'
 import BookingStatus from './BookingStatus'
-import { RotateCcwIcon } from 'lucide-react'
+import { ListFilterIcon, RotateCcwIcon } from 'lucide-react'
 
 type TProps<TData, TValue> = React.HTMLAttributes<HTMLDivElement> & {
 	column: Column<TData, TValue>
@@ -32,14 +32,16 @@ const StatusColumnHeader = <TData, TValue>({
 						size="sm"
 						className="-ml-3 h-8 data-[state=open]:bg-accent"
 					>
-						{column.getFilterValue() === 'canceled' ? (
-							<BookingStatus status="canceled" className="mr-1" />
-						) : column.getFilterValue() === 'confirmed' ? (
-							<BookingStatus status="confirmed" className="mr-1" />
-						) : (
-							<BookingStatus status="pending" className="mr-1" />
-						)}
 						<span>Status</span>
+						{column.getFilterValue() === 'canceled' ? (
+							<BookingStatus status="canceled" className="ml-2" />
+						) : column.getFilterValue() === 'confirmed' ? (
+							<BookingStatus status="confirmed" className="ml-2" />
+						) : column.getFilterValue() === 'pending' ? (
+							<BookingStatus status="pending" className="ml-2" />
+						) : (
+							<ListFilterIcon className="ml-2 size-4" />
+						)}
 					</Button>
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="start">
