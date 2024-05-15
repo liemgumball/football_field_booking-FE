@@ -23,7 +23,7 @@ import {
 import { format } from 'date-fns'
 import { Separator } from '@/components/ui/separator'
 import { buttonVariants } from '@/components/ui/button'
-import { memo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import { getFieldDetails } from '@/services/football-field'
 import { Link } from 'react-router-dom'
 import { getTimeRange } from '@/utils/time'
@@ -39,6 +39,14 @@ const AvailableBookingCard = ({
 	turnOfServices,
 }: TDayOfService) => {
 	const [location, setLocation] = useState<string>()
+
+	const imgSrc = useMemo(
+		() =>
+			field.images?.length
+				? pickRandomFormArray<string>(field.images)
+				: defaultImg,
+		[field.images],
+	)
 
 	const [from, to] = getTimeRange(turnOfServices)
 
@@ -63,11 +71,7 @@ const AvailableBookingCard = ({
 					className="transition-all delay-200 duration-500 group-hover:scale-105"
 					width={390}
 					height={300}
-					src={
-						field.images?.length
-							? pickRandomFormArray<string>(field.images)
-							: defaultImg
-					}
+					src={imgSrc}
 					alt="field image"
 				/>
 			</AspectRatio>
