@@ -3,7 +3,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
 import { DataTableColumnHeader } from './DataTableColumnHeader'
 import BookingStatus from './BookingStatus'
-import { CopyIcon, MoreHorizontal, QrCodeIcon } from 'lucide-react'
+import { CopyIcon, MoreHorizontal } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -16,6 +16,7 @@ import {
 import { Link } from 'react-router-dom'
 import { formatPrice } from '@/utils/booking'
 import { PATHS } from '@/constants/navigation'
+import StatusColumnHeader from './StatusColumnHeader'
 
 const Columns: ColumnDef<TBooking, TBooking>[] = [
 	{
@@ -41,10 +42,6 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem>
-							Get QR code <QrCodeIcon className="ml-3 size-5" />
-						</DropdownMenuItem>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem>
 							<Link to={`${booking._id}`}>View booking details</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem>
@@ -59,15 +56,15 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 	},
 	{
 		accessorKey: 'status',
-		header: ({ column }) => (
-			<DataTableColumnHeader column={column} title="Status" />
-		),
+		header: ({ column }) => <StatusColumnHeader column={column} />,
 		cell: ({ cell }) => (
 			<BookingStatus
 				status={cell.getValue() as unknown as TBookingStatus}
+				label
 				className="w-[90px] capitalize"
 			/>
 		),
+		filterFn: 'equalsString',
 	},
 	{
 		accessorKey: 'field',

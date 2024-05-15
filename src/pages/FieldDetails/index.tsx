@@ -4,10 +4,14 @@ import { useEffect, useState } from 'react'
 import { TFootballField } from '@/types'
 import { ENV_VARS } from '@/constants/envVars'
 import ContentFieldDetails from './ContentFieldDetails'
+import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 
 const FieldDetails = () => {
+	// Get field ID
 	const { id } = useParams()
 	const [field, setField] = useState<TFootballField | undefined>(undefined)
+
+	useDocumentTitle(field ? field.name : 'Field Details')
 
 	useEffect(() => {
 		const getFieldDetails = async () => {

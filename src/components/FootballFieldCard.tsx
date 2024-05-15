@@ -19,21 +19,27 @@ import {
 } from '@/components/ui/tooltip'
 
 const FootballFieldCard = ({
+	_id,
 	name,
 	rating,
-}: Pick<TFootballField, 'name' | 'rating'>) => {
+	images,
+}: Partial<TFootballField>) => {
+	const imgSrc = images?.length
+		? images[0]
+		: 'https://demo.webtend.net/html/gowilds/assets/images/features/feat-2.jpg' // just fallback cause the api already get fields with images
+
 	return (
-		<figure className="group relative overflow-hidden rounded-lg">
-			<div className="h-full w-full">
-				<img
-					src="https://demo.webtend.net/html/gowilds/assets/images/features/feat-2.jpg"
-					alt="demo"
-				/>
-			</div>
+		<figure className="group relative h-[480px] w-[400px] overflow-hidden rounded-lg">
+			<img
+				src={imgSrc}
+				alt="field image"
+				className="h-full w-full object-cover"
+			/>
+
 			<figcaption className="absolute bottom-4 left-8 right-8">
 				<Card className="p-4">
-					<CardHeader className="flex justify-between">
-						<CardTitle className="max-w-fit">{name}</CardTitle>
+					<CardHeader className="flex justify-between gap-2">
+						<CardTitle className="max-w-fit truncate">{name}</CardTitle>
 						<CardDescription className="flex max-w-fit space-x-1">
 							{rating
 								? Array.from({ length: rating }, (_, i) => i).map((item) => (
@@ -47,13 +53,13 @@ const FootballFieldCard = ({
 							Lorem ipsum dolor sit amet consectetur, adipisicing elit.
 						</p>
 					</CardContent>
-					<Link to="#">
+					<Link to={`/fields/${_id}`}>
 						<TooltipProvider>
 							<Tooltip>
 								<TooltipTrigger
 									className={cn(
 										buttonVariants({ size: 'icon' }),
-										'absolute right-10 top-16 rounded-full',
+										'absolute right-10 top-16 my-2 rounded-full',
 									)}
 								>
 									<ArrowBigRight />

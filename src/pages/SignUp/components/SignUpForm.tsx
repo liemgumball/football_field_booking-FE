@@ -101,7 +101,7 @@ const SignUpForm = () => {
 		}
 	}
 
-	const { isSubmitting, isValid } = form.formState
+	const { isSubmitting, isValid, isSubmitted } = form.formState
 
 	return (
 		<FormProvider {...form}>
@@ -187,7 +187,7 @@ const SignUpForm = () => {
 					)}
 				/>
 				<Button
-					disabled={isSubmitting || !isValid}
+					disabled={isSubmitting || (!isValid && isSubmitted)}
 					type="submit"
 					className="w-full text-base"
 				>

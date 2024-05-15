@@ -2,8 +2,11 @@ import DataTable from './components/DataTable'
 import Columns from './components/Columns'
 import { Loader2Icon } from 'lucide-react'
 import { useBookingsQuery } from './hooks/useBookingsQuery'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const HistoryBookings = () => {
+	useDocumentTitle('History Bookings')
+
 	const { data, isLoading } = useBookingsQuery()
 
 	if (isLoading)
