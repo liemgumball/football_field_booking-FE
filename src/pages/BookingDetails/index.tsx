@@ -26,7 +26,7 @@ const BookingDetails = () => {
 
 	return (
 		<main className="container">
-			<BookingDetailsHeader field={data.field} status={data.status} />
+			<BookingDetailsHeader _id={id} field={data.field} status={data.status} />
 			<Separator />
 			<BookingDetailsContent {...data} />
 		</main>
