@@ -37,10 +37,8 @@ const FilterByNameSection = () => {
 		fetchData()
 	}, [keyword, ratingDebounce])
 
-	console.log(keyword)
-
 	return (
-		<section className="mt-6 flex flex-col justify-between p-6 lg:flex-row ">
+		<section className="container mt-6 flex flex-col justify-between p-6 lg:flex-row ">
 			<div>
 				<SearchByNameForm setName={setName} />
 
