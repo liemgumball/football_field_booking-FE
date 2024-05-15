@@ -1,12 +1,11 @@
 import { Star } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
-import userAvatar from '/userAvatar.svg'
 
 const UserReviewItem = () => {
 	return (
 		<div className="flex gap-3 lg:gap-7">
 			<div className="h-[100px] w-[100px] basis-auto ">
-				<img src={userAvatar} alt="comment user" />
+				<img src="" alt="comment user" />
 			</div>
 			<div className="flex flex-col gap-3">
 				<h4 className="text-lg font-bold">Glenn M. Whitaker</h4>
