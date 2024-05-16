@@ -35,7 +35,7 @@ export type TFootballField = {
 	rating: number | null
 	openedAt: string
 	closedAt: string
-	images?: [string]
+	images?: string[]
 	location: TLocation
 }
 

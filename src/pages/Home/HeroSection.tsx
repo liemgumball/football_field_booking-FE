@@ -46,7 +46,7 @@ const HeroSection = () => {
 	)
 	return (
 		<section
-			className="flex flex-col items-center gap-x-12 gap-y-12 transition xl:flex-row"
+			className="flex w-full flex-col items-center gap-x-12 gap-y-12 transition xl:flex-row"
 			ref={section}
 		>
 			<div>
