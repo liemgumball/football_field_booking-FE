@@ -8,19 +8,26 @@ import {
 import { Star } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { TFootballField } from '@/types'
+import { cn } from '@/lib/utils'
 
 const FootballFieldCard = ({
 	_id,
 	name,
 	rating,
 	images,
-}: Partial<TFootballField>) => {
+	className,
+}: Partial<TFootballField> & { className?: string }) => {
 	const imgSrc = images?.length
 		? images[0]
 		: 'https://demo.webtend.net/html/gowilds/assets/images/features/feat-2.jpg' // just fallback cause the api already get fields with images
 
 	return (
-		<figure className="group relative h-[480px] w-full overflow-hidden rounded-lg">
+		<figure
+			className={cn(
+				'group relative h-[480px] w-full overflow-hidden rounded-lg',
+				className,
+			)}
+		>
 			<img
 				src={imgSrc}
 				alt="field image"
