@@ -46,7 +46,7 @@ const AvailabilitySection = () => {
 					Availability
 				</h2>
 				{/* TODO use different form */}
-				<AvailabilityForm className="grid grid-cols-2 items-start justify-items-center lg:justify-items-start" />
+				<AvailabilityForm className="grid grid-cols-1 items-start justify-items-center lg:grid-cols-2 lg:justify-items-start" />
 			</div>
 			<div className="image overflow-hidden rounded-3xl">
 				<img

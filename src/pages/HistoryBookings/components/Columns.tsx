@@ -78,10 +78,7 @@ const Columns: ColumnDef<TBooking, TBooking>[] = [
 		filterFn: (row, columnId, filterValue: string) => {
 			const field = row.getValue(columnId) as TFootballField
 
-			return field.name
-				.trim()
-				.toLowerCase()
-				.startsWith(filterValue.toLowerCase())
+			return field.name.trim().toLowerCase().includes(filterValue.toLowerCase())
 		},
 	},
 	{

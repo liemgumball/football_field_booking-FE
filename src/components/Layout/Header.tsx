@@ -15,7 +15,7 @@ const Header = () => {
 
 	return (
 		// TODO fix sticky header
-		<header className="z-50 flex w-full items-center justify-between border-b-2 bg-background px-8">
+		<header className="z-50 flex w-full items-center justify-between border-b-2 bg-background px-8 py-2">
 			<Link className="hidden md:block" to={PATHS.HOME}>
 				<Icons.Logo />
 			</Link>

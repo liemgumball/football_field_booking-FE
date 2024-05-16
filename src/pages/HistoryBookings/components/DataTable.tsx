@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
 	ColumnDef,
 	SortingState,
@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/table'
 import { DataTableViewOptions } from './ColumnToggle'
 import { DataTablePagination } from './DataTablePagination'
+import useDebounce from '@/hooks/useDebounce'
 
 type TProps<TData, TValue> = {
 	columns: ColumnDef<TData, TValue>[]
@@ -33,6 +34,10 @@ type TProps<TData, TValue> = {
 const DataTable = <TData, TValue>({ columns, data }: TProps<TData, TValue>) => {
 	const [sorting, setSorting] = useState<SortingState>([])
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+
+	// Debounce search field name
+	const [searchString, setSearchString] = useState<string>('')
+	const debounceSearch = useDebounce(searchString, 500)
 
 	const table = useReactTable({
 		data,
@@ -49,15 +54,18 @@ const DataTable = <TData, TValue>({ columns, data }: TProps<TData, TValue>) => {
 		},
 	})
 
+	// Update data filter on debounce change
+	useEffect(() => {
+		table.getColumn('field')?.setFilterValue(debounceSearch)
+	}, [debounceSearch, table])
+
 	return (
 		<div className="flex min-h-max flex-col">
 			<div className="flex items-center pt-4">
 				<Input
 					placeholder="Filter field..."
-					value={(table.getColumn('field')?.getFilterValue() as string) ?? ''}
-					onChange={(event) =>
-						table.getColumn('field')?.setFilterValue(event.target.value)
-					}
+					value={searchString}
+					onChange={(event) => setSearchString(event.target.value)}
 					className="max-w-sm"
 				/>
 				<DataTableViewOptions table={table} />
