@@ -50,11 +50,11 @@ const HeroSection = () => {
 			ref={section}
 		>
 			<div>
-				<h1 className="mb-12 text-center text-6xl font-bold uppercase leading-tight tracking-wide text-foreground">
+				<h1 className="mb-12 text-center text-5xl font-bold uppercase leading-tight tracking-wide text-foreground md:text-6xl">
 					Welcome to Our Field Booking Platform
 				</h1>
-				<div className="mx-auto flex max-w-[600px] items-center gap-x-8">
-					<p className="max-w-[290px] leading-loose text-muted-foreground">
+				<div className="mx-auto flex max-w-[600px] flex-col items-center justify-center gap-8 md:flex-row">
+					<p className="max-w-[290px] text-sm leading-loose text-muted-foreground md:block md:text-base">
 						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos,
 						saepe? Lorem ipsum dolor sit amet.
 					</p>
@@ -69,7 +69,7 @@ const HeroSection = () => {
 					</Link>
 				</div>
 			</div>
-			<div className="hero-img mx-auto w-full min-w-[600px] max-w-[870px] overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
+			<div className="hero-img mx-auto w-full max-w-[870px] overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
 				<AspectRatio ratio={1449 / 966}>
 					<Images.HeroDark hidden={theme !== 'dark'} />
 					<Images.HeroLight hidden={theme === 'dark'} />

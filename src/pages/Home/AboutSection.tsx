@@ -1,4 +1,4 @@
-import FootballFieldCard from '@/components/FootballFieldCard'
+import FootballFieldCard from './components/FootballFieldCard'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { Link } from 'react-router-dom'
@@ -59,7 +59,7 @@ const AboutSection = () => {
 
 	return (
 		<>
-			<section ref={section} className="mt-16 space-y-16 px-8 pt-16">
+			<section ref={section} className="mt-16 space-y-16 px-8 pt-16 ">
 				<div className="titles flex justify-center">
 					<div className="max-w-[800px] space-y-8 text-center">
 						<Link
@@ -71,12 +71,12 @@ const AboutSection = () => {
 						>
 							About Us
 						</Link>
-						<h2 className="text-5xl font-bold capitalize leading-tight tracking-normal">
+						<h2 className="text-4xl font-bold capitalize leading-tight tracking-normal md:text-5xl">
 							We Are The <span className="text-primary">Best Platform</span> For{' '}
 							<span className="text-primary">Football Field</span> booking in{' '}
 							<span className="text-primary">Danang</span>
 						</h2>
-						<p className="leading-relaxed tracking-normal text-muted-foreground">
+						<p className="text-sm leading-relaxed tracking-normal text-muted-foreground md:text-base">
 							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas
 							dicta accusamus unde sed deleniti repellendus aliquam adipisci cum
 							ratione asperiores? Lorem ipsum dolor sit amet consectetur
