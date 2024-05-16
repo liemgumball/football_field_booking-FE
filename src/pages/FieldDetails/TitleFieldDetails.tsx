@@ -28,14 +28,11 @@ const TitleFieldDetails = ({
 					<p>({rating})</p>
 				</div>
 				<div className="flex gap-4 uppercase">
-					<Button className="max-w-max rounded-3xl" size="lg">
-						Share
+					<Button className="max-w-max rounded-3xl" size="lg" disabled>
+						Like
 					</Button>
-					<Button className="max-w-max rounded-3xl" size="lg">
+					<Button className="max-w-max rounded-3xl" size="lg" disabled>
 						Reviews
-					</Button>
-					<Button className="max-w-max rounded-3xl" size="lg">
-						Whislist
 					</Button>
 				</div>
 			</div>
