@@ -1,4 +1,3 @@
-import useMedia from '@/hooks/useMedia'
 import useAuthStore from '@/stores/auth'
 
 import {
@@ -14,6 +13,7 @@ import EditProfileForm from '../EditProfileForm'
 import { Separator } from '../ui/separator'
 import { Button } from '../ui/button'
 import { useState } from 'react'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 const UserSheet = () => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -21,8 +21,7 @@ const UserSheet = () => {
 	const logout = useAuthStore((set) => set.remove)
 	if (!user) throw new Error('User not found')
 
-	const { IsXl } = useMedia()
-	const side = IsXl() ? 'right' : 'top'
+	const side = useMediaQuery('(min-width: 1280px)') ? 'right' : 'top'
 
 	return (
 		<Sheet open={isOpen} onOpenChange={setIsOpen}>

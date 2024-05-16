@@ -1,4 +1,9 @@
-import { useDocumentTitle as _useDocumentTitle } from 'usehooks-ts'
+import { useEffect } from 'react'
 
-export const useDocumentTitle = (title?: string) =>
-	_useDocumentTitle(title ? `${title} - DN Football` : 'DN Football')
+const useDocumentTitle = (title?: string) => {
+	useEffect(() => {
+		window.document.title = title ? `${title} - DN Football` : 'DN Football'
+	}, [title])
+}
+
+export default useDocumentTitle

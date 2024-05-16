@@ -2,7 +2,7 @@ import { Separator } from '@/components/ui/separator'
 import SignUpForm from './components/SignUpForm'
 import signupImg from '/signupImg.png'
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
+import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 const SignUp = () => {
 	useDocumentTitle('Sign Up')
