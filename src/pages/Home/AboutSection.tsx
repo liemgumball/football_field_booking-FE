@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 import { PATHS } from '@/constants/navigation'
 import { TFootballField } from '@/types'
 import { getBestFields } from '@/services/football-field'
+import { mockFields } from '@/mocks/fields'
 
 const AboutSection = () => {
 	const [bestFields, setBestFields] = useState<TFootballField[]>([])
@@ -20,8 +21,8 @@ const AboutSection = () => {
 				const fields = await getBestFields()
 				setBestFields(fields)
 			} catch (err) {
-				// use some default data instead
-				setBestFields([])
+				// use some default data
+				setBestFields(mockFields)
 			}
 		}
 		fetchData()
@@ -33,7 +34,7 @@ const AboutSection = () => {
 			gsap.registerPlugin(ScrollTrigger)
 
 			gsap.from('.fields', {
-				y: 50,
+				x: 50,
 				opacity: 0,
 				duration: 1.25,
 				ease: 'power2.out',
@@ -44,7 +45,7 @@ const AboutSection = () => {
 			})
 
 			gsap.from('.titles', {
-				y: -50,
+				x: -50,
 				opacity: 0,
 				duration: 1.25,
 				ease: 'power2.out',
@@ -59,11 +60,11 @@ const AboutSection = () => {
 
 	return (
 		<>
-			<section ref={section} className="mt-16 space-y-16 px-8 pt-16 ">
+			<section ref={section} className="space-y-16 px-4 pt-8">
 				<div className="titles flex justify-center">
 					<div className="max-w-[800px] space-y-8 text-center">
 						<Link
-							to={PATHS.SUPPORT}
+							to={PATHS.ABOUT_US}
 							className={cn(
 								buttonVariants({ size: 'lg' }),
 								'trigger max-w-max',
@@ -86,8 +87,12 @@ const AboutSection = () => {
 				</div>
 				{bestFields.length ? (
 					<div className="fields grid grid-cols-1 justify-items-center gap-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-						{bestFields.map((field) => (
-							<FootballFieldCard key={field._id} {...field} />
+						{bestFields.map((field, index) => (
+							<FootballFieldCard
+								key={field._id}
+								{...field}
+								className={index === 3 ? 'xl:hidden 2xl:block' : ''}
+							/>
 						))}
 					</div>
 				) : null}

@@ -27,71 +27,74 @@ const ReviewSection = () => {
 			gsap.registerPlugin(ScrollTrigger)
 
 			gsap.from('.titles', {
+				y: 50,
+				opacity: 0,
+				duration: 1.25,
+				ease: 'power2.out',
 				scrollTrigger: {
-					trigger: '.titles',
+					trigger: '.trigger',
 					toggleActions: 'restart none none none',
 				},
-				duration: 2,
-				y: -50,
 			})
 
 			gsap.from('.hero-img', {
+				x: -50,
+				opacity: 0,
+				duration: 1.25,
+				ease: 'power2.out',
 				scrollTrigger: {
-					trigger: '.hero-img',
+					trigger: '.trigger',
 					toggleActions: 'restart none none none',
 				},
-				duration: 1,
-				x: -40,
 			})
 
 			gsap.from('.review-item', {
+				x: 50,
+				opacity: 0,
+				duration: 1.25,
+				ease: 'power2.out',
 				scrollTrigger: {
-					trigger: '.review-item',
+					trigger: '.trigger',
 					toggleActions: 'restart none none none',
 				},
-
-				duration: 1,
-				x: 40,
 			})
 		},
 		{ scope: section },
 	)
 
 	return (
-		<>
-			<section ref={section} className="mt-16 space-y-16  pt-16">
-				<div className="titles flex justify-center">
-					<div className="max-w-[600px] space-y-8 text-center">
-						<p className={cn(buttonVariants({ size: 'lg' }), 'max-w-max')}>
-							{' '}
-							Reviews{' '}
-						</p>
-						<h2 className="text-4xl font-bold capitalize tracking-normal md:text-5xl ">
-							what our footballer say about our services
-						</h2>
-					</div>
+		<section ref={section} className="container space-y-8 pt-8 lg:space-y-16">
+			<div className="titles flex justify-center">
+				<div className="max-w-[600px] space-y-8 text-center">
+					<p className={cn(buttonVariants({ size: 'lg' }), 'trigger')}>
+						{' '}
+						Reviews{' '}
+					</p>
+					<h2 className="text-4xl font-bold capitalize tracking-normal md:text-5xl ">
+						what our footballer say about our services
+					</h2>
 				</div>
-				<div className="flex flex-col items-center justify-around gap-9 md:flex-col lg:flex-row ">
-					<div className="hero-img mx-auto w-full min-w-[400px] max-w-[870px] overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
-						<AspectRatio ratio={1449 / 966}>
-							<img src={reviewImg} alt="review image" />
-						</AspectRatio>
-					</div>
-					<Carousel
-						plugins={[plugin.current]}
-						className="review-item w-full max-w-xl"
-					>
-						<CarouselContent>
-							{Array.from({ length: 5 }).map((_, index) => (
-								<CarouselItem key={index}>
-									<ReviewItem />
-								</CarouselItem>
-							))}
-						</CarouselContent>
-					</Carousel>
+			</div>
+			<div className="flex flex-col items-center justify-center gap-10 lg:flex-row ">
+				<div className="hero-img min-w-[460px] overflow-hidden rounded-xl text-center md:min-w-[600px]">
+					<AspectRatio ratio={1449 / 966}>
+						<img src={reviewImg} alt="review image" />
+					</AspectRatio>
 				</div>
-			</section>
-		</>
+				<Carousel
+					plugins={[plugin.current]}
+					className="review-item min-w-[360px] max-w-[480px] px-2"
+				>
+					<CarouselContent>
+						{Array.from({ length: 5 }).map((_, index) => (
+							<CarouselItem key={index}>
+								<ReviewItem />
+							</CarouselItem>
+						))}
+					</CarouselContent>
+				</Carousel>
+			</div>
+		</section>
 	)
 }
 

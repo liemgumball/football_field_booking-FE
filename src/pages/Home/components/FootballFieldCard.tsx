@@ -14,7 +14,7 @@ const FootballFieldCard = ({
 	name,
 	rating,
 	images,
-}: Partial<TFootballField>) => {
+}: Partial<TFootballField> & { className?: string }) => {
 	const imgSrc = images?.length
 		? images[0]
 		: 'https://demo.webtend.net/html/gowilds/assets/images/features/feat-2.jpg' // just fallback cause the api already get fields with images
@@ -32,7 +32,7 @@ const FootballFieldCard = ({
 					<Card className="p-2">
 						<CardHeader className="flex justify-between gap-2">
 							<CardTitle className="truncate text-base">
-								<p className="transition hover:text-primary">{name}</p>
+								<p className="transition">{name}</p>
 							</CardTitle>
 							<CardDescription className="flex space-x-1">
 								{rating

@@ -4,7 +4,7 @@ import BookingDetailsHeader from './components/BookingDetailsHeader'
 import { Separator } from '@/components/ui/separator'
 import BookingDetailsContent from './components/BookingDetailsContent'
 import { useBookingQuery } from './hooks/useBookingQuery'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
+import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 const BookingDetails = () => {
 	useDocumentTitle('Booking')
