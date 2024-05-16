@@ -8,10 +8,10 @@ const Home = () => {
 	useDocumentTitle()
 
 	return (
-		<main className="font-prompt">
+		<main className="2xl:space-y my-12 space-y-8 font-prompt md:space-y-16 lg:my-16 2xl:my-28">
 			<HeroSection />
-			<AboutSection />
 			<AvailabilitySection />
+			<AboutSection />
 			<ReviewSection />
 		</main>
 	)

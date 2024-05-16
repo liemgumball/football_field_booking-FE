@@ -46,12 +46,13 @@ const HeroSection = () => {
 	)
 	return (
 		<section
-			className="mt-16 flex flex-col items-center gap-x-12 gap-y-12 transition xl:flex-row"
+			className="flex flex-col items-center gap-x-12 gap-y-12 transition xl:flex-row"
 			ref={section}
 		>
 			<div>
 				<h1 className="mb-12 text-center text-5xl font-bold uppercase leading-tight tracking-wide text-foreground md:text-6xl">
-					Welcome to Our Field Booking Platform
+					Welcome to Our <span className="text-primary">Field Booking</span>{' '}
+					Platform
 				</h1>
 				<div className="mx-auto flex max-w-[600px] flex-col items-center justify-center gap-8 md:flex-row">
 					<p className="max-w-[290px] text-sm leading-loose text-muted-foreground md:block md:text-base">

@@ -1,4 +1,6 @@
 import AvailabilityForm from '@/components/AvailabilityForm'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -11,7 +13,7 @@ const AvailabilitySection = () => {
 		() => {
 			gsap.registerPlugin(ScrollTrigger)
 			gsap.from('.check-form', {
-				x: -50,
+				y: 50,
 				opacity: 0,
 				duration: 1.25,
 				scrollTrigger: {
@@ -20,7 +22,7 @@ const AvailabilitySection = () => {
 				},
 			})
 			gsap.from('.image', {
-				x: 50,
+				y: -50,
 				opacity: 0,
 				duration: 1.25,
 				scrollTrigger: {
@@ -35,10 +37,10 @@ const AvailabilitySection = () => {
 	return (
 		<section
 			ref={ref}
-			className="mt-32 flex flex-col items-center justify-center gap-20 px-16 lg:flex-row"
+			className="flex flex-col items-center justify-center gap-8 px-4 pt-4 xl:flex-row xl:gap-20"
 		>
 			<div className="check-form space-y-8">
-				<p className="trigger rounded-xl text-2xl font-semibold text-primary">
+				<p className={cn(buttonVariants({ size: 'lg' }), 'trigger max-w-max')}>
 					Availability
 				</p>
 				<h2 className="max-w-[600px] text-5xl font-bold leading-snug">
@@ -46,7 +48,7 @@ const AvailabilitySection = () => {
 					Availability
 				</h2>
 				{/* TODO use different form */}
-				<AvailabilityForm className="grid grid-cols-1 items-start justify-items-center lg:grid-cols-2 lg:justify-items-start" />
+				<AvailabilityForm className="grid grid-cols-1 items-start justify-items-center md:grid-cols-2 lg:justify-items-start" />
 			</div>
 			<div className="image overflow-hidden rounded-3xl">
 				<img

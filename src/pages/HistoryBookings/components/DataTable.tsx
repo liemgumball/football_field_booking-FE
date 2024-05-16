@@ -111,7 +111,7 @@ const DataTable = <TData, TValue>({ columns, data }: TProps<TData, TValue>) => {
 							<TableRow>
 								<TableCell
 									colSpan={columns.length}
-									className="h-24 text-center"
+									className="h-24 text-nowrap text-center"
 								>
 									No results.
 								</TableCell>
