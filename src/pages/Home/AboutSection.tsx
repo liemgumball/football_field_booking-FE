@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 import { PATHS } from '@/constants/navigation'
 import { TFootballField } from '@/types'
 import { getBestFields } from '@/services/football-field'
+import { mockFields } from '@/mocks/fields'
 
 const AboutSection = () => {
 	const [bestFields, setBestFields] = useState<TFootballField[]>([])
@@ -20,8 +21,8 @@ const AboutSection = () => {
 				const fields = await getBestFields()
 				setBestFields(fields)
 			} catch (err) {
-				// use some default data instead
-				setBestFields([])
+				// use some default data
+				setBestFields(mockFields)
 			}
 		}
 		fetchData()
