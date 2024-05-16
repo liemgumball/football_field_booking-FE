@@ -11,7 +11,7 @@ import { useSearchParams } from 'react-router-dom'
 import HeroSection from './HeroSection'
 import FetchErrorHandler from '@/components/FetchErrorHandler'
 import { useAvailableBookingsInfiniteQuery } from './hooks/useAvailableBookingsInfiniteQuery'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
+import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 const AvailableBookings = () => {
 	useDocumentTitle('Bookings')

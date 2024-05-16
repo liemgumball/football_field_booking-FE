@@ -1,14 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider } from 'react-router-dom'
 import router from '@/routes'
-import { ErrorBoundary } from 'react-error-boundary'
-import ErrorFallback from './components/ErrorFallback'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const client = new QueryClient()
 
 function App() {
 	return (
-		<ErrorBoundary FallbackComponent={ErrorFallback}>
+		<ErrorBoundary>
 			<QueryClientProvider client={client}>
 				<RouterProvider router={router} />
 			</QueryClientProvider>

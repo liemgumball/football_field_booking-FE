@@ -5,7 +5,7 @@ import { useParams, useSearchParams } from 'react-router-dom'
 import AvailableBookingSkeleton from './components/AvailableBookingSkeleton'
 import { useAvailableBookingQuery } from './hooks/useAvailableBookingQuery'
 import useAvailableBookingStore from '@/stores/availableBooking'
-import { useDocumentTitle } from '@/hooks/useDocumentTitle'
+import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 const AvailableBookingDetails = () => {
 	useDocumentTitle('Booking')
