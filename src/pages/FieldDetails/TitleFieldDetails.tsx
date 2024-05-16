@@ -27,7 +27,7 @@ const TitleFieldDetails = ({
 						: 'No rating'}
 					<p>({rating})</p>
 				</div>
-				<div className="flex gap-4 uppercase">
+				<div className="flex flex-wrap gap-4 uppercase">
 					<Button className="max-w-max rounded-3xl" size="lg">
 						Share
 					</Button>
