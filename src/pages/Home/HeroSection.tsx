@@ -50,7 +50,7 @@ const HeroSection = () => {
 			ref={section}
 		>
 			<div>
-				<h1 className="mb-12 text-center text-5xl font-bold uppercase leading-tight tracking-wide text-foreground md:text-6xl">
+				<h1 className="mb-12 text-center text-4xl font-bold uppercase leading-tight tracking-wide text-foreground md:text-6xl">
 					Welcome to Our <span className="text-primary">Field Booking</span>{' '}
 					Platform
 				</h1>
@@ -70,7 +70,7 @@ const HeroSection = () => {
 					</Link>
 				</div>
 			</div>
-			<div className="hero-img mx-auto w-full max-w-[870px] overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
+			<div className="hero-img w-full overflow-hidden rounded-xl text-center lg:max-w-[1000px]">
 				<AspectRatio ratio={1449 / 966}>
 					<Images.HeroDark hidden={theme !== 'dark'} />
 					<Images.HeroLight hidden={theme === 'dark'} />

@@ -43,7 +43,7 @@ const Header = () => {
 								size: 'lg',
 							})} hidden md:inline-flex`}
 						>
-							signup
+							sign up
 						</Link>
 					</>
 				)}

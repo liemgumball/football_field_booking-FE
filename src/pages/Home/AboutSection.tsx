@@ -12,7 +12,7 @@ import { getBestFields } from '@/services/football-field'
 import { mockFields } from '@/mocks/fields'
 
 const AboutSection = () => {
-	const [bestFields, setBestFields] = useState<TFootballField[]>([])
+	const [bestFields, setBestFields] = useState<TFootballField[]>(mockFields)
 	const section = useRef(null)
 
 	useEffect(() => {
