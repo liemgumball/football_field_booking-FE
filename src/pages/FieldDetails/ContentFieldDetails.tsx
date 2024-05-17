@@ -4,6 +4,9 @@ import ReactMapGl from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { TFootballField } from '@/types'
 import SubFieldList from './components/SubFieldList'
+import { Button } from '@/components/ui/button'
+import { Send } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const ContentFieldDetails = ({
 	location,
@@ -12,19 +15,33 @@ const ContentFieldDetails = ({
 }: Partial<TFootballField>) => {
 	return (
 		<section className="my-8 flex flex-col gap-4">
-			<div className="mb-11">
-				<h3 className="text-4xl font-medium capitalize">overview</h3>
-				<p className="mt-4 max-w-[750px]">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa illum
-					nihil aut sequi numquam minus reprehenderit maiores commodi eligendi,
-					perferendis fuga id harum similique libero itaque soluta veritatis
-					voluptatibus minima dolores, atque earum? Velit libero distinctio
-					tenetur, accusantium, optio nemo et aspernatur qui commodi itaque
-					temporibus eos a amet voluptatum facilis, eligendi modi alias possimus
-					non quidem illo quibusdam esse. Voluptas accusamus ipsa, aut aliquid
-					doloremque perspiciatis odio. Ipsum tempore nam fuga illo sint vel non
-					voluptas nihil dignissimos suscipit.
-				</p>
+			<div className="mb-11 flex justify-between">
+				<div>
+					<h3 className="text-4xl font-medium capitalize">overview</h3>
+					<p className="mt-4 max-w-[750px]">
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa illum
+						nihil aut sequi numquam minus reprehenderit maiores commodi
+						eligendi, perferendis fuga id harum similique libero itaque soluta
+						veritatis voluptatibus minima dolores, atque earum? Velit libero
+						distinctio tenetur, accusantium, optio nemo et aspernatur qui
+						commodi itaque temporibus eos a amet voluptatum facilis, eligendi
+						modi alias possimus non quidem illo quibusdam esse. Voluptas
+						accusamus ipsa, aut aliquid doloremque perspiciatis odio. Ipsum
+						tempore nam fuga illo sint vel non voluptas nihil dignissimos
+						suscipit.
+					</p>
+				</div>
+				<Button className="mt-7 rounded-full py-8 pl-10 pr-1">
+					<Link
+						className="inline-flex items-center justify-center text-xl font-bold uppercase text-primary-foreground transition-colors "
+						to="/"
+					>
+						book now
+						<div className="ml-5 rounded-full bg-primary-foreground p-4 text-primary ">
+							<Send />
+						</div>
+					</Link>
+				</Button>
 			</div>
 			<div>
 				<h3 className="text-2xl font-medium capitalize">advanced facilities</h3>

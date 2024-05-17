@@ -43,10 +43,18 @@ const FootballFieldCard = ({
 							</CardTitle>
 							<CardDescription className="flex space-x-1">
 								{rating
-									? Array.from({ length: rating }, (_, i) => i).map((item) => (
-											<Star key={item} size={15} color="orange" />
-										))
-									: 'No rating'}
+									? Array(Math.floor(5))
+											.fill(null)
+											.map((_, index) =>
+												index + 1 <= rating ? (
+													<Star color="orange" key={index} />
+												) : (
+													<Star key={index} />
+												),
+											)
+									: Array(Math.floor(5))
+											.fill(null)
+											.map((_, index) => <Star key={index} />)}
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="h-auto max-h-0 overflow-hidden py-0 opacity-0 transition-all delay-100 duration-700 group-hover:mb-4 group-hover:max-h-[90px] group-hover:opacity-100">
