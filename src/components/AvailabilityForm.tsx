@@ -94,9 +94,11 @@ const AvailabilityForm = ({
 			searchParams.set('size', values.size.toString())
 		}
 
+		// Available booking page
 		if (!isNavigate) setSearchParams(searchParams.toString())
 		else
 			navigate({
+				// From Home page navigate to available booking page with search parameters
 				pathname: PATHS.AVAILABLE_BOOKING.BASE,
 				search: searchParams.toString(),
 			})
@@ -106,7 +108,7 @@ const AvailabilityForm = ({
 	return (
 		<Form {...form}>
 			<form
-				className={cn('relative gap-8 p-4', className)}
+				className={cn('relative gap-8 px-4 py-6 shadow-lg', className)}
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				{!isNavigate && (
@@ -143,7 +145,7 @@ const AvailabilityForm = ({
 											size="lg"
 											variant={'outline'}
 											className={cn(
-												'flex min-w-[220px] text-left font-normal',
+												'flex h-11 min-w-[220px] text-left font-normal',
 												!field.value && 'text-muted-foreground',
 											)}
 										>
@@ -182,7 +184,7 @@ const AvailabilityForm = ({
 								<FormControl>
 									<SelectTrigger
 										className={cn(
-											'min-w-[220px] px-8',
+											'h-11 min-w-[220px] px-8',
 											!field.value && 'text-muted-foreground',
 										)}
 									>
@@ -216,7 +218,7 @@ const AvailabilityForm = ({
 								<FormControl>
 									<SelectTrigger
 										className={cn(
-											'min-w-[220px] px-8',
+											'h-11 min-w-[220px] px-8',
 											!field.value && 'text-muted-foreground',
 										)}
 									>
@@ -241,7 +243,7 @@ const AvailabilityForm = ({
 								<FormControl>
 									<SelectTrigger
 										className={cn(
-											'min-w-[220px] px-8',
+											'h-11 min-w-[220px] px-8',
 											!field.value && 'text-muted-foreground',
 										)}
 									>
