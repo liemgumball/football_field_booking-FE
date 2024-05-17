@@ -30,6 +30,7 @@ import { getTimeRange } from '@/utils/time'
 import { pickRandomFormArray } from '@/utils/common'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { PATHS } from '@/constants/navigation'
+import { calculatePrice } from '@/utils/booking'
 
 const AvailableBookingCard = ({
 	_id,
@@ -47,6 +48,8 @@ const AvailableBookingCard = ({
 				: defaultImg,
 		[field.images],
 	)
+
+	const price = calculatePrice(turnOfServices)
 
 	const [from, to] = getTimeRange(turnOfServices)
 
@@ -89,16 +92,16 @@ const AvailableBookingCard = ({
 				<CardTitle className="text-wrap capitalize">
 					<Link
 						to={`${PATHS.FIELD.BASE}/${field._id}`}
-						className="transition hover:text-primary"
+						className="leading-tight transition hover:text-primary"
 					>
 						{field.name} - {subfield.name}
 					</Link>
 				</CardTitle>
 			</CardHeader>
-			<CardContent>
+			<CardContent className="flex flex-wrap items-center gap-2">
 				<HoverCard>
 					<HoverCardTrigger
-						className="cursor-default rounded-md border p-2 hover:bg-muted"
+						className="cursor-default text-nowrap rounded-md border p-2 hover:bg-muted"
 						onMouseEnter={onMouseEnter}
 					>
 						<MapPin className="mr-2 inline text-primary" size={16} />
@@ -106,22 +109,19 @@ const AvailableBookingCard = ({
 					</HoverCardTrigger>
 					{location && <HoverCardContent>{location}</HoverCardContent>}
 				</HoverCard>
-				<span className="ml-5 text-lg font-bold tracking-wider text-secondary-foreground">{`${from} - ${to}`}</span>
+				<div className="text-nowrap px-2 text-lg font-bold tracking-wider text-secondary-foreground">{`${from} - ${to}`}</div>
 			</CardContent>
 			<Separator className="mx-auto mb-4 w-5/6" />
-			<CardFooter className="space-x-6 text-sm text-secondary-foreground">
-				<div className="flex items-center">
-					<DollarSignIcon className="mr-2 text-primary" size={18} />
-					Price
-					{/* {price} */}
-				</div>
-				<div className="flex items-center">
-					<User2Icon className="mr-2 text-primary" size={18} />
-					Size {subfield.size}
+			<CardFooter className="flex justify-between text-sm text-secondary-foreground">
+				<div>
+					<DollarSignIcon className="mr-2 inline text-primary" size={18} />
+					{price}
+					<User2Icon className="ml-8 mr-2 inline text-primary" size={18} />
+					{subfield.size}
 				</div>
 				<Link
 					to={`${PATHS.AVAILABLE_BOOKING.BASE}/${_id}?from=${from}&to=${to}`}
-					className={buttonVariants({ variant: 'outline' })}
+					className={buttonVariants({})}
 				>
 					Booking
 					<ArrowRight className="ml-2" size={16} />

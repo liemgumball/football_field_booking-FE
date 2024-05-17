@@ -120,7 +120,6 @@ const LoginForm = () => {
 				<Button
 					disabled={isSubmitting || (!isValid && isSubmitted)}
 					type="submit"
-					variant="outline"
 					className="w-full text-base"
 				>
 					{isSubmitting && <Icons.Loader className="mr-1" />}

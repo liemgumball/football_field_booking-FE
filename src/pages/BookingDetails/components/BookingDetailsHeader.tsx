@@ -24,11 +24,8 @@ const BookingDetailsHeader = ({ field, status, _id }: TProps) => {
 				<h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
 					{name}
 				</h1>
-				<div className="space-x-2">
-					<MapPinIcon
-						className="mr-px inline-block text-nowrap text-primary"
-						size={20}
-					/>
+				<div className="space-x-2 text-nowrap">
+					<MapPinIcon className="mr-px inline-block  text-primary" size={20} />
 					<span className="truncate">{location.name}</span>
 					<span className="space-x-1">
 						{rating ? (

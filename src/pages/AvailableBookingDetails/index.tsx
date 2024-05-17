@@ -38,9 +38,9 @@ const AvailableBookingDetails = () => {
 		return <p className="text-destructive">Fail to get booking information</p>
 
 	return (
-		<main className="container ">
+		<main className="container">
 			<AvailableBookingHeader availableBooking={availableBooking} />
-			<section className="mx-auto my-4 min-w-max max-w-[700px] rounded-xl bg-secondary/80 px-12 py-8 xl:px-16">
+			<section className="mx-auto my-4 min-w-max max-w-[700px] rounded-lg bg-secondary/80 px-6 py-8 ">
 				<AvailableBookingForm availableBooking={availableBooking} />
 			</section>
 		</main>
