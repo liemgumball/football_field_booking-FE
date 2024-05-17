@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -33,12 +33,20 @@ import useLocationStore from '@/stores/location'
 import { timeSchema } from '@/constants/time'
 import TimeSelect from './TimeSelect'
 import { getDuration } from '@/utils/time'
+import { PATHS } from '@/constants/navigation'
 
-// TODO onBlur refetch
-const AvailabilityForm = ({ className }: { className?: string }) => {
+const AvailabilityForm = ({
+	className,
+	isNavigate,
+}: {
+	className?: string
+	isNavigate?: boolean
+}) => {
 	const coordinates = useLocationStore((set) => set.coordinates)
 	const [searchParams, setSearchParams] = useSearchParams()
+	const navigate = useNavigate()
 
+	// Check if can use location or not
 	const isLocationSearch =
 		searchParams.get('location') === 'false'
 			? false
@@ -86,35 +94,42 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 			searchParams.set('size', values.size.toString())
 		}
 
-		setSearchParams(searchParams.toString())
+		if (!isNavigate) setSearchParams(searchParams.toString())
+		else
+			navigate({
+				pathname: PATHS.AVAILABLE_BOOKING.BASE,
+				search: searchParams.toString(),
+			})
 	}
 
-	const { isSubmitting } = form.formState
+	const { isSubmitting, isDirty } = form.formState
 	return (
 		<Form {...form}>
 			<form
 				className={cn('relative gap-8 p-4', className)}
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
-				<FormField
-					control={form.control}
-					name="location"
-					render={({ field }) => (
-						<FormItem className="absolute right-5 top-1 flex flex-row items-start space-x-2 space-y-0 rounded-md p-4">
-							<FormControl>
-								<Checkbox
-									checked={field.value}
-									onCheckedChange={field.onChange}
-								/>
-							</FormControl>
-							<div className="space-y-1 leading-none">
-								<FormLabel className="text-xs text-muted-foreground">
-									Optimize by your location
-								</FormLabel>
-							</div>
-						</FormItem>
-					)}
-				/>
+				{!isNavigate && (
+					<FormField
+						control={form.control}
+						name="location"
+						render={({ field }) => (
+							<FormItem className="absolute right-5 top-1 flex flex-row items-start space-x-2 space-y-0 rounded-md p-4">
+								<FormControl>
+									<Checkbox
+										checked={field.value}
+										onCheckedChange={field.onChange}
+									/>
+								</FormControl>
+								<div className="space-y-1 leading-none">
+									<FormLabel className="text-xs text-muted-foreground">
+										Optimize by your location
+									</FormLabel>
+								</div>
+							</FormItem>
+						)}
+					/>
+				)}
 				<FormField
 					control={form.control}
 					name="date"
@@ -242,7 +257,7 @@ const AvailabilityForm = ({ className }: { className?: string }) => {
 				<Button
 					className="col-auto mt-8"
 					size="lg"
-					disabled={isSubmitting}
+					disabled={isSubmitting || (!isDirty && !isNavigate)}
 					type="submit"
 				>
 					Check Availability

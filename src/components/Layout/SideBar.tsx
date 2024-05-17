@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { useState } from 'react'
 import useAuthStore from '@/stores/auth'
 import { PATHS } from '@/constants/navigation'
+import { Separator } from '../ui/separator'
 
 const SideBar = () => {
 	const [isOpen, setIsOpen] = useState(false)
@@ -14,17 +15,24 @@ const SideBar = () => {
 
 	return (
 		<Sheet open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
-			<SheetTrigger asChild className="w-8 md:hidden">
-				<MenuIcon size={30} className="text-secondary-foreground" />
+			<SheetTrigger
+				asChild
+				className="rounded-lg p-2 hover:bg-secondary md:hidden"
+			>
+				<MenuIcon size={40} className="text-secondary-foreground" />
 			</SheetTrigger>
 			<SheetContent side="left">
 				<SheetHeader>
-					<Link to={PATHS.HOME}>
+					<Link
+						onClick={() => setIsOpen(false)}
+						to={PATHS.HOME}
+						className="flex items-center justify-start gap-4"
+					>
 						<Icons.Logo />
+						<h2 className="text-center text-2xl font-bold capitalize text-primary">
+							DN Football
+						</h2>
 					</Link>
-					<h1 className="text-center text-2xl font-bold capitalize text-primary">
-						welcome to l88
-					</h1>
 				</SheetHeader>
 				<div className="flex flex-col gap-5 space-y-2 px-4 pt-6 capitalize">
 					<div>
@@ -77,10 +85,13 @@ const SideBar = () => {
 						</ul>
 					</div>
 					<Link to={PATHS.SUPPORT}>
-						<p className="text-2xl font-semibold capitalize">contact us</p>
+						<p className="text-2xl font-semibold capitalize hover:text-primary">
+							contact us
+						</p>
 					</Link>
+					<Separator />
 					{!user && (
-						<div className="flex justify-center space-x-4 font-bold capitalize">
+						<div className="mx-auto space-x-4 font-bold capitalize">
 							<Link
 								to={PATHS.LOGIN}
 								onClick={() => setIsOpen(false)}
@@ -104,7 +115,7 @@ const SideBar = () => {
 									'font-bold',
 								)}
 							>
-								signup
+								sign up
 							</Link>
 						</div>
 					)}

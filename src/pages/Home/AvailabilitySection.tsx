@@ -43,12 +43,14 @@ const AvailabilitySection = () => {
 				<p className={cn(buttonVariants({ size: 'lg' }), 'trigger max-w-max')}>
 					Availability
 				</p>
-				<h2 className="max-w-[600px] text-5xl font-bold leading-snug">
+				<h2 className="max-w-[600px] text-4xl font-bold leading-snug md:text-5xl">
 					Booking Your <span className="text-primary">Best Football Field</span>{' '}
 					Availability
 				</h2>
-				{/* TODO use different form */}
-				<AvailabilityForm className="grid grid-cols-1 items-start justify-items-center md:grid-cols-2 lg:justify-items-start" />
+				<AvailabilityForm
+					className="grid grid-cols-1 items-start justify-items-center md:grid-cols-2 lg:justify-items-start"
+					isNavigate
+				/>
 			</div>
 			<div className="image overflow-hidden rounded-3xl">
 				<img
