@@ -32,7 +32,12 @@ const apiRequest = async <T>(url: string, init?: TReqInit<T>) => {
 
 	const response = await fetch(ENV_VARS.API_URL + url, {
 		method: method || 'GET',
-		headers: { 'Content-Type': 'application/json' },
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: withCredentials
+				? `Bearer ${localStorage.getItem('access_token')}`
+				: '',
+		},
 		credentials: withCredentials ? 'include' : undefined,
 		body: data ? JSON.stringify(data) : undefined,
 	})
@@ -40,7 +45,12 @@ const apiRequest = async <T>(url: string, init?: TReqInit<T>) => {
 	if (!response.ok) throw response
 
 	try {
-		const data = await response.json()
+		const data = (await response.json()) as Record<string, unknown>
+
+		// save token
+		if (data['token']) {
+			localStorage.setItem('access_token', data['token'] as string)
+		}
 
 		return data
 	} catch (err) {
