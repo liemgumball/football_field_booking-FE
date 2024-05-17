@@ -71,7 +71,8 @@ const ReviewSection = () => {
 						Reviews{' '}
 					</p>
 					<h2 className="text-4xl font-bold capitalize tracking-normal md:text-5xl ">
-						what our footballer say about our services
+						what our <span className="text-primary">customer</span> say about{' '}
+						<span className="text-primary">our services</span>
 					</h2>
 				</div>
 			</div>
