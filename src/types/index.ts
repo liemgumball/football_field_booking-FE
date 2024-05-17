@@ -37,6 +37,7 @@ export type TFootballField = {
 	closedAt: string
 	images?: string[]
 	location: TLocation
+	subfields: TSubField[]
 }
 
 export type TSubField = {

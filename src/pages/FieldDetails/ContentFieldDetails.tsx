@@ -3,10 +3,13 @@ import { ENV_VARS } from '@/constants/envVars'
 import ReactMapGl from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { TFootballField } from '@/types'
-import defaultDetailsImg from '/defaultDetailsImg.png'
+import SubFieldList from './components/SubFieldList'
 
-const ContentFieldDetails = ({ location, images }: Partial<TFootballField>) => {
-	const imgSrc = images?.length ? images[0] : defaultDetailsImg
+const ContentFieldDetails = ({
+	location,
+	images,
+	subfields,
+}: Partial<TFootballField>) => {
 	return (
 		<section className="my-8 flex flex-col gap-4">
 			<div className="mb-11">
@@ -30,9 +33,7 @@ const ContentFieldDetails = ({ location, images }: Partial<TFootballField>) => {
 					adipisci velit sed quian numquam eius tempora incidunt labore dolore
 					magnam aliquam quaerat voluptatem.
 				</p>
-				<div className="mt-11 max-w-[750px]">
-					<img src={imgSrc} className="rounded" alt="content details image" />
-				</div>
+				<SubFieldList subfields={subfields} images={images} />
 			</div>
 			<div>
 				<h2 className="text-2xl font-medium capitalize ">field’s address</h2>
