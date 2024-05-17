@@ -8,12 +8,14 @@ import {
 import { Star } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { TFootballField } from '@/types'
+import { cn } from '@/lib/utils'
 
 const FootballFieldCard = ({
 	_id,
 	name,
 	rating,
 	images,
+	className,
 }: Partial<TFootballField> & { className?: string }) => {
 	const imgSrc = images?.length
 		? images[0]
@@ -21,7 +23,12 @@ const FootballFieldCard = ({
 
 	return (
 		<Link to={`/fields/${_id}`}>
-			<figure className="group relative h-[480px] w-full overflow-hidden rounded-lg">
+			<figure
+				className={cn(
+					'group relative h-[480px] w-full overflow-hidden rounded-lg',
+					className,
+				)}
+			>
 				<img
 					src={imgSrc}
 					alt="field image"
