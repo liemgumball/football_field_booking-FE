@@ -34,6 +34,7 @@ import {
 	availableFormSchema,
 	useAvailableBookingForm,
 } from '../hooks/useAvailableBookingForm'
+import { getDisableTimeList, getTimeValues } from '@/utils/time'
 
 type TProps = {
 	availableBooking: TAvailableBooking
@@ -150,6 +151,8 @@ const AvailableBookingForm = ({ availableBooking }: TProps) => {
 						<FormItem>
 							<FormLabel>From</FormLabel>
 							<TimeSelect
+								disabledList={getDisableTimeList(dayOfService)}
+								valueList={getTimeValues(dayOfService)}
 								onValueChange={(value: string) => {
 									updateTimeRange(value)
 									field.onChange(value)
@@ -178,6 +181,8 @@ const AvailableBookingForm = ({ availableBooking }: TProps) => {
 						<FormItem>
 							<FormLabel>To</FormLabel>
 							<TimeSelect
+								disabledList={getDisableTimeList(dayOfService)}
+								valueList={getTimeValues(dayOfService)}
 								onValueChange={(value: string) => {
 									updateTimeRange(undefined, value)
 									field.onChange(value)

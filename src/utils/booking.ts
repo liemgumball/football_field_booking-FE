@@ -14,7 +14,7 @@ export function getInitialFrom() {
 	// Get next available timestep from 15 minutes later
 	const hours = now.getMinutes() < 30 ? now.getHours() : now.getHours() + 1
 	const minutes = now.getMinutes() < 30 ? '30' : '00'
-	return hours.toString().padStart(2, '0') + ':' + minutes
+	return (hours.toString().padStart(2, '0') + ':' + minutes) as TTimeStep
 }
 
 export function getInitialTo(from?: string) {
@@ -32,7 +32,7 @@ export function getInitialTo(from?: string) {
 	// Get next available timestep from 15 minutes later
 	const minutes = now.getMinutes() < 30 ? '30' : '00'
 	const hours = now.getMinutes() < 30 ? now.getHours() : now.getHours() + 1
-	return (hours + 1).toString().padStart(2, '0') + ':' + minutes
+	return ((hours + 1).toString().padStart(2, '0') + ':' + minutes) as TTimeStep
 }
 
 export function calculatePrice(input: TTurnOfService[] | null): number {
@@ -48,7 +48,7 @@ export function calculatePrice(input: TTurnOfService[] | null): number {
 }
 
 export const formatPrice = (num: number) => {
-	return num + ',000' + ' VND'
+	return num.toLocaleString('en-US') + ',000' + ' VND'
 }
 
 export function getAvailableBookingInfo(

@@ -51,7 +51,7 @@ const AvailableBookingHeader = (props: {
 						<Clock size={18} className="mr-1 inline text-primary" />
 						Duration
 					</p>
-					<p className="text-xl font-bold">{duration} Hours</p>
+					<p className="text-xl font-bold">{duration.toFixed(1)} Hours</p>
 				</div>
 				<div>
 					<p>
