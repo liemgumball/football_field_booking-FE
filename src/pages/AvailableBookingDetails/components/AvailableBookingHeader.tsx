@@ -11,9 +11,9 @@ const AvailableBookingHeader = (props: {
 
 	const { field, date, subfield } = dayOfService
 	return (
-		<header className="my-12 flex flex-col justify-between gap-y-4 px-12 xl:flex-row">
-			<div>
-				<h3 className="text-4xl font-bold capitalize">
+		<header className="my-12 flex flex-col justify-between gap-4 lg:flex-row">
+			<div className="space-y-4">
+				<h3 className="text-4xl font-bold capitalize leading-tight">
 					{field.name || 'Football Field'}
 				</h3>
 				<div className="space-x-1">
@@ -30,32 +30,32 @@ const AvailableBookingHeader = (props: {
 							))
 						: 'No rating'}
 				</div>
-				<div className="mt-2 text-sm text-muted-foreground">
-					<MapPin size={14} className="mr-1 inline-block text-primary" />
+				<div className="mt-2 text-sm leading-snug text-muted-foreground">
+					<MapPin size={14} className="mr-1 inline text-primary" />
 					{field.location.name}
 					{status && (
-						<BookingStatusBadge status={status} className="ml-2 text-xs" />
+						<BookingStatusBadge status={status} className="ml-2 mt-2 text-xs" />
 					)}
 				</div>
 			</div>
-			<div className="my-auto flex min-w-max justify-between gap-6">
+			<div className="my-auto flex flex-wrap justify-between gap-6 text-nowrap">
 				<div>
 					<p>
-						<DollarSign size={18} className="mr-1 inline-block text-primary" />
+						<DollarSign size={18} className="mr-1 inline text-primary" />
 						Price
 					</p>
 					<p className="text-xl font-bold">{formatPrice(price || 0)}</p>
 				</div>
 				<div>
 					<p>
-						<Clock size={18} className="mr-1 inline-block text-primary" />
+						<Clock size={18} className="mr-1 inline text-primary" />
 						Duration
 					</p>
 					<p className="text-xl font-bold">{duration} Hours</p>
 				</div>
 				<div>
 					<p>
-						<User2Icon size={18} className="mr-1 inline-block text-primary" />
+						<User2Icon size={18} className="mr-1 inline text-primary" />
 						Size
 					</p>
 					<p className="text-xl font-bold">

@@ -76,14 +76,14 @@ const ReviewSection = () => {
 				</div>
 			</div>
 			<div className="flex flex-col items-center justify-center gap-10 lg:flex-row ">
-				<div className="hero-img min-w-[460px] overflow-hidden rounded-xl text-center md:min-w-[600px]">
+				<div className="hero-img w-full overflow-hidden rounded-xl text-center md:max-w-[800px]">
 					<AspectRatio ratio={1449 / 966}>
 						<img src={reviewImg} alt="review image" />
 					</AspectRatio>
 				</div>
 				<Carousel
 					plugins={[plugin.current]}
-					className="review-item min-w-[360px] max-w-[480px] px-2"
+					className="review-item max-w-[300px] rounded-xl px-2 sm:max-w-[568px]"
 				>
 					<CarouselContent>
 						{Array.from({ length: 5 }).map((_, index) => (
