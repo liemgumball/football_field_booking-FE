@@ -39,7 +39,11 @@ const FieldDetails = () => {
 				location={field?.location}
 				rating={field?.rating}
 			/>
-			<ContentFieldDetails location={field?.location} images={field?.images} />
+			<ContentFieldDetails
+				location={field?.location}
+				images={field?.images}
+				subfields={field?.subfields}
+			/>
 		</main>
 	)
 }

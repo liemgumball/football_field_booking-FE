@@ -21,21 +21,32 @@ const TitleFieldDetails = ({
 			<div className="my-3 flex flex-col justify-between gap-y-2 lg:flex-row">
 				<div className="flex items-center gap-2">
 					{rating
-						? Array(Math.floor(rating))
+						? Array(Math.floor(5))
 								.fill(null)
-								.map((_, index) => <StarIcon color="orange" key={index} />)
-						: 'No rating'}
-					<p>({rating})</p>
+								.map((_, index) =>
+									index + 1 <= rating ? (
+										<StarIcon color="orange" key={index} />
+									) : (
+										<div className="text-muted">
+											<StarIcon key={index} />
+										</div>
+									),
+								)
+						: Array(Math.floor(5))
+								.fill(null)
+								.map((_, index) => (
+									<div className="text-muted">
+										<StarIcon key={index} />
+									</div>
+								))}
+					<p>({rating ? rating : 'No rating'})</p>
 				</div>
-				<div className="flex flex-wrap gap-4 uppercase">
-					<Button className="max-w-max rounded-3xl" size="lg">
-						Share
+				<div className="flex gap-4 uppercase">
+					<Button className="max-w-max rounded-3xl" size="lg" disabled>
+						Like
 					</Button>
-					<Button className="max-w-max rounded-3xl" size="lg">
+					<Button className="max-w-max rounded-3xl" size="lg" disabled>
 						Reviews
-					</Button>
-					<Button className="max-w-max rounded-3xl" size="lg">
-						Whislist
 					</Button>
 				</div>
 			</div>
