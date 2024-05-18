@@ -27,12 +27,18 @@ const TitleFieldDetails = ({
 									index + 1 <= rating ? (
 										<StarIcon color="orange" key={index} />
 									) : (
-										<StarIcon key={index} />
+										<div className="text-muted">
+											<StarIcon key={index} />
+										</div>
 									),
 								)
 						: Array(Math.floor(5))
 								.fill(null)
-								.map((_, index) => <StarIcon key={index} />)}
+								.map((_, index) => (
+									<div className="text-muted">
+										<StarIcon key={index} />
+									</div>
+								))}
 					<p>({rating ? rating : 'No rating'})</p>
 				</div>
 				<div className="flex gap-4 uppercase">

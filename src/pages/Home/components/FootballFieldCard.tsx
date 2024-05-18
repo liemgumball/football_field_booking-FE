@@ -49,12 +49,18 @@ const FootballFieldCard = ({
 												index + 1 <= rating ? (
 													<Star color="orange" key={index} />
 												) : (
-													<Star key={index} />
+													<div className="text-muted">
+														<Star key={index} />
+													</div>
 												),
 											)
 									: Array(Math.floor(5))
 											.fill(null)
-											.map((_, index) => <Star key={index} />)}
+											.map((_, index) => (
+												<div className="text-muted">
+													<Star key={index} />
+												</div>
+											))}
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="h-auto max-h-0 overflow-hidden py-0 opacity-0 transition-all delay-100 duration-700 group-hover:mb-4 group-hover:max-h-[90px] group-hover:opacity-100">
