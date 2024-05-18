@@ -1,4 +1,6 @@
-export type TTimeStep = string
+import { timeValues } from '@/constants/time'
+
+export type TTimeStep = (typeof timeValues)[number] | string
 
 export type TTimeRange = {
 	from: TTimeStep
@@ -52,7 +54,7 @@ export type TBookingStatus = 'confirmed' | 'canceled' | 'pending'
 export type TTurnOfServiceStatus = 'available' | 'progressing' | 'used'
 
 export type TTurnOfService = {
-	at: string
+	at: TTimeStep
 	price: number
 	status: TTurnOfServiceStatus
 }

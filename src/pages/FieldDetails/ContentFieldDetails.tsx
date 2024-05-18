@@ -69,23 +69,25 @@ const ContentFieldDetails = ({
 			</div>
 
 			{location && (
-				<ReactMapGl
-					mapboxAccessToken={ENV_VARS.MAP.ACCESS_TOKEN}
-					mapStyle={ENV_VARS.MAP.STYLE_URL}
-					style={{ width: 800, height: 500, borderRadius: '0.25rem' }}
-					initialViewState={{
-						longitude: location?.geo.coordinates[0],
-						latitude: location?.geo.coordinates[1],
-						zoom: 13,
-					}}
-				>
-					<Marker
-						longitude={location.geo.coordinates[0]}
-						latitude={location.geo.coordinates[1]}
-						color="red"
-						anchor="bottom"
-					/>
-				</ReactMapGl>
+				<div className="h-[450px] lg:h-[500px] lg:w-[800px]">
+					<ReactMapGl
+						mapboxAccessToken={ENV_VARS.MAP.ACCESS_TOKEN}
+						mapStyle={ENV_VARS.MAP.STYLE_URL}
+						style={{ width: '100%', height: '100%', borderRadius: '0.25rem' }}
+						initialViewState={{
+							longitude: location?.geo.coordinates[0],
+							latitude: location?.geo.coordinates[1],
+							zoom: 13,
+						}}
+					>
+						<Marker
+							longitude={location.geo.coordinates[0]}
+							latitude={location.geo.coordinates[1]}
+							color="red"
+							anchor="bottom"
+						/>
+					</ReactMapGl>
+				</div>
 			)}
 		</section>
 	)

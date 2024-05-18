@@ -122,10 +122,11 @@ const LoginForm = () => {
 					type="submit"
 					className="w-full text-base"
 				>
-					{isSubmitting && <Icons.Loader className="mr-1" />}
+					{isSubmitting && (
+						<Icons.Loader className="mr-1 text-primary-foreground" />
+					)}
 					Login
 				</Button>
-				{/* [ ] css not good, needed design */}
 				<FormMessage>{errors.root?.message}</FormMessage>
 			</form>
 		</FormProvider>
