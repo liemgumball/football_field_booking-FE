@@ -9,6 +9,7 @@ import { Star } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { TFootballField } from '@/types'
 import { cn } from '@/lib/utils'
+import defaultImg from '/booking_img.png'
 
 const FootballFieldCard = ({
 	_id,
@@ -17,9 +18,7 @@ const FootballFieldCard = ({
 	images,
 	className,
 }: Partial<TFootballField> & { className?: string }) => {
-	const imgSrc = images?.length
-		? images[0]
-		: 'https://demo.webtend.net/html/gowilds/assets/images/features/feat-2.jpg' // just fallback cause the api already get fields with images
+	const imgSrc = images?.length ? images[0] : defaultImg // just fallback cause the api already get fields with images
 
 	return (
 		<Link to={`/fields/${_id}`}>
