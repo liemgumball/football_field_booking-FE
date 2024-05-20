@@ -42,7 +42,7 @@ const FilterByNameSection = () => {
 				<FilterForm setName={setName} rating={rating} setRating={setRating} />
 			</div>
 			{isLoading ? (
-				<div className="grid grid-cols-1 gap-x-4 gap-y-5  md:grid-cols-2 lg:grid-cols-3">
+				<div className="grid grid-cols-1 justify-items-center gap-x-4 gap-y-5  md:grid-cols-2 lg:grid-cols-3">
 					{Array(6)
 						.fill(null)
 						.map((_, index) => (
