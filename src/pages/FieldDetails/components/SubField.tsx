@@ -11,7 +11,7 @@ const SubField = ({
 		: 'https://demo.webtend.net/html/gowilds/assets/images/place/place-10.jpg'
 
 	return (
-		<figure className="relative h-[250px] w-[250px] hover:scale-110 hover:shadow-primary-foreground  md:h-[300px] md:w-[300px]">
+		<figure className="relative h-[250px] w-[250px] hover:scale-105 hover:shadow-primary-foreground  md:h-[300px] md:w-[300px]">
 			<img
 				className="h-full w-full rounded-xl "
 				src={imageSubField}
