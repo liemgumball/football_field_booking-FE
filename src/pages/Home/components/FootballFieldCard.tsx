@@ -48,7 +48,7 @@ const FootballFieldCard = ({
 												index + 1 <= rating ? (
 													<Star color="orange" key={index} />
 												) : (
-													<div className="text-muted">
+													<div className="text-muted-foreground">
 														<Star key={index} />
 													</div>
 												),
@@ -56,7 +56,7 @@ const FootballFieldCard = ({
 									: Array(Math.floor(5))
 											.fill(null)
 											.map((_, index) => (
-												<div className="text-muted">
+												<div className="text-muted-foreground">
 													<Star key={index} />
 												</div>
 											))}
