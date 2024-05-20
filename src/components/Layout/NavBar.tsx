@@ -13,6 +13,7 @@ import {
 	navigationMenuTriggerStyle,
 } from '../ui/navigation-menu'
 import { PATHS } from '@/constants/navigation'
+import useAuthStore from '@/stores/auth'
 
 const platforms = [
 	{
@@ -20,12 +21,6 @@ const platforms = [
 		href: PATHS.FIELD.BASE,
 		description:
 			'Explore available football fields in your area and book them for your matches or events.',
-	},
-	{
-		title: 'Bookings history',
-		href: PATHS.BOOKING.BASE,
-		description:
-			'Track the progress of your football field booking, from selection to confirmation.',
 	},
 	{
 		title: 'Become Our Partner',
@@ -36,6 +31,8 @@ const platforms = [
 ]
 
 const NavBar = () => {
+	const user = useAuthStore((set) => set.user)
+
 	return (
 		<NavigationMenu className="hidden md:block">
 			<NavigationMenuList>
@@ -96,6 +93,19 @@ const NavBar = () => {
 						</NavigationMenuLink>
 					</Link>
 				</NavigationMenuItem>
+				{user && (
+					<NavigationMenuItem>
+						<Link to={PATHS.BOOKING.BASE}>
+							<NavigationMenuLink
+								className={navigationMenuTriggerStyle({
+									className: 'capitalize',
+								})}
+							>
+								Bookings History
+							</NavigationMenuLink>
+						</Link>
+					</NavigationMenuItem>
+				)}
 			</NavigationMenuList>
 		</NavigationMenu>
 	)
