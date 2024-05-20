@@ -66,7 +66,7 @@ const SideBar = () => {
 								</Link>
 							</li>
 							<li className="hover:text-primary">
-								<Link to={PATHS.FIELD.BASE}>fields details</Link>
+								<Link to={PATHS.FIELD.BASE}>find fields</Link>
 							</li>
 							<li className="hover:text-primary">
 								<Link to={PATHS.BOOKING.BASE}>
