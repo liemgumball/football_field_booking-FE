@@ -5,6 +5,7 @@ import { TFootballField } from '@/types'
 import { ENV_VARS } from '@/constants/envVars'
 import ContentFieldDetails from './ContentFieldDetails'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import Review from './Review'
 
 const FieldDetails = () => {
 	// Get field ID
@@ -44,6 +45,7 @@ const FieldDetails = () => {
 				images={field?.images}
 				subfields={field?.subfields}
 			/>
+			<Review />
 		</main>
 	)
 }
