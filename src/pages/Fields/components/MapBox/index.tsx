@@ -57,7 +57,7 @@ const MapBox = ({
 						>
 							<Popover>
 								<PopoverTrigger className="cursor-pointer">
-									<MapPinIcon className="size-16 text-green-900" />
+									<MapPinIcon className="size-8 text-green-900" />
 									{/* <i className="fa fa-solid fa-location-dot"></i> */}
 								</PopoverTrigger>
 								<PopoverContent>

@@ -1,25 +1,23 @@
-import { StarIcon } from 'lucide-react'
+import Rating from '@/components/Rating'
 
 const RatingItem = ({
 	variant,
 	isChecked,
 	onClick,
 }: {
-	variant: number
+	variant: string
 	isChecked: boolean
 	onClick: () => void
 }) => {
 	return (
 		<div className="flex  flex-row items-center gap-2 lg:gap-4">
-			<input type="radio" checked={isChecked} onClick={onClick} />
-			<label className="flex gap-1 text-base uppercase lg:gap-2 lg:text-lg">
-				{variant}
+			<input type="radio" id={variant} checked={isChecked} onClick={onClick} />
+			<label
+				htmlFor={variant}
+				className="flex gap-1 text-base uppercase lg:gap-2 lg:text-lg"
+			>
 				<span className="flex">
-					{Array(Math.floor(variant))
-						.fill(null)
-						.map((_, index) => (
-							<StarIcon key={index} color="orange" />
-						))}
+					<Rating rating={parseInt(variant)} />
 				</span>
 			</label>
 		</div>

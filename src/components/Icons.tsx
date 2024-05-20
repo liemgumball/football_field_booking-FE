@@ -1,4 +1,4 @@
-import { CheckIcon, Loader2Icon } from 'lucide-react'
+import { CheckIcon, Loader2Icon, StarIcon } from 'lucide-react'
 import logo from '/football-icon.svg'
 import { cn } from '@/lib/utils'
 
@@ -35,5 +35,9 @@ export const Icons = {
 			size={size}
 			className={cn('animate-bounce-once text-primary', className)}
 		/>
+	),
+
+	Rating: ({ size, color }: { size?: number; color?: string }) => (
+		<StarIcon size={size} color={color} />
 	),
 }
