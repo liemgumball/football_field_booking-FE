@@ -1,7 +1,8 @@
 import { cn } from '@/lib/utils'
 import { TBookingStatus, TFootballField } from '@/types'
-import { MapPinIcon, StarIcon } from 'lucide-react'
+import { MapPinIcon } from 'lucide-react'
 import BookingQRCode from './BookingQRCode'
+import Rating from '@/components/Rating'
 
 type TProps = {
 	_id: string
@@ -25,24 +26,19 @@ const BookingDetailsHeader = ({ field, status, _id }: TProps) => {
 					{name}
 				</h1>
 				<div className="space-x-2 text-nowrap">
-					<MapPinIcon className="mr-px inline-block  text-primary" size={20} />
-					<span className="truncate text-wrap">{location.name}</span>
-					<span className="space-x-1">
+					<MapPinIcon className="mr-px inline-block text-primary" size={20} />
+					<span className="truncate text-wrap align-middle">
+						{location.name}
+					</span>
+					<span className="inline-block space-x-1  align-middle">
 						{rating ? (
-							Array.from({ length: Math.round(rating) }, (_, i) => i).map(
-								(i) => (
-									<StarIcon
-										className="inline-block"
-										key={i}
-										size={16}
-										color="orange"
-									/>
-								),
-							)
+							<div className="flex">
+								<Rating rating={rating} size={17} />
+							</div>
 						) : (
-							<span className="text-nowrap text-muted-foreground">
-								No rating
-							</span>
+							<div className="flex">
+								<Rating rating={0} size={17} />
+							</div>
 						)}
 					</span>
 				</div>
