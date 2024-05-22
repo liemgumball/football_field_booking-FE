@@ -1,7 +1,8 @@
 import { Separator } from '@/components/ui/separator'
-import { MapPin, StarIcon } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { TFootballField } from '@/types'
+import Rating from '@/components/Rating'
 
 const TitleFieldDetails = ({
 	name,
@@ -20,25 +21,7 @@ const TitleFieldDetails = ({
 			<Separator />
 			<div className="my-3 flex flex-col justify-between gap-y-2 lg:flex-row">
 				<div className="flex items-center gap-2">
-					{rating
-						? Array(Math.floor(5))
-								.fill(null)
-								.map((_, index) =>
-									index + 1 <= rating ? (
-										<StarIcon color="orange" key={index} />
-									) : (
-										<div className="text-muted-foreground">
-											<StarIcon key={index} />
-										</div>
-									),
-								)
-						: Array(Math.floor(5))
-								.fill(null)
-								.map((_, index) => (
-									<div className="text-muted-foreground">
-										<StarIcon key={index} />
-									</div>
-								))}
+					{rating ? <Rating rating={rating} /> : <Rating rating={0} />}
 					<p>({rating ? rating : 'No rating'})</p>
 				</div>
 				<div className="flex gap-4 uppercase">

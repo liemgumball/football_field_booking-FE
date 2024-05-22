@@ -31,7 +31,7 @@ const ContentFieldDetails = ({
 						suscipit.
 					</p>
 				</div>
-				<Button className="mt-7 rounded-full py-8 pl-10 pr-1">
+				<Button className="mt-7 rounded-full py-8 pl-10 pr-1" disabled>
 					<Link
 						className="inline-flex items-center justify-center text-xl font-bold uppercase text-primary-foreground transition-colors "
 						to="/"
