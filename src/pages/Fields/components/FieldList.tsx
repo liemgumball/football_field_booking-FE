@@ -12,8 +12,8 @@ const FieldList = ({ fields }: { fields: TFootballField[] }) => {
 							name={field.name}
 							images={field.images}
 							rating={field.rating}
-							className="h-[300px] w-[300px]"
-							sizeIcon={20}
+							className="h-[300px] w-[300px] lg:w-[225px] xl:w-[300px]"
+							sizeIcon={16}
 						/>
 					))
 				: 'Not Fields Founded'}

@@ -1,10 +1,11 @@
 import { Star } from 'lucide-react'
-// import userAvatar from '/userAvatar.svg'
+import userAvatar from '/userAvatar.svg'
+
 const UserReviewItem = () => {
 	return (
 		<div className="flex gap-3 lg:gap-7">
-			<div className="h-[100px] w-[100px] basis-auto ">
-				<img src="" alt="comment user" />
+			<div className="h-[100px] w-[100px] overflow-hidden ">
+				<img src={userAvatar} className="rounded-full" alt="comment user" />
 			</div>
 			<div className="flex flex-col border-b-2 border-solid border-popover pb-9">
 				<span className="mb-[2px] text-xl font-medium">Glenn M. Whitaker</span>
