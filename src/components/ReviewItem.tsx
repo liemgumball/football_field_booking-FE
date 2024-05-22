@@ -1,5 +1,5 @@
 import quote from '/quote.png'
-import AuthorItem from './AuthorItem'
+import AuthorItem from '../pages/Home/components/AuthorItem'
 
 const ReviewItem = () => {
 	return (
