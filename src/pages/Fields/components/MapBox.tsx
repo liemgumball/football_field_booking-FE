@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/popover'
 // import useSupercluster from "use-supercluster";
 import { SetStateAction, useState, Dispatch, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 type TViewPort = {
 	longitude: number
@@ -61,14 +62,16 @@ const MapBox = ({
 									{/* <i className="fa fa-solid fa-location-dot"></i> */}
 								</PopoverTrigger>
 								<PopoverContent>
-									<p className="text-sm">
-										{marker.field.name}
+									<Link className="cursor-pointer" to={`/fields/${marker._id}`}>
+										<p className="text-sm">
+											{marker.field.name}
 
-										<span className="text-muted-foreground">
-											{' - '}
-											{marker.field.rating || 'No'} rating
-										</span>
-									</p>
+											<span className="text-muted-foreground">
+												{' - '}
+												{marker.field.rating || 'No'} rating
+											</span>
+										</p>
+									</Link>
 								</PopoverContent>
 							</Popover>
 						</Marker>

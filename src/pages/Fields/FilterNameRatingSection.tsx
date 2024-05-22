@@ -2,8 +2,8 @@ import { TFootballField, TRating } from '@/types'
 import { useEffect, useState } from 'react'
 import useDebounce from '@/hooks/useDebounce'
 import { ENV_VARS } from '@/constants/envVars'
-import FieldList from './components/FieldList/index.tsx'
-import SkeletonField from './components/SkeletonField.tsx/index.tsx'
+import FieldList from './components/FieldList.tsx'
+import SkeletonField from './components/SkeletonField.tsx'
 import FilterForm from './components/Form/FilterForm.tsx'
 
 const FilterByNameSection = () => {
