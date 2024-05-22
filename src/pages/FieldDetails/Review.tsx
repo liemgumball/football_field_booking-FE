@@ -1,5 +1,5 @@
 import UserReviewItem from './components/UserReviewItem'
-import ReviewForm from './components/ReviewForm'
+import ReviewForm from '../../components/ReviewForm'
 
 const Review = () => {
 	return (
