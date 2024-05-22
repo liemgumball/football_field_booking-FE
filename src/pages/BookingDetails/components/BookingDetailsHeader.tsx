@@ -26,7 +26,7 @@ const BookingDetailsHeader = ({ field, status, _id }: TProps) => {
 				</h1>
 				<div className="space-x-2 text-nowrap">
 					<MapPinIcon className="mr-px inline-block  text-primary" size={20} />
-					<span className="truncate">{location.name}</span>
+					<span className="truncate text-wrap">{location.name}</span>
 					<span className="space-x-1">
 						{rating ? (
 							Array.from({ length: Math.round(rating) }, (_, i) => i).map(

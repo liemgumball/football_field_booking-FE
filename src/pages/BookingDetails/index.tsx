@@ -34,7 +34,7 @@ const BookingDetails = () => {
 			<Separator />
 			<BookingDetailsContent {...data} />
 			{data.status === 'confirmed' && (
-				<div className="px-12">
+				<div className="md:px-12">
 					<ReviewForm />
 				</div>
 			)}
