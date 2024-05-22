@@ -63,7 +63,7 @@ const DataTable = <TData, TValue>({ columns, data }: TProps<TData, TValue>) => {
 		<div className="flex min-h-max flex-col">
 			<div className="flex items-center pt-4">
 				<Input
-					placeholder="Filter field..."
+					placeholder="Search field..."
 					value={searchString}
 					onChange={(event) => setSearchString(event.target.value)}
 					className="max-w-sm"
