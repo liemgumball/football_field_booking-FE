@@ -26,7 +26,7 @@ const BookingDetailsContent = (props: TProps) => {
 	if (!user) throw new Error('User not found')
 
 	return (
-		<section className="mt-6 flex flex-col gap-y-6 px-12 py-4">
+		<section className="mt-6 flex flex-col gap-y-6 py-4 md:px-12">
 			<div className="space-y-2">
 				<h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
 					Booking details
