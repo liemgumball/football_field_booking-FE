@@ -1,11 +1,13 @@
-import { useParams } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 import TitleFieldDetails from './TitleFieldDetails'
 import { useEffect, useState } from 'react'
 import { TFootballField } from '@/types'
 import { ENV_VARS } from '@/constants/envVars'
-import ContentFieldDetails from './ContentFieldDetails'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
-import Review from './Review'
+
+export type ContextFieldType = {
+	field: TFootballField | undefined
+}
 
 const FieldDetails = () => {
 	// Get field ID
@@ -40,12 +42,7 @@ const FieldDetails = () => {
 				location={field?.location}
 				rating={field?.rating}
 			/>
-			<ContentFieldDetails
-				location={field?.location}
-				images={field?.images}
-				subfields={field?.subfields}
-			/>
-			<Review />
+			<Outlet context={{ field } satisfies ContextFieldType} />
 		</main>
 	)
 }

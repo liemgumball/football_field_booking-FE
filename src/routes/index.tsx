@@ -11,6 +11,8 @@ import PrivateRoute from './PrivateRoute'
 import RouteErrorBoundary from './RouteErrorBoundary'
 import { PATHS } from '@/constants/navigation'
 import FieldDetails from '@/pages/FieldDetails'
+import BookingAvailable from '@/pages/FieldDetails/AvailableFieldBooking'
+import ContentFieldDetails from '@/pages/FieldDetails/ContentFieldDetails'
 
 // Lazy Loading Routes
 const Home = lazy(() => import('@/pages/Home'))
@@ -53,7 +55,10 @@ const router = createBrowserRouter(
 			{/* Field */}
 			<Route path={PATHS.FIELD.BASE}>
 				<Route index element={<Fields />} />
-				<Route path={PATHS.FIELD.DETAILS} element={<FieldDetails />} />
+				<Route path={PATHS.FIELD.DETAILS} element={<FieldDetails />}>
+					<Route index element={<ContentFieldDetails />} />
+					<Route path={PATHS.FIELD.BOOKING} element={<BookingAvailable />} />
+				</Route>
 			</Route>
 
 			{/* ------------------------- Private Routes ------------------------- */}
