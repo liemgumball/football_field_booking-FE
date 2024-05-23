@@ -1,7 +1,7 @@
-import AvaibilityFieldForm from './components/AvaibilityFieldForm'
+import AvailabilityFieldForm from './components/AvailabilityFieldForm'
 
 const AvailableFieldBooking = () => {
-	return <AvaibilityFieldForm />
+	return <AvailabilityFieldForm />
 }
 
 export default AvailableFieldBooking
