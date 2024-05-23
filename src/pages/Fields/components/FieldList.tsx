@@ -1,5 +1,5 @@
 import { TFootballField } from '@/types'
-import FootballFieldCard from '@/pages/Home/components/FootballFieldCard'
+import FootballFieldCard from '@/components/FootballFieldCard'
 
 const FieldList = ({ fields }: { fields: TFootballField[] }) => {
 	return (

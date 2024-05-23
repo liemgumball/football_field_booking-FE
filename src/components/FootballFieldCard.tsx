@@ -24,7 +24,7 @@ const FootballFieldCard = ({
 	const imgSrc = images?.length ? images[0] : defaultImg // just fallback cause the api already get fields with images
 
 	return (
-		<Link to={`/fields/${_id}`}>
+		<Link to={`/fields/${_id}`} className="w-full">
 			<figure
 				className={cn(
 					'group relative h-[480px] w-full overflow-hidden rounded-lg',
