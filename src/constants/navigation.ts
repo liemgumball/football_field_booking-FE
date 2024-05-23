@@ -15,7 +15,7 @@ export const PATHS = {
 	FIELD: {
 		BASE: '/fields',
 		DETAILS: ':id',
-		BOOKING: 'available',
+		BOOKING: 'available-bookings',
 	},
 	REGISTER_FIELD: '/register-field',
 	SUPPORT: '/support',

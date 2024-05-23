@@ -7,22 +7,19 @@ export const useAvailableBookingsInfiniteQuery = (
 	from: TTimeStep,
 	to: TTimeStep,
 	size: number | null,
-	coordinatesQuery?: {
+	coordinates?: {
 		longitude: number
 		latitude: number
 	},
 ) =>
 	useInfiniteQuery<TDayOfService[]>({
-		queryKey: ['day-of-services', date, from, to, size, coordinatesQuery],
+		queryKey: ['day-of-services', date, from, to, size, coordinates],
 		queryFn: ({ pageParam }) =>
-			getDayOfServices(
-				pageParam as number,
-				date,
-				from,
+			getDayOfServices(pageParam as number, date, from, {
 				to,
 				size,
-				coordinatesQuery,
-			),
+				coordinates,
+			}),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, pages) => {
 			if (lastPage.flat().length < 6) {

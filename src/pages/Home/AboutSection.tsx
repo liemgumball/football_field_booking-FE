@@ -1,4 +1,4 @@
-import FootballFieldCard from './components/FootballFieldCard'
+import FootballFieldCard from '../../components/FootballFieldCard'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { Link } from 'react-router-dom'

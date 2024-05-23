@@ -72,7 +72,7 @@ const AvailableBookingCard = ({
 				title={field.name}
 			>
 				<img
-					className="h-full object-cover transition-all delay-200 duration-500 group-hover:scale-105"
+					className="h-full object-cover transition-all delay-200 duration-500"
 					width={390}
 					height={300}
 					src={imgSrc}

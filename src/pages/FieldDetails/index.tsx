@@ -4,10 +4,7 @@ import { useEffect, useState } from 'react'
 import { TFootballField } from '@/types'
 import { ENV_VARS } from '@/constants/envVars'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
-
-export type ContextFieldType = {
-	field: TFootballField | undefined
-}
+import { Icons } from '@/components/Icons'
 
 const FieldDetails = () => {
 	// Get field ID
@@ -35,6 +32,8 @@ const FieldDetails = () => {
 		getFieldDetails()
 	}, [id])
 
+	if (!field) return <Icons.Loader size={60} className="container my-16" />
+
 	return (
 		<main className="container my-14">
 			<TitleFieldDetails
@@ -42,7 +41,7 @@ const FieldDetails = () => {
 				location={field?.location}
 				rating={field?.rating}
 			/>
-			<Outlet context={{ field } satisfies ContextFieldType} />
+			<Outlet context={field} />
 		</main>
 	)
 }

@@ -3,7 +3,7 @@ import SubField from './SubField'
 
 const SubFieldList = ({ subfields, images }: Partial<TFootballField>) => {
 	return (
-		<ul className="mt-11 flex flex-wrap gap-7">
+		<ul className="mt-11 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
 			{subfields?.map((subfield) => (
 				<li className="max-w-max" key={subfield._id}>
 					<SubField
