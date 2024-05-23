@@ -29,7 +29,7 @@ import {
 } from '@/components/ui/popover'
 import { Calendar } from '@/components/ui/calendar'
 
-const AvailabilityFieldForm = () => {
+const FieldAvailabilityForm = () => {
 	// Validate with Schema
 	const formSchema = z
 		.object({
@@ -157,4 +157,4 @@ const AvailabilityFieldForm = () => {
 	)
 }
 
-export default AvailabilityFieldForm
+export default FieldAvailabilityForm

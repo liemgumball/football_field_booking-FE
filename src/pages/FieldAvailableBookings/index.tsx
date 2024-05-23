@@ -1,7 +1,11 @@
-import AvailabilityFieldForm from './components/AvailabilityFieldForm'
+import FieldAvailabilityForm from './components/FieldAvailabilityForm'
+import FieldAvailableBookingList from './components/FieldAvailableBookingList'
 
-const FieldAvailableBookings = () => {
-	return <AvailabilityFieldForm />
-}
+const FieldAvailableBookings = () => (
+	<div className="container space-y-4">
+		<FieldAvailabilityForm />
+		<FieldAvailableBookingList />
+	</div>
+)
 
 export default FieldAvailableBookings

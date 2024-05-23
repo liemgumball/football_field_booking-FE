@@ -1,5 +1,5 @@
 import AvailabilityForm from '@/components/AvailabilityForm'
-import AvailableBookingCard from './components/AvailableBookingCard'
+import AvailableBookingCard from '../../components/AvailableBookingCard'
 import { Icons } from '@/components/Icons'
 import SkeletonCard from '@/components/SkeletonCard'
 import { Button } from '@/components/ui/button'

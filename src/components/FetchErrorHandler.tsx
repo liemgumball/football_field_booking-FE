@@ -1,5 +1,5 @@
 type TProps = {
-	isError?: boolean
+	isError: boolean
 	errorMsg?: string
 	children?: React.ReactNode
 }
