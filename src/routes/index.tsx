@@ -11,7 +11,7 @@ import PrivateRoute from './PrivateRoute'
 import RouteErrorBoundary from './RouteErrorBoundary'
 import { PATHS } from '@/constants/navigation'
 import FieldDetails from '@/pages/FieldDetails'
-import BookingAvailable from '@/pages/FieldDetails/BookingAvailable'
+import BookingAvailable from '@/pages/FieldDetails/AvailableFieldBooking'
 import ContentFieldDetails from '@/pages/FieldDetails/ContentFieldDetails'
 
 // Lazy Loading Routes
