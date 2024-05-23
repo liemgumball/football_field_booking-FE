@@ -2,17 +2,18 @@ import { Marker } from 'react-map-gl'
 import { ENV_VARS } from '@/constants/envVars'
 import ReactMapGl from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import { TFootballField } from '@/types'
 import SubFieldList from './components/SubFieldList'
 import { Button } from '@/components/ui/button'
 import { Send } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { PATHS } from '@/constants/navigation'
+import { useOutletContext } from 'react-router-dom'
+import { ContextFieldType } from '.'
+import Review from './Review'
 
-const ContentFieldDetails = ({
-	location,
-	images,
-	subfields,
-}: Partial<TFootballField>) => {
+const ContentFieldDetails = () => {
+	const { field } = useOutletContext<ContextFieldType>()
+
 	return (
 		<section className="my-8">
 			<div className="mb-11 flex flex-wrap justify-between">
@@ -31,10 +32,10 @@ const ContentFieldDetails = ({
 						suscipit.
 					</p>
 				</div>
-				<Button className="mt-7 rounded-full py-8 pl-10 pr-1" disabled>
+				<Button className="mt-7 rounded-full py-8 pl-10 pr-1">
 					<Link
 						className="inline-flex items-center justify-center text-xl font-bold uppercase text-primary-foreground transition-colors "
-						to="/"
+						to={`${PATHS.FIELD.BASE}/${field?._id}/available`}
 					>
 						book now
 						<div className="ml-5 rounded-full bg-primary-foreground p-4 text-primary ">
@@ -50,7 +51,7 @@ const ContentFieldDetails = ({
 					adipisci velit sed quian numquam eius tempora incidunt labore dolore
 					magnam aliquam quaerat voluptatem.
 				</p>
-				<SubFieldList subfields={subfields} images={images} />
+				<SubFieldList subfields={field?.subfields} images={field?.images} />
 			</div>
 			<div className="mt-4">
 				<h2 className="text-2xl font-medium capitalize ">field’s address</h2>
@@ -75,20 +76,21 @@ const ContentFieldDetails = ({
 						mapStyle={ENV_VARS.MAP.STYLE_URL}
 						style={{ width: '100%', height: '100%', borderRadius: '0.25rem' }}
 						initialViewState={{
-							longitude: location?.geo.coordinates[0],
-							latitude: location?.geo.coordinates[1],
+							longitude: field?.location.geo.coordinates[0],
+							latitude: field?.location.geo.coordinates[1],
 							zoom: 13,
 						}}
 					>
 						<Marker
-							longitude={location.geo.coordinates[0]}
-							latitude={location.geo.coordinates[1]}
+							longitude={field?.location.geo.coordinates[0]}
+							latitude={field?.location.geo.coordinates[1]}
 							color="red"
 							anchor="bottom"
 						/>
 					</ReactMapGl>
 				</div>
 			)}
+			<Review />
 		</section>
 	)
 }
