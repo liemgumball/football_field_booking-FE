@@ -2,13 +2,13 @@ import { Marker } from 'react-map-gl'
 import { ENV_VARS } from '@/constants/envVars'
 import ReactMapGl from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import SubFieldList from './components/SubFieldList'
+import SubFieldList from './FieldDetails/components/SubFieldList'
 import { Button } from '@/components/ui/button'
 import { Send } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { PATHS } from '@/constants/navigation'
 import { useOutletContext } from 'react-router-dom'
-import Review from './Review'
+import Review from './FieldDetails/Review'
 import { TFootballField } from '@/types'
 
 const ContentFieldDetails = () => {
@@ -35,7 +35,7 @@ const ContentFieldDetails = () => {
 				<Button className="mt-7 rounded-full py-8 pl-10 pr-1">
 					<Link
 						className="inline-flex items-center justify-center text-xl font-bold uppercase text-primary-foreground transition-colors "
-						to={`${PATHS.FIELD.BASE}/${field._id}/available`}
+						to={`${PATHS.FIELD.BASE}/${field._id}/available-bookings`}
 					>
 						book now
 						<div className="ml-5 rounded-full bg-primary-foreground p-4 text-primary ">

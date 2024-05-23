@@ -1,9 +1,9 @@
-import { useForm } from 'react-hook-form'
+import { useSearchParams } from 'react-router-dom'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { format } from 'date-fns'
 import { CalendarIcon } from 'lucide-react'
-import { useOutletContext } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { getDuration } from '@/utils/time'
 
@@ -16,19 +16,11 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import { getNextMonth, getToday, getYesterday } from '@/utils/date'
+import { formatDate, getNextMonth, getToday, getYesterday } from '@/utils/date'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { Button } from '@/components/ui/button'
 import TimeSelect from '@/components/TimeSelect'
-import {
-	Select,
-	SelectTrigger,
-	SelectValue,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-} from '@/components/ui/select'
-import { TFootballField } from '@/types'
+import { SelectTrigger, SelectValue } from '@/components/ui/select'
 import { timeSchema } from '@/constants/time'
 import {
 	Popover,
@@ -38,20 +30,12 @@ import {
 import { Calendar } from '@/components/ui/calendar'
 
 const AvailabilityFieldForm = () => {
-	// Field context
-	const field = useOutletContext<TFootballField>()
-	const { subfields, subfieldIds } = field
-
 	// Validate with Schema
 	const formSchema = z
 		.object({
 			date: z.date(),
 			from: timeSchema,
 			to: timeSchema,
-			subfield: z
-				.enum(['undefined', ...subfieldIds.map((i) => i)])
-				.transform((val) => (val === 'undefined' ? undefined : val))
-				.optional(),
 		})
 		.refine(({ from, to }) => getDuration(from, to) >= 1, {
 			message: 'To must after From as least 1 hour',
@@ -65,16 +49,25 @@ const AvailabilityFieldForm = () => {
 			date: getToday(),
 			from: getInitialFrom(),
 			to: getInitialTo(),
-			subfield: 'undefined',
 		},
 	})
 	const { isDirty, isSubmitting } = form.formState
 
+	const [, setSearchParams] = useSearchParams()
+	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (values) => {
+		const searchParams = new URLSearchParams()
+		searchParams.set('date', formatDate(values.date))
+		searchParams.set('from', values.from)
+		searchParams.set('to', values.to)
+
+		setSearchParams(searchParams.toString())
+	}
+
 	return (
 		<Form {...form}>
 			<form
-				className="mt-4 grid gap-x-2 gap-y-4 rounded-lg bg-popover px-8 py-6 shadow-lg md:grid-cols-2 lg:grid-cols-5"
-				onSubmit={form.handleSubmit(() => {})}
+				className="mt-4 grid gap-x-2 gap-y-4 rounded-lg bg-popover px-8 py-6 shadow-lg md:grid-cols-2 lg:grid-cols-4"
+				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				<FormField
 					control={form.control}
@@ -120,33 +113,6 @@ const AvailabilityFieldForm = () => {
 				/>
 				<FormField
 					control={form.control}
-					name="subfield"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>SubFields</FormLabel>
-							<Select onValueChange={field.onChange} defaultValue={field.value}>
-								<FormControl>
-									<SelectTrigger className="h-11 px-8">
-										<SelectValue placeholder="Select subfield" />
-									</SelectTrigger>
-								</FormControl>
-								<SelectContent>
-									<SelectGroup>
-										<SelectItem value="undefined">All size</SelectItem>
-										{subfields &&
-											subfields.map((i) => (
-												<SelectItem key={i._id} value={i._id}>
-													{i.name}
-												</SelectItem>
-											))}
-									</SelectGroup>
-								</SelectContent>
-							</Select>
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
 					name="from"
 					render={({ field }) => (
 						<FormItem>
@@ -179,7 +145,7 @@ const AvailabilityFieldForm = () => {
 				/>
 
 				<Button
-					className="mt-8 max-w-max justify-self-center md:col-start-2 lg:col-start-5"
+					className="mt-8 max-w-max justify-self-center"
 					size="lg"
 					disabled={isSubmitting || !isDirty}
 					type="submit"

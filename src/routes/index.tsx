@@ -10,9 +10,6 @@ import Layout from '@/components/Layout'
 import PrivateRoute from './PrivateRoute'
 import RouteErrorBoundary from './RouteErrorBoundary'
 import { PATHS } from '@/constants/navigation'
-import FieldDetails from '@/pages/FieldDetails'
-import BookingAvailable from '@/pages/FieldDetails/AvailableFieldBooking'
-import ContentFieldDetails from '@/pages/FieldDetails/ContentFieldDetails'
 
 // Lazy Loading Routes
 const Home = lazy(() => import('@/pages/Home'))
@@ -20,6 +17,7 @@ const AboutUs = lazy(() => import('@/pages/AboutUs'))
 const SignUp = lazy(() => import('@/pages/SignUp'))
 const Login = lazy(() => import('@/pages/Login'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
+
 const AvailableBookings = lazy(() => import('@/pages/AvailableBookings'))
 const AvailableBookingDetails = lazy(
 	() => import('@/pages/AvailableBookingDetails'),
@@ -27,7 +25,13 @@ const AvailableBookingDetails = lazy(
 const HistoryBookings = lazy(() => import('@/pages/HistoryBookings'))
 const BookingDetails = lazy(() => import('@/pages/BookingDetails'))
 const VerifyAccount = lazy(() => import('@/pages/VerifyAccount'))
+
 const Fields = lazy(() => import('@/pages/Fields'))
+const FieldDetails = lazy(() => import('@/pages/FieldDetails'))
+const ContentFieldDetails = lazy(() => import('@/pages/ContentFieldDetails'))
+const FieldAvailableBookings = lazy(
+	() => import('@/pages/FieldAvailableBookings'),
+)
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -57,7 +61,10 @@ const router = createBrowserRouter(
 				<Route index element={<Fields />} />
 				<Route path={PATHS.FIELD.DETAILS} element={<FieldDetails />}>
 					<Route index element={<ContentFieldDetails />} />
-					<Route path={PATHS.FIELD.BOOKING} element={<BookingAvailable />} />
+					<Route
+						path={PATHS.FIELD.BOOKING}
+						element={<FieldAvailableBookings />}
+					/>
 				</Route>
 			</Route>
 

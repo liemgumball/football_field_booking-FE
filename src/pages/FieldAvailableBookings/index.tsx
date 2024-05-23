@@ -1,7 +1,7 @@
 import AvailabilityFieldForm from './components/AvailabilityFieldForm'
 
-const AvailableFieldBooking = () => {
+const FieldAvailableBookings = () => {
 	return <AvailabilityFieldForm />
 }
 
-export default AvailableFieldBooking
+export default FieldAvailableBookings
