@@ -48,7 +48,7 @@ const AvailabilitySection = () => {
 					Availability
 				</h2>
 				<AvailabilityForm
-					className="grid grid-cols-1 items-start justify-items-center md:grid-cols-2 lg:justify-items-start"
+					className="grid items-start md:col-start-2 md:grid-cols-2"
 					isNavigate
 				/>
 			</div>

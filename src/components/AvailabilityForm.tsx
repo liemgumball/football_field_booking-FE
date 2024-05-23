@@ -108,7 +108,10 @@ const AvailabilityForm = ({
 	return (
 		<Form {...form}>
 			<form
-				className={cn('relative gap-8 px-4 py-6 shadow-lg', className)}
+				className={cn(
+					'relative gap-x-2 gap-y-4 px-8 py-6 shadow-lg',
+					className,
+				)}
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				{!isNavigate && (
@@ -145,7 +148,7 @@ const AvailabilityForm = ({
 											size="lg"
 											variant={'outline'}
 											className={cn(
-												'flex h-11 min-w-[220px] text-left font-normal',
+												'flex h-11 w-full text-left font-normal',
 												!field.value && 'text-muted-foreground',
 											)}
 										>
@@ -184,7 +187,7 @@ const AvailabilityForm = ({
 								<FormControl>
 									<SelectTrigger
 										className={cn(
-											'h-11 min-w-[220px] px-8',
+											'h-11 px-8',
 											!field.value && 'text-muted-foreground',
 										)}
 									>
@@ -218,7 +221,7 @@ const AvailabilityForm = ({
 								<FormControl>
 									<SelectTrigger
 										className={cn(
-											'h-11 min-w-[220px] px-8',
+											'h-11  px-8',
 											!field.value && 'text-muted-foreground',
 										)}
 									>
@@ -243,7 +246,7 @@ const AvailabilityForm = ({
 								<FormControl>
 									<SelectTrigger
 										className={cn(
-											'h-11 min-w-[220px] px-8',
+											'h-11  px-8',
 											!field.value && 'text-muted-foreground',
 										)}
 									>
@@ -257,7 +260,7 @@ const AvailabilityForm = ({
 				/>
 
 				<Button
-					className="col-auto mt-8"
+					className="mt-8 max-w-max self-end justify-self-center md:col-end-auto"
 					size="lg"
 					disabled={isSubmitting || (!isDirty && !isNavigate)}
 					type="submit"
