@@ -45,7 +45,7 @@ const ContentFieldDetails = ({
 			</div>
 			<div className="mt-4">
 				<h3 className="text-2xl font-medium capitalize">advanced facilities</h3>
-				<p className="mt-4 max-w-[750px]">
+				<p className="mt-4">
 					Neque porro quisquam est dolorem ipsum quia dolor si amet consectetur
 					adipisci velit sed quian numquam eius tempora incidunt labore dolore
 					magnam aliquam quaerat voluptatem.
@@ -54,12 +54,12 @@ const ContentFieldDetails = ({
 			</div>
 			<div className="mt-4">
 				<h2 className="text-2xl font-medium capitalize ">field’s address</h2>
-				<p className="mt-3 max-w-[750px] text-base">
+				<p className="mt-3 text-base">
 					Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
 					quam nihil molestiae consequatur vel eillum qui dolorem eum fugiat quo
 					voluptas nulla pariatur
 				</p>
-				<p className="my-5 max-w-[750px] text-base">
+				<p className="my-5 text-base">
 					Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
 					fugit sed quia consequuntur magne doloreseos qui ratione voluptatem
 					sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
@@ -69,7 +69,7 @@ const ContentFieldDetails = ({
 			</div>
 
 			{location && (
-				<div className="mt-11 h-[450px] lg:h-[500px] lg:w-[800px]">
+				<div className="mt-11 h-[450px] lg:h-[500px]">
 					<ReactMapGl
 						mapboxAccessToken={ENV_VARS.MAP.ACCESS_TOKEN}
 						mapStyle={ENV_VARS.MAP.STYLE_URL}

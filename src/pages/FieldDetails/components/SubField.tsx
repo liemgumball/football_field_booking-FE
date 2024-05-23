@@ -12,9 +12,9 @@ const SubField = ({
 		: defaultImg
 
 	return (
-		<figure className="relative h-[250px] w-[250px] overflow-hidden rounded-xl hover:shadow-primary-foreground  md:h-[300px] md:w-[300px]">
+		<figure className="relative h-[250px] w-full overflow-hidden rounded-xl hover:shadow-primary-foreground  md:h-[300px]">
 			<img
-				className="h-full w-full transition hover:scale-105"
+				className="h-full w-full object-cover transition"
 				src={imageSubField}
 				alt="sub field image"
 			/>

@@ -3,7 +3,7 @@ import ReviewForm from '../../components/ReviewForm'
 
 const Review = () => {
 	return (
-		<section className="my-16 flex flex-col gap-6">
+		<section className="flex flex-col items-center justify-between gap-6 xl:flex-row">
 			<UserReviewItem />
 			<ReviewForm />
 		</section>

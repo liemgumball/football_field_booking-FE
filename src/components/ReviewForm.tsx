@@ -15,7 +15,7 @@ const ReviewForm = () => {
 	})
 	return (
 		<Form {...form}>
-			<form className="mt-8 max-w-[736px] flex-wrap bg-popover p-4 shadow-xl md:p-7 lg:p-11">
+			<form className="mt-8 w-full max-w-[736px] flex-wrap rounded-lg bg-popover p-4 shadow-xl md:p-7 lg:p-11">
 				<p className="mb-4 text-2xl font-semibold">Leave a Comment</p>
 				<div className="mb-7 flex flex-col gap-4 lg:flex-row">
 					<FormField

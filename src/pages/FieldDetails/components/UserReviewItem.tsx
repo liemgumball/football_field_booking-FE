@@ -3,14 +3,14 @@ import userAvatar from '/userAvatar.svg'
 
 const UserReviewItem = () => {
 	return (
-		<div className="flex gap-3 lg:gap-7">
-			<div className="h-[100px] w-[100px] overflow-hidden ">
+		<div className="flex max-w-[600px] gap-3 lg:gap-7">
+			<div className="h-full min-h-[80px] min-w-[80px] max-w-fit overflow-hidden ">
 				<img src={userAvatar} className="rounded-full" alt="comment user" />
 			</div>
-			<div className="flex flex-col border-b-2 border-solid border-popover pb-9">
+			<div className="pb-9">
 				<span className="mb-[2px] text-xl font-medium">Glenn M. Whitaker</span>
 				<p className="text-base font-light">CEO & Founder</p>
-				<ul className="mt-4 flex flex-col gap-7 md:flex-row lg:gap-7">
+				<ul className="mt-4 flex flex-wrap gap-5 lg:gap-7">
 					<li>
 						<p className="text-sm font-normal">Quality</p>
 						<span className="mt-2 flex text-orange-500">
@@ -62,7 +62,7 @@ const UserReviewItem = () => {
 						</span>
 					</li>
 				</ul>
-				<p className=" mt-4 max-w-[176px] md:max-w-[575px] lg:max-w-[650px]">
+				<p className=" mt-4 ">
 					At vero eos et accusamus et iusto odio dignissimos ducimus qui
 					blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
 					et quas molestias excepture
