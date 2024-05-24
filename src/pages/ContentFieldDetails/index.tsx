@@ -10,9 +10,11 @@ import { PATHS } from '@/constants/navigation'
 import { useOutletContext } from 'react-router-dom'
 import Review from './components/Review'
 import { TFootballField } from '@/types'
+import useThemeStore from '@/stores/theme'
 
 const ContentFieldDetails = () => {
 	const field = useOutletContext<TFootballField>()
+	const { theme } = useThemeStore()
 
 	return (
 		<section className="my-8 space-y-10">
@@ -73,7 +75,11 @@ const ContentFieldDetails = () => {
 				<div className="h-[450px] lg:h-[500px]">
 					<ReactMapGl
 						mapboxAccessToken={ENV_VARS.MAP.ACCESS_TOKEN}
-						mapStyle={ENV_VARS.MAP.LIGHT_STYLE_URL}
+						mapStyle={
+							theme === 'light'
+								? ENV_VARS.MAP.LIGHT_STYLE_URL
+								: ENV_VARS.MAP.DARK_STYLE_URL
+						}
 						style={{ width: '100%', height: '100%', borderRadius: '0.25rem' }}
 						initialViewState={{
 							longitude: field.location.geo.coordinates[0],
