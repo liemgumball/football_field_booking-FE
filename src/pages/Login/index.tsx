@@ -1,7 +1,6 @@
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
 import { Link } from 'react-router-dom'
 
-import loginImage from '/imageLogin.png'
 import LoginForm from './components/LoginForm'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
@@ -19,9 +18,9 @@ const Login = () => {
 
 	return (
 		<main className="container my-8 flex items-center lg:flex-row">
-			<div className="hidden w-full min-w-[500px] xl:block">
+			{/* <div className="hidden w-full min-w-[500px] xl:block">
 				<img src={loginImage} alt="login image" />
-			</div>
+			</div> */}
 			<div className="flex w-full flex-col items-center space-y-7 px-0 py-8 lg:px-14">
 				<h2 className="text-3xl font-bold capitalize">login</h2>
 				<LoginForm />
@@ -42,7 +41,7 @@ const Login = () => {
 					size="large"
 					width={780}
 					onSuccess={onSuccess}
-					text="signin"
+					text="signin_with"
 				/>
 			</div>
 		</main>
