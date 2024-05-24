@@ -39,9 +39,9 @@ const AvailableBookingDetails = () => {
 
 	return (
 		<main className="container">
-			<AvailableBookingHeader availableBooking={availableBooking} />
+			<AvailableBookingHeader {...availableBooking} />
 			<section className="mx-auto my-4 min-w-max max-w-[700px] rounded-lg bg-secondary/80 px-6 py-8 ">
-				<AvailableBookingForm availableBooking={availableBooking} />
+				<AvailableBookingForm {...availableBooking} from={from} to={to} />
 			</section>
 		</main>
 	)

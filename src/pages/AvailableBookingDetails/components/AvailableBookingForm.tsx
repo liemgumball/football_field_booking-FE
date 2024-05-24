@@ -28,7 +28,7 @@ import useAuthStore from '@/stores/auth'
 // Utils
 import { format } from 'date-fns'
 import { cn } from '@/lib/utils'
-import { TAvailableBooking } from '@/types'
+import { TAvailableBooking, TTimeStep } from '@/types'
 import useAvailableBookingStore from '@/stores/availableBooking'
 import {
 	availableFormSchema,
@@ -36,13 +36,11 @@ import {
 } from '../hooks/useAvailableBookingForm'
 import { getDisableTimeList, getTimeValues } from '@/utils/time'
 
-type TProps = {
-	availableBooking: TAvailableBooking
-}
-
-const AvailableBookingForm = ({ availableBooking }: TProps) => {
+const AvailableBookingForm = (
+	props: TAvailableBooking & { from: TTimeStep; to: TTimeStep },
+) => {
 	// available booking as props
-	const { dayOfService, from, to, price, status } = availableBooking
+	const { dayOfService, from, to, price, status } = props
 	const { toast } = useToast()
 	const navigate = useNavigate()
 	const user = useAuthStore((set) => set.user)
