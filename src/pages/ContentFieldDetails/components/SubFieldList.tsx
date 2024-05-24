@@ -10,6 +10,7 @@ const SubFieldList = ({ subfields, images }: Partial<TFootballField>) => {
 						name={subfield.name}
 						defaultPrice={subfield.defaultPrice}
 						images={images}
+						size={subfield.size}
 					/>
 				</li>
 			))}

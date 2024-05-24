@@ -1,7 +1,7 @@
 import { Icons } from './Icons'
 
 const Rating = ({ rating, size }: { rating: number | 0; size?: number }) => {
-	return Array(Math.floor(5))
+	return Array(5)
 		.fill(null)
 		.map((_, index) =>
 			index + 1 <= rating ? (

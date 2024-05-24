@@ -2,21 +2,21 @@ import { Marker } from 'react-map-gl'
 import { ENV_VARS } from '@/constants/envVars'
 import ReactMapGl from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import SubFieldList from './FieldDetails/components/SubFieldList'
+import SubFieldList from './components/SubFieldList'
 import { Button } from '@/components/ui/button'
 import { Send } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { PATHS } from '@/constants/navigation'
 import { useOutletContext } from 'react-router-dom'
-import Review from './FieldDetails/Review'
+import Review from './components/Review'
 import { TFootballField } from '@/types'
 
 const ContentFieldDetails = () => {
 	const field = useOutletContext<TFootballField>()
 
 	return (
-		<section className="my-8">
-			<div className="mb-11 flex flex-wrap justify-between">
+		<section className="my-8 space-y-10">
+			<div className="flex flex-wrap justify-between">
 				<div>
 					<h3 className="text-4xl font-medium capitalize">overview</h3>
 					<p className="mt-4 max-w-[750px]">
@@ -32,7 +32,7 @@ const ContentFieldDetails = () => {
 						suscipit.
 					</p>
 				</div>
-				<Button className="mt-7 rounded-full py-8 pl-10 pr-1">
+				<Button className="mt-6 rounded-full py-8 pl-10 pr-1">
 					<Link
 						className="inline-flex items-center justify-center text-xl font-bold uppercase text-primary-foreground transition-colors "
 						to={`${PATHS.FIELD.BASE}/${field._id}/available-bookings`}
@@ -44,7 +44,7 @@ const ContentFieldDetails = () => {
 					</Link>
 				</Button>
 			</div>
-			<div className="mt-4">
+			<div className="">
 				<h3 className="text-2xl font-medium capitalize">advanced facilities</h3>
 				<p className="mt-4">
 					Neque porro quisquam est dolorem ipsum quia dolor si amet consectetur
@@ -53,7 +53,7 @@ const ContentFieldDetails = () => {
 				</p>
 				<SubFieldList subfields={field.subfields} images={field.images} />
 			</div>
-			<div className="mt-4">
+			<div className="">
 				<h2 className="text-2xl font-medium capitalize ">field’s address</h2>
 				<p className="mt-3 text-base">
 					Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
@@ -70,10 +70,10 @@ const ContentFieldDetails = () => {
 			</div>
 
 			{location && (
-				<div className="mt-11 h-[450px] lg:h-[500px]">
+				<div className="h-[450px] lg:h-[500px]">
 					<ReactMapGl
 						mapboxAccessToken={ENV_VARS.MAP.ACCESS_TOKEN}
-						mapStyle={ENV_VARS.MAP.STYLE_URL}
+						mapStyle={ENV_VARS.MAP.LIGHT_STYLE_URL}
 						style={{ width: '100%', height: '100%', borderRadius: '0.25rem' }}
 						initialViewState={{
 							longitude: field.location.geo.coordinates[0],

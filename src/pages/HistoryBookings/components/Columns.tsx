@@ -2,7 +2,7 @@ import { TBooking, TBookingStatus, TFootballField, TSubField } from '@/types'
 import { ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
 import { DataTableColumnHeader } from './DataTableColumnHeader'
-import BookingStatus from './BookingStatus'
+import BookingStatus from '../../../components/BookingStatusIcon'
 import { CopyIcon, MoreHorizontal } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'

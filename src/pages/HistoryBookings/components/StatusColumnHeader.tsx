@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 import { Column } from '@tanstack/react-table'
-import BookingStatus from './BookingStatus'
+import BookingStatusIcon from '@/components/BookingStatusIcon'
 import { ListFilterIcon, RotateCcwIcon } from 'lucide-react'
 
 type TProps<TData, TValue> = React.HTMLAttributes<HTMLDivElement> & {
@@ -34,11 +34,11 @@ const StatusColumnHeader = <TData, TValue>({
 					>
 						<span>Status</span>
 						{column.getFilterValue() === 'canceled' ? (
-							<BookingStatus status="canceled" className="ml-2" />
+							<BookingStatusIcon status="canceled" className="ml-2" />
 						) : column.getFilterValue() === 'confirmed' ? (
-							<BookingStatus status="confirmed" className="ml-2" />
+							<BookingStatusIcon status="confirmed" className="ml-2" />
 						) : column.getFilterValue() === 'pending' ? (
-							<BookingStatus status="pending" className="ml-2" />
+							<BookingStatusIcon status="pending" className="ml-2" />
 						) : (
 							<ListFilterIcon className="ml-2 size-4" />
 						)}
@@ -46,13 +46,13 @@ const StatusColumnHeader = <TData, TValue>({
 				</DropdownMenuTrigger>
 				<DropdownMenuContent align="start">
 					<DropdownMenuItem onClick={() => column.setFilterValue('confirmed')}>
-						<BookingStatus status="confirmed" label className="mr-1" />
+						<BookingStatusIcon status="confirmed" label className="mr-1" />
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => column.setFilterValue('pending')}>
-						<BookingStatus status="pending" label className="mr-1" />
+						<BookingStatusIcon status="pending" label className="mr-1" />
 					</DropdownMenuItem>
 					<DropdownMenuItem onClick={() => column.setFilterValue('canceled')}>
-						<BookingStatus status="canceled" label className="mr-1" />
+						<BookingStatusIcon status="canceled" label className="mr-1" />
 					</DropdownMenuItem>
 					<DropdownMenuSeparator />
 					<DropdownMenuItem onClick={() => column.setFilterValue('')}>

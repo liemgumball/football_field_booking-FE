@@ -35,13 +35,13 @@ const MapBox = ({
 			const newZoom = viewPort.zoom
 			setZoom(newZoom)
 		}
-	}, [viewPort.zoom])
+	}, [viewPort.zoom, setZoom])
 
 	return (
 		<div className="mt-6 overflow-hidden rounded-lg">
 			<ReactMapGl
 				mapboxAccessToken={ENV_VARS.MAP.ACCESS_TOKEN}
-				mapStyle={ENV_VARS.MAP.STYLE_URL}
+				mapStyle={ENV_VARS.MAP.LIGHT_STYLE_URL}
 				style={{ width: '100%', height: 500 }}
 				{...viewPort}
 				zoom={viewPort.zoom || 13}

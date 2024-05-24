@@ -5,6 +5,7 @@ export const ENV_VARS = {
 	},
 	MAP: {
 		ACCESS_TOKEN: import.meta.env.VITE_MAP_ACCESS_TOKEN ?? '',
-		STYLE_URL: import.meta.env.VITE_MAP_STYLE_URL ?? '',
+		LIGHT_STYLE_URL: import.meta.env.VITE_MAP_STYLE_URL ?? '',
+		DARK_STYLE_URL: import.meta.env.VITE_MAP_DARK_URL ?? '',
 	},
 } as const
