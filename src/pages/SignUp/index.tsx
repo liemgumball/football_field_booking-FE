@@ -2,13 +2,35 @@ import { Separator } from '@/components/ui/separator'
 import SignUpForm from './components/SignUpForm'
 import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import useAuthStore from '@/stores/auth'
+import { useNavigate } from 'react-router-dom'
+import { googleLogin } from '@/services/user'
+import { toast } from '@/components/ui/use-toast'
 
 const SignUp = () => {
 	useDocumentTitle('Sign Up')
+	const setAuth = useAuthStore((state) => state.set)
+	const navigate = useNavigate()
 
-	const onSuccess = (res: CredentialResponse) => {
-		console.log(res)
-		// TODO
+	const onSuccess = async (res: CredentialResponse) => {
+		try {
+			if (!res.credential) throw new Error('Fail to login with google account.')
+
+			const response = await googleLogin({
+				credential: res.credential,
+			})
+			if (response) {
+				setAuth(response)
+				navigate('/')
+			}
+		} catch (error) {
+			if (error instanceof Error)
+				toast({ title: error.message, variant: 'destructive' })
+
+			if (error instanceof Response) {
+				toast({ title: await error.text() })
+			}
+		}
 	}
 
 	return (

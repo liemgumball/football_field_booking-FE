@@ -28,6 +28,7 @@ const apiRequest = async <T>(url: string, init?: TReqInit<T>) => {
 		}
 	}
 
+	// With some initRequest
 	const { method, data, withCredentials } = init
 
 	const response = await fetch(ENV_VARS.API_URL + url, {

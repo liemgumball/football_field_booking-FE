@@ -60,7 +60,7 @@ const AboutSection = () => {
 
 	return (
 		<>
-			<section ref={section} className="space-y-16 px-4 pt-8">
+			<section ref={section} className="mx-4 space-y-16 px-4 pt-8">
 				<div className="titles flex justify-center">
 					<div className="max-w-[800px] space-y-8 text-center">
 						<Link
