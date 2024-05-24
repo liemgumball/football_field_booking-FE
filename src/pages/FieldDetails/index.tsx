@@ -1,5 +1,5 @@
 import { Outlet, useParams } from 'react-router-dom'
-import TitleFieldDetails from './TitleFieldDetails'
+import TitleFieldDetails from './components/TitleFieldDetails'
 import { useEffect, useState } from 'react'
 import { TFootballField } from '@/types'
 import { ENV_VARS } from '@/constants/envVars'

@@ -68,7 +68,8 @@ const AvailableBookings = () => {
 							))
 						) : !bookingsAvailable?.length ? ( // Empty data
 							<p className="text-muted-foreground">
-								No booking available found
+								No booking available found{' '}
+								{isLocationSearch ? 'around your location' : ''}
 							</p>
 						) : (
 							bookingsAvailable.map(

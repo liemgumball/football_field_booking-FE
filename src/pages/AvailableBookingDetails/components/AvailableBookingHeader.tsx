@@ -4,10 +4,8 @@ import BookingStatusBadge from '@/components/BookingStatusBadge'
 import { formatPrice } from '@/utils/booking'
 import { TAvailableBooking } from '@/types'
 
-const AvailableBookingHeader = (props: {
-	availableBooking: TAvailableBooking
-}) => {
-	const { status, price, duration, dayOfService } = props.availableBooking
+const AvailableBookingHeader = (props: TAvailableBooking) => {
+	const { status, price, duration, dayOfService } = props
 
 	const { field, date, subfield } = dayOfService
 	return (
