@@ -117,7 +117,10 @@ const FieldAvailabilityForm = () => {
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>From</FormLabel>
-							<TimeSelect defaultValue={field.value}>
+							<TimeSelect
+								onValueChange={field.onChange}
+								defaultValue={field.value}
+							>
 								<FormControl>
 									<SelectTrigger className="h-11 px-8">
 										<SelectValue placeholder="Select time from" />
@@ -133,13 +136,17 @@ const FieldAvailabilityForm = () => {
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>To</FormLabel>
-							<TimeSelect defaultValue={field.value}>
+							<TimeSelect
+								onValueChange={field.onChange}
+								defaultValue={field.value}
+							>
 								<FormControl>
 									<SelectTrigger className="h-11 px-8">
 										<SelectValue placeholder="Select time to" />
 									</SelectTrigger>
 								</FormControl>
 							</TimeSelect>
+							<FormMessage />
 						</FormItem>
 					)}
 				/>
