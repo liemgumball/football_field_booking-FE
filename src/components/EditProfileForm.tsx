@@ -3,7 +3,14 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 // Components
-import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form'
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from './ui/form'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 
@@ -42,10 +49,9 @@ const EditProfileForm = ({ close }: { close: () => void }) => {
 
 			setAuth(newUser)
 			close()
-		} catch (err) {
-			const error = err as Response
-
-			form.setError('root', { message: await error.text() })
+		} catch (error) {
+			if (error instanceof Response)
+				form.setError('root', { message: await error.text() })
 		}
 	}
 
@@ -85,6 +91,7 @@ const EditProfileForm = ({ close }: { close: () => void }) => {
 					{isSubmitting && <Loader2Icon className="mr-3 animate-spin" />}
 					Save Changes
 				</Button>
+				<FormMessage>{form.formState.errors.root?.message}</FormMessage>
 			</form>
 		</Form>
 	)
