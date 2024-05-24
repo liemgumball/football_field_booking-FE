@@ -17,6 +17,13 @@ export const signup = (data: {
 	phoneNumber: string
 }) => apiRequest('auth/signup', { method: 'POST', data, withCredentials: true })
 
+export const googleLogin = (data: { credential: string }) =>
+	apiRequest('auth/google/login', {
+		method: 'POST',
+		data,
+		withCredentials: true,
+	})
+
 export const updateUser = (id: string, data: Partial<TUser>) =>
 	apiRequest(`users/${id}`, { method: 'PATCH', data, withCredentials: true })
 
