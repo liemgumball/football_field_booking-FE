@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from './ui/use-toast'
 import { Icons } from './Icons'
+import { StatusCodes } from 'http-status-codes'
+import { z } from 'zod'
 
 const GoogleLoginButton = () => {
 	const setAuth = useAuthStore((state) => state.set)
@@ -26,11 +28,34 @@ const GoogleLoginButton = () => {
 				navigate('/')
 			}
 		} catch (error) {
+			// Client side error
 			if (error instanceof Error)
 				toast({ title: error.message, variant: 'destructive' })
 
+			// Response error from Backend
 			if (error instanceof Response) {
-				toast({ title: await error.text() })
+				// Duplicate email case
+				if (error.status === StatusCodes.BAD_REQUEST) {
+					/**
+					 * @example
+					 *	[
+					 *		{
+					 *			"code": "custom",
+					 *			"message": "This email already in use",
+					 *			"path": [
+					 *				"body",
+					 *				"email"
+					 *			]
+					 *		}
+					 *	]
+					 */
+					const issues = (await error.json()) as unknown as z.ZodIssue[]
+
+					// Display duplicate email message
+					toast({
+						title: issues.at(0)?.message,
+					})
+				} else toast({ title: await error.text() }) // others error response case
 			}
 		} finally {
 			setIsLoading(false)
