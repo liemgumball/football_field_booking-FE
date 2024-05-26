@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const NotFound = () => {
 	useDocumentTitle()
 	return (
-		<main className="my-auto space-y-8 text-center">
+		<main className="my-auto mt-[100px] space-y-8 text-center">
 			<p className="text-4xl font-bold">Page Not Found</p>
 			<Link to={PATHS.HOME} className={buttonVariants()}>
 				Back to Home

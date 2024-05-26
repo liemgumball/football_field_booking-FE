@@ -5,7 +5,7 @@ import TeamMember from './TeamMemberSection'
 
 const AboutUs = () => {
 	return (
-		<main className="mb-12 w-full space-y-16 md:space-y-40">
+		<main className="mb-12 mt-[60px] w-full space-y-16 md:mt-[90px] md:space-y-40">
 			<HeroSection />
 			<PresentSection />
 			<TeamMember />

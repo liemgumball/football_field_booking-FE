@@ -8,7 +8,7 @@ const Home = () => {
 	useDocumentTitle()
 
 	return (
-		<main className="2xl:space-y my-12 w-full space-y-8 font-prompt md:space-y-16 lg:my-16 2xl:my-28">
+		<main className="2xl:space-y my-12 mt-[98px] w-full space-y-8 font-prompt md:space-y-16 lg:mb-16 2xl:my-28">
 			<HeroSection />
 			<AvailabilitySection />
 			<AboutSection />

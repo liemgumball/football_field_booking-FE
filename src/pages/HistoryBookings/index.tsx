@@ -11,13 +11,13 @@ const HistoryBookings = () => {
 
 	if (isLoading)
 		return (
-			<div className="container my-auto max-w-min">
+			<div className="container my-auto mt-[90px] max-w-min">
 				<Loader2Icon className="animate-spin" size={60} opacity={0.7} />
 			</div>
 		)
 
 	return (
-		<main className="container my-4">
+		<main className="container mb-4 mt-[90px]">
 			{data && <DataTable data={data} columns={Columns} />}
 		</main>
 	)

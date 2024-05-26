@@ -29,7 +29,7 @@ const BookingDetails = () => {
 		return <p className="text-destructive">Fail to get booking information</p>
 
 	return (
-		<main className="container">
+		<main className="container mt-[90px]">
 			<BookingDetailsHeader _id={id} field={data.field} status={data.status} />
 			<Separator />
 			<BookingDetailsContent {...data} />
