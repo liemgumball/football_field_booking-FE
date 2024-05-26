@@ -40,7 +40,7 @@ const FootballFieldCard = ({
 				<figcaption className="absolute bottom-4 left-8 right-8">
 					<Card title={name} className="py-2">
 						<CardHeader className="flex justify-between gap-2">
-							<CardTitle className="text-sm">
+							<CardTitle className="truncate text-sm hover:text-wrap">
 								<p className="transition">{name}</p>
 							</CardTitle>
 							<CardDescription className="flex space-x-1">
