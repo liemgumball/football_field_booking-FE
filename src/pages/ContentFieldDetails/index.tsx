@@ -22,16 +22,12 @@ const ContentFieldDetails = () => {
 				<div>
 					<h3 className="text-4xl font-medium capitalize">overview</h3>
 					<p className="mt-4 max-w-[750px]">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa illum
-						nihil aut sequi numquam minus reprehenderit maiores commodi
-						eligendi, perferendis fuga id harum similique libero itaque soluta
-						veritatis voluptatibus minima dolores, atque earum? Velit libero
-						distinctio tenetur, accusantium, optio nemo et aspernatur qui
-						commodi itaque temporibus eos a amet voluptatum facilis, eligendi
-						modi alias possimus non quidem illo quibusdam esse. Voluptas
-						accusamus ipsa, aut aliquid doloremque perspiciatis odio. Ipsum
-						tempore nam fuga illo sint vel non voluptas nihil dignissimos
-						suscipit.
+						This field is proud to be the most modern artificial turf football
+						field in the region, giving you the ultimate and impromptu football
+						playing experience. The football field is designed according to
+						international standards with standard dimensions of 100m x 64m, with
+						the latest generation of artificial turf, ensuring good peace,
+						comfort and safety for players.
 					</p>
 				</div>
 				<Button className="mt-6 rounded-full py-8 pl-10 pr-1">
@@ -49,25 +45,30 @@ const ContentFieldDetails = () => {
 			<div className="">
 				<h3 className="text-2xl font-medium capitalize">advanced facilities</h3>
 				<p className="mt-4">
-					Neque porro quisquam est dolorem ipsum quia dolor si amet consectetur
-					adipisci velit sed quian numquam eius tempora incidunt labore dolore
-					magnam aliquam quaerat voluptatem.
+					{field.name} is pleased to bring you a system of{' '}
+					{field.subfields?.length} modern artificial turf soccer fields,
+					meeting all the competition and training needs of soccer fans. Each
+					stadium has its own outstanding features, creating a perfect whole for
+					your football experience
 				</p>
 				<SubFieldList subfields={field.subfields} />
 			</div>
 			<div className="">
 				<h2 className="text-2xl font-medium capitalize ">field’s address</h2>
 				<p className="mt-3 text-base">
-					Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-					quam nihil molestiae consequatur vel eillum qui dolorem eum fugiat quo
-					voluptas nulla pariatur
+					Nestled in the heart of District, {field.name} stands as an oasis for
+					football enthusiasts, offering a premier destination for both
+					competitive and recreational play. Conveniently located at{' '}
+					{field.location.name}, the field is easily accessible by various modes
+					of transportation, ensuring that your journey to football nirvana is
+					hassle-free.
 				</p>
 				<p className="my-5 text-base">
-					Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-					fugit sed quia consequuntur magne doloreseos qui ratione voluptatem
-					sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
-					si amet consectetur adipisci velit sed quian numquam eius modi tempora
-					incidunt
+					Whether you're a seasoned player seeking a top-notch training ground
+					or a casual group looking for a fun-filled game, {field.name} caters
+					to all levels of expertise. Its prime location makes it an ideal
+					choice for those residing in the vicinity, while its reputation for
+					excellence attracts players from far and wide.
 				</p>
 			</div>
 
