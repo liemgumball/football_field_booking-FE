@@ -9,6 +9,8 @@ import useDebounce from '@/hooks/useDebounce'
 const FilterByDistanceSection = () => {
 	const coordinates = useLocationStore((set) => set.coordinates)
 
+	const [viewPort, setViewPort] = useState(coordinates)
+
 	const [markers, setMarkers] = useState<TMarker[]>([])
 
 	const [distance, setDistance] = useState(1000)
@@ -35,7 +37,7 @@ const FilterByDistanceSection = () => {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
-					`${ENV_VARS.API_URL}fields/locations?latitude=${coordinates?.latitude}&longitude=${coordinates?.longitude}&distance=${distanceDebounce}`,
+					`${ENV_VARS.API_URL}fields/locations?latitude=${viewPort?.latitude}&longitude=${viewPort?.longitude}&distance=${distanceDebounce}`,
 				)
 				if (!response.ok) {
 					throw new Error(`API request failed with status ${response.status}`)
@@ -47,13 +49,14 @@ const FilterByDistanceSection = () => {
 			}
 		}
 		fetchData()
-	}, [coordinates, distanceDebounce])
+	}, [coordinates, distanceDebounce, viewPort])
 
-	return coordinates ? (
+	return viewPort ? (
 		<section className="container">
 			<MapBox
 				markers={markers}
-				initialViewPort={coordinates}
+				viewPort={viewPort}
+				setViewPort={setViewPort}
 				setZoom={setZoom}
 			/>
 		</section>

@@ -16,8 +16,6 @@ const ContentFieldDetails = () => {
 	const field = useOutletContext<TFootballField>()
 	const { theme } = useThemeStore()
 
-	console.log(field.subfields)
-
 	return (
 		<section className="my-8 space-y-10">
 			<div className="flex flex-wrap justify-between">

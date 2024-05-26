@@ -10,10 +10,11 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 // import useSupercluster from "use-supercluster";
-import { SetStateAction, useState, Dispatch, useEffect } from 'react'
+import { SetStateAction, Dispatch, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import useThemeStore from '@/stores/theme'
 
-type TViewPort = {
+export type TViewPort = {
 	longitude: number
 	latitude: number
 	zoom?: number
@@ -21,14 +22,16 @@ type TViewPort = {
 
 const MapBox = ({
 	markers,
-	initialViewPort,
+	setViewPort,
+	viewPort,
 	setZoom,
 }: {
 	markers: TMarker[]
-	initialViewPort: TViewPort
+	viewPort: TViewPort
+	setViewPort: Dispatch<SetStateAction<TViewPort | null>>
 	setZoom: Dispatch<SetStateAction<number>>
 }) => {
-	const [viewPort, setViewPort] = useState(initialViewPort)
+	const { theme } = useThemeStore()
 
 	useEffect(() => {
 		if (viewPort.zoom) {
@@ -41,7 +44,11 @@ const MapBox = ({
 		<div className="mt-6 overflow-hidden rounded-lg">
 			<ReactMapGl
 				mapboxAccessToken={ENV_VARS.MAP.ACCESS_TOKEN}
-				mapStyle={ENV_VARS.MAP.LIGHT_STYLE_URL}
+				mapStyle={
+					theme === 'light'
+						? ENV_VARS.MAP.LIGHT_STYLE_URL
+						: ENV_VARS.MAP.DARK_STYLE_URL
+				}
 				style={{ width: '100%', height: 500 }}
 				{...viewPort}
 				zoom={viewPort.zoom || 13}
@@ -58,8 +65,11 @@ const MapBox = ({
 						>
 							<Popover>
 								<PopoverTrigger className="cursor-pointer">
-									<MapPinIcon className="size-8 text-green-900" />
-									{/* <i className="fa fa-solid fa-location-dot"></i> */}
+									{theme === 'light' ? (
+										<MapPinIcon className="size-8 text-green-900" />
+									) : (
+										<MapPinIcon className="size-8 text-red-900" />
+									)}
 								</PopoverTrigger>
 								<PopoverContent>
 									<Link className="cursor-pointer" to={`/fields/${marker._id}`}>
