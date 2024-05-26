@@ -1,5 +1,5 @@
-import { Star } from 'lucide-react'
 import userAvatar from '/userAvatar.svg'
+import Rating from '@/components/Rating'
 
 const UserReviewItem = () => {
 	return (
@@ -13,59 +13,39 @@ const UserReviewItem = () => {
 				<ul className="mt-4 flex flex-wrap gap-5 lg:gap-7">
 					<li>
 						<p className="text-sm font-normal">Quality</p>
-						<span className="mt-2 flex text-orange-500">
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
+						<span className="mt-2 flex">
+							<Rating rating={5} size={14} />
 						</span>
 					</li>
 					<li>
 						<p className="text-sm font-normal">Location</p>
-						<span className="mt-2 flex text-orange-500">
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
+						<span className="mt-2 flex">
+							<Rating rating={5} size={14} />
 						</span>
 					</li>
 					<li>
 						<p className="text-sm font-normal">Services</p>
 						<span className="mt-2 flex text-orange-500">
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
+							<Rating rating={5} size={14} />
 						</span>
 					</li>
 					<li>
 						<p className="text-sm font-normal">Team</p>
-						<span className="mt-2 flex text-orange-500">
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
+						<span className="mt-2 flex">
+							<Rating rating={5} size={14} />
 						</span>
 					</li>
 					<li>
 						<p className="text-sm font-normal">Price</p>
-						<span className="mt-2 flex text-orange-500">
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
-							<Star size="14px" />
+						<span className="mt-2 flex">
+							<Rating rating={5} size={14} />
 						</span>
 					</li>
 				</ul>
 				<p className=" mt-4 ">
-					At vero eos et accusamus et iusto odio dignissimos ducimus qui
-					blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-					et quas molestias excepture
+					As a longtime soccer fan, I have had the opportunity to experience
+					playing at many different soccer fields. However, This Football Field
+					really left a very deep impression on me.
 				</p>
 			</div>
 		</div>

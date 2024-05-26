@@ -50,7 +50,7 @@ const ReviewForm = () => {
 					)}
 				/>
 
-				<Button className="mt-2 rounded-full py-8 pl-5 pr-1 lg:pl-10">
+				<Button className="mt-2 rounded-full py-8 pl-5 pr-1 lg:pl-10" disabled>
 					<div className="inline-flex items-center justify-center text-sm font-bold uppercase text-primary-foreground transition-colors md:text-base lg:text-lg ">
 						send comments
 						<div className="ml-5 rounded-full bg-primary-foreground p-4 text-primary ">
