@@ -19,7 +19,7 @@ const HeroSection = () => {
 			<div className="absolute left-0 top-0 h-full w-full bg-black bg-opacity-40" />
 			<div className="container relative z-10">
 				<div className="flex flex-col items-start gap-8 lg:items-center">
-					<h1 className="text-7xl font-extrabold text-white">
+					<h1 className="text-6xl font-extrabold text-white">
 						Explore Available Booking
 					</h1>
 					<Breadcrumb className="rounded-xl bg-background/70 px-8 py-2">
