@@ -23,11 +23,10 @@ import {
 import { format } from 'date-fns'
 import { Separator } from '@/components/ui/separator'
 import { buttonVariants } from '@/components/ui/button'
-import { memo, useMemo, useState } from 'react'
+import { memo, useState } from 'react'
 import { getFieldDetails } from '@/services/football-field'
 import { Link } from 'react-router-dom'
 import { getTimeRange } from '@/utils/time'
-import { pickRandomFormArray } from '@/utils/common'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { PATHS } from '@/constants/navigation'
 import { calculatePrice } from '@/utils/booking'
@@ -41,13 +40,7 @@ const AvailableBookingCard = ({
 }: TDayOfService) => {
 	const [location, setLocation] = useState<string>()
 
-	const imgSrc = useMemo(
-		() =>
-			field.images?.length
-				? pickRandomFormArray<string>(field.images)
-				: defaultImg,
-		[field.images],
-	)
+	const imgSrc = subfield.image || defaultImg
 
 	const price = calculatePrice(turnOfServices)
 
