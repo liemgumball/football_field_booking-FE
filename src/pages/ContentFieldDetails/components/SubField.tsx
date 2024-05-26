@@ -1,23 +1,18 @@
 import { TSubField } from '@/types'
-import { pickRandomFormArray } from '@/utils/common'
 import defaultImg from '/booking_img.png'
 import { formatPrice } from '@/utils/booking'
 
 const SubField = ({
 	name,
 	defaultPrice,
-	images,
+	image,
 	size,
-}: Omit<TSubField, '_id'> & { images: string[] | undefined }) => {
-	const imageSubField = images?.length
-		? pickRandomFormArray<string>(images)
-		: defaultImg
-
+}: Omit<TSubField, '_id'>) => {
 	return (
 		<figure className="relative h-[250px] w-full overflow-hidden rounded-xl hover:shadow-primary-foreground  md:h-[300px]">
 			<img
 				className="h-full w-full object-cover transition"
-				src={imageSubField}
+				src={image || defaultImg}
 				alt="sub field image"
 			/>
 			<div className="absolute left-0 top-0 h-full w-full" />

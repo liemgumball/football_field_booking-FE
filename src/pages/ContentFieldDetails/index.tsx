@@ -16,6 +16,8 @@ const ContentFieldDetails = () => {
 	const field = useOutletContext<TFootballField>()
 	const { theme } = useThemeStore()
 
+	console.log(field.subfields)
+
 	return (
 		<section className="my-8 space-y-10">
 			<div className="flex flex-wrap justify-between">
@@ -53,7 +55,7 @@ const ContentFieldDetails = () => {
 					adipisci velit sed quian numquam eius tempora incidunt labore dolore
 					magnam aliquam quaerat voluptatem.
 				</p>
-				<SubFieldList subfields={field.subfields} images={field.images} />
+				<SubFieldList subfields={field.subfields} />
 			</div>
 			<div className="">
 				<h2 className="text-2xl font-medium capitalize ">field’s address</h2>

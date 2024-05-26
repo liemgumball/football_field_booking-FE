@@ -47,6 +47,7 @@ export type TSubField = {
 	_id: string
 	name: string
 	size: number
+	image?: string
 	defaultPrice: number
 }
 
