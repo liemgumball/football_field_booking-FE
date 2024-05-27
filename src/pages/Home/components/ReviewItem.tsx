@@ -1,5 +1,5 @@
 import quote from '/quote.png'
-import AuthorItem from '../pages/Home/components/AuthorItem'
+import AuthorItem from './AuthorItem'
 
 const ReviewItem = () => {
 	return (
@@ -15,7 +15,7 @@ const ReviewItem = () => {
 				playing at many different soccer fields. However, This Football Field
 				really left a very deep impression on me.
 			</p>
-			<AuthorItem />
+			<AuthorItem name="Huyen Pham" email="huyenpham@asnet.gmail.com" />
 		</div>
 	)
 }
