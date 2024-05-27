@@ -12,7 +12,7 @@ const AvailableBookingHeader = (props: TAvailableBooking) => {
 		<header className="my-12 flex flex-col justify-between gap-4 lg:flex-row">
 			<div className="space-y-4">
 				<h3 className="text-4xl font-bold capitalize leading-tight">
-					{field.name || 'Football Field'}
+					{field.name} {subfield.name}
 				</h3>
 				<div className="space-x-1">
 					{date ? format(date, 'PPP') : ''}

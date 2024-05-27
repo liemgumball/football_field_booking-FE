@@ -30,7 +30,12 @@ const BookingDetails = () => {
 
 	return (
 		<main className="container">
-			<BookingDetailsHeader _id={id} field={data.field} status={data.status} />
+			<BookingDetailsHeader
+				_id={id}
+				field={data.field}
+				status={data.status}
+				subfield={data.subfield}
+			/>
 			<Separator />
 			<BookingDetailsContent {...data} />
 			{data.status === 'confirmed' && (

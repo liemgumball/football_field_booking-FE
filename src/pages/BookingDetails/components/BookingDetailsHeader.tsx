@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { TBookingStatus, TFootballField } from '@/types'
+import { TBookingStatus, TFootballField, TSubField } from '@/types'
 import { MapPinIcon } from 'lucide-react'
 import BookingQRCode from './BookingQRCode'
 import Rating from '@/components/Rating'
@@ -8,9 +8,10 @@ type TProps = {
 	_id: string
 	field: TFootballField
 	status: TBookingStatus
+	subfield: TSubField
 }
 
-const BookingDetailsHeader = ({ field, status, _id }: TProps) => {
+const BookingDetailsHeader = ({ field, status, _id, subfield }: TProps) => {
 	const { name, rating, location } = field
 
 	const statusClassName: Record<TBookingStatus, string> = {
@@ -23,7 +24,7 @@ const BookingDetailsHeader = ({ field, status, _id }: TProps) => {
 		<header className="flex flex-col justify-between gap-x-2 gap-y-4 py-4 md:flex-row md:items-center">
 			<div className="space-y-4">
 				<h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-					{name}
+					{name} {subfield.name}
 				</h1>
 				<div className="space-x-2 text-nowrap">
 					<MapPinIcon className="mr-px inline-block text-primary" size={20} />
