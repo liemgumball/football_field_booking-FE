@@ -39,7 +39,7 @@ const ReviewForm = ({ review, id }: { id: string; review?: TReview }) => {
 			await mutateAsync({ review: values })
 
 			toast({
-				title: 'Update review successfully',
+				title: 'Update review successfully.',
 				variant: 'primary',
 			})
 		} catch (error) {

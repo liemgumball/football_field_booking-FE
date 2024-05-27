@@ -28,7 +28,7 @@ const BookingDetailsActions = ({ status, _id }: TProps) => {
 			window.location.href = checkoutUrl
 		} catch (err) {
 			toast({
-				title: 'Error while creating checkout session',
+				title: 'Error while creating checkout session.',
 				variant: 'destructive',
 			})
 		}
