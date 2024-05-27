@@ -4,6 +4,28 @@ import featureImage2 from '/featureImage2.png'
 import featureImage3 from '/featureImage3.png'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import bookingIcon from '/booking.png'
+import realtimeIcon from '/real-time.png'
+
+const Features = [
+	{
+		name: 'effortless booking experience',
+		description:
+			'Clients can easily search for, compare, and book available fields at their convenience, 24/7',
+		image: bookingIcon,
+	},
+	{
+		name: 'real-time availability',
+		description: 'Clients have access to up-to-date availability information',
+		image: realtimeIcon,
+	},
+	{
+		name: 'streamlined payment processing',
+		description:
+			'Secure online payment options allow clients to complete their bookings seamlessly',
+		image: bookingIcon,
+	},
+]
 
 const Advantages = () => {
 	return (
@@ -19,12 +41,17 @@ const Advantages = () => {
 					Who We Are{' '}
 				</p>
 				<h2 className="text-center text-3xl font-bold capitalize md:text-4xl lg:text-5xl xl:text-start">
-					great opportunity for adventure & travels
+					great opportunity for football & sports
 				</h2>
 				<ul className="mt-8 space-y-8 md:space-y-16">
-					<FeatureItem />
-					<FeatureItem />
-					<FeatureItem />
+					{Features.map((feature, index) => (
+						<FeatureItem
+							key={index}
+							name={feature.name}
+							description={feature.description}
+							image={feature.image}
+						/>
+					))}
 				</ul>
 			</div>
 			<ul className="grid grid-cols-2 gap-5">
