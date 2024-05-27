@@ -1,10 +1,11 @@
 import AvailabilityForm from '@/components/AvailabilityForm'
-import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import { PATHS } from '@/constants/navigation'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 
 const AvailabilitySection = () => {
 	const ref = useRef(null)
@@ -40,9 +41,9 @@ const AvailabilitySection = () => {
 			className="flex flex-col items-center justify-center gap-8 px-4 pt-4 xl:flex-row xl:gap-20"
 		>
 			<div className="check-form space-y-8">
-				<p className={cn(buttonVariants({ size: 'lg' }), 'trigger max-w-max')}>
-					Availability
-				</p>
+				<Button size="lg" asChild className="trigger max-w-max">
+					<Link to={PATHS.AVAILABLE_BOOKING.BASE}>Availability</Link>
+				</Button>
 				<h2 className="max-w-[600px] text-4xl font-bold leading-snug md:text-5xl">
 					Booking Your <span className="text-primary">Best Football Field</span>{' '}
 					Availability
