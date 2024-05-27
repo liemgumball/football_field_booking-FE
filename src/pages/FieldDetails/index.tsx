@@ -32,10 +32,10 @@ const FieldDetails = () => {
 		getFieldDetails()
 	}, [id])
 
-	if (!field) return <Icons.Loader size={60} className="container mt-[102px]" />
+	if (!field) return <Icons.Loader size={60} className="container" />
 
 	return (
-		<main className="container mb-8 mt-[100px]">
+		<main className="container mb-8">
 			<TitleFieldDetails
 				name={field?.name}
 				location={field?.location}

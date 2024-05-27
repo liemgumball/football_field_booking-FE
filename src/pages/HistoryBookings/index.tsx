@@ -1,8 +1,8 @@
 import DataTable from './components/DataTable'
 import Columns from './components/Columns'
-import { Loader2Icon } from 'lucide-react'
 import { useBookingsQuery } from './hooks/useBookingsQuery'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import { Icons } from '@/components/Icons'
 
 const HistoryBookings = () => {
 	useDocumentTitle('History Bookings')
@@ -11,13 +11,13 @@ const HistoryBookings = () => {
 
 	if (isLoading)
 		return (
-			<div className="container my-auto mt-[90px] max-w-min">
-				<Loader2Icon className="animate-spin" size={60} opacity={0.7} />
+			<div className="container my-auto max-w-min">
+				<Icons.Loader size={60} />
 			</div>
 		)
 
 	return (
-		<main className="container mb-4 mt-[90px]">
+		<main className="container mb-4">
 			{data && <DataTable data={data} columns={Columns} />}
 		</main>
 	)
