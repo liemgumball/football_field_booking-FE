@@ -9,7 +9,7 @@ const Login = () => {
 	useDocumentTitle('Login')
 
 	return (
-		<main className="container my-8 text-center">
+		<main className="container mb-8 mt-[60px] text-center md:mt-[96px]">
 			<div className="container max-w-max space-y-7 border-b-2 pb-4 text-center">
 				<h2 className="text-3xl font-bold capitalize">login</h2>
 				<LoginForm />

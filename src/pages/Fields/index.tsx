@@ -7,7 +7,7 @@ const Fields = () => {
 	useDocumentTitle('Fields')
 
 	return (
-		<main className="mb-12 w-full">
+		<main className="mb-12 mt-[60px] w-full md:mt-[90px]">
 			<HeroSection />
 			<FilterByDistanceSection />
 			<FilterByNameSection />

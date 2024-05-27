@@ -38,7 +38,7 @@ const Advantages = () => {
 						alt="feature image 3"
 					/>
 				</li>
-				<li className="col-span-2 min-w-[550px]">
+				<li className="col-span-2 md:min-w-[550px]">
 					<img
 						className="rounded-xl"
 						src={featureImage1}
