@@ -69,10 +69,17 @@ const BookingDetailsContent = (props: TProps) => {
 					Additional information
 				</h2>
 
-				<p>Extra services: __________ </p>
+				<p>
+					Extra services:{' '}
+					<i className="text-sm text-muted-foreground">(feature in future)</i>{' '}
+				</p>
 				<p>
 					Description:
-					<Textarea value={description} className="mt-2" readOnly />
+					<Textarea
+						value={description || 'No description'}
+						className={`mt-2 focus-visible:outline-0 focus-visible:ring-0 ${!description && 'text-sm text-muted-foreground'}`}
+						readOnly
+					/>
 				</p>
 			</div>
 			<BookingDetailsActions _id={_id} status={status} />
