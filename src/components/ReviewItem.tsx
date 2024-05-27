@@ -11,9 +11,9 @@ const ReviewItem = () => {
 				</div>
 			</div>
 			<p className="mb-6 mt-5 max-w-[600px] text-2xl font-semibold">
-				To take a trivial example which of usev undertakes laborious physical
-				exercise excepto obtain advantage from has any right to find fault with
-				man who chooses to enjoy
+				As a longtime soccer fan, I have had the opportunity to experience
+				playing at many different soccer fields. However, This Football Field
+				really left a very deep impression on me.
 			</p>
 			<AuthorItem />
 		</div>

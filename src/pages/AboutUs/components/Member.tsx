@@ -18,7 +18,7 @@ const Member = (member: MemberProps) => {
 	return (
 		<li className="max-w-max">
 			<Card className="flex items-center gap-3 p-4 md:gap-5 md:p-8 lg:gap-7">
-				<div className="max-w-[50px] md:max-w-[90px] lg:max-w-[110px]">
+				<div className="w-full md:max-w-[90px] lg:max-w-[110px]">
 					<img className="rounded-lg" src={member.image} alt="avatar member" />
 				</div>
 				<div className="flex max-w-max flex-col gap-1 capitalize ">
