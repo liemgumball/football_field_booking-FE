@@ -10,9 +10,9 @@ import {
 
 const Footer = () => {
 	return (
-		<footer className="container mt-auto w-full self-end justify-self-end pt-6">
+		<footer className="mt-auto w-full self-end justify-self-end pt-6">
 			<Separator />
-			<div className="my-8 flex items-center justify-between ">
+			<div className="container my-8 flex items-center justify-between ">
 				<ul className="grid w-full grid-cols-1 gap-y-12 md:grid-cols-2 xl:grid-cols-4">
 					<ContactItem
 						title="Location"
@@ -40,12 +40,12 @@ const Footer = () => {
 				</ul>
 			</div>
 			<Separator />
-			<div className="my-9 grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:flex xl:flex-row xl:justify-between">
+			<div className="container my-9 grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:flex xl:flex-row xl:justify-between">
 				<div>
 					<h4 className="text-base font-bold md:text-xl">About</h4>
 					<p className="mt-3 max-w-56 text-sm font-normal md:mt-6">
-						To take trivial example which us ever undertakes laborious physica
-						exercise except obsome
+						Imagine sprinting towards the goal line, muscles burning, but still
+						pushing for that winning score
 					</p>
 				</div>
 

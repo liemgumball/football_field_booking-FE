@@ -78,10 +78,9 @@ const AboutSection = () => {
 							<span className="text-primary">Danang</span>
 						</h2>
 						<p className="text-sm leading-relaxed tracking-normal text-muted-foreground md:text-base">
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas
-							dicta accusamus unde sed deleniti repellendus aliquam adipisci cum
-							ratione asperiores? Lorem ipsum dolor sit amet consectetur
-							adipisicing elit. Officiis, maiores.
+							Experience the power of our football field booking website
+							firsthand. Schedule a free demo today and discover how we can
+							revolutionize your passion for football
 						</p>
 					</div>
 				</div>

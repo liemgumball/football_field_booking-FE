@@ -16,12 +16,12 @@ const PresentSection = () => {
 						Who We Are{' '}
 					</p>
 					<h2 className="mt-3 text-3xl font-bold capitalize md:text-4xl lg:text-5xl">
-						great opportunity for adventure & travels
+						great opportunity for football & sports
 					</h2>
 					<p className="mt-4 text-sm font-normal text-muted-foreground md:text-base">
-						Set perspiciatis unde omnis iste natus error voluptatem accusantium
-						doloremue laudantium totam rem aperiam eaque quae abillo inventore
-						veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+						Experience the power of our football field booking website
+						firsthand. Schedule a free demo today and discover how we can
+						revolutionize your passion for football
 					</p>
 				</div>
 				<div className="mt-3 flex flex-wrap justify-center gap-3 px-6 py-10 shadow-xl ">

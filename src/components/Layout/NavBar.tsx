@@ -51,19 +51,21 @@ const NavBar = () => {
 										<Icons.Logo />
 										<div className="mb-2 mt-4 text-lg font-medium">Danang</div>
 										<p className="text-sm leading-tight text-muted-foreground">
-											Lorem ipsum dolor sit amet consectetur adipisicing elit.
+											Welcome to DN Fooball, Your Ultimate Football Field
+											Booking Destination!
 										</p>
 									</Link>
 								</NavigationMenuLink>
 							</li>
 							<ListItem to={PATHS.HOME} title="Introduction">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Let's experience the thrill of effortless football field booking
+								together.
 							</ListItem>
 							<ListItem
 								to={PATHS.AVAILABLE_BOOKING.BASE}
 								title="Available Bookings"
 							>
-								Lorem ipsum dolor sit amet.
+								Step onto the Field, Unleash Your Passion. Book Now!
 							</ListItem>
 						</ul>
 					</NavigationMenuContent>

@@ -24,41 +24,33 @@ export const PATHS = {
 export const FOOTER_NAV_LIST_LEFT = [
 	{
 		to: '#',
-		content: 'Caravan Soler Tent',
+		content: 'Equipment Rental',
 	},
 	{
 		to: '#',
-		content: 'Family Tent Camping',
+		content: 'Referee Booking',
 	},
 	{
 		to: '#',
-		content: 'Classic Tent Camping',
-	},
-	{
-		to: '#',
-		content: 'Wild Tent Camping',
-	},
-	{
-		to: '#',
-		content: 'Small Cabin Wood',
+		content: 'Training Sessions',
 	},
 ]
 
 export const FOOTER_NAV_LIST_RIGHT = [
 	{
 		to: '#',
-		content: 'Need a Career ?',
+		content: 'Water and Snacks',
 	},
 	{
 		to: '#',
-		content: 'Latest News & Blog',
+		content: 'Locker Room',
 	},
 	{
 		to: '#',
-		content: 'Core Features',
+		content: 'On-Site Physiotherapy',
 	},
 	{
 		to: '#',
-		content: 'Meet Our teams',
+		content: 'Premium Bookings',
 	},
 ]

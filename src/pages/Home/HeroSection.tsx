@@ -56,8 +56,9 @@ const HeroSection = () => {
 				</h1>
 				<div className="mx-auto flex max-w-[600px] flex-col items-center justify-center gap-8 md:flex-row">
 					<p className="max-w-[290px] text-sm leading-loose text-muted-foreground md:block md:text-base">
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos,
-						saepe? Lorem ipsum dolor sit amet.
+						Step into the world of effortless football field booking, your
+						one-stop solution for securing the perfect pitch for your next match
+						or training session
 					</p>
 					<Link
 						to={PATHS.AVAILABLE_BOOKING.BASE}
