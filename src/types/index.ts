@@ -101,6 +101,7 @@ export type TBooking = {
 	updatedAt?: Date | string
 	description?: string
 	additionalServices?: unknown
+	review?: TReview
 }
 
 export type TMarker = {
@@ -117,3 +118,8 @@ export type TMarker = {
 }
 
 export type TRating = 1 | 2 | 3 | 4 | 5
+
+export type TReview = {
+	rating: number
+	description?: string
+}

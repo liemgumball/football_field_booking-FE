@@ -18,10 +18,7 @@ export const Icons = {
 	),
 
 	Loader: ({ size = 18, className }: { size?: number; className?: string }) => (
-		<Loader2Icon
-			className={cn('animate-spin text-muted-foreground', className)}
-			size={size}
-		/>
+		<Loader2Icon className={cn('animate-spin', className)} size={size} />
 	),
 
 	Success: ({
@@ -37,7 +34,22 @@ export const Icons = {
 		/>
 	),
 
-	Rating: ({ size, color }: { size?: number; color?: string }) => (
-		<StarIcon size={size} color={color} />
+	Rating: ({
+		size,
+		active = false,
+		className,
+		...rest
+	}: {
+		size?: number
+		active?: boolean
+	} & React.HTMLAttributes<SVGSVGElement>) => (
+		<StarIcon
+			{...rest}
+			size={size}
+			className={cn(
+				active ? 'text-orange-500' : 'text-muted-foreground',
+				className,
+			)}
+		/>
 	),
 }

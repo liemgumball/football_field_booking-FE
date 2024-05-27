@@ -33,7 +33,7 @@ export const useAvailableBookingMutation = (
 			}),
 		onSettled: () =>
 			queryClient.invalidateQueries({
-				queryKey: ['day-of-services', id],
+				queryKey: ['day-of-service', id],
 			}),
 	})
 

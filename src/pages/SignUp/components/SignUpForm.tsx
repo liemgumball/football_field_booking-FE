@@ -119,6 +119,7 @@ const SignUpForm = () => {
 							</FormLabel>
 							<FormControl>
 								<Input
+									type="email"
 									className="px-2 py-5 text-base md:px-4"
 									placeholder="Enter your email"
 									{...field}

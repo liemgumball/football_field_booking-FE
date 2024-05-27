@@ -1,5 +1,5 @@
 import { TBooking } from '@/types'
-import { createCheckoutSession, updateBooking } from '@/services/booking'
+import { createCheckoutSession } from '@/services/booking'
 
 import { Button, buttonVariants } from '@/components/ui/button'
 import { toast } from '@/components/ui/use-toast'
@@ -14,18 +14,12 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import useBookingMutation from '../hooks/useBookingMutation'
 
 type TProps = Pick<TBooking, '_id' | 'status'>
 
 const BookingDetailsActions = ({ status, _id }: TProps) => {
-	const queryClient = useQueryClient()
-
-	const mutation = useMutation<TBooking>({
-		mutationFn: () => updateBooking(_id, { canceled: true }),
-		onSettled: () =>
-			queryClient.invalidateQueries({ queryKey: ['bookings', _id] }),
-	})
+	const { mutateAsync } = useBookingMutation(_id)
 
 	const onCheckout = async () => {
 		try {
@@ -34,7 +28,7 @@ const BookingDetailsActions = ({ status, _id }: TProps) => {
 			window.location.href = checkoutUrl
 		} catch (err) {
 			toast({
-				title: 'Error while creating checkout session',
+				title: 'Error while creating checkout session.',
 				variant: 'destructive',
 			})
 		}
@@ -42,7 +36,7 @@ const BookingDetailsActions = ({ status, _id }: TProps) => {
 
 	const onCancel = async () => {
 		try {
-			await mutation.mutateAsync()
+			await mutateAsync({ canceled: true })
 			toast({
 				title: 'Cancel booking successfully!',
 				variant: 'primary',

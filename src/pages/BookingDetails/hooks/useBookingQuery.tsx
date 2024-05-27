@@ -1,8 +1,9 @@
 import { getBookingDetails } from '@/services/booking'
+import { TBooking } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 
 export const useBookingQuery = (id: string) =>
-	useQuery({
-		queryKey: ['bookings', id],
+	useQuery<TBooking>({
+		queryKey: ['booking', id],
 		queryFn: () => getBookingDetails(id),
 	})
