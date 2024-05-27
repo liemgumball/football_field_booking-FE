@@ -77,7 +77,7 @@ const LoginForm = () => {
 		<FormProvider {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="w-full min-w-[400px] max-w-[600px] space-y-4 px-4 text-start md:space-y-8"
+				className="w-full max-w-[600px] space-y-4 py-2 text-start md:min-w-[400px] md:space-y-8"
 			>
 				<FormField
 					control={form.control}

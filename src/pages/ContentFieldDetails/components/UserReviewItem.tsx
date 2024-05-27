@@ -1,15 +1,15 @@
-import userAvatar from '/userAvatar.svg'
+import avaLiem from '/avaLiem.png'
 import Rating from '@/components/Rating'
 
 const UserReviewItem = () => {
 	return (
 		<div className="flex max-w-[600px] gap-3 lg:gap-7">
 			<div className="h-full min-h-[80px] min-w-[80px] max-w-fit overflow-hidden ">
-				<img src={userAvatar} className="rounded-full" alt="comment user" />
+				<img src={avaLiem} className="rounded-full" alt="comment user" />
 			</div>
 			<div className="pb-9">
-				<span className="mb-[2px] text-xl font-medium">Glenn M. Whitaker</span>
-				<p className="text-base font-light">CEO & Founder</p>
+				<span className="mb-[2px] text-xl font-medium">Liem Nguyen</span>
+				<p className="text-base font-light">liem1762001@gmail.com</p>
 				<ul className="mt-4 flex flex-wrap gap-5 lg:gap-7">
 					<li>
 						<p className="text-sm font-normal">Quality</p>
