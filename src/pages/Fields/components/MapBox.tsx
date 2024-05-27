@@ -68,7 +68,7 @@ const MapBox = ({
 									{theme === 'light' ? (
 										<MapPinIcon className="size-8 text-green-900" />
 									) : (
-										<MapPinIcon className="size-8 text-red-900" />
+										<MapPinIcon className="size-8 text-red-500" />
 									)}
 								</PopoverTrigger>
 								<PopoverContent>
