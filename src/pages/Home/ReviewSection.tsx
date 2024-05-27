@@ -66,7 +66,12 @@ const ReviewSection = () => {
 		<section ref={section} className="container space-y-8 pt-8 lg:space-y-16">
 			<div className="titles flex justify-center">
 				<div className="max-w-[600px] space-y-8 text-center">
-					<p className={cn(buttonVariants({ size: 'lg' }), 'trigger')}>
+					<p
+						className={cn(
+							buttonVariants({ size: 'lg' }),
+							'trigger hover:bg-primary',
+						)}
+					>
 						{' '}
 						Reviews{' '}
 					</p>
