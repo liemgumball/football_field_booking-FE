@@ -2,7 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 const AvailableBookingSkeleton = () => {
 	return (
-		<main className="container mt-[53px]">
+		<main className="container">
 			<header className="my-12 flex w-full flex-col justify-between gap-8 lg:flex-row">
 				<div className="w-full max-w-[700px] space-y-4">
 					<Skeleton className="h-[80px] lg:h-[35px]" />

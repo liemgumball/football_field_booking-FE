@@ -3,7 +3,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 const BookingDetailsSkeleton = () => {
 	return (
-		<div className="container mt-[90px]">
+		<div className="container ">
 			<div className="flex flex-col justify-between gap-4 py-8 md:flex-row">
 				<div className="w-full max-w-screen-sm space-y-4">
 					<Skeleton className="h-16 w-full " />

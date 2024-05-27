@@ -52,7 +52,7 @@ const AvailableBookings = () => {
 	const bookingsAvailable = useMemo(() => data?.pages.flat(), [data])
 
 	return (
-		<main className="mt-[60px] md:mt-[90px]">
+		<main>
 			<HeroSection />
 
 			{/* Available Booking List */}
