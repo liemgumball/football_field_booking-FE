@@ -54,7 +54,7 @@
 		@apply border-border;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply overflow-scroll bg-background text-foreground;
 	}
 	::-webkit-scrollbar {
 		@apply h-1 w-2;
@@ -64,5 +64,13 @@
 	}
 	::-webkit-scrollbar-track {
 		@apply rounded-full bg-transparent;
+	}
+	::-webkit-scrollbar-corner {
+		@apply bg-transparent;
+	}
+	input[type='number']::-webkit-inner-spin-button,
+	input[type='number']::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
 	}
 }
