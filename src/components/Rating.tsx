@@ -5,11 +5,9 @@ const Rating = ({ rating, size }: { rating: number | 0; size?: number }) => {
 		.fill(null)
 		.map((_, index) =>
 			index + 1 <= rating ? (
-				<Icons.Rating size={size} color="orange" key={index} />
+				<Icons.Rating size={size} active key={index} />
 			) : (
-				<div className="text-muted-foreground">
-					<Icons.Rating size={size} key={index} />
-				</div>
+				<Icons.Rating size={size} key={index} />
 			),
 		)
 }

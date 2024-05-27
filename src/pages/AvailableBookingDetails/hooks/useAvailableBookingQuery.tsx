@@ -13,7 +13,7 @@ export const useAvailableBookingQuery = (
 	const setAvailableBooking = useAvailableBookingStore((store) => store.set)
 
 	const query = useQuery<TDayOfService>({
-		queryKey: ['day-of-services', id],
+		queryKey: ['day-of-service', id],
 		queryFn: () => getDayOfServiceById(id),
 	})
 

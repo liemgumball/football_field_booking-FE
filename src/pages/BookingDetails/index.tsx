@@ -5,7 +5,7 @@ import { Separator } from '@/components/ui/separator'
 import BookingDetailsContent from './components/BookingDetailsContent'
 import { useBookingQuery } from './hooks/useBookingQuery'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
-import ReviewForm from '@/components/ReviewForm'
+import ReviewForm from '@/pages/BookingDetails/components/ReviewForm'
 
 const BookingDetails = () => {
 	useDocumentTitle('Booking')
@@ -34,9 +34,7 @@ const BookingDetails = () => {
 			<Separator />
 			<BookingDetailsContent {...data} />
 			{data.status === 'confirmed' && (
-				<div className="md:px-12">
-					<ReviewForm />
-				</div>
+				<ReviewForm id={data._id} review={data.review} />
 			)}
 		</main>
 	)
