@@ -5,6 +5,8 @@ import { getToday } from '@/utils/date'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import FetchErrorHandler from '@/components/FetchErrorHandler'
 import AvailableBookingCard from '@/components/AvailableBookingCard'
+import { Button } from '@/components/ui/button'
+import { Icons } from '@/components/Icons'
 
 const FieldAvailableBookingList = () => {
 	const [searchParams] = useSearchParams()
@@ -16,8 +18,13 @@ const FieldAvailableBookingList = () => {
 		isLoading,
 		isError,
 		error,
-		data: bookings,
+		data,
+		fetchNextPage,
+		isFetching,
+		hasNextPage,
 	} = useFieldAvailableBookingQuery(date, from, to)
+
+	const bookings = data?.pages.flat()
 
 	if (isLoading)
 		return (
@@ -29,13 +36,33 @@ const FieldAvailableBookingList = () => {
 		)
 
 	return (
-		<FetchErrorHandler errorMsg={error?.message} isError={isError}>
-			<ul className="grid gap-x-4 gap-y-2 lg:grid-cols-2 xl:grid-cols-3">
-				{bookings?.map((booking) => (
-					<AvailableBookingCard key={booking._id} {...booking} />
-				))}
-			</ul>
-		</FetchErrorHandler>
+		<>
+			<FetchErrorHandler errorMsg={error?.message} isError={isError}>
+				<ul className="grid gap-x-4 gap-y-4 lg:grid-cols-2 xl:grid-cols-3">
+					{bookings?.map((booking) => (
+						<AvailableBookingCard key={booking._id} {...booking} />
+					))}
+				</ul>
+			</FetchErrorHandler>
+			{hasNextPage && (
+				<div className="container mt-8 text-center">
+					<Button
+						className="disabled:bg-muted-foreground"
+						disabled={!hasNextPage || isFetching}
+						onClick={() => fetchNextPage()}
+					>
+						{isFetching ? (
+							<>
+								<Icons.Loader className="mr-1" />
+								Loading
+							</>
+						) : (
+							'Load more'
+						)}
+					</Button>
+				</div>
+			)}
+		</>
 	)
 }
 

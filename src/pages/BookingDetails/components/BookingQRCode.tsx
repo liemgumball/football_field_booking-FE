@@ -25,6 +25,7 @@ const BookingQRCode = ({ _id, size, label }: TProps) => {
 	const [code, setCode] = useState('')
 	const [isOpen, setIsOpen] = useState(false)
 
+	// Generate the QR code
 	useEffect(() => {
 		const generate = async () => {
 			try {
@@ -54,7 +55,7 @@ const BookingQRCode = ({ _id, size, label }: TProps) => {
 			<Button asChild variant="ghost" size={size || 'icon'}>
 				<AlertDialogTrigger>
 					{label}
-					<QrCodeIcon className="ml-1" />
+					<QrCodeIcon />
 				</AlertDialogTrigger>
 			</Button>
 			<AlertDialogContent>
