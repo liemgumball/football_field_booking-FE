@@ -1,5 +1,5 @@
+import ReviewForm from './ReviewForm'
 import UserReviewItem from './UserReviewItem'
-import ReviewForm from '@/pages/BookingDetails/components/ReviewForm'
 
 const Review = () => {
 	return (
