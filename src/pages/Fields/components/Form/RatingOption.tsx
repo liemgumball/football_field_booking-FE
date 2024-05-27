@@ -10,9 +10,9 @@ const RatingOption = ({
 	setRating: Dispatch<SetStateAction<TRating | undefined>>
 }) => {
 	return (
-		<div className="mt-1 border-solid border-green-600 pb-5 pt-2 lg:mt-3 lg:border-b-2">
+		<div className="mt-1 border-solid border-green-600 pb-5 pt-2 lg:mt-3 xl:border-b-2">
 			<p className="mb-2 text-lg capitalize lg:text-xl">rating</p>
-			<div className="flex flex-col gap-4 pl-4">
+			<div className="flex flex-col gap-4 pl-4 lg:flex-row xl:flex-col">
 				<RatingItem
 					isChecked={rating === 5}
 					onClick={() => {

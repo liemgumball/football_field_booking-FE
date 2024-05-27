@@ -12,7 +12,7 @@ const FieldList = ({ fields }: { fields: TFootballField[] }) => {
 							name={field.name}
 							images={field.images}
 							rating={field.rating}
-							className="h-[300px] w-[300px] lg:w-[225px] xl:w-[300px]"
+							className="max-h-[300px] min-w-[272px] xl:w-[300px]"
 							sizeIcon={16}
 						/>
 					))

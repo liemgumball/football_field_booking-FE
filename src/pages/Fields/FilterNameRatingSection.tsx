@@ -37,7 +37,7 @@ const FilterByNameSection = () => {
 	}, [keyword, ratingDebounce])
 
 	return (
-		<section className="container mt-6 flex flex-col justify-between p-6 lg:flex-row ">
+		<section className="container mt-6 flex flex-col justify-between p-6 xl:flex-row ">
 			<div>
 				<FilterForm setName={setName} rating={rating} setRating={setRating} />
 			</div>
