@@ -107,7 +107,7 @@ const SignUpForm = () => {
 		<FormProvider {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="w-full min-w-[400px] max-w-[600px] space-y-4 p-4 text-start md:space-y-8"
+				className="w-full max-w-[600px] space-y-4 py-2 text-start md:space-y-8"
 			>
 				<FormField
 					control={form.control}
@@ -134,7 +134,7 @@ const SignUpForm = () => {
 					name="password"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className="text-base md:text-xl">Password</FormLabel>
+							<FormLabel className="text-xs md:text-xl">Password</FormLabel>
 							<FormControl>
 								<Input
 									placeholder="Enter your password"

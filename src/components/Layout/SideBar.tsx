@@ -91,7 +91,7 @@ const SideBar = () => {
 					</Link>
 					<Separator />
 					{!user && (
-						<div className="mx-auto space-x-4 font-bold capitalize">
+						<div className="mx-auto flex flex-col space-y-2 font-bold capitalize">
 							<Link
 								to={PATHS.LOGIN}
 								onClick={() => setIsOpen(false)}
