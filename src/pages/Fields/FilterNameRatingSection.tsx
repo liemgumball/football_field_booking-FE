@@ -38,9 +38,7 @@ const FilterByNameSection = () => {
 
 	return (
 		<section className="container mt-6 flex flex-col justify-between p-6 xl:flex-row ">
-			<div>
-				<FilterForm setName={setName} rating={rating} setRating={setRating} />
-			</div>
+			<FilterForm setName={setName} rating={rating} setRating={setRating} />
 			{isLoading ? (
 				<div className="grid grid-cols-1 justify-items-center gap-x-4 gap-y-5  md:grid-cols-2 lg:grid-cols-3">
 					{Array(6)
