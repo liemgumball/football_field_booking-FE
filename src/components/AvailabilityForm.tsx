@@ -256,7 +256,7 @@ const AvailabilityForm = ({
 				/>
 
 				<Button
-					className="mt-8 max-w-max self-end justify-self-center md:col-end-auto"
+					className="mt-8 max-w-max self-start justify-self-center md:col-end-auto"
 					size="lg"
 					disabled={isSubmitting || (!isDirty && !isNavigate)}
 					type="submit"
