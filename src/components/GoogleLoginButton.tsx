@@ -7,12 +7,15 @@ import { toast } from './ui/use-toast'
 import { Icons } from './Icons'
 import { StatusCodes } from 'http-status-codes'
 import { z } from 'zod'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 const GoogleLoginButton = () => {
 	const setAuth = useAuthStore((state) => state.set)
 	const navigate = useNavigate()
 
 	const [isLoading, setIsLoading] = useState(false)
+
+	const width = useMediaQuery('(min-width: 768px)') ? 380 : 256
 
 	const onSuccess = async (res: CredentialResponse) => {
 		try {
@@ -66,8 +69,8 @@ const GoogleLoginButton = () => {
 		<>
 			<div className="flex justify-center pt-6">
 				<GoogleLogin
-					size="large"
-					width={1000}
+					size="medium"
+					width={width}
 					onSuccess={onSuccess}
 					text="signup_with"
 				/>
