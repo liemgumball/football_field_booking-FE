@@ -38,7 +38,7 @@ const FieldAvailableBookingList = () => {
 	return (
 		<>
 			<FetchErrorHandler errorMsg={error?.message} isError={isError}>
-				<ul className="grid gap-x-4 gap-y-4 lg:grid-cols-2 xl:grid-cols-3">
+				<ul className="grid place-items-center gap-x-4 gap-y-4 lg:grid-cols-2 xl:grid-cols-3">
 					{bookings?.map((booking) => (
 						<AvailableBookingCard key={booking._id} {...booking} />
 					))}
