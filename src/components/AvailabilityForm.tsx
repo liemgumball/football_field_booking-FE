@@ -29,7 +29,6 @@ import {
 import { Checkbox } from '@/components/ui/checkbox'
 import { TFootballFieldSize } from '@/types'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
-import useLocationStore from '@/stores/location'
 import { timeSchema } from '@/constants/time'
 import TimeSelect from './TimeSelect'
 import { getDuration } from '@/utils/time'
@@ -42,17 +41,12 @@ const AvailabilityForm = ({
 	className?: string
 	isNavigate?: boolean
 }) => {
-	const coordinates = useLocationStore((set) => set.coordinates)
 	const [searchParams, setSearchParams] = useSearchParams()
 	const navigate = useNavigate()
 
 	// Check if can use location or not
 	const isLocationSearch =
-		searchParams.get('location') === 'false'
-			? false
-			: coordinates
-				? true
-				: false
+		searchParams.get('location') === 'true' ? true : false
 
 	const formSchema = z
 		.object({
@@ -85,13 +79,15 @@ const AvailabilityForm = ({
 	})
 
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (values) => {
+		const { date, from, to, location, size } = values
+
 		const searchParams = new URLSearchParams()
-		searchParams.set('date', formatDate(values.date))
-		searchParams.set('from', values.from)
-		searchParams.set('to', values.to)
-		searchParams.set('location', `${values.location}`)
-		if (values.size) {
-			searchParams.set('size', values.size.toString())
+		searchParams.set('date', formatDate(date))
+		searchParams.set('from', from)
+		searchParams.set('to', to)
+		searchParams.set('location', `${location}`)
+		if (size) {
+			searchParams.set('size', size.toString())
 		}
 
 		// Available booking page
@@ -260,7 +256,7 @@ const AvailabilityForm = ({
 				/>
 
 				<Button
-					className="mt-8 max-w-max self-end justify-self-center md:col-end-auto"
+					className="mt-8 max-w-max self-start justify-self-center md:col-end-auto"
 					size="lg"
 					disabled={isSubmitting || (!isDirty && !isNavigate)}
 					type="submit"

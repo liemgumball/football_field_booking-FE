@@ -3,7 +3,7 @@ import BookingDetailsSkeleton from './components/BookingDetailsSkeleton'
 import BookingDetailsHeader from './components/BookingDetailsHeader'
 import { Separator } from '@/components/ui/separator'
 import BookingDetailsContent from './components/BookingDetailsContent'
-import { useBookingQuery } from './hooks/useBookingQuery'
+import { useBookingQuery } from '@/hooks/BookingDetails/useBookingQuery'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import ReviewForm from '@/pages/BookingDetails/components/ReviewForm'
 

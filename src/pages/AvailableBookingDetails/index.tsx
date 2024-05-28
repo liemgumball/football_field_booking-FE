@@ -3,7 +3,7 @@ import AvailableBookingHeader from './components/AvailableBookingHeader'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { useParams, useSearchParams } from 'react-router-dom'
 import AvailableBookingSkeleton from './components/AvailableBookingSkeleton'
-import { useAvailableBookingQuery } from './hooks/useAvailableBookingQuery'
+import { useAvailableBookingQuery } from '@/hooks/AvailableBookingDetails/useAvailableBookingQuery'
 import useAvailableBookingStore from '@/stores/availableBooking'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 

@@ -14,7 +14,7 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import useBookingMutation from '../hooks/useBookingMutation'
+import useBookingMutation from '@/hooks/BookingDetails/useBookingMutation'
 
 type TProps = Pick<TBooking, '_id' | 'status'>
 

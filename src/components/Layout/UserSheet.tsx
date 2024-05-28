@@ -14,11 +14,13 @@ import { Separator } from '../ui/separator'
 import { Button } from '../ui/button'
 import { useState } from 'react'
 import useMediaQuery from '@/hooks/useMediaQuery'
+import { useNavigate } from 'react-router-dom'
 
 const UserSheet = () => {
 	const [isOpen, setIsOpen] = useState(false)
-	const user = useAuthStore((set) => set.user)
-	const logout = useAuthStore((set) => set.remove)
+	const navigate = useNavigate()
+
+	const { user, remove: logout } = useAuthStore()
 	if (!user) throw new Error('User not found')
 
 	const side = useMediaQuery('(min-width: 1280px)') ? 'right' : 'top'
@@ -47,8 +49,11 @@ const UserSheet = () => {
 					size="lg"
 					variant="secondary"
 					onClick={() => {
-						logout()
+						// used to prevent bug closing window
+						navigate('/login')
+
 						close()
+						logout()
 					}}
 				>
 					Log Out

@@ -10,7 +10,7 @@ import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import HeroSection from './HeroSection'
 import FetchErrorHandler from '@/components/FetchErrorHandler'
-import { useAvailableBookingsInfiniteQuery } from './hooks/useAvailableBookingsInfiniteQuery'
+import useAvailableBookingsInfiniteQuery from '@/hooks/AvailableBookings/useAvailableBookingsInfiniteQuery'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 const AvailableBookings = () => {
@@ -24,11 +24,7 @@ const AvailableBookings = () => {
 	const to = searchParams.get('to') || getInitialTo()
 	const size = searchParams.get('size')
 	const isLocationSearch =
-		searchParams.get('location') === 'false'
-			? false
-			: coordinates
-				? true
-				: false
+		searchParams.get('location') === 'true' ? true : false
 
 	const coordinatesQuery =
 		isLocationSearch && coordinates ? coordinates : undefined
