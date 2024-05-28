@@ -51,7 +51,7 @@ const FieldAvailabilityForm = () => {
 			to: getInitialTo(),
 		},
 	})
-	const { isDirty, isSubmitting } = form.formState
+	const { isSubmitting } = form.formState
 
 	const [, setSearchParams] = useSearchParams()
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (values) => {
@@ -154,7 +154,7 @@ const FieldAvailabilityForm = () => {
 				<Button
 					className="mt-8 max-w-max justify-self-center"
 					size="lg"
-					disabled={isSubmitting || !isDirty}
+					disabled={isSubmitting}
 					type="submit"
 				>
 					Check Availability
