@@ -6,7 +6,7 @@ const SignUp = () => {
 	useDocumentTitle('Sign Up')
 
 	return (
-		<main className="container">
+		<main className="container my-8">
 			<div className="container max-w-max space-y-7 border-b-2 pb-3 text-center">
 				<h2 className="text-3xl font-bold capitalize">
 					Create your new account

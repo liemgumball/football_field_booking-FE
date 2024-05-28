@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 const PresentSection = () => {
 	return (
 		<section className="container flex flex-col-reverse items-center gap-5 xl:flex-row">
-			<div className="hero-img h-auto max-w-[310px] overflow-hidden rounded-xl md:max-w-[700px] ">
+			<div className="hero-img h-auto w-full overflow-hidden rounded-xl md:max-w-[700px] ">
 				<img src={presentationImg} alt="review image" />
 			</div>
 
