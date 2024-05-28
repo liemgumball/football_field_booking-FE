@@ -52,7 +52,10 @@ const AvailableBookings = () => {
 			<HeroSection />
 
 			{/* Available Booking List */}
-			<AvailabilityForm className="container my-10 grid grid-cols-1 rounded-xl bg-popover px-4 pb-6 pt-10 md:grid-cols-2 lg:grid-cols-5" />
+			<AvailabilityForm
+				isFetching={isFetching}
+				className="container my-10 grid grid-cols-1 rounded-xl bg-popover px-4 pb-6 pt-10 md:grid-cols-2 lg:grid-cols-5"
+			/>
 			<section className="container px-12">
 				<FetchErrorHandler isError={isError} errorMsg={error?.message}>
 					<ul className="grid grid-cols-1 items-stretch justify-items-center gap-x-4 gap-y-6 transition duration-1000 lg:grid-cols-2 xl:grid-cols-3">

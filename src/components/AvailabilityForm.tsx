@@ -33,13 +33,16 @@ import { timeSchema } from '@/constants/time'
 import TimeSelect from './TimeSelect'
 import { getDuration } from '@/utils/time'
 import { PATHS } from '@/constants/navigation'
+import { Icons } from './Icons'
 
 const AvailabilityForm = ({
 	className,
 	isNavigate,
+	isFetching,
 }: {
 	className?: string
 	isNavigate?: boolean
+	isFetching?: boolean
 }) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const navigate = useNavigate()
@@ -100,7 +103,7 @@ const AvailabilityForm = ({
 			})
 	}
 
-	const { isSubmitting, isDirty } = form.formState
+	const { isSubmitting } = form.formState
 	return (
 		<Form {...form}>
 			<form
@@ -258,9 +261,10 @@ const AvailabilityForm = ({
 				<Button
 					className="mt-8 max-w-max self-start justify-self-center md:col-end-auto"
 					size="lg"
-					disabled={isSubmitting || (!isDirty && !isNavigate)}
+					disabled={isSubmitting || isFetching}
 					type="submit"
 				>
+					{isFetching && <Icons.Loader className="mr-1" />}
 					Check Availability
 				</Button>
 			</form>
