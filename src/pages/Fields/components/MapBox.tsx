@@ -28,7 +28,7 @@ const MapBox = ({
 }: {
 	markers: TMarker[]
 	viewPort: TViewPort
-	setViewPort: Dispatch<SetStateAction<TViewPort | null>>
+	setViewPort: Dispatch<SetStateAction<TViewPort>>
 	setZoom: Dispatch<SetStateAction<number>>
 }) => {
 	const { theme } = useThemeStore()

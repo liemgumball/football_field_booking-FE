@@ -3,13 +3,13 @@ import MapBox from './components/MapBox'
 import { useEffect, useState } from 'react'
 import useLocationStore from '@/stores/location'
 import { ENV_VARS } from '@/constants/envVars'
-import AccessLocation from './components/AccessLocation'
 import useDebounce from '@/hooks/useDebounce'
+import { coordinatesDefault } from '@/constants/viewPort'
 
 const FilterByDistanceSection = () => {
 	const coordinates = useLocationStore((set) => set.coordinates)
 
-	const [viewPort, setViewPort] = useState(coordinates)
+	const [viewPort, setViewPort] = useState(coordinates || coordinatesDefault)
 
 	const [markers, setMarkers] = useState<TMarker[]>([])
 
@@ -51,7 +51,7 @@ const FilterByDistanceSection = () => {
 		fetchData()
 	}, [coordinates, distanceDebounce, viewPort])
 
-	return viewPort ? (
+	return (
 		<section className="container">
 			<MapBox
 				markers={markers}
@@ -60,8 +60,6 @@ const FilterByDistanceSection = () => {
 				setZoom={setZoom}
 			/>
 		</section>
-	) : (
-		<AccessLocation />
 	)
 }
 
