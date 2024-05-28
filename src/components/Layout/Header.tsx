@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { buttonVariants } from '@/components/ui/button'
 import useAuthStore from '@/stores/auth'
-import { useRef, useEffect } from 'react'
 
 // Components
 import ModeToggle from '../ThemeToggle'
@@ -13,23 +12,10 @@ import UserSheet from './UserSheet'
 
 const Header = () => {
 	const user = useAuthStore((set) => set.user)
-	const headerRef = useRef<HTMLElement>(null)
-
-	useEffect(() => {
-		const handleScroll = () => {
-			headerRef.current?.classList.add('fixed')
-		}
-		window.addEventListener('scroll', handleScroll)
-
-		return () => window.removeEventListener('scroll', handleScroll)
-	}, [])
 
 	return (
 		<>
-			<header
-				ref={headerRef}
-				className="z-50 flex w-full items-center justify-between border-b-2 bg-background px-8 py-2"
-			>
+			<header className="fixed z-50 flex w-full items-center justify-between border-b-2 bg-background px-8 py-2">
 				<Link className="hidden md:block" to={PATHS.HOME}>
 					<Icons.Logo />
 				</Link>
