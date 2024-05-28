@@ -20,7 +20,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Icons } from '@/components/Icons'
 import { ToastAction } from '@/components/ui/toast'
-import { useAvailableBookingMutation } from '../hooks/useAvailableBookingMutation'
+import { useAvailableBookingMutation } from '@/hooks/AvailableBookingDetails/useAvailableBookingMutation'
 
 // Store & Constants & Types
 import useAuthStore from '@/stores/auth'
@@ -33,7 +33,7 @@ import useAvailableBookingStore from '@/stores/availableBooking'
 import {
 	availableFormSchema,
 	useAvailableBookingForm,
-} from '../hooks/useAvailableBookingForm'
+} from '@/hooks/AvailableBookingDetails/useAvailableBookingForm'
 import { getDisableTimeList, getTimeValues } from '@/utils/time'
 
 const AvailableBookingForm = (

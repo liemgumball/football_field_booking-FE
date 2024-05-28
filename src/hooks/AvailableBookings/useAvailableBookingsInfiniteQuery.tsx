@@ -2,7 +2,7 @@ import { getDayOfServices } from '@/services/day-of-services'
 import { TDayOfService, TTimeStep } from '@/types'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-export const useAvailableBookingsInfiniteQuery = (
+const useAvailableBookingsInfiniteQuery = (
 	date: string,
 	from: TTimeStep,
 	to: TTimeStep,
@@ -28,3 +28,5 @@ export const useAvailableBookingsInfiniteQuery = (
 			return pages.length
 		},
 	})
+
+export default useAvailableBookingsInfiniteQuery

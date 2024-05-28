@@ -14,7 +14,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import RatingInput from '../../../components/RatingInput'
 import { TReview } from '@/types'
-import useBookingMutation from '../hooks/useBookingMutation'
+import useBookingMutation from '@/hooks/BookingDetails/useBookingMutation'
 import { toast } from '@/components/ui/use-toast'
 import { Icons } from '@/components/Icons'
 

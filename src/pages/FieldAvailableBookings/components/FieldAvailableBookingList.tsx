@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-import useFieldAvailableBookingQuery from '../hooks/useFieldAvailableBookingQuery'
+import useFieldAvailableBookingQuery from '@/hooks/FieldAvailableBookings/useFieldAvailableBookingQuery'
 import SkeletonCard from '@/components/SkeletonCard'
 import { getToday } from '@/utils/date'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'

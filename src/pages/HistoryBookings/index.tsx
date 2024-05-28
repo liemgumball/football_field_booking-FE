@@ -1,6 +1,6 @@
 import DataTable from './components/DataTable'
 import Columns from './components/Columns'
-import { useBookingsQuery } from './hooks/useBookingsQuery'
+import { useBookingsQuery } from '@/hooks/Bookings/useBookingsQuery'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
 import { Icons } from '@/components/Icons'
 
