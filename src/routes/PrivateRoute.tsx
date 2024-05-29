@@ -5,7 +5,7 @@ import { Navigate, Outlet } from 'react-router-dom'
 const PrivateRoute = () => {
 	const user = useAuthStore((set) => set.user)
 
-	return user ? <Outlet /> : <Navigate to={PATHS.LOGIN} />
+	return user ? <Outlet /> : <Navigate to={PATHS.LOGIN} replace />
 }
 
 export default PrivateRoute
