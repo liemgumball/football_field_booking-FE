@@ -14,11 +14,9 @@ import { Separator } from '../ui/separator'
 import { Button } from '../ui/button'
 import { useState } from 'react'
 import useMediaQuery from '@/hooks/useMediaQuery'
-import { useNavigate } from 'react-router-dom'
 
 const UserSheet = () => {
 	const [isOpen, setIsOpen] = useState(false)
-	const navigate = useNavigate()
 
 	const { user, remove: logout } = useAuthStore()
 	if (!user) throw new Error('User not found')
@@ -49,11 +47,10 @@ const UserSheet = () => {
 					size="lg"
 					variant="secondary"
 					onClick={() => {
-						// fix vercel navigation closing tab
-						navigate('/')
-
 						logout()
-						close() // close sheet
+
+						// closing the user sheet
+						setIsOpen(false)
 					}}
 				>
 					Log Out
