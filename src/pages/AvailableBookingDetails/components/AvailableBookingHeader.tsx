@@ -1,4 +1,4 @@
-import { Clock, DollarSign, MapPin, Star, User2Icon } from 'lucide-react'
+import { Clock, CoinsIcon, MapPin, Star, User2Icon } from 'lucide-react'
 import { format } from 'date-fns'
 import BookingStatusBadge from '@/components/BookingStatusBadge'
 import { formatPrice } from '@/utils/booking'
@@ -39,7 +39,7 @@ const AvailableBookingHeader = (props: TAvailableBooking) => {
 			<div className="my-auto flex flex-wrap justify-between gap-6 text-nowrap">
 				<div>
 					<p>
-						<DollarSign size={18} className="mr-1 inline text-primary" />
+						<CoinsIcon size={18} className="mr-1 inline text-primary" />
 						Price
 					</p>
 					<p className="text-xl font-bold">{formatPrice(price || 0)}</p>
