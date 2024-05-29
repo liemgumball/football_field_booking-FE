@@ -13,13 +13,7 @@ import {
 } from '@/components/ui/hover-card'
 
 import defaultImg from '/booking_img.png'
-import {
-	ArrowRight,
-	DollarSignIcon,
-	MapPin,
-	Star,
-	User2Icon,
-} from 'lucide-react'
+import { ArrowRight, CoinsIcon, MapPin, Star, User2Icon } from 'lucide-react'
 import { format } from 'date-fns'
 import { Separator } from '@/components/ui/separator'
 import { buttonVariants } from '@/components/ui/button'
@@ -29,7 +23,7 @@ import { Link } from 'react-router-dom'
 import { getTimeRange } from '@/utils/time'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { PATHS } from '@/constants/navigation'
-import { calculatePrice } from '@/utils/booking'
+import { calculatePrice, formatPrice } from '@/utils/booking'
 
 const AvailableBookingCard = ({
 	_id,
@@ -106,10 +100,10 @@ const AvailableBookingCard = ({
 			</CardContent>
 			<Separator className="mx-auto mb-4 w-5/6" />
 			<CardFooter className="flex justify-between text-sm text-secondary-foreground">
-				<div>
-					<DollarSignIcon className="mr-2 inline text-primary" size={18} />
-					{price}
-					<User2Icon className="ml-8 mr-2 inline text-primary" size={18} />
+				<div className="text-nowrap">
+					<CoinsIcon className="mr-1 inline text-primary" size={18} />
+					{formatPrice(price)}
+					<User2Icon className="ml-2 mr-2 inline text-primary" size={18} />
 					{subfield.size}
 				</div>
 				<Link
