@@ -71,6 +71,17 @@ const NavBar = () => {
 					</NavigationMenuContent>
 				</NavigationMenuItem>
 				<NavigationMenuItem>
+					<Link to={PATHS.AVAILABLE_BOOKING.BASE}>
+						<NavigationMenuLink
+							className={navigationMenuTriggerStyle({
+								className: 'capitalize',
+							})}
+						>
+							Booking
+						</NavigationMenuLink>
+					</Link>
+				</NavigationMenuItem>
+				<NavigationMenuItem>
 					<NavigationMenuTrigger className="capitalize">
 						Platform
 					</NavigationMenuTrigger>
