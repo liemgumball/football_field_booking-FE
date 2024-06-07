@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react'
 import useLocationStore from '@/stores/location'
 import { ENV_VARS } from '@/constants/envVars'
 import useDebounce from '@/hooks/useDebounce'
-import { coordinatesDefault } from '@/constants/viewPort'
+import { defaultCoordinates } from '@/constants/coordinates'
 
 const FilterByDistanceSection = () => {
 	const coordinates = useLocationStore((set) => set.coordinates)
 
-	const [viewPort, setViewPort] = useState(coordinates || coordinatesDefault)
+	const [viewPort, setViewPort] = useState(coordinates || defaultCoordinates)
 
 	const [markers, setMarkers] = useState<TMarker[]>([])
 

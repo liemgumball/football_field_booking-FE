@@ -74,7 +74,7 @@ const AvailableBookingCard = ({
 								<Star size={16} color="orange" className="inline" key={i} />
 							))
 						: 'No rating'}
-					{field.rating ? <span>({field.rating})</span> : ''}
+					{field.rating ? <span>({field.rating.toFixed(1)})</span> : ''}
 				</div>
 				<CardTitle className="text-wrap capitalize">
 					<Link
@@ -99,11 +99,11 @@ const AvailableBookingCard = ({
 				<div className="text-nowrap px-2 text-lg font-bold tracking-wider text-secondary-foreground">{`${from} - ${to}`}</div>
 			</CardContent>
 			<Separator className="mx-auto mb-4 w-5/6" />
-			<CardFooter className="flex justify-between text-sm text-secondary-foreground">
+			<CardFooter className="flex items-center justify-between text-sm text-secondary-foreground">
 				<div className="text-nowrap">
 					<CoinsIcon className="mr-1 inline text-primary" size={18} />
 					{formatPrice(price)}
-					<User2Icon className="ml-2 mr-2 inline text-primary" size={18} />
+					<User2Icon className="ml-3 mr-1 inline text-primary" size={18} />
 					{subfield.size}
 				</div>
 				<Link

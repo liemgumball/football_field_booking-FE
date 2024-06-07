@@ -1,5 +1,6 @@
 import { getDayOfServices } from '@/services/day-of-services'
-import { TDayOfService, TTimeStep } from '@/types'
+import { TDayOfService, TTimeStep, TViewPort } from '@/types'
+import { calculateDistance } from '@/utils/map'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 const useAvailableBookingsInfiniteQuery = (
@@ -7,18 +8,34 @@ const useAvailableBookingsInfiniteQuery = (
 	from: TTimeStep,
 	to: TTimeStep,
 	size: number | null,
-	coordinates?: {
-		longitude: number
-		latitude: number
-	},
-) =>
-	useInfiniteQuery<TDayOfService[]>({
-		queryKey: ['day-of-services', date, from, to, size, coordinates],
+	viewPort?: TViewPort,
+	radius?: number,
+) => {
+	const longitude = viewPort?.longitude
+	const latitude = viewPort?.latitude
+	const distance =
+		viewPort && radius
+			? calculateDistance(viewPort.latitude, viewPort.zoom, radius)
+			: undefined
+
+	return useInfiniteQuery<TDayOfService[]>({
+		queryKey: [
+			'day-of-services',
+			date,
+			from,
+			to,
+			size,
+			longitude,
+			latitude,
+			distance,
+		],
 		queryFn: ({ pageParam }) =>
 			getDayOfServices(pageParam as number, date, from, {
 				to,
 				size,
-				coordinates,
+				longitude,
+				latitude,
+				distance,
 			}),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, pages) => {
@@ -28,5 +45,6 @@ const useAvailableBookingsInfiniteQuery = (
 			return pages.length
 		},
 	})
+}
 
 export default useAvailableBookingsInfiniteQuery

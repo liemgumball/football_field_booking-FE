@@ -7,6 +7,12 @@ export type TTimeRange = {
 	to: TTimeStep
 }
 
+export type TViewPort = {
+	longitude: number
+	latitude: number
+	zoom: number
+}
+
 export type TUser = {
 	_id: string
 	email: string
