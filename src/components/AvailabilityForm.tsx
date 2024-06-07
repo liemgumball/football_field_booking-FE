@@ -26,24 +26,34 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from './ui/select'
-import { Checkbox } from '@/components/ui/checkbox'
-import { TFootballFieldSize } from '@/types'
+import { TViewPort, TFootballFieldSize } from '@/types'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { timeSchema } from '@/constants/time'
 import TimeSelect from './TimeSelect'
 import { getDuration } from '@/utils/time'
 import { PATHS } from '@/constants/navigation'
 import { Icons } from './Icons'
+import LocationSearch from './LocationSearch'
+import { Checkbox } from './ui/checkbox'
+
+type TProps = {
+	defaultViewPort?: TViewPort
+	setViewPort?: React.Dispatch<React.SetStateAction<TViewPort>>
+	radius?: number
+}
 
 const AvailabilityForm = ({
 	className,
 	isNavigate,
 	isFetching,
+	defaultViewPort,
+	setViewPort,
+	radius,
 }: {
 	className?: string
 	isNavigate?: boolean
 	isFetching?: boolean
-}) => {
+} & TProps) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const navigate = useNavigate()
 
@@ -64,7 +74,7 @@ const AvailabilityForm = ({
 			distance: z.number().optional().default(10),
 		})
 		.refine(({ from, to }) => getDuration(from, to) >= 1, {
-			message: 'To must after From as least 1 hour',
+			message: 'Duration must as least 1 hour',
 			path: ['to'],
 		})
 
@@ -113,23 +123,26 @@ const AvailabilityForm = ({
 				)}
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
-				{!isNavigate && (
+				{!isNavigate && setViewPort && defaultViewPort && radius && (
 					<FormField
 						control={form.control}
 						name="location"
 						render={({ field }) => (
-							<FormItem className="absolute right-5 top-1 flex flex-row items-start space-x-2 space-y-0 rounded-md p-4">
+							<FormItem className="absolute right-5 top-1 flex flex-row items-center space-x-2 space-y-0 rounded-md p-4">
 								<FormControl>
 									<Checkbox
 										checked={field.value}
 										onCheckedChange={field.onChange}
 									/>
 								</FormControl>
-								<div className="space-y-1 leading-none">
-									<FormLabel className="text-xs text-muted-foreground">
-										Optimize by your location
-									</FormLabel>
-								</div>
+								<FormLabel>
+									<LocationSearch
+										disabled={!field.value}
+										viewPort={defaultViewPort}
+										setViewPort={setViewPort}
+										radius={radius}
+									/>
+								</FormLabel>
 							</FormItem>
 						)}
 					/>

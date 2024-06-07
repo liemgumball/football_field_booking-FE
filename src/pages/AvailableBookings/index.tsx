@@ -6,16 +6,20 @@ import { Button } from '@/components/ui/button'
 import useLocationStore from '@/stores/location'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { getToday } from '@/utils/date'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import HeroSection from './HeroSection'
 import FetchErrorHandler from '@/components/FetchErrorHandler'
 import useAvailableBookingsInfiniteQuery from '@/hooks/AvailableBookings/useAvailableBookingsInfiniteQuery'
 import useDocumentTitle from '@/hooks/useDocumentTitle'
+import useDebounce from '@/hooks/useDebounce'
+import { defaultCoordinates } from '@/constants/coordinates'
+import { TViewPort } from '@/types'
+import useMediaQuery from '@/hooks/useMediaQuery'
 
 const AvailableBookings = () => {
 	useDocumentTitle('Bookings')
-	const coordinates = useLocationStore((set) => set.coordinates)
+	const userCoordinates = useLocationStore((set) => set.coordinates)
 
 	// Get all search parameters
 	const [searchParams] = useSearchParams()
@@ -26,8 +30,13 @@ const AvailableBookings = () => {
 	const isLocationSearch =
 		searchParams.get('location') === 'true' ? true : false
 
-	const coordinatesQuery =
-		isLocationSearch && coordinates ? coordinates : undefined
+	const [viewPort, setViewPort] = useState<TViewPort>({
+		...(userCoordinates || defaultCoordinates),
+		zoom: 15,
+	})
+	const debouncedViewPort = useDebounce(viewPort, 500)
+
+	const radius = useMediaQuery('(min-width: 768px)') ? 400 : 300
 
 	const {
 		data,
@@ -42,7 +51,8 @@ const AvailableBookings = () => {
 		from,
 		to,
 		size ? Number(size) : null,
-		coordinatesQuery,
+		isLocationSearch ? debouncedViewPort : undefined,
+		radius,
 	)
 
 	const bookingsAvailable = useMemo(() => data?.pages.flat(), [data])
@@ -55,6 +65,9 @@ const AvailableBookings = () => {
 			<AvailabilityForm
 				isFetching={isFetching}
 				className="container my-10 grid grid-cols-1 rounded-xl bg-popover px-4 pb-6 pt-10 md:grid-cols-2 lg:grid-cols-5"
+				setViewPort={setViewPort}
+				defaultViewPort={viewPort}
+				radius={radius}
 			/>
 			<section className="container px-12">
 				<FetchErrorHandler isError={isError} errorMsg={error?.message}>

@@ -7,17 +7,16 @@ export const getDayOfServices = (
 	options: {
 		to?: string
 		size?: number | null
-		coordinates?: {
-			longitude: number
-			latitude: number
-		}
+		longitude?: number
+		latitude?: number
+		distance?: number
 		fieldId?: string
 	},
 ) => {
-	const { to, size, coordinates, fieldId } = options
+	const { to, size, longitude, latitude, distance, fieldId } = options
 
 	return apiRequest(
-		`day-of-services?date=${date}&from=${from}${to ? '&to=' + to : ''}${size ? '&size=' + size : ''}${coordinates ? `&latitude=${coordinates.latitude.toString()}&longitude=${coordinates.longitude.toString()}` : ''}&cursor=${cursor}${fieldId ? '&fieldId=' + fieldId : ''}`,
+		`day-of-services?date=${date}&from=${from}${to ? '&to=' + to : ''}${size ? '&size=' + size : ''}${latitude && longitude ? `&latitude=${latitude.toString()}&longitude=${longitude.toString()}` : ''}${distance ? '&distance=' + distance.toString() : ''}&cursor=${cursor}${fieldId ? '&fieldId=' + fieldId : ''}`,
 	)
 }
 
