@@ -70,15 +70,15 @@ const LocationSearch = (props: TProps) => {
 					size="sm"
 					disabled={props.disabled}
 				>
-					Optimize by your location
+					Find by your location
 				</Button>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent className="max-w-4xl sm:mx-2">
 				<DialogHeader>
-					<DialogTitle>Are you absolutely sure?</DialogTitle>
+					<DialogTitle>Find Football Field available around you!</DialogTitle>
 					<DialogDescription>
-						This action cannot be undone. This will permanently delete your
-						account and remove your data from our servers.
+						Move around on the map to search the current football field
+						available inside the circle.
 					</DialogDescription>
 
 					<div className="my-10 overflow-hidden rounded-lg border">
@@ -93,8 +93,10 @@ const LocationSearch = (props: TProps) => {
 							{...viewPort}
 							onMove={(e) => setViewPort(e.viewState)}
 							maxZoom={17}
-							minZoom={12}
+							minZoom={11}
+							pitch={0}
 						>
+							{/* circle radius to search */}
 							<Marker {...viewPort}>
 								<div
 									className="rounded-full border-2 border-primary/40"

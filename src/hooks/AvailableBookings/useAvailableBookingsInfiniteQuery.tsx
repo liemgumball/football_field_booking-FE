@@ -8,6 +8,7 @@ const useAvailableBookingsInfiniteQuery = (
 	from: TTimeStep,
 	to: TTimeStep,
 	size: number | null,
+	searchString: string | null,
 	viewPort?: TViewPort,
 	radius?: number,
 ) => {
@@ -28,6 +29,7 @@ const useAvailableBookingsInfiniteQuery = (
 			longitude,
 			latitude,
 			distance,
+			searchString,
 		],
 		queryFn: ({ pageParam }) =>
 			getDayOfServices(pageParam as number, date, from, {
@@ -36,6 +38,7 @@ const useAvailableBookingsInfiniteQuery = (
 				longitude,
 				latitude,
 				distance,
+				searchString: searchString || undefined,
 			}),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, pages) => {

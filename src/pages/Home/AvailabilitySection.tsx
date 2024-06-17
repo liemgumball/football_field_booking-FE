@@ -1,4 +1,3 @@
-import AvailabilityForm from '@/components/AvailabilityForm'
 import { Button } from '@/components/ui/button'
 import { PATHS } from '@/constants/navigation'
 import { useGSAP } from '@gsap/react'
@@ -6,6 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import AvailabilitySearchForm from './components/AvailabilitySearchForm'
 
 const AvailabilitySection = () => {
 	const ref = useRef(null)
@@ -48,10 +48,7 @@ const AvailabilitySection = () => {
 					Booking Your <span className="text-primary">Best Football Field</span>{' '}
 					Availability
 				</h2>
-				<AvailabilityForm
-					className="grid items-start md:col-start-2 md:grid-cols-2"
-					isNavigate
-				/>
+				<AvailabilitySearchForm className="grid items-start md:col-start-2 md:grid-cols-2" />
 			</div>
 			<div className="image overflow-hidden rounded-3xl">
 				<img
