@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -12,11 +12,15 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import { format } from 'date-fns'
-import { CalendarIcon, SearchIcon } from 'lucide-react'
-import { Calendar } from './ui/calendar'
+import { CalendarIcon } from 'lucide-react'
+import { Calendar } from '@/components/ui/calendar'
 import { formatDate, getNextMonth, getToday, getYesterday } from '@/utils/date'
 import {
 	Select,
@@ -25,36 +29,17 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from './ui/select'
-import { TViewPort, TFootballFieldSize } from '@/types'
+} from '@/components/ui/select'
+import { TFootballFieldSize } from '@/types'
 import { getInitialFrom, getInitialTo } from '@/utils/booking'
 import { timeSchema } from '@/constants/time'
-import TimeSelect from './TimeSelect'
 import { getDuration } from '@/utils/time'
-import { Icons } from './Icons'
-import LocationSearch from './LocationSearch'
-import { Checkbox } from './ui/checkbox'
-import { Input } from './ui/input'
+import { PATHS } from '@/constants/navigation'
+import TimeSelect from '@/components/TimeSelect'
 
-type TProps = {
-	defaultViewPort: TViewPort
-	setViewPort: React.Dispatch<React.SetStateAction<TViewPort>>
-	radius: number
-}
-
-const AvailabilityForm = ({
-	isFetching,
-	defaultViewPort,
-	setViewPort,
-	radius,
-}: {
-	isFetching?: boolean
-} & TProps) => {
-	const [searchParams, setSearchParams] = useSearchParams()
-
-	// Check if can use location or not
-	const isLocationSearch =
-		searchParams.get('location') === 'true' ? true : false
+const AvailabilitySearchForm = ({ className }: { className?: string }) => {
+	const [searchParams] = useSearchParams()
+	const navigate = useNavigate()
 
 	const formSchema = z
 		.object({
@@ -65,9 +50,6 @@ const AvailabilityForm = ({
 				.optional(),
 			from: timeSchema,
 			to: timeSchema,
-			location: z.boolean().default(isLocationSearch),
-			distance: z.number().optional().default(10),
-			searchString: z.string().trim().optional(),
 		})
 		.refine(({ from, to }) => getDuration(from, to) >= 1, {
 			message: 'Duration must as least 1 hour',
@@ -83,76 +65,37 @@ const AvailabilityForm = ({
 			from: searchParams.get('from') || getInitialFrom(),
 			to: searchParams.get('to') || getInitialTo(),
 			size: (searchParams.get('size') as TFootballFieldSize) || 'undefined',
-			location: isLocationSearch,
 		},
 	})
 
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = (values) => {
-		const { date, from, to, location, size, searchString } = values
+		const { date, from, to, size } = values
 
 		const searchParams = new URLSearchParams()
 		searchParams.set('date', formatDate(date))
 		searchParams.set('from', from)
 		searchParams.set('to', to)
-		searchParams.set('location', `${location}`)
 		if (size) {
 			searchParams.set('size', size.toString())
 		}
-		if (searchString) {
-			searchParams.set('search', searchString)
-		}
 
 		// Available booking page
-		setSearchParams(searchParams.toString())
+		navigate({
+			// From Home page navigate to available booking page with search parameters
+			pathname: PATHS.AVAILABLE_BOOKING.BASE,
+			search: searchParams.toString(),
+		})
 	}
 
-	const { isSubmitting, isSubmitted } = form.formState
 	return (
 		<Form {...form}>
 			<form
-				className="container relative my-10  grid grid-cols-1 gap-x-2 gap-y-4 rounded-xl bg-popover px-4 py-2 pb-6 pt-10 shadow-lg md:grid-cols-2 lg:grid-cols-3"
+				className={cn(
+					'relative gap-x-2 gap-y-4 px-8 py-2 shadow-lg',
+					className,
+				)}
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
-				<FormField
-					control={form.control}
-					name="searchString"
-					render={({ field }) => (
-						<FormItem className="md:col-span-2 lg:col-span-1 lg:mt-0">
-							<FormLabel>Search</FormLabel>
-							<FormControl>
-								<div className="relative">
-									<SearchIcon
-										className="absolute left-4 top-3 text-muted-foreground"
-										size={20}
-									/>
-									<Input {...field} className="h-11 pl-12" />
-								</div>
-							</FormControl>
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="location"
-					render={({ field }) => (
-						<FormItem className="absolute right-1 top-1 flex flex-row items-center space-x-2 space-y-0 rounded-md p-4">
-							<FormControl>
-								<Checkbox
-									checked={field.value}
-									onCheckedChange={field.onChange}
-								/>
-							</FormControl>
-							<FormLabel>
-								<LocationSearch
-									disabled={!field.value || !isSubmitted}
-									viewPort={defaultViewPort}
-									setViewPort={setViewPort}
-									radius={radius}
-								/>
-							</FormLabel>
-						</FormItem>
-					)}
-				/>
 				<FormField
 					control={form.control}
 					name="date"
@@ -278,12 +221,10 @@ const AvailabilityForm = ({
 				/>
 
 				<Button
-					className="mt-8 max-w-max self-start justify-self-center md:col-span-2 lg:col-start-3 lg:row-start-1"
+					className="mt-8 max-w-max self-start justify-self-center md:col-span-2"
 					size="lg"
-					disabled={isSubmitting || isFetching}
 					type="submit"
 				>
-					{isFetching && <Icons.Loader className="mr-1" />}
 					Check Availability
 				</Button>
 			</form>
@@ -291,4 +232,4 @@ const AvailabilityForm = ({
 	)
 }
 
-export default AvailabilityForm
+export default AvailabilitySearchForm

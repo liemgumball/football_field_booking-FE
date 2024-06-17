@@ -10,13 +10,15 @@ export const getDayOfServices = (
 		longitude?: number
 		latitude?: number
 		distance?: number
+		searchString?: string
 		fieldId?: string
 	},
 ) => {
-	const { to, size, longitude, latitude, distance, fieldId } = options
+	const { to, size, longitude, latitude, distance, fieldId, searchString } =
+		options
 
 	return apiRequest(
-		`day-of-services?date=${date}&from=${from}${to ? '&to=' + to : ''}${size ? '&size=' + size : ''}${latitude && longitude ? `&latitude=${latitude.toString()}&longitude=${longitude.toString()}` : ''}${distance ? '&distance=' + distance.toString() : ''}&cursor=${cursor}${fieldId ? '&fieldId=' + fieldId : ''}`,
+		`day-of-services?date=${date}&from=${from}${to ? '&to=' + to : ''}${size ? '&size=' + size : ''}${latitude && longitude ? `&latitude=${latitude.toString()}&longitude=${longitude.toString()}` : ''}${distance ? '&distance=' + distance.toString() : ''}${searchString ? '&search=' + searchString : ''}&cursor=${cursor}${fieldId ? '&fieldId=' + fieldId : ''}`,
 	)
 }
 

@@ -27,12 +27,13 @@ const AvailableBookings = () => {
 	const from = searchParams.get('from') || getInitialFrom()
 	const to = searchParams.get('to') || getInitialTo()
 	const size = searchParams.get('size')
+	const searchString = searchParams.get('search')
 	const isLocationSearch =
 		searchParams.get('location') === 'true' ? true : false
 
 	const [viewPort, setViewPort] = useState<TViewPort>({
 		...(userCoordinates || defaultCoordinates),
-		zoom: 15,
+		zoom: 14,
 	})
 	const debouncedViewPort = useDebounce(viewPort, 500)
 
@@ -51,6 +52,7 @@ const AvailableBookings = () => {
 		from,
 		to,
 		size ? Number(size) : null,
+		searchString,
 		isLocationSearch ? debouncedViewPort : undefined,
 		radius,
 	)
@@ -64,7 +66,6 @@ const AvailableBookings = () => {
 			{/* Available Booking List */}
 			<AvailabilityForm
 				isFetching={isFetching}
-				className="container my-10 grid grid-cols-1 rounded-xl bg-popover px-4 pb-6 pt-10 md:grid-cols-2 lg:grid-cols-5"
 				setViewPort={setViewPort}
 				defaultViewPort={viewPort}
 				radius={radius}

@@ -52,6 +52,7 @@ const MapBox = ({
 				{...viewPort}
 				zoom={viewPort.zoom || 13}
 				onMove={(event) => setViewPort(event.viewState)}
+				pitch={0}
 			>
 				{markers.map((marker) => {
 					return (
