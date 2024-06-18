@@ -35,3 +35,16 @@ export const verifyAccount = (token: string) =>
 
 export const resendVerifyEmail = (email: string) =>
 	apiRequest('auth/resend-verify', { method: 'POST', data: { email } })
+
+export const resetPassword = (email: string) =>
+	apiRequest('auth/reset-password', { method: 'POST', data: { email } })
+
+export const changePassword = (
+	email: string,
+	oldPassword: string,
+	newPassword: string,
+) =>
+	apiRequest('auth/change-password', {
+		method: 'POST',
+		data: { email, oldPassword, newPassword },
+	})

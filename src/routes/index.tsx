@@ -16,6 +16,8 @@ const Home = lazy(() => import('@/pages/Home'))
 const AboutUs = lazy(() => import('@/pages/AboutUs'))
 const SignUp = lazy(() => import('@/pages/SignUp'))
 const Login = lazy(() => import('@/pages/Login'))
+const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'))
+const ChangePassword = lazy(() => import('@/pages/ChangePassword'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 const AvailableBookings = lazy(() => import('@/pages/AvailableBookings'))
@@ -45,6 +47,7 @@ const router = createBrowserRouter(
 			{/* Authentication */}
 			<Route path={PATHS.LOGIN} element={<Login />} />
 			<Route path={PATHS.SIGNUP} element={<SignUp />} />
+			<Route path="/forgot-password" element={<ForgotPassword />} />
 			<Route path={PATHS.VERIFY_ACCOUNT} element={<VerifyAccount />} />
 
 			{/* Booking */}
@@ -70,6 +73,7 @@ const router = createBrowserRouter(
 
 			{/* ------------------------- Private Routes ------------------------- */}
 			<Route element={<PrivateRoute />} errorElement={<RouteErrorBoundary />}>
+				<Route path="/change-password" element={<ChangePassword />} />
 				<Route path={PATHS.BOOKING.BASE}>
 					<Route index element={<HistoryBookings />} />
 					<Route path={PATHS.BOOKING.DETAILS} element={<BookingDetails />} />

@@ -19,6 +19,7 @@ import { REGEX } from '@/constants/regex'
 import useAuthStore from '@/stores/auth'
 import { getUser, updateUser } from '@/services/user'
 import { Loader2Icon } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const formSchema = z.object({
 	name: z.string().min(4),
@@ -92,6 +93,13 @@ const EditProfileForm = ({ close }: { close: () => void }) => {
 					Save Changes
 				</Button>
 				<FormMessage>{form.formState.errors.root?.message}</FormMessage>
+				{!user.googleId && (
+					<Button asChild className="mb-2 w-full" variant="secondary">
+						<Link to="change-password" onClick={() => close()}>
+							Change Password
+						</Link>
+					</Button>
+				)}
 			</form>
 		</Form>
 	)

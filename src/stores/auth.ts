@@ -7,6 +7,8 @@ type AuthState = TAuth & {
 	set: (user: TUser, googleAccessToken?: string) => void
 
 	remove: () => void
+
+	setResetPassword: (is: boolean) => void
 }
 
 const useAuthStore = create<AuthState>()(
@@ -14,6 +16,8 @@ const useAuthStore = create<AuthState>()(
 		(set) => ({
 			user: undefined,
 			googleAccessToken: undefined,
+			isResetPassword: false,
+
 			set: (user, googleAccessToken) =>
 				set({
 					user: {
@@ -23,6 +27,7 @@ const useAuthStore = create<AuthState>()(
 					googleAccessToken: googleAccessToken,
 				}),
 			remove: () => set({ user: undefined, googleAccessToken: undefined }),
+			setResetPassword: (is) => set({ isResetPassword: is }),
 		}),
 		{
 			name: 'auth',

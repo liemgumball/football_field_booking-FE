@@ -21,12 +21,14 @@ export type TUser = {
 	role: string
 	avatar?: string
 	avatarFallback?: string
+	googleId?: string
 }
 
 // The access token to backend APIs exists in the cookies
 export type TAuth = {
 	user?: TUser
 	googleAccessToken?: string
+	isResetPassword: boolean
 }
 
 export type TLocation = {
