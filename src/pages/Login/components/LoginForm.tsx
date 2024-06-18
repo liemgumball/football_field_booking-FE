@@ -34,7 +34,7 @@ const LoginForm = () => {
 		resolver: zodResolver(formSchema),
 	})
 
-	const setAuth = useAuthStore((set) => set.set)
+	const auth = useAuthStore()
 	const navigate = useNavigate()
 
 	const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (
@@ -43,8 +43,11 @@ const LoginForm = () => {
 		try {
 			const response = await login(values)
 			if (response) {
-				setAuth(response)
-				navigate('/')
+				auth.set(response)
+
+				if (auth.isResetPassword)
+					navigate('/change-password') // change password after reset password
+				else navigate('/')
 			}
 		} catch (error) {
 			const err = error as Response
