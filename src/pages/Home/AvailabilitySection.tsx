@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import AvailabilitySearchForm from './components/AvailabilitySearchForm'
+import availabilityImg from '/availabilitybookingImg.jpg'
 
 const AvailabilitySection = () => {
 	const ref = useRef(null)
@@ -38,7 +39,7 @@ const AvailabilitySection = () => {
 	return (
 		<section
 			ref={ref}
-			className="flex flex-col items-center justify-center gap-8 px-4 pt-4 xl:flex-row xl:gap-20"
+			className="flex flex-col items-center justify-center gap-8 px-4 pt-4 xl:flex-row xl:gap-14"
 		>
 			<div className="check-form space-y-8">
 				<Button size="lg" asChild className="trigger max-w-max">
@@ -51,10 +52,7 @@ const AvailabilitySection = () => {
 				<AvailabilitySearchForm className="grid items-start md:col-start-2 md:grid-cols-2" />
 			</div>
 			<div className="image overflow-hidden rounded-3xl">
-				<img
-					src="https://demo.webtend.net/html/gowilds/assets/images/contact/contact-1.jpg"
-					alt="demo"
-				/>
+				<img src={availabilityImg} alt="demo" />
 			</div>
 		</section>
 	)

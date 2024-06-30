@@ -4,7 +4,7 @@ const AuthorItem = ({ name, email }: { name: string; email: string }) => {
 	return (
 		<div className="flex gap-6">
 			<Avatar className="min-h-[60px] min-w-[60px]">
-				<AvatarFallback>LN</AvatarFallback>
+				<AvatarFallback>LH</AvatarFallback>
 			</Avatar>
 			<div>
 				<h3 className="mb-1 text-2xl font-semibold">{name} </h3>
