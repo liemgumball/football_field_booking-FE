@@ -15,7 +15,7 @@ const ReviewItem = () => {
 				playing at many different soccer fields. However, This Football Field
 				really left a very deep impression on me.
 			</p>
-			<AuthorItem name="Liem Nguyen" email="liem123@gmail.com" />
+			<AuthorItem name="Le Hoang" email="le123@gmail.com" />
 		</div>
 	)
 }
